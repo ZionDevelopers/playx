@@ -19,9 +19,6 @@
 local PANEL = {}
 
 function PANEL:Init()
-	self.Chrome = vgui.Create("PlayXHTMLControls", self);
-	self.Chrome:Dock(TOP)
-    self.Chrome.HomeURL = "http://www.youtube.com"
 end
 
 function PANEL:OpeningVideo(provider, uri)
@@ -40,9 +37,7 @@ function PANEL:Paint()
 		
 		self.HTML = vgui.Create("PlayXHTML", self)
 		self.HTML:Dock(FILL)
-		self.HTML:OpenURL(self.Chrome.HomeURL)
-        
-		self.Chrome:SetHTML(self.HTML)
+		self.HTML:OpenURL("http://m.youtube.com/my_favorites")
         
         local oldOpenURL = self.HTML.OpeningURL
         local Detected = false
@@ -76,4 +71,4 @@ function PANEL:Paint()
 	end
 end
 
-vgui.Register("PlayXBrowser", PANEL, "Panel")
+vgui.Register("PlayXMiniBrowser", PANEL, "Panel")

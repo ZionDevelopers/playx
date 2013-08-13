@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.7.9 by Nexus [BR] on 12-07-2013 02:48 PM
+-- Version 2.8.0 by Nexus [BR] on 13-08-2013 03:04 PM
 
 
 -- FCVAR_GAMEDLL makes cvar change detection work
@@ -35,40 +35,13 @@ PlayX = {}
 util.AddNetworkString("PlayXBegin") -- Add to Pool
 util.AddNetworkString("PlayXProvidersList") -- Add to Pool
 
---- Checks for Admin Mods and Flags to Allow PlayX Access
--- @return boolean
-function PlayX.AccessManager(ply)
-	-- Default is Deny
-	local result = false
-	
-	-- Check if ULib is loaded
-	if ULib ~= nil then
-		result = ply:query("PlayX Access")	
-	end
-	
-	-- Check if exsto is loaded
-	if exsto ~= nil then
-		result = ply:IsAllowed("playxaccess")
-	end
-	
-	-- Check if Evolve is Loaded
-	if evolve ~= nil then
-		result = ply:EV_HasPrivilege( "PlayX Access" )
-	end
-	
-	if result == false then
-		result = ply:IsAdmin()
-	end
-	
-	return result
-end
-
+loadingLog("PlayX Lib")
 include("playxlib.lua")
 
 -- Load providers
 local p = file.Find("playx/providers/*.lua","LUA")
 for _, file in pairs(p) do
-    local status, err = pcall(function() include("playx/providers/" .. file) end)
+    local status, err = pcall(function() loadingLog("Provider: "..file:Replace(".lua","")) include("playx/providers/" .. file) end)
     if not status then
         ErrorNoHalt("Failed to load provider(s) in " .. file .. ": " .. err)
     end
@@ -78,7 +51,6 @@ PlayX.CurrentMedia = nil
 PlayX.AdminTimeoutTimerRunning = false
 PlayX.LastOpenTime = 0
 
-
 --- Checks if a player instance exists in the game.
 -- @return Whether a player exists
 function PlayX.PlayerExists()
@@ -86,7 +58,7 @@ function PlayX.PlayerExists()
 end
 
 --- Gets the player instance entity
--- @return Entity or nil
+-- @return Entity|nil
 function PlayX.GetInstance()
     local props = ents.FindByClass("gmod_playx")
     if table.Count(props) >= 1 then
@@ -103,41 +75,52 @@ function PlayX.IsUsingJW()
 end
 
 --- Gets the URL of the JW player.
--- @return
+-- @return string
 function PlayX.GetJWURL()
     return GetConVar("playx_jw_url"):GetString():Trim()
 end
 
 --- Returns whether the JW player supports YouTube.
--- @return
+-- @return boolean
 function PlayX.JWPlayerSupportsYouTube()
     return GetConVar("playx_jw_youtube"):GetBool()
 end
 
 --- Gets the URL of the host file.
--- @return
+-- @return string
 function PlayX.GetHostURL()
     return GetConVar("playx_host_url"):GetString():Trim()
 end
 
 --- Checks whether the host URL is valid.
--- @return Whether the host URL is valid
+-- @return boolean
 function PlayX.HasValidHost()
     return PlayX.GetHostURL():Trim():gmatch("^https?://.+") and true or false
 end
 
 --- Returns whether a player is permitted to use the player.
 -- @param ply Player
--- @return
+-- @return boolean
 function PlayX.IsPermitted(ply)
+     -- Default is Deny
     local result = false
     
     if game.SinglePlayer() then
         result = true
-    else
-	    result = PlayX.AccessManager(ply)
-    end
-    
+   	-- Check if ULib is loaded
+	elseif ULib ~= nil then
+		result = ply:query("PlayX Access")	
+	-- Check if exsto is loaded
+	elseif exsto ~= nil then
+		result = ply:IsAllowed("playxaccess")
+	-- Check if Evolve is Loaded
+	elseif evolve ~= nil then
+		result = ply:EV_HasPrivilege( "PlayX Access" )
+	-- Else Check if Player Is Admin
+	else
+		result = ply:IsAdmin()
+	end
+
     return result
 end
 
@@ -310,12 +293,12 @@ function PlayX.OpenMedia(provider, uri, start, forceLowFramerate, useJW, ignoreL
     })
     
     if result.MetadataFunc then
-        Msg(Format("PlayX: Metadata function available via provider %s\n", provider))
+        Msg(Format("PlayX Info: Metadata function available via provider %s\n", provider))
         result.MetadataFunc(function(data)
-            Msg(Format("PlayX: Received metadata via provider %s\n", provider)) 
+            Msg(Format("PlayX Info: Received metadata via provider %s\n", provider)) 
             PlayX.UpdateMetadata(data)
         end, function(err)
-            Msg(Format("PlayX: Metadata failed via provider %s: %s\n", provider, err))
+            Msg(Format("PlayX Info: Metadata failed via provider %s: %s\n", provider, err))
         end)
     end
     
@@ -382,15 +365,15 @@ end
 -- @param lowFramerate
 -- @param length Length of the media in seconds, can be nil
 -- @param handlerArgs Arguments for the handler, can be nil
--- @Param provider Used for wire outputs & metadata, optional
--- @Param identifier Identifies video URL/etc, used for wire outputs & metadata, optional
--- @Param title Used for wire outputs & metadata, optional
+-- @param provider Used for wire outputs & metadata, optional
+-- @param identifier Identifies video URL/etc, used for wire outputs & metadata, optional
+-- @param title Used for wire outputs & metadata, optional
 function PlayX.BeginMedia(handler, uri, start, resumeSupported, lowFramerate, handlerArgs)
     timer.Stop("PlayXMediaExpire")
     timer.Stop("PlayXAdminTimeout")
     PlayX.LastOpenTime = CurTime()
     
-    print(string.format("PlayX: Beginning media %s with handler %s, start at %ss",
+    print(string.format("PlayX Info: Beginning media %s with handler %s, start at %ss",
                         uri, handler, start))
     
     if not handlerArgs then
@@ -405,7 +388,7 @@ function PlayX.BeginMedia(handler, uri, start, resumeSupported, lowFramerate, ha
         ["ResumeSupported"] = resumeSupported,
         ["LowFramerate"] = lowFramerate,
         ["StopTime"] = nil,
-        ["CurrentPos"] = nil,
+       -- ["CurrentPos"] = nil,
         ["HandlerArgs"] = handlerArgs,
         -- Filled by metadata functions
         ["Provider"] = nil,
@@ -473,15 +456,10 @@ function PlayX.SendBeginDStream(ply)
     if ply then
         filter = ply
     else
-        --filter = RecipientFilter()
-        --filter:AddAllPlayers()
-        
-        -- PCMod is a piece of crap
         filter = player.GetHumans()
     end
     
-    local strLength = string.len(PlayX.CurrentMedia.Handler) +
-                      string.len(PlayX.CurrentMedia.URI)
+    local strLength = string.len(PlayX.CurrentMedia.Handler) + string.len(PlayX.CurrentMedia.URI)
     
     if next(PlayX.CurrentMedia.HandlerArgs) == nil and strLength <= 200 then
         umsg.Start("PlayXBegin", filter)
@@ -658,8 +636,7 @@ function PlayerInitialSpawn(ply)
 		    
             -- Send off metadata information
 		    if media.Title then
-		        SendUserMessage("PlayXMetadata", ply,
-		            tostring(media.Title):sub(1, 200))
+		        SendUserMessage("PlayXMetadata", ply, tostring(media.Title):sub(1, 200))
 		    end
         end
     end)

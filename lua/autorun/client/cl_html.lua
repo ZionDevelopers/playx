@@ -87,7 +87,6 @@ function PANEL:Init()
 end
 
 function PANEL:Think()
-
 	if self:IsLoading() then
 		if self.LoadedContent then
 			self:RunJavascript("gmod.getUrl(window.location.href, false);")
@@ -100,26 +99,20 @@ function PANEL:Think()
 		end
 	end
 
-	if ( self.JS and not self:IsLoading() ) then
+	if  self.JS and not self:IsLoading() then
 
 		for k, v in pairs( self.JS ) do
-
 			self:RunJavascript( v )
-
 		end
 
 		self.JS = nil
-
 	end
-
 end
 
 function PANEL:Paint()
-
-	if ( self:IsLoading() ) then
+	if self:IsLoading() then
 		return true
 	end
-
 end
 
 function PANEL:QueueJavascript( js )
@@ -127,7 +120,7 @@ function PANEL:QueueJavascript( js )
 	--
 	-- Can skip using the queue if there's nothing else in it
 	--
-	if ( !self.JS && !self:IsLoading() ) then
+	if not self.JS and not self:IsLoading() then
 		return self:RunJavascript( js )
 	end
 
@@ -144,26 +137,24 @@ end
 
 function PANEL:ConsoleMessage( msg )
 
-	if ( !isstring( msg ) ) then msg = "*js variable*" end
+	if not isstring( msg ) then msg = "*js variable*" end
 
-	if ( self.m_bAllowLua && msg:StartWith( "RUNLUA:" ) ) then
+	if self.m_bAllowLua and msg:StartWith( "RUNLUA:" ) then
 	
-		local strLua = msg:sub( 8 )
+		local strLua = msg:sub(8)
 
 		SELF = self
-		RunString( strLua );
+		RunString(strLua);
 		SELF = nil
 		return; 
-
 	end
 
 	MsgC( Color( 255, 160, 255 ), "[HTML] " );
-	MsgC( Color( 255, 255, 255 ), msg, "\n" )	
-
+	MsgC( Color( 255, 255, 255 ), msg, "\n" );
 end
 
-function PANEL:GetHTML( msg )
-	if ( !isstring( msg ) ) then msg = "" end
+function PANEL:GetHTML(msg)
+	if not isstring(msg) then msg = "" end
 	PlayX._SourceCodeText:SetText(msg);
 end
 
@@ -175,12 +166,11 @@ function PANEL:OnCallback( obj, func, args )
 	--
 	-- Use AddFunction to add functions to this.
 	--
-	local f = self.Callbacks[ obj .. "." .. func ]
+	local f = self.Callbacks[obj .. "." .. func]
 
-	if ( f ) then
-		return f( unpack( args ) )
+	if f then
+		return f(unpack(args))
 	end
-
 end
 
 --
@@ -191,7 +181,7 @@ function PANEL:AddFunction( obj, funcname, func )
 	--
 	-- Create the `object` if it doesn't exist
 	--
-	if ( !self.Callbacks[ obj ] ) then
+	if not self.Callbacks[ obj ] then
 		self:NewObject( obj )
 		self.Callbacks[ obj ] = true
 	end

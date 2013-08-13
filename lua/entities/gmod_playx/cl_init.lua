@@ -25,8 +25,6 @@ language.Add("Undone_#gmod_playx", "Undone PlayX Player")
 language.Add("Cleanup_gmod_playx", "PlayX Player")
 language.Add("Cleaned_gmod_playx", "Cleaned up the PlayX Player")
 
-surface.CreateFont( "PlayXDefaultBold", {font = "Tahoma", size = 13, weight = 1000})
-
 function ENT:Initialize()
     self.Entity:DrawShadow(false)
     
@@ -209,7 +207,7 @@ function ENT:Play(handler, uri, start, volume, handlerArgs)
 			PlayX.Pause = 0
 		end	
 		
-		timer.Create("playxVolumeFix", 1, 10, function () self:ChangeVolume(GetConVarNumber("playx_volume")) end)	
+		timer.Create("playxVolumeFix", 0.5, 5, function () self:ChangeVolume(GetConVarNumber("playx_volume")) end)	
     end
     
     self.Playing = true
@@ -461,7 +459,7 @@ function ENT:HUDPaint()
     local titleText = PlayX.CurrentMedia.Title and PlayX.CurrentMedia.Title:sub(1, 50) 
         or "Title Unavailable"
     draw.SimpleText(titleText,
-                    "PlayXDefaultBold",
+                    "DefaultBold",
                     ScrW() / 2, 25, Color(255, 255, 255, 255),
                     TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
     
@@ -484,13 +482,13 @@ function ENT:HUDPaint()
         
         if self.PlayerData.Position then
 	        draw.SimpleText(playxlib.ReadableTime(self.PlayerData.Position),
-	            "PlayXDefaultBold", bx + 13, by + 43,
+	            "DefaultBold", bx + 13, by + 43,
 	            Color(255, 255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
         end
         
         if self.PlayerData.Duration then
 	        draw.SimpleText(playxlib.ReadableTime(self.PlayerData.Duration),
-	            "PlayXDefaultBold", bx + bw - 12, by + 43,
+	            "DefaultBold", bx + bw - 12, by + 43,
 	            Color(255, 255, 255, 255), TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP)
 	    end
     end

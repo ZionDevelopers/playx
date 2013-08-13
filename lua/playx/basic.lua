@@ -15,9 +15,11 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.7.9 by Nexus [BR] on 12-07-2013 02:48 PM
+-- Version 2.8.0 by Nexus [BR] on 13-08-2013 02:48 PM
 
---Setup Loading Log Formatation
+--- Loading Log
+-- @param string text
+-- @return void
 function loadingLog (text)
 	--Set Max Size
 	local size = 32
@@ -33,6 +35,9 @@ function loadingLog (text)
 	Msg( "||  "..text.."||\n" )
 end
 
+--- Debug Table
+-- @param string var
+-- @param string name
 function debugTable( var, name )
   if not name then name = "a" end
   if "table" ~= type( var ) then
@@ -53,6 +58,9 @@ function debugTable( var, name )
   end
 end
 
+--- Split String
+-- @param string delimiter
+-- @return table
 function string:split(delimiter)
   local result = { }
   local from  = 1
@@ -65,11 +73,3 @@ function string:split(delimiter)
   table.insert( result, string.sub( self, from  ) )
   return result
 end
-
-Msg( "\n/====================================\\\n")
-Msg( "||               PlayX              ||\n" )
-Msg( "||----------------------------------||\n" )
-loadingLog("Version 2.7.9")
-loadingLog("Updated on 12-07-2013 02:48 PM")
-loadingLog("Last Patch by Nexus [BR]")
-Msg( "\\====================================/\n\n" )

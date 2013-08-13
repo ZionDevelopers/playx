@@ -20,6 +20,8 @@
 PlayX._BookmarksPanelList = nil
 
 local hasLoaded = false
+-- Get Mini Browser
+include("playx/clint/vgui/playx_minibrowser.lua")
 
 --- Draw the settings panel.
 local function SettingsPanel(panel)
@@ -224,6 +226,7 @@ local function ControlPanel(panel)
 end
 PANEL = {}
 vgui.Register( "dlistview", PANEL ,"DListView")
+
 --- Draw the control panel.
 local function BookmarksPanel(panel)
     panel:ClearControls()
@@ -289,6 +292,18 @@ local function BookmarksPanel(panel)
 end
 
 --- Draw the control panel.
+local function YoutubeBookmarksPanel(panel)
+    panel:ClearControls()
+    
+    panel:SizeToContents(true)    
+    
+    local browser = vgui.Create("PlayXBrowser", panel)    
+    browser.OpeningVideo = function() 
+        frame:Close()
+    end    
+end
+
+--- Draw the control panel.
 local function NavigatorPanel(panel)
     panel:ClearControls()
     
@@ -316,7 +331,8 @@ local function PopulateToolMenu()
     hasLoaded = true
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", "Settings", "", "", SettingsPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Youtube)", "", "", YoutubeBookmarksPanel) 
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
 end
 

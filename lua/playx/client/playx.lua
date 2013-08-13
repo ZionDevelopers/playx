@@ -17,6 +17,10 @@
 -- $Id$
 -- Version 2.7.7 by Nexus [BR] on 07-03-2013 04:29 PM
 
+-- Initializing PlayX Global Var
+PlayX = {}
+
+-- Creating Client ConVars
 CreateClientConVar("playx_enabled", 1, true, false)
 CreateClientConVar("playx_fps", 14, true, false)
 CreateClientConVar("playx_volume", 80, true, false)
@@ -26,43 +30,40 @@ CreateClientConVar("playx_start_time", "0:00", false, false)
 CreateClientConVar("playx_force_low_framerate", 0, false, false)
 CreateClientConVar("playx_use_jw", 1, false, false)
 CreateClientConVar("playx_ignore_length", 0, false, false)
-CreateClientConVar("playx_use_chrome", 1, true, false)
 CreateClientConVar("playx_error_windows", 1, true, false)
 CreateClientConVar("playx_video_range_enabled", 1, true, false)
 CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
 
-surface.CreateFont( "HUDNumber",{
-	font="Trebuchet MS",
-	size = 40,
-	weight = 900,
-	antialias = true,
-	additive = false
-})
+-- Creating Fonts
+surface.CreateFont( "HUDNumber", {font = "Trebuchet MS", size = 40, weight = 900, antialias = true, additive = false})
+surface.CreateFont( "MenuLarge", {font = "Verdana", size = 16, weight = 600, antialias = true, additive = false})
+surface.CreateFont( "DefaultBold", {font = "Tahoma", size = 13, weight = 1000})
 
-surface.CreateFont( "MenuLarge",{
-	font="Verdana",
-	size = 16,
-	weight = 600,
-	antialias = true,
-	additive = false
-})
-
-PlayX = {}
-
+-- Include Files
+-- Loading Lib
+loadingLog("Lib")
 include("playxlib.lua")
+
+-- Loading Bookmarks
+loadingLog("Bookmarks Manager")
 include("playx/client/bookmarks.lua")
+
+-- Loading Browser
+loadingLog("Browser")
 include("playx/client/vgui/playx_browser.lua")
 
 -- Load handlers
 local p = file.Find("playx/client/handlers/*.lua","LUA")
 for _, file in pairs(p) do
-    local status, err = pcall(function() include("playx/client/handlers/" .. file) end)
+    local status, err = pcall(function() loadingLog("Provider: "..file:Replace(".lua","")) include("playx/client/handlers/" .. file) end)
     if not status then
         ErrorNoHalt("Failed to load handler(s) in " .. file .. ": " .. err)
     end
 end
 
+-- Loading Panels
+loadingLog("Panels")
 include("playx/client/panel.lua")
 
 PlayX.Enabled = true
@@ -72,8 +73,6 @@ PlayX.SeenNotice = false
 PlayX.JWPlayerURL = GetConVarString("playx_jw_url")
 PlayX.HostURL = GetConVarString("playx_host_url")
 PlayX.ShowRadioHUD = true
-PlayX.HasChrome = chrome ~= nil and chrome.NewBrowser ~= nil
-PlayX.SupportsChrome = chrome ~= nil and chrome.NewBrowser ~= nil
 PlayX.Providers = {}
 PlayX._NavigatorWindow = nil
 PlayX.CrashDetected = file.Read("_playx_crash_detection.txt","DATA") == "BEGIN"
@@ -224,13 +223,6 @@ end
 -- @return
 function PlayX.SetPlayerVolume(vol)
     RunConsoleCommand("playx_volume", vol)
-end
-
---- Checks to see if the user enabled gm_chrome. It does not check to see
--- whether it is supported, however. Use PlayX.SupportsChrome for that.
--- @return
-function PlayX.ChromeEnabled()
-    return GetConVar("playx_use_chrome"):GetBool()
 end
 
 --- Resume playing if it is not already playing. Error messages will 
@@ -650,53 +642,79 @@ end
 
 -- Called on PlayX Video Range Check
 local function PlayXRangeCheck() 
-	local enabled = GetConVarNumber("playx_video_range_enabled")
+	-- Setup Vars
+	local enabled = GetConVar("playx_video_range_enabled"):GetBool()
     local radius = GetConVarNumber("playx_video_radius")
-	local showHints = GetConVarNumber("playx_video_range_hints_enabled")
+	local showHints = GetConVar("playx_video_range_hints_enabled"):GetBool()
 	local distance = 0
 	local ent = nil
 	local entities = {}
 	local ply = LocalPlayer()
-		
+	
+	-- Check if PlayX Exists
+	if PlayX.PlayerExists() then
+		-- Get PlayX
+		ent = PlayX.GetInstance()
+	end
+	
+	-- Check if PlayX is Enabled	
 	if enabled == 1 then
-		if PlayX.PlayerExists() then
-			ent = PlayX.GetInstance()
-		end
-		
-		if ply:IsValid() then   
+		-- Check if Player is Valid
+		if ply:IsValid() then  
+			-- Check if PlayX is not Null 
 			if ent ~= nil then
-				if ent:IsValid() then					
+				-- Check if PlayX is Valid
+				if ent:IsValid() then	
+					-- Get Distance				
 					distance = ply:GetPos():Distance(ent:GetPos())
+					-- Check if The PlayX and Player distance is not within the Radius
 					if distance > radius and PlayX.VideoRangeStatus == 1 then    
 						PlayX.VideoRangeStatus = 0
 						
+						-- Check if Browser is Valid
 						if ent.Browser ~= nil then
+							-- Check if Provider Supports Pause
 							if ent.CurrentPage.GetPauseJS() == nil then
+								-- Delete HTML BODY
 								ent.Browser:RunJavascript('document.body.innerHTML = ""')
+							-- Check if Provider Supports Pause
 							else
+								-- Pause Video
 								ent.Browser:RunJavascript(ent.CurrentPage.GetPauseJS());
 								PlayX.Pause = 1								
 							end
 							
+							-- Check if is Ready to show Other Hint
 							if showHints == 1 and PlayX.HintDelay == 0 then
+								-- Show Hint
 								PlayX.ShowHint("PlayX: You are now out of Range from Video Player!")
 								PlayX.HintDelay = 1
 							end		
 						end
+					-- Check if The PlayX and Player distance is within the Radius
 					elseif distance < radius and PlayX.VideoRangeStatus == 0 then
 						PlayX.VideoRangeStatus = 1
 						
+						-- Check if Browser is Valid
 						if ent.Browser ~= nil then
+							-- Check if Provider Supports Pause
 							if ent.CurrentPage.GetPlayJS() == nil or PlayX.StartPaused == 1 then
+								-- Reload Page
 								ent.Browser:RunJavascript("window.location.reload();");
 								PlayX.StartPaused = 0
+							-- Check if Provider do not Supports Pause
 							else
+								-- Check if PlayX is Paused
 								if PlayX.Pause == 1 then
+									-- Play Video
 									ent.Browser:RunJavascript(ent.CurrentPage.GetPlayJS());
 									PlayX.Pause = 0
 								end
 							end
+							
+							-- Check if is Ready to show Other Hint
 							if showHints == 1 and PlayX.HintDelay == 0 then
+								-- Show Hint
 								PlayX.ShowHint("PlayX: You are now in Range of Video Player!")
 								PlayX.HintDelay = 1
 							end		
@@ -704,15 +722,6 @@ local function PlayXRangeCheck()
 					end
 				end
 			end
-		end
-	elseif (PlayX.VideoRangeStatus == 0 and enabled == 0) then
-		if PlayX.PlayerExists() then
-			ent = PlayX.GetInstance()
-		end
-		
-		if ent.Browser ~= nil then
-			ent.Browser:RunJavascript('window.location.reload()')
-			PlayX.VideoRangeStatus = 1
 		end
 	end	
 end
