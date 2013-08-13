@@ -21,7 +21,7 @@ PlayX._BookmarksPanelList = nil
 
 local hasLoaded = false
 -- Get Mini Browser
-include("playx/clint/vgui/playx_minibrowser.lua")
+include("playx/client/vgui/playx_minibrowser.lua")
 
 --- Draw the settings panel.
 local function SettingsPanel(panel)
