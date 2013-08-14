@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.8.0 by Nexus [BR] on 13-08-2013 02:48 PM
+-- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:06 PM
 
 --Setup Loading Log Formatation
 include("playx/basic.lua")
@@ -23,7 +23,7 @@ include("playx/basic.lua")
 Msg( "\n/====================================\\\n")
 Msg( "||               PlayX              ||\n" )
 Msg( "||----------------------------------||\n" )
-loadingLog("Version 2.8.0")
+loadingLog("Version 3.0.0")
 loadingLog("Updated on 13-08-2013")
 Msg( "||----------------------------------||\n" )
 Msg( "||  Loading...                      ||\n" )
@@ -45,17 +45,24 @@ elseif SERVER then
 	AddCSLuaFile("playx/client/playx.lua")
 	AddCSLuaFile("playx/client/bookmarks.lua")
 	AddCSLuaFile("playx/client/vgui/playx_browser.lua")
-	AddCSLuaFile("playx/client/vgui/playx_minibrowser.lua")
 	AddCSLuaFile("playx/client/panel.lua")
 	
-	-- Add handlers
+	-- Send handlers
 	local p = file.Find("playx/client/handlers/*.lua","LUA")
 	for _, file in pairs(p) do
 	    AddCSLuaFile("playx/client/handlers/" .. file)
 	end
 	
+	-- Send providers
+	local p = file.Find("playx/providers/*.lua","LUA")
+	for _, file in pairs(p) do
+	    AddCSLuaFile("playx/providers/" .. file)
+	end
+	
 	-- Loading PlayX Server
-	loadingLog("PlayX Server")
+	loadingLog("Server")
 	include("playx/playx.lua")
 end
+
+Msg( "||  Load Completed!                 ||\n" )
 Msg( "\\====================================/\n\n" )

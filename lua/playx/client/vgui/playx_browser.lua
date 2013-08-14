@@ -52,8 +52,8 @@ function PANEL:Paint()
         
         self.HTML.OpeningURL = function(_, url, target, postdata)
             for id, p in pairs(list.Get("PlayXProviders")) do
-            	Test = p.Detect(uri)
-            	if Test then 
+            	Test = p.Detect(url)            	
+            	if Test then             		
             		Detected = true
             		DetectedProvider = id
             		OpenURL = Test
@@ -62,7 +62,7 @@ function PANEL:Paint()
             end
             
             if Detected then
-				PlayX.NavigatorCapturedURL = OpenURL
+				PlayX.NavigatorCapturedURL = url
 				self.HTML:OpenURL(self.Chrome.HomeURL)
                 self:Open(DetectedProvider, OpenURL)                
                 return true

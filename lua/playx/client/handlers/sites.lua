@@ -193,7 +193,7 @@ list.Set("PlayXHandlers", "YouTubePopup", function(width, height, start, volume,
     end
 	    
     return playxlib.HandlerResult{
-        url = "http://www.youtube.com/watch_popup?v=" .. playxlib.JSEscape(uri) .. '&enablejsapi=1&version=3&start=' .. start,
+        url = "http://www.youtube.com/watch_popup?v=" .. playxlib.JSEscape(uri) .. '&enablejsapi=1&version=3&start=' .. start..'&hd='..GetConVarNumber("playx_hd"),
         center = false,
         volumeFunc = volumeFunc,
         playFunc = playFunc,

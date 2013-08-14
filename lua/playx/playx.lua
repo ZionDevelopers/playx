@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.8.0 by Nexus [BR] on 13-08-2013 03:04 PM
+-- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:59 PM
 
 
 -- FCVAR_GAMEDLL makes cvar change detection work
@@ -35,13 +35,15 @@ PlayX = {}
 util.AddNetworkString("PlayXBegin") -- Add to Pool
 util.AddNetworkString("PlayXProvidersList") -- Add to Pool
 
-loadingLog("PlayX Lib")
+loadingLog("Lib")
 include("playxlib.lua")
 
 -- Load providers
 local p = file.Find("playx/providers/*.lua","LUA")
-for _, file in pairs(p) do
-    local status, err = pcall(function() loadingLog("Provider: "..file:Replace(".lua","")) include("playx/providers/" .. file) end)
+loadingLog("Providers")
+
+for _, file in pairs(p) do	
+    local status, err = pcall(function() loadingLog("  "..file:Replace(".lua","")) include("playx/providers/" .. file) end)
     if not status then
         ErrorNoHalt("Failed to load provider(s) in " .. file .. ": " .. err)
     end
@@ -105,6 +107,7 @@ function PlayX.IsPermitted(ply)
      -- Default is Deny
     local result = false
     
+    -- Check if PlayX is Running in Single Player
     if game.SinglePlayer() then
         result = true
    	-- Check if ULib is loaded
@@ -613,13 +616,6 @@ concommand.Add("playx_spawn_repeater", ConCmdSpawn)
 function PlayerInitialSpawn(ply)
     SendUserMessage("PlayXJWURL", ply, GetConVar("playx_jw_url"):GetString())
     SendUserMessage("PlayXHostURL", ply, GetConVar("playx_host_url"):GetString())
-    
-    -- Send providers list.
-    net.Start("PlayXProvidersList")
-		net.WriteTable({
-			["List"] = list.Get("PlayXProvidersList"),
-		})
-	net.Send(ply)
    
     local origMedia = PlayX.CurrentMedia
     

@@ -15,13 +15,11 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.7.7 by Nexus [BR] on 20-06-2013 02:43 PM
+-- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:59 PM
 
 PlayX._BookmarksPanelList = nil
 
 local hasLoaded = false
--- Get Mini Browser
-include("playx/client/vgui/playx_minibrowser.lua")
 
 --- Draw the settings panel.
 local function SettingsPanel(panel)
@@ -31,6 +29,11 @@ local function SettingsPanel(panel)
         Label = "Enabled",
         Command = "playx_enabled",
     })
+    
+    panel:AddControl("CheckBox", {
+        Label = "HD Quality",
+        Command = "playx_hd",
+    }):SetTooltip("Check to Enable HD Videos")
     
     if PlayX.CrashDetected then
 	    local msg = panel:AddControl("Label", {Text = "PlayX has detected a crash in a previous session. Is it safe to " ..
@@ -164,11 +167,9 @@ local function ControlPanel(panel)
         ["Auto-detect"] = {["playx_provider"] = ""}
     }
     
-    for id, name in pairs(PlayX.Providers) do
-        options[name] = {["playx_provider"] = id}
+    for id, name in pairs(list.Get("PlayXProvidersList")) do
+        options[name[1]] = {["playx_provider"] = id}
     end
-    
-    -- TODO: Put the following two controls on the same line
     
     panel:AddControl("ListBox", {
         Label = "Provider:",
@@ -292,15 +293,59 @@ local function BookmarksPanel(panel)
 end
 
 --- Draw the control panel.
-local function YoutubeBookmarksPanel(panel)
+local function YoutubeFavoritesPanel(panel)
     panel:ClearControls()
     
-    panel:SizeToContents(true)    
+    panel:SizeToContents(true)
     
-    local browser = vgui.Create("PlayXBrowser", panel)    
-    browser.OpeningVideo = function() 
-        frame:Close()
-    end    
+    local textbox = panel:AddControl("TextBox", {
+        Label = "Youtube Account ID:",
+        Command = "playx_yt_id",
+    })
+    textbox:SetTooltip("Example: myyoutubeid")
+    
+    local ImportBT = panel:AddControl("Button", {
+        Label = "Import",
+        Command = "playx_import_ytfavorites",
+    })
+        
+    local bookmarks = panel:AddControl("DListView", {})
+
+    bookmarks:SetMultiSelect(false)
+    bookmarks:AddColumn("Title")
+    bookmarks:AddColumn("URI")
+    bookmarks:SetTall(ScrH() * 7.5/10)
+    
+    for k, bookmark in pairs(PlayX.YoutubeFavorites) do
+        local line = bookmarks:AddLine(bookmark.Title, bookmark.URI)
+        if bookmark.Keyword ~= "" then
+            line:SetTooltip("Keyword: " .. bookmark.Keyword)
+        end
+    end
+    
+    bookmarks.OnRowRightClick = function(lst, index, line)
+        local menu = DermaMenu()
+        menu:AddOption("Play", function()
+        	RunConsoleCommand("playx_open", uri, "", 0)
+        end)
+        
+        menu:Open()
+    end
+    
+    bookmarks.DoDoubleClick = function(lst, index, line)
+        if not line then return end
+         RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+    end
+    
+    local button = panel:AddControl("Button", {Text="Open Selected"})
+    button.DoClick = function()
+        if bookmarks:GetSelectedLine() then
+            local line = bookmarks:GetLine(bookmarks:GetSelectedLine())
+            RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+	    else
+            Derma_Message("You didn't select an entry.", "Error", "OK")
+	    end
+    end  
 end
 
 --- Draw the control panel.
@@ -332,8 +377,9 @@ local function PopulateToolMenu()
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", "Settings", "", "", SettingsPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Youtube)", "", "", YoutubeBookmarksPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXYoutubeFavorites", "Bookmarks (Youtube)", "", "", YoutubeFavoritesPanel) 
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
+    PlayX.ImportYoutubeFavorites()
 end
 
 hook.Add("PopulateToolMenu", "PlayXPopulateToolMenu", PopulateToolMenu)
@@ -344,4 +390,9 @@ function PlayX.UpdatePanels()
     SettingsPanel(controlpanel.Get("PlayXSettings"))
     ControlPanel(controlpanel.Get("PlayXControl"))
     NavigatorPanel(controlpanel.Get("PlayXNavigator"))
+end
+
+--- Update Youtube Bookmarks
+function PlayX.UpdateYoutubeFavoritePanel()
+	 YoutubeFavoritesPanel(controlpanel.Get("PlayXYoutubeFavorites"))
 end

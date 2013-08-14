@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.7.7 by Nexus [BR] on 07-03-2013 04:29 PM
+-- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:59 PM
 
 -- Initializing PlayX Global Var
 PlayX = {}
@@ -34,6 +34,8 @@ CreateClientConVar("playx_error_windows", 1, true, false)
 CreateClientConVar("playx_video_range_enabled", 1, true, false)
 CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
+CreateClientConVar("playx_yt_id","", true, false)
+CreateClientConVar("playx_hd", 0, true, false)
 
 -- Creating Fonts
 surface.CreateFont( "HUDNumber", {font = "Trebuchet MS", size = 40, weight = 900, antialias = true, additive = false})
@@ -55,10 +57,23 @@ include("playx/client/vgui/playx_browser.lua")
 
 -- Load handlers
 local p = file.Find("playx/client/handlers/*.lua","LUA")
+loadingLog("Handlers")
+
 for _, file in pairs(p) do
-    local status, err = pcall(function() loadingLog("Provider: "..file:Replace(".lua","")) include("playx/client/handlers/" .. file) end)
+    local status, err = pcall(function() loadingLog("  "..file:Replace(".lua","")) include("playx/client/handlers/" .. file) end)
     if not status then
         ErrorNoHalt("Failed to load handler(s) in " .. file .. ": " .. err)
+    end
+end
+
+-- Load providers
+local p = file.Find("playx/providers/*.lua","LUA")
+loadingLog("Providers")
+
+for _, file in pairs(p) do	
+    local status, err = pcall(function() loadingLog("  "..file:Replace(".lua","")) include("playx/providers/" .. file) end)
+    if not status then
+        ErrorNoHalt("Failed to load provider(s) in " .. file .. ": " .. err)
     end
 end
 
@@ -73,7 +88,7 @@ PlayX.SeenNotice = false
 PlayX.JWPlayerURL = GetConVarString("playx_jw_url")
 PlayX.HostURL = GetConVarString("playx_host_url")
 PlayX.ShowRadioHUD = true
-PlayX.Providers = {}
+PlayX.YoutubeFavorites = {}
 PlayX._NavigatorWindow = nil
 PlayX.CrashDetected = file.Read("_playx_crash_detection.txt","DATA") == "BEGIN"
 PlayX.VideoRangeStatus = 1
@@ -562,22 +577,6 @@ local function UMsgBegin(um)
 	PlayX.BeginMedia(handler, uri, playAge, resumeSupported, lowFramerate, {})
 end
 
---- Called on PlayXProvidersList user message.
-local function DSProvidersList(len)
-	local decoded = net.ReadTable()
-    Msg("PlayX DEBUG: Providers list received\n")
-    
-    local list = decoded.List
-    
-    PlayX.Providers = {}
-    
-    for k, v in pairs(list) do
-        PlayX.Providers[k] = v[1]
-    end
-    
-    PlayX.UpdatePanels()
-end
-
 --- Called on PlayXEnd user message.
 local function UMsgEnd(um)
     PlayX.CurrentMedia = nil
@@ -658,7 +657,7 @@ local function PlayXRangeCheck()
 	end
 	
 	-- Check if PlayX is Enabled	
-	if enabled == 1 then
+	if enabled then
 		-- Check if Player is Valid
 		if ply:IsValid() then  
 			-- Check if PlayX is not Null 
@@ -685,7 +684,7 @@ local function PlayXRangeCheck()
 							end
 							
 							-- Check if is Ready to show Other Hint
-							if showHints == 1 and PlayX.HintDelay == 0 then
+							if showHints and PlayX.HintDelay == 0 then
 								-- Show Hint
 								PlayX.ShowHint("PlayX: You are now out of Range from Video Player!")
 								PlayX.HintDelay = 1
@@ -727,7 +726,6 @@ local function PlayXRangeCheck()
 end
 
 net.Receive("PlayXBegin", DSBegin)
-net.Receive("PlayXProvidersList", DSProvidersList)
 usermessage.Hook("PlayXBegin", UMsgBegin)
 usermessage.Hook("PlayXEnd", UMsgEnd)
 usermessage.Hook("PlayXSpawnDialog", UMsgSpawnDialog)
@@ -872,6 +870,57 @@ local function ConCmdNavigatorWindow()
     PlayX.OpenNavigatorWindow()
 end
 
+--- Import Favorites from Youtube
+function PlayX.ImportYoutubeFavorites()
+	-- Setup List
+	PlayX.YoutubeFavorites = {}	
+	-- Get Youtube Account ID
+	local accountID = GetConVarString("playx_yt_id")
+    local Test = ""
+    local Title = ""
+    local URI = ""
+    local Provider = ""
+    local Keyword = ""
+	
+	-- Check if AccountID was Set
+	if accountID ~= "" then
+		-- Get Favorites from Youtube		
+		http.Fetch("http://gdata.youtube.com/feeds/base/users/"..accountID.."/favorites?alt=json", 
+			-- Run Function with Data
+			function (data) 
+				-- Check if got Error
+				if data ~= "" then
+					-- Convert List to JSON
+					local list = util.JSONToTable(data)
+					
+					-- Check if Everything is OK
+					if list ~= nil then						
+						-- Loop on the List
+						for i, fav in pairs(list.feed.entry) do
+							-- Set Vars
+							Title = fav["title"]["$t"]
+							URI = fav["link"][1]["href"]
+							URI = string.Replace(URI, "&feature=youtube_gdata","")
+							URI = string.Replace(URI, "http://gdata.youtube.com/feeds/base/videos/", "http://www.youtube.com/watch?v=")
+							
+				            -- Add Fav
+							PlayX.YoutubeFavorites[i] = {['Title'] = Title, ['URI'] = URI, ["Provider"] = "", ['Keyword'] = ""}						
+						end
+						-- Update Panel
+						PlayX.UpdateYoutubeFavoritePanel()
+						-- Show Hint
+						PlayX.ShowHint("PlayX: Youtube Favorites Imported!")
+					else
+						Derma_Message("Youtube Account ID Invalid!.", "Error", "OK")
+					end
+				else
+					Derma_Message("Youtube Account ID Invalid!.", "Error", "OK")
+				end
+			end
+		)
+	end
+end
+
 concommand.Add("playx_resume", ConCmdResume)
 concommand.Add("playx_hide", ConCmdHide)
 concommand.Add("playx_reset_render_bounds", ConCmdResetRenderBounds)
@@ -881,6 +930,7 @@ concommand.Add("playx_navigator_addbookmark", ConCmdGUIBookmarkNavigator)
 concommand.Add("playx_gui_bookmark", ConCmdGUIBookmark)
 concommand.Add("playx_dump_html", ConCmdDumpHTML) -- Debug function
 concommand.Add("playx_navigator_window", ConCmdNavigatorWindow)
+concommand.Add("playx_import_ytfavorites", PlayX.ImportYoutubeFavorites)
 
 --- Detect a crash.
 local function DetectCrash()

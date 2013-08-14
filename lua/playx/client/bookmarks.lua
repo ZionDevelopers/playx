@@ -416,10 +416,9 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     providerInput:SetWide(150)
     providerInput:SetTooltip("Leave blank for auto-detection")
     
-    --providerInput:AddChoice("")
-    --for id, name in pairs(PlayX.Providers) do
-    --    providerInput:AddChoice(id)
-    --end
+    for id, name in pairs(list.Get("PlayXProvidersList")) do
+        providerInput:AddChoice(id)
+    end
     
     -- Update button
     local updateButton = vgui.Create("DButton", frame)

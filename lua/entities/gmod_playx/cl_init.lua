@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 2.7.6 by Nexus [BR] on 20-06-2013 10:12 AM
+-- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:59 PM
 
 include("shared.lua")
 

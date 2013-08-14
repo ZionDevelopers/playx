@@ -52,9 +52,9 @@ function YouTube.GetPlayer(uri, useJW)
         else
             local vars = {
                 ["autoplay"] = "1",
-                ["start"] = "__start__",
+                ["start"] = "0",
                 ["rel"] = "0",
-                ["hd"] = "0",
+                ["hd"] = GetConVarNumber("playx_hd"),
                 ["showsearch"] = "0",
                 ["showinfo"] = "0",
                 ["enablejsapi"] = "1",
