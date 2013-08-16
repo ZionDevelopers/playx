@@ -224,4 +224,4 @@ function PANEL:Remove()
 	self.BaseClass.Remove( self )
 end
 
-derma.DefineControl( "PlayXHTML", "Extended HTML", PANEL, "DHTML" )
+derma.DefineControl( "PlayXHTML", "Extended HTML", PANEL, "Awesomium" )
