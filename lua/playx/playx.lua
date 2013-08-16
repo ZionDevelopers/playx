@@ -19,7 +19,7 @@
 
 
 -- FCVAR_GAMEDLL makes cvar change detection work
-CreateConVar("playx_jw_url", "http://dl.dropbox.com/u/18850333/playx/jwplayer.flash.swf", {FCVAR_GAMEDLL})
+CreateConVar("playx_jw_url", "http://nexbr.github.io/playx/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
 CreateConVar("playx_host_url", "http://dl.dropbox.com/u/18850333/playx/host.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_jw_youtube", "1", {FCVAR_ARCHIVE})
 CreateConVar("playx_admin_timeout", "120", {FCVAR_ARCHIVE})

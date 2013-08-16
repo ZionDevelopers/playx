@@ -21,7 +21,7 @@ local PANEL = {}
 function PANEL:Init()
 	self.Chrome = vgui.Create("PlayXHTMLControls", self);
 	self.Chrome:Dock(TOP)
-    self.Chrome.HomeURL = "http://www.youtube.com"
+    self.Chrome.HomeURL = "http://nexbr.github.io/playx/"
 end
 
 function PANEL:OpeningVideo(provider, uri)
