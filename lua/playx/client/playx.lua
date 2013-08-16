@@ -48,6 +48,13 @@ PlayX = {}
 
 include("playxlib.lua")
 include("playx/client/bookmarks.lua")
+
+-- Loading Queue
+loadingLog("Queue Manager")
+include("playx/client/queue.lua")
+
+-- Loading Browser
+loadingLog("Browser")
 include("playx/client/vgui/playx_browser.lua")
 
 -- Load handlers
@@ -80,6 +87,7 @@ PlayX.Pause = 0
 PlayX.StartPaused = 0
 PlayX.NavigatorCapturedURL = ""
 PlayX.IsFullscreen = false
+PlayX.PlayHistory = {}
 
 local spawnWindow = nil
 
@@ -726,7 +734,7 @@ usermessage.Hook("PlayXError", UMsgError)
 usermessage.Hook("PlayXMetadata", UMsgMetadata)
 usermessage.Hook("PlayXUse", UMsgUse)
 
-timer.Create( "hintDelay", 2, -1, function() PlayX.HintDelay = 0 end  )
+timer.Create( "hintDelay", 1, -1, function() PlayX.HintDelay = 0 end  )
 timer.Create("PlayXRangeCheck", 0.500, -1, PlayXRangeCheck)
 
 --- Called for concmd playx_resume.

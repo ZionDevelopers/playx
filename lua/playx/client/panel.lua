@@ -309,7 +309,10 @@ local function PopulateToolMenu()
     hasLoaded = true
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", "Settings", "", "", SettingsPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXYoutubeFavorites", "Bookmarks (Youtube)", "", "", YoutubeFavoritesPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXHistory", "Play History", "", "", HistoryPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXQueue", "Queue", "", "", QueuePanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
 end
 
@@ -321,4 +324,14 @@ function PlayX.UpdatePanels()
     SettingsPanel(controlpanel.Get("PlayXSettings"))
     ControlPanel(controlpanel.Get("PlayXControl"))
     NavigatorPanel(controlpanel.Get("PlayXNavigator"))
+end
+
+--- Update History
+function PlayX.UpdateHistoryPanel()
+	 HistoryPanel(controlpanel.Get("PlayXHistory"))
+end
+
+--- Update Queue
+function PlayX.UpdateQueuePanel()
+	 QueuePanel(controlpanel.Get("PlayXQueue"))
 end
