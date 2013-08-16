@@ -51,6 +51,10 @@ include("playxlib.lua")
 loadingLog("Bookmarks Manager")
 include("playx/client/bookmarks.lua")
 
+-- Loading Queue
+loadingLog("Queue Manager")
+include("playx/client/queue.lua")
+
 -- Loading Browser
 loadingLog("Browser")
 include("playx/client/vgui/playx_browser.lua")
@@ -96,6 +100,7 @@ PlayX.HintDelay = 1
 PlayX.Pause = 0
 PlayX.StartPaused = 0
 PlayX.NavigatorCapturedURL = ""
+PlayX.PlayHistory = {}
 
 local spawnWindow = nil
 
@@ -735,7 +740,7 @@ usermessage.Hook("PlayXError", UMsgError)
 usermessage.Hook("PlayXMetadata", UMsgMetadata)
 usermessage.Hook("PlayXUse", UMsgUse)
 
-timer.Create( "hintDelay", 2, -1, function() PlayX.HintDelay = 0 end  )
+timer.Create( "hintDelay", 1, -1, function() PlayX.HintDelay = 0 end  )
 timer.Create("PlayXRangeCheck", 0.500, -1, PlayXRangeCheck)
 
 --- Called for concmd playx_resume.
@@ -885,7 +890,7 @@ function PlayX.ImportYoutubeFavorites()
 	-- Check if AccountID was Set
 	if accountID ~= "" then
 		-- Get Favorites from Youtube		
-		http.Fetch("http://gdata.youtube.com/feeds/base/users/"..accountID.."/favorites?alt=json", 
+		http.Fetch("http://gdata.youtube.com/feeds/base/users/"..accountID.."/favorites?max-results=50&alt=json", 
 			-- Run Function with Data
 			function (data) 
 				-- Check if got Error

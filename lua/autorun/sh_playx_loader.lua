@@ -44,6 +44,7 @@ elseif SERVER then
 	AddCSLuaFile("playx/basic.lua")
 	AddCSLuaFile("playx/client/playx.lua")
 	AddCSLuaFile("playx/client/bookmarks.lua")
+	AddCSLuaFile("playx/client/queue.lua")
 	AddCSLuaFile("playx/client/vgui/playx_browser.lua")
 	AddCSLuaFile("playx/client/panel.lua")
 	

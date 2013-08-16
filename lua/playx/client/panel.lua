@@ -167,7 +167,7 @@ local function ControlPanel(panel)
         ["Auto-detect"] = {["playx_provider"] = ""}
     }
     
-    for id, name in pairs(list.Get("PlayXProvidersList")) do
+    for id, name in ipairs(list.Get("PlayXProvidersList")) do
         options[name[1]] = {["playx_provider"] = id}
     end
     
@@ -317,10 +317,7 @@ local function YoutubeFavoritesPanel(panel)
     bookmarks:SetTall(ScrH() * 7.5/10)
     
     for k, bookmark in pairs(PlayX.YoutubeFavorites) do
-        local line = bookmarks:AddLine(bookmark.Title, bookmark.URI)
-        if bookmark.Keyword ~= "" then
-            line:SetTooltip("Keyword: " .. bookmark.Keyword)
-        end
+        bookmarks:AddLine(bookmark.Title, bookmark.URI)
     end
     
     bookmarks.OnRowRightClick = function(lst, index, line)
@@ -347,6 +344,99 @@ local function YoutubeFavoritesPanel(panel)
 	    end
     end  
 end
+
+--- Draw the control panel.
+local function HistoryPanel(panel)
+    panel:ClearControls()
+    
+    panel:SizeToContents(true)
+   
+    local bookmarks = panel:AddControl("DListView", {})
+
+    bookmarks:SetMultiSelect(false)
+    bookmarks:AddColumn("Title")
+    bookmarks:AddColumn("URI")
+    bookmarks:SetTall(ScrH() * 7.5/10)
+    
+    for k, bookmark in pairs(PlayX.PlayHistory) do
+        bookmarks:AddLine(bookmark.Title, bookmark.URI)      
+    end
+    
+    bookmarks.OnRowRightClick = function(lst, index, line)
+ 		local menu = DermaMenu()
+ 		
+        menu:AddOption("Play", function()
+        	RunConsoleCommand("playx_open", uri, "", 0)
+        end)
+        
+        menu:Open()
+    end
+    
+    bookmarks.DoDoubleClick = function(lst, index, line)
+        if not line then return end
+         RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+    end
+    
+    if PlayX.IsPermitted(LocalPlayer()) then
+	    local button = panel:AddControl("Button", {Text="Clear History"})
+	    button.DoClick = function()   
+	    	Derma_Query("Confirm", "You really want Empty the History ", "Yes", function () PlayX.PlayHistory = {} PlayX.UpdateHistoryPanel() end, "No", function () end) 
+	    end  
+    end
+end
+
+--- Draw the control panel.
+local function QueuePanel(panel)
+    panel:ClearControls()
+    
+    panel:SizeToContents(true)
+           
+    local Queue = panel:AddControl("DListView", {})
+
+    Queue:SetMultiSelect(false)
+    Queue:AddColumn("ID")
+    Queue:AddColumn("Title")
+    Queue:SetTall(ScrH() * 7.5/10)
+    
+    for k, item in pairs(PlayX.Queue) do
+        Queue:AddLine(item.ID, item.Title)        
+    end
+    
+    Queue.OnRowRightClick = function(lst, index, line)
+        local menu = DermaMenu()
+        menu:AddOption("Play", function()
+        	PlayX.GetItemFromQueue(line:GetValue(1)):PlayItem()
+        end)
+        
+        menu:AddOption("Edit...", function()
+            PlayX.OpenQueueWindow(line:GetValue(1))
+        end)
+		
+		menu:AddOption("Delete...", function()
+           	PlayX.DeleteItemFromQueue(line)
+        end)
+
+        menu:AddOption("Copy URI", function()
+            SetClipboardText(line:GetValue(3))
+
+        end)
+        menu:AddOption("Copy to 'Administrate'", function()
+            PlayX.GetItemFromQueue(line:GetValue(3):Trim()):CopyToPanel()
+        end)
+        menu:Open()
+    end
+    
+    Queue.DoDoubleClick = function(lst, index, line)
+        if not line then return end
+        PlayX.GetItemFromQueue(line:GetValue(1)):PlayItem()
+    end
+    
+    if PlayX.IsPermitted(LocalPlayer()) then
+	    local button = panel:AddControl("Button", {Text="Empty Queue"})
+	    button.DoClick = function()   
+	    	Derma_Query("Confirm", "You really want Empty Queue", "Yes", function () PlayX.Queue = {} PlayX.UpdateQueuePanel() end, "No", function () end) 
+	    end  
+    end 
 
 --- Draw the control panel.
 local function NavigatorPanel(panel)
@@ -378,6 +468,8 @@ local function PopulateToolMenu()
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXYoutubeFavorites", "Bookmarks (Youtube)", "", "", YoutubeFavoritesPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXHistory", "Play History", "", "", HistoryPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXQueue", "Queue", "", "", QueuePanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
     PlayX.ImportYoutubeFavorites()
 end
@@ -395,4 +487,14 @@ end
 --- Update Youtube Bookmarks
 function PlayX.UpdateYoutubeFavoritePanel()
 	 YoutubeFavoritesPanel(controlpanel.Get("PlayXYoutubeFavorites"))
+end
+
+--- Update History
+function PlayX.UpdateHistoryPanel()
+	 HistoryPanel(controlpanel.Get("PlayXHistory"))
+end
+
+--- Update Queue
+function PlayX.UpdateQueuePanel()
+	 QueuePanel(controlpanel.Get("PlayXQueue"))
 end
