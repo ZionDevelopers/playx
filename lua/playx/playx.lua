@@ -17,16 +17,13 @@
 -- $Id$
 -- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:59 PM
 
-
 -- FCVAR_GAMEDLL makes cvar change detection work
 CreateConVar("playx_jw_url", "http://nexbr.github.io/playx/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
-CreateConVar("playx_host_url", "http://dl.dropbox.com/u/18850333/playx/host.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_jw_youtube", "1", {FCVAR_ARCHIVE})
-CreateConVar("playx_admin_timeout", "120", {FCVAR_ARCHIVE})
-CreateConVar("playx_expire", "-1", {FCVAR_ARCHIVE})
-CreateConVar("playx_race_protection", "1", {FCVAR_ARCHIVE})
-CreateConVar("playx_wire_input", "0", {FCVAR_ARCHIVE})
-CreateConVar("playx_wire_input_delay", "2", {FCVAR_ARCHIVE})
+CreateConVar("playx_host_url", "http://nexbr.github.io/playx/host.html", {FCVAR_GAMEDLL})
+CreateConVar("playx_jw_youtube", 1, {FCVAR_ARCHIVE})
+CreateConVar("playx_admin_timeout", 120, {FCVAR_ARCHIVE})
+CreateConVar("playx_expire", -1, {FCVAR_ARCHIVE})
+CreateConVar("playx_race_protection", 1, {FCVAR_ARCHIVE})
 
 -- Note: Not using cvar replication because this can start causing problems
 -- if the server has been left online for a while.
