@@ -282,6 +282,152 @@ local function BookmarksPanel(panel)
 end
 
 --- Draw the control panel.
+local function YoutubeFavoritesPanel(panel)
+    panel:ClearControls()
+    
+    panel:SizeToContents(true)
+    
+    local textbox = panel:AddControl("TextBox", {
+        Label = "Youtube Account ID:",
+        Command = "playx_yt_id",
+    })
+    textbox:SetTooltip("Example: myyoutubeid")
+    
+    local ImportBT = panel:AddControl("Button", {
+        Label = "Import",
+        Command = "playx_import_ytfavorites",
+    })
+        
+    local bookmarks = panel:AddControl("DListView", {})
+
+    bookmarks:SetMultiSelect(false)
+    bookmarks:AddColumn("Title")
+    bookmarks:AddColumn("URI")
+    bookmarks:SetTall(ScrH() * 7.5/10)
+    
+    for k, bookmark in pairs(PlayX.YoutubeFavorites) do
+        bookmarks:AddLine(bookmark.Title, bookmark.URI)
+    end
+    
+    bookmarks.OnRowRightClick = function(lst, index, line)
+        local menu = DermaMenu()
+        menu:AddOption("Play", function()
+        	RunConsoleCommand("playx_open", uri, "", 0)
+        end)
+        
+        menu:Open()
+    end
+    
+    bookmarks.DoDoubleClick = function(lst, index, line)
+        if not line then return end
+         RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+    end
+    
+    local button = panel:AddControl("Button", {Text="Open Selected"})
+    button.DoClick = function()
+        if bookmarks:GetSelectedLine() then
+            local line = bookmarks:GetLine(bookmarks:GetSelectedLine())
+            RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+	    else
+            Derma_Message("You didn't select an entry.", "Error", "OK")
+	    end
+    end  
+end
+
+--- Draw the control panel.
+local function HistoryPanel(panel)
+    panel:ClearControls()
+    
+    panel:SizeToContents(true)
+   
+    local bookmarks = panel:AddControl("DListView", {})
+
+    bookmarks:SetMultiSelect(false)
+    bookmarks:AddColumn("Title")
+    bookmarks:AddColumn("URI")
+    bookmarks:SetTall(ScrH() * 7.5/10)
+    
+    for k, bookmark in pairs(PlayX.History) do
+        bookmarks:AddLine(bookmark.Title, bookmark.URI)      
+    end
+    
+    bookmarks.OnRowRightClick = function(lst, index, line)
+ 		local menu = DermaMenu()
+ 		
+        menu:AddOption("Play", function()
+        	RunConsoleCommand("playx_open", uri, "", 0)
+        end)
+        
+        menu:Open()
+    end
+    
+    bookmarks.DoDoubleClick = function(lst, index, line)
+        if not line then return end
+         RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+    end
+    
+    if PlayX.IsPermitted(LocalPlayer()) then
+	    local button = panel:AddControl("Button", {Text="Clear History"})
+	    button.DoClick = function()   
+	    	Derma_Query("Confirm", "You really want Empty the History ", "Yes", function () PlayX.History = {} PlayX.UpdateHistoryPanel() end, "No", function () end) 
+	    end  
+    end
+end
+
+--- Draw the control panel.
+local function QueuePanel(panel)
+    panel:ClearControls()
+    
+    panel:SizeToContents(true)
+           
+    local Queue = panel:AddControl("DListView", {})
+
+    Queue:SetMultiSelect(false)
+    Queue:AddColumn("ID")
+    Queue:AddColumn("Title")
+    Queue:SetTall(ScrH() * 7.5/10)
+    
+    for k, item in pairs(PlayX.Queue) do
+        Queue:AddLine(item.ID, item.Title)        
+    end
+    
+    Queue.OnRowRightClick = function(lst, index, line)
+        local menu = DermaMenu()
+        menu:AddOption("Play", function()
+        	PlayX.GetItemFromQueue(line:GetValue(1)):PlayItem()
+        end)
+        
+        menu:AddOption("Edit...", function()
+            PlayX.OpenQueueWindow(line:GetValue(1))
+        end)
+		
+		menu:AddOption("Delete...", function()
+           	PlayX.DeleteItemFromQueue(line)
+        end)
+
+        menu:AddOption("Copy URI", function()
+            SetClipboardText(line:GetValue(3))
+
+        end)
+        menu:AddOption("Copy to 'Administrate'", function()
+            PlayX.GetItemFromQueue(line:GetValue(3):Trim()):CopyToPanel()
+        end)
+        menu:Open()
+    end
+    
+    Queue.DoDoubleClick = function(lst, index, line)
+        if not line then return end
+        PlayX.GetItemFromQueue(line:GetValue(1)):PlayItem()
+    end
+    
+    if PlayX.IsPermitted(LocalPlayer()) then
+	    local button = panel:AddControl("Button", {Text="Empty Queue"})
+	    button.DoClick = function()   
+	    	Derma_Query("Confirm", "You really want Empty Queue", "Yes", function () PlayX.Queue = {} PlayX.UpdateQueuePanel() end, "No", function () end) 
+	    end  
+    end 
+
+--- Draw the control panel.
 local function NavigatorPanel(panel)
     panel:ClearControls()
     

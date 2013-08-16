@@ -32,6 +32,8 @@ CreateConVar("playx_version_updated", PlayX.VersionUpdated, {FCVAR_REPLICATED})
 -- if the server has been left online for a while.
 
 util.AddNetworkString("PlayXBegin") -- Add to Pool
+util.AddNetworkString("PlayXHistory") -- Add to Pool
+util.AddNetworkString("PlayXQueue") -- Add to Pool
 util.AddNetworkString("PlayXProvidersList") -- Add to Pool
 
 --- Checks for Admin Mods and Flags to Allow PlayX Access

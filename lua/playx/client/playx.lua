@@ -88,6 +88,8 @@ PlayX.StartPaused = 0
 PlayX.NavigatorCapturedURL = ""
 PlayX.IsFullscreen = false
 PlayX.PlayHistory = {}
+PlayX.History = {}
+PlayX.Queue = {}
 
 local spawnWindow = nil
 
