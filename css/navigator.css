@@ -1,0 +1,48 @@
+/* CSS Document */
+
+body {
+	background: #36393D;
+	color: #eee;
+	font-family: Helvetica, Arial, sans-serif;
+}
+a:link, a:visited {
+	color: #0af;
+}
+#header {
+	background: #4096ee;
+}
+.provider {
+	background: #222222;
+	padding: 10px;
+	border-radius: 5px;
+	width: 80%;
+	margin: 0 auto 5px auto
+}
+.provider img {
+	float: left;
+	margin: 0 10px 0 0;
+}
+.provider h2 {
+	margin: 5px 0 0 0;
+	padding: 0;
+	font-size: 160%;
+	font-weight: bolder;
+	text-shadow: 1px 1px 1px #000;
+}
+.provider h2 a:link, .provider h2 a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+.provider p {
+	font-size: 12px;
+	margin: 5px 0 0 0;
+	padding: 0;
+}
+.provider br {
+	clear: both;
+}
+.disclaimer {
+	color: #444;
+	margin: 100px auto 0 auto;
+	text-align: center;
+}
