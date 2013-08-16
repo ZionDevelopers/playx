@@ -33,6 +33,8 @@ CreateConVar("playx_wire_input_delay", "2", {FCVAR_ARCHIVE})
 
 PlayX = {}
 util.AddNetworkString("PlayXBegin") -- Add to Pool
+util.AddNetworkString("PlayXHistory") -- Add to Pool
+util.AddNetworkString("PlayXQueue") -- Add to Pool
 util.AddNetworkString("PlayXProvidersList") -- Add to Pool
 
 loadingLog("Lib")

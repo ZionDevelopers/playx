@@ -358,7 +358,7 @@ local function HistoryPanel(panel)
     bookmarks:AddColumn("URI")
     bookmarks:SetTall(ScrH() * 7.5/10)
     
-    for k, bookmark in pairs(PlayX.PlayHistory) do
+    for k, bookmark in pairs(PlayX.History) do
         bookmarks:AddLine(bookmark.Title, bookmark.URI)      
     end
     
@@ -380,7 +380,7 @@ local function HistoryPanel(panel)
     if PlayX.IsPermitted(LocalPlayer()) then
 	    local button = panel:AddControl("Button", {Text="Clear History"})
 	    button.DoClick = function()   
-	    	Derma_Query("Confirm", "You really want Empty the History ", "Yes", function () PlayX.PlayHistory = {} PlayX.UpdateHistoryPanel() end, "No", function () end) 
+	    	Derma_Query("Confirm", "You really want Empty the History ", "Yes", function () PlayX.History = {} PlayX.UpdateHistoryPanel() end, "No", function () end) 
 	    end  
     end
 end

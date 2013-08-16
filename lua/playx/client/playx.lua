@@ -100,7 +100,8 @@ PlayX.HintDelay = 1
 PlayX.Pause = 0
 PlayX.StartPaused = 0
 PlayX.NavigatorCapturedURL = ""
-PlayX.PlayHistory = {}
+PlayX.History = {}
+PlayX.Queue = {}
 
 local spawnWindow = nil
 
