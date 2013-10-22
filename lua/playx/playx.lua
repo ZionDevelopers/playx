@@ -33,6 +33,7 @@ CreateConVar("playx_version_updated", PlayX.VersionUpdated, {FCVAR_REPLICATED})
 
 util.AddNetworkString("PlayXBegin") -- Add to Pool
 util.AddNetworkString("PlayXHistory") -- Add to Pool
+util.AddNetworkString("PlayXHistoryClear") -- Add to Pool
 util.AddNetworkString("PlayXQueue") -- Add to Pool
 util.AddNetworkString("PlayXProvidersList") -- Add to Pool
 
@@ -78,6 +79,8 @@ end
 PlayX.CurrentMedia = nil
 PlayX.AdminTimeoutTimerRunning = false
 PlayX.LastOpenTime = 0
+PlayX.History = {}
+PlayX.Queue = {}
 
 
 --- Checks if a player instance exists in the game.
@@ -437,6 +440,10 @@ function PlayX.BeginMedia(handler, uri, start, resumeSupported, lowFramerate, ha
                                        lowFramerate, handlerArgs,
                                        PlayX.CurrentMedia})
     
+    if length then
+        PlayX.SetCurrentMediaLength(length)
+    end
+   	
     PlayX.SendBeginDStream()
 end
 
@@ -586,15 +593,24 @@ local function ConCmdOpen(ply, cmd, args)
                                                 forceLowFramerate, useJW,
                                                 ignoreLength)
             
+            -- If OK
             if not result then
                 PlayX.SendError(ply, err)
+            else            			   	   	
+			   	-- Add History to Server
+			   	--table.insert(PlayX.History, {["Player"] = ply:GetName(), ["Time"] = os.date("%H:%M:%S %Y-%M-%D"), ["URI"] = uri})		   	
+			   			    
+			    --[[ Send History to Server
+			   	net.Start("PlayXHistory")
+			   	net.WriteTable(PlayX.History)
+			   	net.Broadcast() ]]--  
             end
         end
     end
 end
 
 --- Called for concmd playx_close.
-function ConCmdClose(ply, cmd, args)
+local function ConCmdClose(ply, cmd, args)
 	if not ply or not ply:IsValid() then
         return
     elseif not PlayX.IsPermitted(ply) then
@@ -605,7 +621,7 @@ function ConCmdClose(ply, cmd, args)
 end
 
 --- Called for concmd playx_spawn.
-function ConCmdSpawn(ply, cmd, args)
+local function ConCmdSpawn(ply, cmd, args)
     if not ply or not ply:IsValid() then
         return
     elseif not PlayX.IsPermitted(ply) then
@@ -630,7 +646,7 @@ concommand.Add("playx_spawn", ConCmdSpawn)
 concommand.Add("playx_spawn_repeater", ConCmdSpawn)
 
 --- Called on game mode hook PlayerInitialSpawn.
-function PlayerInitialSpawn(ply)
+local function PlayerInitialSpawn(ply)
     SendUserMessage("PlayXJWURL", ply, GetConVar("playx_jw_url"):GetString())
     SendUserMessage("PlayXHostURL", ply, GetConVar("playx_host_url"):GetString())
     
@@ -664,7 +680,7 @@ function PlayerInitialSpawn(ply)
 end
 
 --- Called on game mode hook PlayerAuthed.
-function PlayerAuthed(ply, steamID, uniqueID)
+local function PlayerAuthed(ply, steamID, uniqueID)
     if PlayX.CurrentMedia and PlayX.AdminTimeoutTimerRunning then
         if PlayX.IsPermitted(ply) then
             print("PlayX: Allowed User authed (connecting); killing timeout")
@@ -676,7 +692,7 @@ function PlayerAuthed(ply, steamID, uniqueID)
 end
 
 --- Called on game mode hook PlayerDisconnected.
-function PlayerDisconnected(ply)
+local function PlayerDisconnected(ply)
     if not PlayX.CurrentMedia then return end
     if PlayX.AdminTimeoutTimerRunning then return end
     

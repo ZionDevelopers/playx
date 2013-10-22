@@ -446,8 +446,7 @@ function PlayX.BeginMedia(handler, uri, playAge, resumeSupported, lowFramerate, 
 		
 		-- Disable PlayX!
 		if PlayX.CrashDetected and PlayX.Enabled then
-		    PlayX.TriggerCrashProtection()
-		    
+		    PlayX.TriggerCrashProtection()		    
             -- Panels will be updated because the enabled cvar was changed
 		elseif PlayX.Enabled then
             BeginPlay()
@@ -725,8 +724,17 @@ local function PlayXRangeCheck()
 	end	
 end
 
+-- Receive PlayX History
+local function DSHistory ()
+	-- Read Update History Table
+	PlayX.History = net.ReadTable()	
+	-- Update Panel
+	PlayX.UpdateHistoryPanel()
+end
+
 net.Receive("PlayXBegin", DSBegin)
 net.Receive("PlayXProvidersList", DSProvidersList)
+net.Receive("PlayXHistory", DSHistory)
 usermessage.Hook("PlayXBegin", UMsgBegin)
 usermessage.Hook("PlayXEnd", UMsgEnd)
 usermessage.Hook("PlayXSpawnDialog", UMsgSpawnDialog)
