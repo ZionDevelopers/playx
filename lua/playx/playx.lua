@@ -578,10 +578,11 @@ local function ConCmdOpen(ply, cmd, args)
 			   	-- Add History to Server
 			   	--table.insert(PlayX.History, {["Player"] = ply:GetName(), ["Time"] = os.date("%H:%M:%S %Y-%M-%D"), ["URI"] = uri})		   	
 			   			    
-			    --[[ Send History to Server
+			    -- Send History to Server
 			   	net.Start("PlayXHistory")
 			   	net.WriteTable(PlayX.History)
-			   	net.Broadcast() ]]--  
+			   	net.Broadcast()
+			   	  
             end
         end
     end

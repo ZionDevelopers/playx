@@ -221,7 +221,9 @@ function PANEL:FinishedURL( url )
 end
 
 function PANEL:Remove()
-	self.BaseClass.Remove( self )
+	if self.BaseClass ~= nil then
+		self.BaseClass.Remove( self )
+	end
 end
 
 derma.DefineControl( "PlayXHTML", "Extended HTML", PANEL, "Awesomium" )
