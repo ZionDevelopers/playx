@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
 -- $Id$
--- Version 3.0.0 by Nexus [BR] on 13-08-2013 07:06 PM
+-- Version 3.0.0 by Nexus [BR] on 02-11-2013 04:54 PM
 
 --Setup Loading Log Formatation
 include("playx/basic.lua")
@@ -24,7 +24,7 @@ Msg( "\n/====================================\\\n")
 Msg( "||               PlayX              ||\n" )
 Msg( "||----------------------------------||\n" )
 loadingLog("Version 3.0.0")
-loadingLog("Updated on 13-08-2013")
+loadingLog("Updated on 02-11-2013")
 Msg( "||----------------------------------||\n" )
 Msg( "||  Loading...                      ||\n" )
 

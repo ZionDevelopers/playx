@@ -199,7 +199,7 @@ function ENT:Play(handler, uri, start, volume, handlerArgs)
 
     self.Browser.FinishedURL = function()
 		if not IsValid(self) then return end
-		MsgN("PlayX Info: Page loaded, preparing to inject")		
+		MsgN("PlayX: Page loaded, preparing to inject")		
         self:InjectPage()
         if (PlayX.VideoRangeStatus == 0 and GetConVarNumber("playx_video_range_enabled") == 1) or (PlayX.Pause == 1 and GetConVarNumber("playx_video_range_enabled") == 1) then
 			self.Browser:RunJavascript('document.body.innerHTML = ""')

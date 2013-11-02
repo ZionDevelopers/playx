@@ -356,19 +356,20 @@ local function HistoryPanel(panel)
 
     history:SetMultiSelect(false)
     history:AddColumn("Time")
-    history:AddColumn("URI")
+    history:AddColumn("Title")
     history:AddColumn("Player")
+    history:AddColumn("URL")
     history:SetTall(ScrH() * 7.5/10)
     
     for k, v in pairs(PlayX.History) do
-        history:AddLine(v.Time, v.URI, v.Player)      
+        history:AddLine(v.Time, v.Title, v.Player, v.URL)      
     end
     
     history.OnRowRightClick = function(lst, index, line)
  		local menu = DermaMenu()
  		
         menu:AddOption("Play", function()
-        	RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+        	RunConsoleCommand("playx_open", line:GetValue(4):Trim(), "", 0)
         end)
         
         menu:Open()
@@ -376,16 +377,12 @@ local function HistoryPanel(panel)
     
     history.DoDoubleClick = function(lst, index, line)
         if not line then return end
-         RunConsoleCommand("playx_open", line:GetValue(2):Trim(), "", 0)
+         RunConsoleCommand("playx_open", line:GetValue(4):Trim(), "", 0)
     end
     
     local button = panel:AddControl("Button", {Text="Clear History"})
     button.DoClick = function()   
-    	if PlayX.IsPermitted(LocalPlayer()) then
-    		Derma_Query("Confirm", "You really want Empty the History ", "Yes", function () PlayX.History = {} PlayX.UpdateHistoryPanel() end, "No", function () end) 
-    	else
-    		Derma_Message("You need PlayX Permission to use it.", "Error", "OK")
-    	end
+    	Derma_Query("Confirm", "Empty play history?", "Yes", function () PlayX.ClearHistory() end, "No", function () end) 
     end  
 end
 

@@ -226,4 +226,4 @@ function PANEL:Remove()
 	end
 end
 
-derma.DefineControl( "PlayXHTML", "Extended HTML", PANEL, "Awesomium" )
+derma.DefineControl( "PlayXHTML", "Extended HTML", PANEL, "DHTML" )

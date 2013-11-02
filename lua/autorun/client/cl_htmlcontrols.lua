@@ -66,7 +66,7 @@ function PANEL:SetHTML( html )
 
 	self.HTML = html
 	
-	if ( html.URL ) then
+	if html.URL then
 		self.HomeURL = self.HTML.URL
 	end
 	
@@ -80,7 +80,7 @@ function PANEL:SetHTML( html )
 		self.AddressBar:SetText( url )
 		self:StartedLoading()
 		
-		if ( OldFunc ) then
+		if OldFunc then
 			OldFunc( panel, url, target, postdata, bredirect )
 		end
 	
@@ -89,19 +89,17 @@ function PANEL:SetHTML( html )
 	end
 	
 	local OldFunc = self.HTML.FinishedURL
-	self.HTML.FinishedURL = function( panel, url )
-		
-		self:FinishedLoading()	
+	self.HTML.FinishedURL = function( panel, url )		
+		self:FinishedLoading()
 	end
 
 end
 
 function PANEL:UpdateHistory( url )
 
-	--print( "PANEL:UpdateHistory", url )
 	self.Cur = math.Clamp( self.Cur, 1, table.Count( self.History ) )
 	
-	if ( self.Refreshing ) then
+	if self.Refreshing then
 	
 		self.Refreshing = false
 		self.RefreshButton:SetDisabled( false )
@@ -109,7 +107,7 @@ function PANEL:UpdateHistory( url )
 		
 	end
 		
-	if ( self.Navigating ) then
+	if self.Navigating then
 			
 		self.Navigating = false
 		self:UpdateNavButtonStatus()
@@ -119,7 +117,7 @@ function PANEL:UpdateHistory( url )
 	
 	-- We were back in the history queue, but now we're navigating
 	-- So clear the front out so we can re-write history!!
-	if ( self.Cur < table.Count( self.History ) ) then
+	if self.Cur < table.Count( self.History ) then
 	
 		for i=self.Cur+1, table.Count( self.History ) do
 			self.History[i] = nil
@@ -146,8 +144,6 @@ function PANEL:StartedLoading()
 end
 
 function PANEL:UpdateNavButtonStatus()
-
-	--print( self.Cur, table.Count( self.History ) )
 	
 	self.ForwardButton:SetDisabled( self.Cur >= table.Count( self.History ) )
 	self.BackButton:SetDisabled( self.Cur == 1 )
