@@ -207,7 +207,7 @@ function ENT:Play(handler, uri, start, volume, handlerArgs)
 			PlayX.Pause = 0
 		end	
 		
-		timer.Create("playxVolumeFix", 0.5, 5, function () self:ChangeVolume(GetConVarNumber("playx_volume")) end)	
+		timer.Create("playxVolumeFix", 0.5, 5, function () if IsValid(self) then self:ChangeVolume(GetConVarNumber("playx_volume"))  end end)	
     end
     
     self.Playing = true
