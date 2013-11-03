@@ -167,7 +167,7 @@ end
 
 function ENT:CreateBrowser()
     self.Browser = vgui.Create("PlayXHTML")
-    self.Browser:SetMouseInputEnabled(true)        
+    self.Browser:SetMouseInputEnabled(false)        
     self.Browser:SetSize(self.HTMLWidth, self.HTMLHeight)
     self.Browser:SetPaintedManually(true)
     self.Browser:SetVerticalScrollbarEnabled(false)
@@ -301,8 +301,10 @@ function ENT:Draw()
             
             cam.Start3D2D(pos, ang, width)
             surface.SetDrawColor(0, 0, 0, 255)
+                        
             surface.DrawRect(0, 0, 1024, 512)
             self:DrawScreen(1024 / 2, 512 / 2)
+	            
             cam.End3D2D()
         end
     else

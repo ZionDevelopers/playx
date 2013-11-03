@@ -35,6 +35,11 @@ local function SettingsPanel(panel)
         Command = "playx_hd",
     }):SetTooltip("Check to Enable HD Videos")
     
+    panel:AddControl("CheckBox", {
+        Label = "Fullscreen",
+        Command = "playx_fullscreen",
+    }):SetTooltip("Enable Fullscreen")
+    
     if PlayX.CrashDetected then
 	    local msg = panel:AddControl("Label", {Text = "PlayX has detected a crash in a previous session. Is it safe to " ..
 	       "re-enable PlayX? For most people, crashes " ..

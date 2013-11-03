@@ -36,6 +36,7 @@ CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
 CreateClientConVar("playx_yt_id","", true, false)
 CreateClientConVar("playx_hd", 0, true, false)
+CreateClientConVar("playx_fullscreen", 0, true, false)
 
 -- Create PlayX Data Dir
 file.CreateDir("playx")
@@ -105,6 +106,7 @@ PlayX.StartPaused = 0
 PlayX.NavigatorCapturedURL = ""
 PlayX.History = {}
 PlayX.Queue = {}
+PlayX.IsFullscreen = false
 
 local spawnWindow = nil
 
@@ -858,7 +860,7 @@ local function ConCmdDumpHTML()
     
     local frame = vgui.Create("DFrame")
     frame:SetTitle("PlayX HTML Code Viewer")
-    frame:SetDeleteOnClose(false)
+    frame:SetDeleteOnClose(true)
     frame:SetScreenLock(true)
     frame:SetSize(ScrW() * 0.8, ScrH() * 0.9)
     frame:SetSizable(true)
@@ -963,4 +965,31 @@ local function DetectCrash()
     end
 end
 
+local function fullScreenExit()
+	if PlayX.IsFullscreen and input.IsKeyDown(KEY_ESCAPE) then
+		RunConsoleCommand("playx_fullscreen", 0)
+	end
+end
+
+local function fullScreenHUDPaint()
+	local B = PlayX.GetInstance()
+	local oldW = B.HTMLWidth
+	local oldH = B.HTMLHeight
+	
+	if B.Browser ~= nil and GetConVarNumber("playx_fullscreen") == 1 then
+		B.HTMLWidth = ScrW()
+		B.HTMLHeight = ScrH()
+		
+		render.SetMaterial(b.BrowserMat)
+	    render.DrawQuad(Vector(0, 0, 0), Vector(ScrW(), 0, 0), Vector(ScrW(), ScrH(), 0), Vector(0, ScrH(), 0)) 
+	    PlayX.IsFullscreen = true
+	else
+		B.HTMLWidth = oldW
+		B.HTMLHeight = oldH
+		PlayX.IsFullscreen = false
+    end  
+end
+
 hook.Add("InitPostEntity", "PlayXCrashDetection", DetectCrash)
+hook.Add("Think","PlayXFullScreen", fullScreenExit)
+hook.Add("HUDPaint", "PlayXFullscreen", fullScreenHUDPaint)
