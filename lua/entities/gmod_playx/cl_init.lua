@@ -301,8 +301,9 @@ function ENT:Draw()
             
             cam.Start3D2D(pos, ang, width)
             surface.SetDrawColor(0, 0, 0, 255)
-                        
-            surface.DrawRect(0, 0, 1024, 512)
+                
+           	surface.DrawRect(0, 0, 1024, 512)
+            
             self:DrawScreen(1024 / 2, 512 / 2)
 	            
             cam.End3D2D()

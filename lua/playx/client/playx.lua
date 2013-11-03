@@ -965,31 +965,42 @@ local function DetectCrash()
     end
 end
 
-local function fullScreenExit()
-	if PlayX.IsFullscreen and input.IsKeyDown(KEY_ESCAPE) then
-		RunConsoleCommand("playx_fullscreen", 0)
+local fullScreenMTimeout = 0
+
+local function fullScreenManager()
+	-- Check if Shift Enter is Pressed
+	if input.IsKeyDown(KEY_LSHIFT) and input.IsKeyDown(KEY_ENTER) and CurTime()-fullScreenMTimeout > 0.5 then
+		local c = GetConVarNumber("playx_fullscreen")
+		-- Check if is Already Activated
+		if c == 1 then
+			-- Disable Fullscreen
+			c = 0
+		else
+			-- Enable Fullscreen
+			c = 1
+		end
+		fullScreenMTimeout = CurTime()
+		-- Set ConVar
+		RunConsoleCommand("playx_fullscreen", c)
 	end
 end
 
 local function fullScreenHUDPaint()
-	local B = PlayX.GetInstance()
-	local oldW = B.HTMLWidth
-	local oldH = B.HTMLHeight
+	local player = PlayX.GetInstance()
 	
-	if B.Browser ~= nil and GetConVarNumber("playx_fullscreen") == 1 then
-		B.HTMLWidth = ScrW()
-		B.HTMLHeight = ScrH()
-		
-		render.SetMaterial(b.BrowserMat)
-	    render.DrawQuad(Vector(0, 0, 0), Vector(ScrW(), 0, 0), Vector(ScrW(), ScrH(), 0), Vector(0, ScrH(), 0)) 
-	    PlayX.IsFullscreen = true
-	else
-		B.HTMLWidth = oldW
-		B.HTMLHeight = oldH
-		PlayX.IsFullscreen = false
-    end  
+	if IsValid(player) then	
+		if player.Browser ~= nil and GetConVarNumber("playx_fullscreen") == 1 then
+			render.SetMaterial(player.BrowserMat)
+		    render.DrawQuad(Vector(0, 0, 0), Vector(ScrW(), 0, 0), Vector(ScrW(), ScrH(), 0), Vector(0, ScrH(), 0))
+		    		     
+		    PlayX.IsFullscreen = true
+		elseif player.Browser ~= nil then
+			PlayX.IsFullscreen = false
+	    end  
+    end
 end
 
+-- Manage Fullscreen Hotkey
+hook.Add("Think", "PlayXFullscreenHotkey", fullScreenManager)
 hook.Add("InitPostEntity", "PlayXCrashDetection", DetectCrash)
-hook.Add("Think","PlayXFullScreen", fullScreenExit)
 hook.Add("HUDPaint", "PlayXFullscreen", fullScreenHUDPaint)
