@@ -16,7 +16,7 @@
         widget.load(getParameterByName('url'), { auto_play: true, sharing: false, liking: false, download: false });
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
             if (e.currentPosition < parseInt(getParameterByName('t'))) {
-                widget.seekTo(parseInt(getParameterByName('t')));
+                widget.seekTo(parseInt(getParameterByName('t'))*1000);
                 widget.setVolume(parseInt(getParameterByName('vol')));
             }
         });
