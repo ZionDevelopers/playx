@@ -3,11 +3,16 @@
 <head>
 <title>SoundCloud Player</title>
 <!-- Credit of HTML: http://gmcinema.net/ingame/soundcloud.html -->
+<script src="//connect.soundcloud.com/sdk.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="http://w.soundcloud.com/player/api.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        var widget = SC.Widget($('#player'));//
+        SC.initialize({
+	       client_id: "3775c0743f360c022a2fed672e33909d"
+	    });
+
+        var widget = SC.Widget(document.querySelector('iframe'));
         widget.load(getParameterByName('url'), { auto_play: true, sharing: false, liking: false, download: false });
         widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
             if (e.currentPosition < parseInt(getParameterByName('t'))) {
