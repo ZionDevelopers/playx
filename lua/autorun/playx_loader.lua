@@ -14,26 +14,13 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- 
-local versionText = [[
+Msg([[/====================================\
+||               PlayX              ||
+||----------------------------------||
 Version 2.8.12
 Updated on 2015-01-25 01:20 AM (-06:00 GMT)
-]]
-
---Setup Loading Log Formatation
-function loadingLog (text)
-	--Set Max Size
-	local size = 32
-	--If Text Len < max size
-	if(string.len(text) < size) then
-		-- Format the text to be Text+Spaces*LeftSize
-		text = text .. string.rep( " ", size-string.len(text) )
-	else
-		--If Text is too much big then cut and add ...
-		text = string.Left( text, size-3 ) .. "..."
-	end
-	--Log Messsage
-	Msg( "||  "..text.."||\n" )
-end
+\====================================/
+]])
 
 function debugTable( var, name )
   if not name then name = "a" end
@@ -67,9 +54,3 @@ function string:split(delimiter)
   table.insert( result, string.sub( self, from  ) )
   return result
 end
-
-Msg( "\n/====================================\\\n")
-Msg( "||               PlayX              ||\n" )
-Msg( "||----------------------------------||\n" )
-loadingLog(versionText)
-Msg( "\\====================================/\n\n" )
