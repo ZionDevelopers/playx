@@ -466,7 +466,7 @@ end
 function PlayX.SendBeginDStream(ply)
     local filter = nil
     
-    if ply then
+    if IsValid(ply) then
         filter = ply
     else
         --filter = RecipientFilter()
