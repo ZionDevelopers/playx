@@ -48,7 +48,7 @@ function PANEL:Init()
 
     self:AddFunction( "playx", "processPlayerData", function( query )
     	local playx = PlayX.GetInstance()
-		if query and playx:IsValid() then
+		if query and IsValid(playx) then
 		    -- Unavailable on entity removal
 		    if playx.ProcessPlayerData then
 		        playx:ProcessPlayerData(playxlib.ParseQuery(query))

@@ -466,7 +466,7 @@ end
 function PlayX.SendBeginDStream(ply)
     local filter = nil
     
-    if ply then
+    if IsValid(ply) then
         filter = ply
     else
         --filter = RecipientFilter()
@@ -580,6 +580,7 @@ local function ConCmdOpen(ply, cmd, args)
         elseif start < 0 then
             PlayX.SendError(ply, "A non-negative start time is required")
         else
+			PrintMessage(HUD_PRINTCONSOLE, ply:Nick().." started a video!")
             local result, err = PlayX.OpenMedia(provider, uri, start,
                                                 forceLowFramerate, useJW,
                                                 ignoreLength)
