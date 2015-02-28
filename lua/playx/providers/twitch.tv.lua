@@ -55,7 +55,7 @@ function TwitchTV.GetPlayer(url, useJW)
 	        return {
 	            ["Handler"] = "IFrame",
 	            ["URI"] =  fullURL,
-	            ["ResumeSupported"] = false,
+	            ["ResumeSupported"] = true,
 	            ["LowFramerate"] = false,
 	            ["MetadataFunc"] = function(callback, failCallback)
 	                TwitchTV.QueryMetadata(fullURL, callback, failCallback)
