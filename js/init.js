@@ -14,32 +14,33 @@ function get(variable)
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-43230779-1', 'nexbr.github.io');
+ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview');
 
-window.onload = function () {   
-/** Initialize player **/
-jwplayer("player").setup({
-  "autostart": true,
-  "controls": false,
-  "displaydescription": false,
-  "displaytitle": false,
-  "flashplayer": "swf/jwplayer.flash.swf",  
-  "key": "oNx4/gANnEVNwZY7h+rheEEvZ53JPu6MP5nChFnRZat5izBC1hh+eynqYd0=",
-  "ph": 1,
-  "preload": "none",
-  "repeat": false,
-  "stagevideo": false,
-  "stretching": "uniform",
-  "width": '100%',
-  "playlist": [
-    {
-      "sources": [
-        {
-          "file": "https://www.youtube.com/watch?v="+get('video'),
-        }
-      ],
-      "tracks": []
-    }
-});
+window.onload = function () { 
+	/** Initialize player **/
+	jwplayer("player").setup({
+	  "autostart": true,
+	  "controls": false,
+	  "displaydescription": false,
+	  "displaytitle": false,
+	  "flashplayer": "swf/jwplayer.flash.swf",  
+	  "key": "oNx4/gANnEVNwZY7h+rheEEvZ53JPu6MP5nChFnRZat5izBC1hh+eynqYd0=",
+	  "ph": 1,
+	  "preload": "none",
+	  "repeat": false,
+	  "stagevideo": false,
+	  "stretching": "uniform",
+	  "width": '100%',
+	  "playlist": [
+		{
+		  "sources": [
+			{
+			  "file": "https://www.youtube.com/watch?v="+get('video'),
+			}
+		  ],
+		  "tracks": []
+		}
+	  ]
+	});
 }
