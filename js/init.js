@@ -31,7 +31,8 @@ window.onload = function () {
 	  "repeat": false,
 	  "stagevideo": false,
 	  "stretching": "uniform",
-	  "width": '100%', 
+	  "width": window.innerWidth,
+	  "height": window.innerHeight
 	  "playlist": [
 		{
 		  "sources": [
