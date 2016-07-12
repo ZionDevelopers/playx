@@ -32,7 +32,7 @@ window.onload = function () {
 	  "stagevideo": false,
 	  "stretching": "uniform",
 	  "width": window.innerWidth,
-	  "height": window.innerHeight
+	  "height": window.innerHeight, 
 	  "playlist": [
 		{
 		  "sources": [
