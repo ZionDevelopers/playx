@@ -36,7 +36,7 @@ window.onload = function () {
 		{
 		  "sources": [
 			{
-			  "file": "https://www.youtube.com/watch?v="+get('video'),
+			  "file": get('url'),
 			}
 		  ],
 		  "tracks": []
