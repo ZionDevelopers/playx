@@ -31,12 +31,12 @@ window.onload = function () {
 	  "repeat": false,
 	  "stagevideo": false,
 	  "stretching": "uniform",
-	  "width": '100%',
+	  "width": '100%', 
 	  "playlist": [
 		{
 		  "sources": [
 			{
-			  "file": "https://www.youtube.com/watch?v='+get('ytid'),
+			  "file": "https://www.youtube.com/watch?v="+get('ytid'),
 			}
 		  ],
 		  "tracks": []
