@@ -37,7 +37,7 @@ window.onload = function () {
 		{
 		  "sources": [
 			{
-			  "file": "https://www.youtube.com/watch?v="+get('ytid'),
+			  "file": unescape(get('url')),
 			}
 		  ],
 		  "tracks": []
