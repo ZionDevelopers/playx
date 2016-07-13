@@ -20,26 +20,32 @@ ga('send', 'pageview');
 window.onload = function () { 
 	/** Initialize player **/
 	jwplayer("player").setup({
+	  "aspectratio": "16:9",
 	  "autostart": true,
 	  "controls": false,
 	  "displaydescription": false,
-	  "displaytitle": false,
-	  "flashplayer": "swf/jwplayer.flash.swf",  
-	  "key": "oNx4/gANnEVNwZY7h+rheEEvZ53JPu6MP5nChFnRZat5izBC1hh+eynqYd0=",
-	  "ph": 1,	  
+	  "displaytitle": true,
+	  "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
+	  "ga": {
+		"idstring": "title"
+	  },
+	  "height": document.innerHeight,
+	  "hlshtml": true,
+	  "key": "76O4ot2ZFLPqrIyys3GZEFx+WHzNSJma7VsIfwDZb/BNq+MDoTuq9j603vc=",
+	  "mute": false,
+	  "ph": 1,
+	  "pid": "IJzySFh8",	  
+	  "plugins": {
+		"https://assets-jpcust.jwpsrv.com/player/6/6124956/ping.js": {
+		  "pixel": "https://content.jwplatform.com/ping.gif"
+		}
+	  },
+	  "preload": "auto",
+	  "primary": "flash",
+	  "repeat": false,
 	  "stagevideo": false,
 	  "stretching": "uniform",
-	  "width": window.innerWidth,
-	  "height": window.innerHeight, 
-	  "playlist": [
-		{
-		  "sources": [
-			{
-			  "file": unescape(get('url')),
-			}
-		  ],
-		  "tracks": []
-		}
-	  ]
+	  "visualplaylist": false,
+	  "width": "100%"
 	});
 }
