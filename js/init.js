@@ -37,7 +37,7 @@ window.onload = function () {
 		{
 		  "sources": [
 			{
-			  "file": escape(get("url"))
+			  "file": unescape(get("url"))
 			}
 		  ]
 		}
