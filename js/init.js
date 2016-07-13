@@ -40,6 +40,23 @@ window.onload = function () {
 		  "pixel": "https://content.jwplatform.com/ping.gif"
 		}
 	  },
+	  "playlist": [
+		{
+		  "sources": [
+			{
+			  "file": get("url")
+			}
+		  ],
+		  "tags": "",
+		  "title": "watch",
+		  "tracks": []
+		}
+	  ],
+	  "plugins": {
+		"https://assets-jpcust.jwpsrv.com/player/6/6124956/ping.js": {
+		  "pixel": "https://content.jwplatform.com/ping.gif"
+		}
+	  },
 	  "preload": "auto",
 	  "primary": "flash",
 	  "repeat": false,
