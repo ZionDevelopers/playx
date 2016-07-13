@@ -28,8 +28,7 @@ window.onload = function () {
 	  "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
 	  "ga": {
 		"idstring": "title"
-	  },
-	  "height": document.innerHeight,
+	  },	  
 	  "hlshtml": true,
 	  "key": "76O4ot2ZFLPqrIyys3GZEFx+WHzNSJma7VsIfwDZb/BNq+MDoTuq9j603vc=",
 	  "mute": false,
@@ -46,10 +45,7 @@ window.onload = function () {
 			{
 			  "file": get("url")
 			}
-		  ],
-		  "tags": "",
-		  "title": "watch",
-		  "tracks": []
+		  ]
 		}
 	  ],
 	  "plugins": {
@@ -63,6 +59,7 @@ window.onload = function () {
 	  "stagevideo": false,
 	  "stretching": "uniform",
 	  "visualplaylist": false,
-	  "width": "100%"
+	  "width": window.innerWidth,
+	  "height": window.innerHeight
 	});
 }
