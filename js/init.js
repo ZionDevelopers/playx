@@ -30,7 +30,6 @@ window.onload = function () {
 		"idstring": "title"
 	  },	  
 	  "hlshtml": true,
-	  "key": "76O4ot2ZFLPqrIyys3GZEFx+WHzNSJma7VsIfwDZb/BNq+MDoTuq9j603vc=",
 	  "mute": false,
 	  "ph": 1,
 	  "pid": "IJzySFh8",	  
