@@ -18,7 +18,7 @@ ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
 window.onload = function () { 
-	 setTimeout("$('body').html('<div id=\'player\'></div>');", 2000);
+	 setTimeout("$('body').html('<div id=\'player\'>Loading...</div>');", 2000);
 	/** Initialize player **/
 	jwplayer("player").setup({
 	  "aspectratio": "16:9",
