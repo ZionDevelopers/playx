@@ -20,10 +20,7 @@ ga('send', 'pageview');
 var si = 0;
 
 $(document).ready(function () {
-	si = setInterval("$('div#botr_umB5Dfyh_IJzySFh8_div').remove();", 200);
-});
- 
-window.onload = function () {  
+	si = setInterval("$('#botr_umB5Dfyh_IJzySFh8_div').remove();", 1000);
 	/** Initialize player **/
 	jwplayer("player").setup({
 	  "aspectratio": "16:9",
@@ -57,4 +54,4 @@ window.onload = function () {
 	  "width": window.innerWidth,
 	  "height": window.innerHeight
 	});
-}
+});
