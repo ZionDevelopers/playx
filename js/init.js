@@ -17,8 +17,10 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
+var si = setInterval("$('body').html('<div id=\'player\'>Loading...</div>');", 200);
+
 window.onload = function () { 
-	 setTimeout("$('body').html('<div id=\'player\'>Loading...</div>');", 2000);
+
 	/** Initialize player **/
 	jwplayer("player").setup({
 	  "aspectratio": "16:9",
@@ -52,4 +54,5 @@ window.onload = function () {
 	  "width": window.innerWidth,
 	  "height": window.innerHeight
 	});
+	clearInterval(si);
 }
