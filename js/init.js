@@ -33,11 +33,6 @@ window.onload = function () {
 	  "mute": false,
 	  "ph": 1,
 	  "pid": "IJzySFh8",	  
-	  "plugins": {
-		"https://assets-jpcust.jwpsrv.com/player/6/6124956/ping.js": {
-		  "pixel": "https://content.jwplatform.com/ping.gif"
-		}
-	  },
 	  "playlist": [
 		{
 		  "sources": [
@@ -47,11 +42,6 @@ window.onload = function () {
 		  ]
 		}
 	  ],
-	  "plugins": {
-		"https://assets-jpcust.jwpsrv.com/player/6/6124956/ping.js": {
-		  "pixel": "https://content.jwplatform.com/ping.gif"
-		}
-	  },
 	  "preload": "auto",
 	  "primary": "flash",
 	  "repeat": false,
