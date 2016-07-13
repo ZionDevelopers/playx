@@ -18,6 +18,7 @@ ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
 window.onload = function () { 
+	$('#botr_umB5Dfyh_IJzySFh8_div').remove();
 	/** Initialize player **/
 	jwplayer("player").setup({
 	  "aspectratio": "16:9",
@@ -47,7 +48,7 @@ window.onload = function () {
 	  "repeat": false,
 	  "stagevideo": false,
 	  "stretching": "uniform",
-	  "visualplaylist": false,
+	  "visualplaylist": false, 
 	  "width": window.innerWidth,
 	  "height": window.innerHeight
 	});
