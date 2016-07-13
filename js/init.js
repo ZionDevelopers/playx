@@ -17,7 +17,12 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
-var si = setInterval("$('#botr_umB5Dfyh_IJzySFh8_div').remove();", 200);
+
+var si = 0;
+
+$(document).ready(function () {
+	setInterval("$('#botr_umB5Dfyh_IJzySFh8_div').remove();", 200);
+});
 
 window.onload = function () { 
 
