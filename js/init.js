@@ -36,6 +36,7 @@ $(document).ready(function () {
 	  "mute": false,
 	  "ph": 1,
 	  "pid": "IJzySFh8",	  
+	  "key": "72mfKmTTXe0X7svDs0Nzu9cx1NEed7Nw7YpS0gzpddmrMXE5K4RaWnDtCYE=",
 	  "playlist": [
 		{
 		  "sources": [
