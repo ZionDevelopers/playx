@@ -49,6 +49,7 @@ $(document).ready(function () {
 	  "preload": "auto",
 	  "primary": "flash",
 	  "repeat": false,
+	  "loop": false,
 	  "stagevideo": false,
 	  "stretching": "uniform",
 	  "visualplaylist": false, 
