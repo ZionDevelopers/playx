@@ -16,11 +16,10 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
- 
-var si = 0;
+
+jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 
 $(document).ready(function () {
-	si = setInterval("$('#botr_umB5Dfyh_IJzySFh8_div').remove();", 1000);
 	/** Initialize player **/
 	jwplayer("player").setup({
 	  "aspectratio": "16:9",
@@ -28,7 +27,7 @@ $(document).ready(function () {
 	  "controls": false,
 	  "displaydescription": false,
 	  "displaytitle": true,
-	  "flashplayer": "//ssl.p.jwpcdn.com/player/v/7.4.4/jwplayer.flash.swf",
+	  "flashplayer": "/playx/jwplayer/jwplayer.flash.swf",
 	  "ga": {
 		"idstring": "title"
 	  },	  
@@ -36,7 +35,6 @@ $(document).ready(function () {
 	  "mute": false,
 	  "ph": 1,
 	  "pid": "IJzySFh8",	  
-	  "key": "72mfKmTTXe0X7svDs0Nzu9cx1NEed7Nw7YpS0gzpddmrMXE5K4RaWnDtCYE=",
 	  "playlist": [
 		{
 		  "sources": [
