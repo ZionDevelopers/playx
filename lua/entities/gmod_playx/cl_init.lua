@@ -114,8 +114,10 @@ function ENT:UpdateScreenBounds()
             self:SetScreenBounds(pos, width, height, 0, -90, 0)
         end
     end
-    
-    self:ResetRenderBounds()
+
+    if self.IsProjector then
+        self:ResetRenderBounds()
+    end
 end
 
 function ENT:SetScreenBounds(pos, width, height, rotateAroundRight,
