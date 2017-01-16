@@ -40,9 +40,14 @@ function run () {
 		options.video = video;
 	}
 	
-	if (channel != "" ) {
-		window.player = new Twitch.Player("div#player", options);
+	if (channel != "") {
+		var player = new Twitch.Player("div#player", options);
+		console.log("Starting Up!");
 	}
+	
+	console.log("Channel: ");
+	console.log(channel);
+	console.log("video:" + video);
 }
 
 window.onload = run;
