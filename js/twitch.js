@@ -17,7 +17,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
-$(document).ready(function () {
+function run () {
 	var channel = "twitch";
 	var video = 0;
 	var options = {
@@ -26,19 +26,23 @@ $(document).ready(function () {
 		channel: "twitch",		
 	};
 	
-	channel = $.trim(unescape(get("channel")));	
-	video = parseInt($.trim(unescape(get("video"))));
-	console.log("Channel: " + channel + ", video:" + video);
+	channel = unescape(get("channel"));	
+	video = unescape(get("video"));
+	console.log("Channel: ");
+	console.log(channel);
+	console.log("video:" + video);
 	
-	if (channel != "" && channel != 0) {
+	if (channel != "") {
 		options.channel = channel;
 	}
 	
-	if (video !== 0) {
+	if (video != "NaN" && video !== 0) {
 		options.video = video;
 	}
 	
 	if (channel != "" ) {
 		window.player = new Twitch.Player("div#player", options);
 	}
-});
+}
+
+window.onload = run;
