@@ -23,6 +23,10 @@ window.twitchPlayerAPI = {
 	volume: function () {}
 }
 
+function matureClicker() {
+	$("button#mature-link").click();
+}
+
 $(document).ready(function () {
 	var channel = "twitch";
 	var video = "";
@@ -32,6 +36,7 @@ $(document).ready(function () {
 		channel: "twitch",	
 		autoplay: true,
 		mute: false,
+		volume: 1.0,
 		html5: false
 	};
 
@@ -50,7 +55,7 @@ $(document).ready(function () {
 		$("div#player").html("");
 		window.twitchPlayerAPI = new Twitch.Player("player", options);
 		console.log("Starting Up!");
-	}
+	}	
 
 	console.log("Channel: ");
 	console.log(channel);
