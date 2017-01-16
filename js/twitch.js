@@ -20,7 +20,7 @@ ga('send', 'pageview');
 window.twitchPlayerAPI = {
 	play: function () {},
 	pause: function () {},
-	volume: function () {}
+	setVolume: function () {}
 }
 
 $(document).ready(function () {
