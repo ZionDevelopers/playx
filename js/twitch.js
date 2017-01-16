@@ -42,13 +42,16 @@ $(document).ready(function () {
 		options.channel = channel;
 	}
 
-	if (video != "NaN" || video != "false" || video != "") {
+	if (video != false) {
 		options.video = video;
 	}
 
 	if (channel != "") {
-		$("div#player").html("");
-		window.twitchPlayerAPI = new Twitch.Player("player", options);
+		setTimeout(function () {	
+			$("div#player").html("");		
+			window.twitchPlayerAPI = new Twitch.Player("player", options);			
+		}, 
+		1000);				
 		console.log("Starting Up!");
 	}	
 
