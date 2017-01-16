@@ -24,7 +24,8 @@ function run () {
 	var options = {
 		width: window.innerWidth,
 		height: window.innerHeight,
-		channel: "twitch",		
+		channel: "twitch",	
+		autoplay: true
 	};
 	
 	channel = unescape(get("channel"));	
