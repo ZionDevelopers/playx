@@ -23,10 +23,6 @@ window.twitchPlayerAPI = {
 	volume: function () {}
 }
 
-function matureClicker() {
-	$("button#mature-link").click();
-}
-
 $(document).ready(function () {
 	var channel = "twitch";
 	var video = "";
