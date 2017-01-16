@@ -31,11 +31,12 @@ $(document).ready(function () {
 		height: window.innerHeight,
 		channel: "twitch",	
 		autoplay: true,
-		mute: false
+		mute: false,
+		html5: false
 	};
 
-	channel = unescape(get("channel"));	
-	video = unescape(get("video"));
+	channel = $.trim(unescape(get("channel")));	
+	video = $.trim(unescape(get("video")));
 
 	if (channel != "") {
 		options.channel = channel;
@@ -46,11 +47,15 @@ $(document).ready(function () {
 	}
 
 	if (channel != "") {
+		$("div#player").html("");
 		window.twitchPlayerAPI = new Twitch.Player("player", options);
 		console.log("Starting Up!");
 	}
 
 	console.log("Channel: ");
 	console.log(channel);
-	console.log("video:" + video);
+	console.log("video:");
+	console.log(video);
+	console.log("Options:");
+	console.log(options);
 });
