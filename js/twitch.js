@@ -49,10 +49,9 @@ $(document).ready(function () {
 	if (channel != "") {
 		setTimeout(function () {	
 			$("div#player").html("");		
-			window.twitchPlayerAPI = new Twitch.Player("player", options);			
-		}, 
-		2000);				
-		console.log("Starting Up!");
+			window.twitchPlayerAPI = new Twitch.Player("player", options);	
+			console.log("Starting Up!");
+		}, 2000);	
 	}	
 
 	console.log("Channel: ");
