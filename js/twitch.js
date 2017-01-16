@@ -51,7 +51,7 @@ $(document).ready(function () {
 			$("div#player").html("");		
 			window.twitchPlayerAPI = new Twitch.Player("player", options);			
 		}, 
-		1000);				
+		2000);				
 		console.log("Starting Up!");
 	}	
 
