@@ -22,7 +22,7 @@ jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 $(document).ready(function () {
 	/** Initialize player **/
 	jwplayer("player").setup({
-	  "aspectratio": "auto",
+	  "aspectratio": "16:9",
 	  "autostart": true,
 	  "controls": false,
 	  "displaydescription": false,
