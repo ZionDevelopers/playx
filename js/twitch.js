@@ -32,7 +32,8 @@ $(document).ready(function () {
 		channel: "twitch",	
 		autoplay: true,
 		mute: false,
-		volume: 1.0
+		volume: 1.0,
+		html5: false
 	};
 
 	channel = $.trim(unescape(get("channel")));	
