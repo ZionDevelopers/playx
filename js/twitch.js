@@ -17,7 +17,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
-function run () {
+$(document).ready(function () {
 	console.log("Running...");
 	var channel = "twitch";
 	var video = 0;
@@ -28,26 +28,24 @@ function run () {
 		autoplay: true,
 		mute: false
 	};
-	
+
 	channel = unescape(get("channel"));	
 	video = unescape(get("video"));
-	
+
 	if (channel != "") {
 		options.channel = channel;
 	}
-	
+
 	if (video != "NaN" && video !== 0) {
 		options.video = video;
 	}
-	
+
 	if (channel != "") {
 		window.twitchPlayerAPI = new Twitch.Player("player", options);
 		console.log("Starting Up!");
 	}
-	
+
 	console.log("Channel: ");
 	console.log(channel);
 	console.log("video:" + video);
-}
-
-window.onload = run;
+});
