@@ -42,7 +42,7 @@ $(document).ready(function () {
 		options.channel = channel;
 	}
 
-	if (video != false) {
+	if (video && video != "false") {
 		options.video = video;
 	}
 
