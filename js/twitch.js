@@ -25,14 +25,12 @@ function run () {
 		width: window.innerWidth,
 		height: window.innerHeight,
 		channel: "twitch",	
-		autoplay: true
+		autoplay: true,
+		mute: false
 	};
 	
 	channel = unescape(get("channel"));	
 	video = unescape(get("video"));
-	console.log("Channel: ");
-	console.log(channel);
-	console.log("video:" + video);
 	
 	if (channel != "") {
 		options.channel = channel;
@@ -43,7 +41,7 @@ function run () {
 	}
 	
 	if (channel != "") {
-		var player = new Twitch.Player("player", options);
+		window.twitchPlayerAPI = new Twitch.Player("player", options);
 		console.log("Starting Up!");
 	}
 	
