@@ -32,8 +32,7 @@ $(document).ready(function () {
 		channel: "twitch",	
 		autoplay: true,
 		mute: false,
-		volume: 1.0,
-		playsinline: true
+		volume: 1.0
 	};
 
 	channel = $.trim(unescape(get("channel")));	
@@ -43,7 +42,7 @@ $(document).ready(function () {
 		options.channel = channel;
 	}
 
-	if (video != "NaN" || video != false || video != "") {
+	if (video != "NaN" || video != "false" || video != "") {
 		options.video = video;
 	}
 
