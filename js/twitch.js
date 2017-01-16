@@ -18,6 +18,7 @@ ga('create', 'UA-43230779-1', 'ziondevelopers.github.io');
 ga('send', 'pageview'); 
 
 function run () {
+	console.log("Running...");
 	var channel = "twitch";
 	var video = 0;
 	var options = {
@@ -41,7 +42,7 @@ function run () {
 	}
 	
 	if (channel != "") {
-		var player = new Twitch.Player("div#player", options);
+		var player = new Twitch.Player("player", options);
 		console.log("Starting Up!");
 	}
 	
