@@ -33,7 +33,7 @@ $(document).ready(function () {
 		autoplay: true,
 		mute: false,
 		volume: 1.0,
-		html5: false
+		playsinline: true
 	};
 
 	channel = $.trim(unescape(get("channel")));	
