@@ -56,6 +56,10 @@ $(document).ready(function () {
 					modestbranding: 1
 				}
 			});
+			
+			// Emulate jwplayer functions
+			jwplayer.pause = jwplayer.pauseVideo
+			jwplayer.play = jwplayer.playVideo
 		} else {
 			/** Initialize player **/
 			jwplayer("player").setup({
