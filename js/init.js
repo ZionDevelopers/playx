@@ -31,24 +31,8 @@ $(document).ready(function () {
 		  "autostart": true,
 		  "controls": false,
 		  "displaydescription": false,
-		  "displaytitle": true,
-		  "flashplayer": "/playx/jwplayer/jwplayer.flash.swf",
-		  "ga": {
-			"idstring": "title"
-		  },	  
-		  "hlshtml": false,
-		  "mute": false,
-		  "ph": 1,
-		  "pid": "IJzySFh8",	  
-		  "playlist": [
-			{
-			  "sources": [
-				{
-				  "file": url
-				}
-			  ]
-			}
-		  ],
+		  "displaytitle": true,	    
+		  "file": url,
 		  "preload": "auto",
 		  "primary": "flash",
 		  "repeat": false,
