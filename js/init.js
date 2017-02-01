@@ -20,38 +20,44 @@ ga('send', 'pageview');
 jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 
 $(document).ready(function () {
-	/** Initialize player **/
-	jwplayer("player").setup({
-	  "aspectratio": "auto",
-	  "autostart": true,
-	  "controls": false,
-	  "displaydescription": false,
-	  "displaytitle": true,
-	  "flashplayer": "/playx/jwplayer/jwplayer.flash.swf",
-	  "ga": {
-		"idstring": "title"
-	  },	  
-	  "hlshtml": true,
-	  "mute": false,
-	  "ph": 1,
-	  "pid": "IJzySFh8",	  
-	  "playlist": [
-		{
-		  "sources": [
+	// Get URL
+	var url = unescape(get("url"));
+	
+	// Check for URL
+	if (url != "false") {
+		/** Initialize player **/
+		jwplayer("player").setup({
+		  "aspectratio": "auto",
+		  "autostart": true,
+		  "controls": false,
+		  "displaydescription": false,
+		  "displaytitle": true,
+		  "flashplayer": "/playx/jwplayer/jwplayer.flash.swf",
+		  "ga": {
+			"idstring": "title"
+		  },	  
+		  "hlshtml": true,
+		  "mute": false,
+		  "ph": 1,
+		  "pid": "IJzySFh8",	  
+		  "playlist": [
 			{
-			  "file": unescape(get("url"))
+			  "sources": [
+				{
+				  "file": url
+				}
+			  ]
 			}
-		  ]
-		}
-	  ],
-	  "preload": "auto",
-	  "primary": "flash",
-	  "repeat": false,
-	  "loop": false,
-	  "stagevideo": false,
-	  "stretching": "uniform",
-	  "visualplaylist": false, 
-	  "width": window.innerWidth,
-	  "height": window.innerHeight
-	});
+		  ],
+		  "preload": "auto",
+		  "primary": "flash",
+		  "repeat": false,
+		  "loop": false,
+		  "stagevideo": false,
+		  "stretching": "uniform",
+		  "visualplaylist": false, 
+		  "width": window.innerWidth,
+		  "height": window.innerHeight
+		});
+	}
 });
