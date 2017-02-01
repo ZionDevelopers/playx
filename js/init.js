@@ -34,8 +34,8 @@ var url = unescape(get("url"));
 
 window.onYouTubeIframeAPIReady = function() {
 	window.jwplayer = new YT.Player("player", {
-	  "width": window.innerWidth,
-	  "height": window.innerHeight,
+		"width": window.innerWidth,
+		"height": window.innerHeight,
 		videoId: getByURL("v", url),
 		playerVars: {
 			controls: 0,
@@ -46,7 +46,7 @@ window.onYouTubeIframeAPIReady = function() {
 			rel: "0",
 			wmode: "opaque",
 			modestbranding: 1,
-			html5: 0
+			nohtml5: 1
 		}
 	});
 	
