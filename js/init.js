@@ -46,7 +46,7 @@ window.onYouTubeIframeAPIReady = function() {
 			rel: "0",
 			wmode: "opaque",
 			modestbranding: 1,
-			nohtml5: 1
+			//nohtml5: 1
 		}
 	});
 	
