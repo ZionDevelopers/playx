@@ -29,32 +29,34 @@ ga('send', 'pageview');
 
 jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 
+window.onYouTubeIframeAPIReady = function() {
+	jwplayer = new YT.Player("player", {
+	  "width": window.innerWidth,
+	  "height": window.innerHeight,
+		videoId: getByURL("v", url),
+		playerVars: {
+			controls: 0,
+			autoplay: 1,
+			showinfo: 0,
+			iv_load_policy: 3,
+			autohide: 0,
+			rel: "0",
+			wmode: "opaque",
+			modestbranding: 1
+		}
+	});
+	
+	jwplayer.pause = jwplayer.pauseVideo
+	jwplayer.play = jwplayer.playVideo
+}
+
 $(document).ready(function () {
 	// Get URL
 	var url = unescape(get("url"));
 	
 	// Check for URL
 	if (url != "false") {
-		if (url.indexOf("youtube.com") !== -1) {
-			jwplayer = new YT.Player("player", {
-			  "width": window.innerWidth,
-			  "height": window.innerHeight,
-				videoId: getByURL("v", url),
-				playerVars: {
-					controls: 0,
-					autoplay: 1,
-					showinfo: 0,
-					iv_load_policy: 3,
-					autohide: 0,
-					rel: "0",
-					wmode: "opaque",
-					modestbranding: 1
-				}
-			});
-			
-			jwplayer.pause = jwplayer.pauseVideo
-			jwplayer.play = jwplayer.playVideo
-		} else {
+		if (url.indexOf("youtube.com") === -1) {
 			/** Initialize player **/
 			jwplayer("player").setup({
 			  "aspectratio": "auto",
