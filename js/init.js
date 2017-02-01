@@ -9,6 +9,15 @@ function get(variable)
        return(false);
 }
 
+function getByURL(variable, query)
+{
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -25,23 +34,46 @@ $(document).ready(function () {
 	
 	// Check for URL
 	if (url != "false") {
-		/** Initialize player **/
-		jwplayer("player").setup({
-		  "aspectratio": "auto",
-		  "autostart": true,
-		  "controls": false,
-		  "displaydescription": false,
-		  "displaytitle": true,	    
-		  "file": url,
-		  "preload": "auto",
-		  "primary": "flash",
-		  "repeat": false,
-		  "loop": false,
-		  "stagevideo": false,
-		  "stretching": "uniform",
-		  "visualplaylist": false, 
-		  "width": window.innerWidth,
-		  "height": window.innerHeight
-		});
+		if (url.indexOf("youtube.com") !== -1) {
+			var tag = document.createElement("script");
+			tag.src = "https://www.youtube.com/iframe_api?version=3";
+			var firstScriptTag = document.getElementsByTagName("script")[0];
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+			jwplayer = new YT.Player("player", {
+			  "width": window.innerWidth,
+			  "height": window.innerHeight,
+				videoId: getByURL("v", url),
+				playerVars: {
+					controls: 0,
+					autoplay: 1,
+					showinfo: 0,
+					iv_load_policy: 3,
+					autohide: 0,
+					rel: "0",
+					wmode: "opaque",
+					modestbranding: 1
+				}
+			});
+		} else {
+			/** Initialize player **/
+			jwplayer("player").setup({
+			  "aspectratio": "auto",
+			  "autostart": true,
+			  "controls": false,
+			  "displaydescription": false,
+			  "displaytitle": true,	    
+			  "file": url,
+			  "preload": "auto",
+			  "primary": "flash",
+			  "repeat": false,
+			  "loop": false,
+			  "stagevideo": false,
+			  "stretching": "uniform",
+			  "visualplaylist": false, 
+			  "width": window.innerWidth,
+			  "height": window.innerHeight
+			});
+		}
 	}
 });
