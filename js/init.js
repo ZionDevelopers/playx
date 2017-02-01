@@ -29,6 +29,9 @@ ga('send', 'pageview');
 
 jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 
+// Get URL
+var url = unescape(get("url"));
+
 window.onYouTubeIframeAPIReady = function() {
 	jwplayer = new YT.Player("player", {
 	  "width": window.innerWidth,
@@ -50,10 +53,7 @@ window.onYouTubeIframeAPIReady = function() {
 	jwplayer.play = jwplayer.playVideo
 }
 
-$(document).ready(function () {
-	// Get URL
-	var url = unescape(get("url"));
-	
+$(document).ready(function () {	
 	// Check for URL
 	if (url != "false") {
 		if (url.indexOf("youtube.com") === -1) {
