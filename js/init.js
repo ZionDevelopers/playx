@@ -36,7 +36,7 @@ $(document).ready(function () {
 		  "ga": {
 			"idstring": "title"
 		  },	  
-		  "hlshtml": true,
+		  "hlshtml": false,
 		  "mute": false,
 		  "ph": 1,
 		  "pid": "IJzySFh8",	  
