@@ -37,29 +37,30 @@ $(document).ready(function () {
 	if (url != "false") {
 		if (url.indexOf("youtube.com") !== -1) {
 			var tag = document.createElement("script");
+			tag.onload = function () {
+				jwplayer = new YT.Player("player", {
+				  "width": window.innerWidth,
+				  "height": window.innerHeight,
+					videoId: getByURL("v", url),
+					playerVars: {
+						controls: 0,
+						autoplay: 1,
+						showinfo: 0,
+						iv_load_policy: 3,
+						autohide: 0,
+						rel: "0",
+						wmode: "opaque",
+						modestbranding: 1
+					}
+				});
+				
+				// Emulate jwplayer functions
+				jwplayer.pause = jwplayer.pauseVideo
+				jwplayer.play = jwplayer.playVideo
+			}
 			tag.src = "https://www.youtube.com/iframe_api?version=3";
 			var firstScriptTag = document.getElementsByTagName("script")[0];
-			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-			jwplayer = new YT.Player("player", {
-			  "width": window.innerWidth,
-			  "height": window.innerHeight,
-				videoId: getByURL("v", url),
-				playerVars: {
-					controls: 0,
-					autoplay: 1,
-					showinfo: 0,
-					iv_load_policy: 3,
-					autohide: 0,
-					rel: "0",
-					wmode: "opaque",
-					modestbranding: 1
-				}
-			});
-			
-			// Emulate jwplayer functions
-			jwplayer.pause = jwplayer.pauseVideo
-			jwplayer.play = jwplayer.playVideo
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);			
 		} else {
 			/** Initialize player **/
 			jwplayer("player").setup({
