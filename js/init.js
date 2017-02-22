@@ -46,7 +46,7 @@ window.onYouTubeIframeAPIReady = function() {
 			rel: "0",
 			wmode: "opaque",
 			modestbranding: 1,
-			nohtml5: 1
+			//nohtml5: 1
 		}
 	});
 	
@@ -67,7 +67,7 @@ $(document).ready(function () {
 			  "displaytitle": true,	    
 			  "file": url,
 			  "preload": "auto",
-			  "primary": "flash",
+			  "primary": "html5",
 			  "repeat": false,
 			  "loop": false,
 			  "stagevideo": false,
