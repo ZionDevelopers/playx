@@ -67,7 +67,7 @@ $(document).ready(function () {
 			  "displaytitle": true,	    
 			  "file": url,
 			  "preload": "auto",
-			  "primary": "flash",
+			  "primary": "html5",
 			  "repeat": false,
 			  "loop": false,
 			  "stagevideo": false,
