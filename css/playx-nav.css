@@ -43,25 +43,25 @@
 }
 
 .logo-youtube {
-  background-image: url("../images/logos/youtube.png");
+  background-image: url("../img/logos/youtube.png");
   background-size: 120px 120px;
   border-top: 8px #de2c28 solid;
 }
 
 .logo-soundcloud {
-  background-image: url("../images/logos/soundcloud.png");
+  background-image: url("../img/logos/soundcloud.png");
   background-size: 120px 120px;
   border-top: 8px #ff7a00 solid;
 }
 
 .logo-vimeo {
-  background-image: url("../images/logos/vimeo.png");
+  background-image: url("../img/logos/vimeo.png");
   background-size: 120px 120px;
   border-top: 8px #1ab7ea solid;
 }
 
 .logo-reddit {
-  background-image: url("../images/logos/reddit.png");
+  background-image: url("../img/logos/reddit.png");
   background-size: 120px 120px;
   top: 45px;
   border-top: 8px #ff4500 solid;
