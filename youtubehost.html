@@ -17,23 +17,30 @@
 	var player;
 	
 	function onYouTubeIframeAPIReady() {
-    		player = new YT.Player('xplayer', {
+    		player = new YT.Player('player', {
         	width: 600,
         	height: 400,
         	videoId: 'Xa0Q0J5tOP0',
         	playerVars: {
-            		color: 'white',
-            		playlist: 'taJ60kskkns,FG0fTKAqZ5g'
-        	},
+			autoplay: 1,
+			cc_load_policy: 1,
+			disablekb: 1,
+			modestbranding: 1,
+			rel: 0
+        		},
         	events: {
-            		onReady: initialize
+            		onReady: onPlayerReady
         	}
     	});
 }
+	
+	function onPlayerReady() {
+        player.ytReady = true;
+    }
 </script>
 </head>
 
   <body>
-    <div id="xplayer"></div> 
+    <div id="player"></div> 
   </body>
 </html>
