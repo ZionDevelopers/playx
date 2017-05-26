@@ -29,8 +29,8 @@ for (var i = 0, max = query.length; i < max; i++)
 	
 	//var url = unescape(get("url"));
 	//var start = unescape(get("start"));
-	var url = GET.url
-	var start = GET.start
+	var url = GET["url"]
+	var start = GET["start"]
 	
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
