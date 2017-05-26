@@ -38,6 +38,7 @@ function getByURL(variable, query)
 }
 	
 	var url = unescape(get("url"));
+	var start = unescape(get("start"));
 	
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
@@ -50,7 +51,8 @@ function getByURL(variable, query)
 			disablekb: 1,
 			modestbranding: 1,
 			rel: 0,
-			controls: 0
+			controls: 0,
+			start: getByURL("v", start)
         		},
         	events: {
             		onReady: onPlayerReady
