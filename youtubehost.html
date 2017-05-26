@@ -28,6 +28,7 @@ var urlParam = function(name, w){
 	var url = urlParam('url');
 	var start = urlParam('start');
 	
+	console.log(url)
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
         	"width": window.innerWidth,
