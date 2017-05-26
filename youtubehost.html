@@ -1,0 +1,24 @@
+<html>
+
+<div id="xplayer"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+var player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('xplayer', {
+        width: 600,
+        height: 400,
+        videoId: 'Xa0Q0J5tOP0',
+        playerVars: {
+            color: 'white',
+            playlist: 'taJ60kskkns,FG0fTKAqZ5g'
+        },
+        events: {
+            onReady: initialize
+        }
+    });
+}
+</script>
