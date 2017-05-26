@@ -38,7 +38,8 @@
        }
        return(false);
 	}
-
+	
+	var url = unescape(get("url"));
 	
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
