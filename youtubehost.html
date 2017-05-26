@@ -16,24 +16,29 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-	
+
+//Look At URL For Params
 var urlParam = function(name, w){
     w = w || window;
     var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
         val = w.location.search.match(rx);
     return !val ? '':val[1];
 }
+
+	//OLD Params
 	//var url = unescape(get("url"));
 	//var start = unescape(get("start"));
+
+	//Insert Params Into Vars
 	var url = urlParam('url');
 	var start = urlParam('start');
 	
-	console.log("URL"+url)
+	//YouTube Embed Code
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
         	"width": window.innerWidth,
 		"height": window.innerHeight,
-        	videoId: getByURL("v", url),
+        	videoId: getByURL("v", url), //Video ID (Get Value v from youtube.com/watch?v= 
         	playerVars: {
 			autoplay: 1,
 			iv_load_policy: 3,
@@ -48,10 +53,10 @@ var urlParam = function(name, w){
         	}
     	});
 }
-	
+	//Start Play
 	function onPlayerReady() {
-        player.ytReady = true;
-    }
+        	player.ytReady = true;
+    	}
 </script>
 </head>
 
