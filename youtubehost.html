@@ -16,15 +16,28 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-	var player;
+	function get(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
+function getByURL(variable, query)
+{
+       var vars = query.split("?");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
 	
-	var url = "...";
-	var videoid = url.match((?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11}));
-	if(videoid != null) {
-        	console.log("video id = ",videoid[1]);
-	} else { 
-    		console.log("The youtube url is not valid.");
-	}
+	var url = unescape(get("url"));
 	
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
