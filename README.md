@@ -1,4 +1,5 @@
 PlayX
+***THIS IS THE ALPHA VERSION OF 3.0, USE AT YOUR OWN RISK***
 =====
 
 PlayX is a media player for [Garry's Mod][] that can play YouTube videos and more.
