@@ -18,13 +18,19 @@
 <script>
 	var player;
 	
-	var url = unescape(get("url"));
+	var url = "...";
+	var videoid = url.match((?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11}));
+	if(videoid != null) {
+        	console.log("video id = ",videoid[1]);
+	} else { 
+    		console.log("The youtube url is not valid.");
+	}
 	
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
         	"width": window.innerWidth,
 		"height": window.innerHeight,
-        	videoId: getByURL("v", url),
+        	videoId: videoid,
         	playerVars: {
 			autoplay: 1,
 			iv_load_policy: 3,
