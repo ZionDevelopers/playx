@@ -33,7 +33,7 @@ var urlParam = function(name, w){
     		player = new YT.Player('player', {
         	"width": window.innerWidth,
 		"height": window.innerHeight,
-        	videoId: url,
+        	videoId: getByURL("v", url),
         	playerVars: {
 			autoplay: 1,
 			iv_load_policy: 3,
