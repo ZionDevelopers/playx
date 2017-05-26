@@ -17,20 +17,16 @@
 
 <script>
 	
-var GET = {};
-var query = window.location.search.substring(1).split("&");
-for (var i = 0, max = query.length; i < max; i++)
-{
-    if (query[i] === "") // check for trailing & with no param
-        continue;
-
-    var param = query[i].split("=");
-    GET[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-	
+var urlParam = function(name, w){
+    w = w || window;
+    var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
+        val = w.location.search.match(rx);
+    return !val ? '':val[1];
+}
 	//var url = unescape(get("url"));
 	//var start = unescape(get("start"));
-	var url = GET["url"]
-	var start = GET["start"]
+	var url = urlParam('url');
+	var start = urlParam('start');
 	
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
