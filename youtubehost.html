@@ -63,12 +63,16 @@ var urlParam = function(name, w){
         	videoId: getByURL("v", url), //Video ID (Get Value v from youtube.com/watch?v= 
         	playerVars: {
 			autoplay: 1,
+			showinfo: 0,
+			cc_load_policy: 1,
 			iv_load_policy: 3,
 			disablekb: 1,
 			modestbranding: 1,
 			rel: 0,
 			controls: 0,
-			start: start
+			start: start,
+			end: player.getDuration() - start,
+			origin: "https://ziondevelopers.github.io/playx/youtube.html
         		},
     	});
 }
