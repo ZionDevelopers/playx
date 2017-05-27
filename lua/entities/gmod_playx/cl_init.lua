@@ -322,11 +322,11 @@ function ENT:Draw()
                  --Draw PlayX Logo
                 surface.SetDrawColor( 255, 255, 255, 255 )
                 surface.SetMaterial( logoMat )
-                surface.DrawTexturedRect( 256, 50, 500, 400)
+                surface.DrawTexturedRect( 256, 100, 500, 300)
                 --Draw Status
                 draw.SimpleText("Nothing is playing at the moment",
                                 "HUDNumber",
-                                512, 400, Color(255, 255, 255, 255),
+                                512, 360, Color(255, 255, 255, 255),
                                 TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
             end
 

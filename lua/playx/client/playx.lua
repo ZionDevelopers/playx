@@ -32,6 +32,8 @@ CreateClientConVar("playx_video_range_enabled", 1, true, false)
 CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
 CreateClientConVar("playx_debug", 0, true, false, "Enable Error Messages From Playx In Console")
+CreateClientConVar("playx_detailed_background", 2, true, false, "Enable Standby Logo and Background. 2 = Logo + Background, 1 = Logo Only, 0 = Black Screen")
+CreateClientConVar("playx_background_material", "models/props_lab/cornerunit_cloud", true, false, "Change The Background Material Of The Standby PlayX Screen")
 
 surface.CreateFont( "HUDNumber",{
 	font="Trebuchet MS",

@@ -28,8 +28,7 @@ CreateConVar("playx_expire", "-1", {FCVAR_ARCHIVE})
 CreateConVar("playx_race_protection", "1", {FCVAR_ARCHIVE})
 CreateConVar("playx_wire_input", "0", {FCVAR_ARCHIVE})
 CreateConVar("playx_wire_input_delay", "2", {FCVAR_ARCHIVE})
-CreateConVar("playx_detailed_background", "2", {FCVAR_ARCHIVE})
-CreateConVar("playx_background_material", "models/props_lab/cornerunit_cloud", {FCVAR_ARCHIVE})
+
 -- Note: Not using cvar replication because this can start causing problems
 -- if the server has been left online for a while.
 
