@@ -25,9 +25,13 @@ language.Add("Undone_#gmod_playx", "Undone PlayX Player")
 language.Add("Cleanup_gmod_playx", "PlayX Player")
 language.Add("Cleaned_gmod_playx", "Cleaned up the PlayX Player")
 
-surface.CreateFont( "PlayXDefaultBold", {font = "Tahoma", size = 13, weight = 1000})
-local logoMat = Material( "vgui/panel/playxlogo" )
+surface.CreateFont( "PlayXDefaultBold", {font = "Tahoma", size = 13, weight = 1000, shadow = true})
+surface.CreateFont( "PlayXMega" , {size = 128, weight = 500})
+
+local logoMat = "vgui/panel/playxlogo"
 local BackgroundMat = Material( GetConVarString( "playx_background_material" ) )
+
+local logoMatOut = Material(logoMat)
 
 function ENT:Initialize()
     self.Entity:DrawShadow(false)
@@ -320,9 +324,19 @@ function ENT:Draw()
             end
             if (GetConVarNumber("playx_detailed_background") == 2 or GetConVarNumber("playx_detailed_background") == 1) then 
                  --Draw PlayX Logo
-                surface.SetDrawColor( 255, 255, 255, 255 )
-                surface.SetMaterial( logoMat )
-                surface.DrawTexturedRect( 256, 100, 500, 300)
+                if file.Exists("materials/"..logoMat..".vtf", "GAME") or file.Exists("materials/"..logoMat..".vmt", "GAME") then
+                    --Draw Logo
+                    surface.SetDrawColor( 255, 255, 255, 255 )
+                    surface.SetMaterial( logoMatOut )
+                    surface.DrawTexturedRect( 256, 100, 500, 300)
+                else
+                    --Draw Backup (If Default Logo Doesn't Exist)
+                    draw.RoundedBox( 20, 320, 190, 390, 105, Color(100, 100, 100, 20) )
+                    draw.SimpleText("PLAYX",
+                                "PlayXMega",
+                                512, 180, Color(180, 255, 255, 255),
+                                TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+                end
                 --Draw Status
                 draw.SimpleText("Nothing is playing at the moment",
                                 "HUDNumber",

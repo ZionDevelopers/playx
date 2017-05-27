@@ -341,7 +341,6 @@ end
 --- Draw the control panel.
 local function ControlPanel(panel)
     panel:ClearControls()
-
     panel:SetLabel( "Playx Settings - Media" )
     
     --New Coloring Scheme
@@ -351,13 +350,20 @@ local function ControlPanel(panel)
     
     -- TODO: Put the Providers ComboBox and URI Text Box On Same Line MAYBE
     -- TODO: Convert Providers ListBox to DForm ComboBox DONE
-        
-    local logo = vgui.Create("Material", panel)
-    logo:SetPos( 1, 2 )
-    logo:SetSize(128,128)
-    logo:SetMaterial( "vgui/panel/playxlogo" )
-    logo.AutoSize = false
-    panel:AddItem(logo)
+     
+    if file.Exists("materials/vgui/panel/playxlogo.vtf", "GAME") or file.Exists("materials/vgui/panel/playxlogo.vmt", "GAME") then   
+        local logo = vgui.Create("Material", panel)
+        logo:SetPos( 1, 2 )
+        logo:SetSize(128,128)
+        logo:SetMaterial( "vgui/panel/playxlogo" )
+        logo.AutoSize = false
+        panel:AddItem(logo)
+    else
+        local logoT = vgui.Create("DLabel", panel)
+        logoT:SetText("PLAYX")
+        logoT:SetFont("DermaLarge")
+        panel:AddItem(logoT)
+    end
 
     --Create Provider Selection Box--------------------------------------------------------
     local selectPnl = vgui.Create( "DPanel" )
@@ -392,8 +398,9 @@ local function ControlPanel(panel)
     for k, v in pairs(PlayX.Providers) do
         providerSelect:AddChoice(PlayX.Providers[k],k,false)
     end
-    providerSelect.OnSelect = function ( panel, index, value)
+    function providerSelect:OnSelect( index, value, data )
         RunConsoleCommand("playx_provider", providerSelect:GetOptionData(index))
+        
     end
 
     --panel:AddControl("ListBox", {
@@ -406,7 +413,7 @@ local function ControlPanel(panel)
     --    URIEntryBox:SetSize(100,15)
     --panel:AddItem(URIEntryBox)
 
-    --Star At Box--------------------------------------------------------------------------
+    --Start At Box--------------------------------------------------------------------------
     local uripnl = vgui.Create( "DPanel" )
     local uriEntryBoxLabel = vgui.Create( "DLabel", uripnl )
                 uriEntryBoxLabel:SetText( "URI: " )
@@ -484,7 +491,10 @@ local function ControlPanel(panel)
                 openMediaButton:SetFont("CenterPrintText")
                 openMediaButton:SetSize(64, 35)
                 openMediaButton:SetColor(textColor)
-                openMediaButton:SetConsoleCommand("playx_gui_open")
+                openMediaButton.DoClick = function()
+                    RunConsoleCommand("playx_gui_open")
+                    RunConsoleCommand("playx_provider", "")
+                end
                 openMediaButton.Paint = function()    
                     openMediaButton:SetColor(textColor)
         
