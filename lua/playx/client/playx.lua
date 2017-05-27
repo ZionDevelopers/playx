@@ -31,6 +31,7 @@ CreateClientConVar("playx_error_windows", 1, true, false)
 CreateClientConVar("playx_video_range_enabled", 1, true, false)
 CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
+CreateClientConVar("playx_debug", 0, true, false, "Enable Error Messages From Playx In Console")
 
 surface.CreateFont( "HUDNumber",{
 	font="Trebuchet MS",

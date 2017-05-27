@@ -157,7 +157,7 @@ function YouTube.QueryMetadata(uri, callback, failCallback)
                 ["DatePublished"] = publishedDate,
                 ["DateModified"] = modifiedDate,
                 ["Submitter"] = submitter,
-                ["SubmitterURL"] = submitter and "http://www.youtube.com/" .. submitter or nil,
+                ["SubmitterURL"] = submitter and "https://www.youtube.com/" .. submitter or nil,
                 ["NumFaves"] = faves,
                 ["NumViews"] = views,
                 ["NumComments"] = comments,
@@ -167,7 +167,7 @@ function YouTube.QueryMetadata(uri, callback, failCallback)
             })
         else
             callback({
-                ["URL"] = "http://www.youtube.com/watch?v=" .. uri,
+                ["URL"] = "https://www.youtube.com/watch?v=" .. uri,
             })
         end
     end)

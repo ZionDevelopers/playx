@@ -623,7 +623,7 @@ function playxlib.url(str)
    return str    
 end
 
---- Generates the HTML for an IFrame.
+--- Generates the HTML for the Youtube Native Embed
 -- @param width
 -- @param height
 -- @param url
@@ -639,8 +639,6 @@ function playxlib.GenerateYoutubeEmbed(width, height, start, volume, uri, provid
     local pauseFunc = function()
         return [[player.pauseVideo()]]
     end
-
-    Msg("\n\n\n"..tostring(GetConVarString("playx_youtubehost_url")).."\n\n\n")
 
     return playxlib.HandlerResult{
         url = uri .. "&start=" .. start,
@@ -676,8 +674,6 @@ function playxlib.GenerateJWPlayer(width, height, start, volume, uri, provider)
     local startFunc = function()
         return [[try { jwplayer().seek(]] .. tostring(start) .. [[); } catch (e) {}]]
     end
-    
-    Msg("\n\n\n\n\n\n\n\nSTART: " .. tostring(start) .. "\n\n\n\n\n\n")
     
     return playxlib.HandlerResult{
         url = PlayX.HostURL .. '?url=' .. playxlib.url(uri),
