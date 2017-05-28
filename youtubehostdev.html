@@ -49,6 +49,7 @@ var urlParam = function(name, w){
 	//Insert Params Into Vars
 	var url = urlParam('url');
 	var start = urlParam('start');
+	var t = urlParam('t');
 	
 	if (url.indexOf("youtube.com") === 1){
 		var urloutput = GetByURL("v", url)
@@ -56,12 +57,22 @@ var urlParam = function(name, w){
 		var urloutput = url
 	}
 	
+	if (start === undefined){
+		if (t != undefined) {
+		var startoutput = t
+		}
+	} else {
+		if start != undefined) {
+		var startoutput = start
+		}
+	}
+	
 	//YouTube Embed Code
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
         	"width": window.innerWidth,
 		"height": window.innerHeight,
-        	videoId: urloutput
+        	videoId: urloutput,
         	playerVars: {
 			autoplay: 1,
 			showinfo: 0,
@@ -71,7 +82,7 @@ var urlParam = function(name, w){
 			modestbranding: 1,
 			rel: 0,
 			controls: 0,
-			start: start
+			start: startoutput
         		},
     	});
 }
