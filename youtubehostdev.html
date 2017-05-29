@@ -59,7 +59,24 @@ var urlParam = function(name, w){
 	
 	if (start === ""){
 		if (t != "") {
-		var startoutput = t
+			if (/^\d+$/.test(t)){
+			var startoutput = t
+			} else {
+				var tsec = t.split("s")
+				var tmin = t.split("m")
+				var thour = t.split("h")
+				
+				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "" {
+				    var startoutput = tsec[0]
+				}
+				if (tsec[0] != "" && tmin[0] != "" && thour[0] == "" {
+				    var startoutput = (tsec[0] + (tmin[0] * 60))
+				}
+				if (tsec[0] != "" && tmin[0] != "" && thour[0] != "" {
+				    var startoutput = (tsec[0] + (tmin[0] * 60) + (thour[0] * 3600))
+				}
+			}
+					
 		}
 	} else {
 		if (start != "") {
