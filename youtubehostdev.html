@@ -62,9 +62,9 @@ var urlParam = function(name, w){
 			if (/^\d+$/.test(t)){
 			var startoutput = t
 			} else {
-				var tsec = t.split("s")
-				var tmin = t.split("m")
-				var thour = t.split("h")
+				if (t.indexOf('s')){ var tsec = t.split("s")} else {var tsec = ""}
+				if (t.indexOf('m')){ var tmin = t.split("m")} else {var tmin = ""}
+				if (t.indexOf('h')){ var thour = t.split("h")} else {var thour = ""}
 				
 				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
 				    var startoutput = tsec[0]
