@@ -70,7 +70,7 @@ var urlParam = function(name, w){
 				    var startoutput = parseInt(tsec[0]);
 				    console.log("Start is Seconds")
 				}
-				else if (tsec[0] != "" && tmin[0] != "" && thour[0] == "") {
+				else if (tsec[0] != "" && tmin[0] != "" && thour[0] == undefined) {
 				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60));
 				    console.log("Start is Seconds with Minutes")
 				}
