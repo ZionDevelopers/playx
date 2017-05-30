@@ -62,11 +62,11 @@ var urlParam = function(name, w){
 			if (/^\d+$/.test(t)){
 			var startoutput = t
 			} else {
-				if (t.includes('s')){ var tsec = t.split("s")} else {var tsec = ""}
-				if (t.includes('m')){ var tmin = t.split("m")} else {var tmin = ""}
-				if (t.includes('h')){ var thour = t.split("h")} else {var thour = ""}
+				if (t.includes('s')){ var tsec = t.split("s")} else {var tsec = undefined}
+				if (t.includes('m')){ var tmin = t.split("m")} else {var tmin = undefined}
+				if (t.includes('h')){ var thour = t.split("h")} else {var thour = undefined}
 				
-				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
+				if (tsec[0] != "" && tmin[0] == undefined && thour[0] == undefined) {
 				    var startoutput = parseInt(tsec[0]);
 				    console.log("Start is Seconds")
 				}
