@@ -74,14 +74,15 @@ function youtubeTimeConvert(duration){
 			    var startoutput = t;
 			    console.log("Time t= is pure")
 			} else {
-			    youtubeTimeConvert(t);
+			    var startoutput = youtubeTimeConvert(t);
 			    console.log("Time t= is in #h#m#s format");
 			}
 		}
 	} else {
-		if (start != "") {
-		var startoutput = start
-		}
+		if ((start != "") && (/^\d+$/.test(start) = false)) {
+			var startoutput = start
+		} else {
+			var startoutput = youtubeTimeConvert(start);
 	}
 	
 	//YouTube Embed Code
