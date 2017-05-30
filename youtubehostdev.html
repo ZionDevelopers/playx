@@ -43,6 +43,8 @@ var urlParam = function(name, w){
         val = w.location.search.match(rx);
     return !val ? '':val[1];
 }
+
+//Convert youtube #h#m#s time into seconds
 function youtubeTimeConvert(duration){
 	var total = 0;
 	var hours = duration.match(/(\d+)[hH]/);
