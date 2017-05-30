@@ -46,7 +46,7 @@ var urlParam = function(name, w){
 
 //Convert Youtube t=#h#m#s to seconds
 
-function YTDurationToSeconds(duration) {
+function youtubeTimeConvert(duration) {
   var match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
 
   var hours = (parseInt(match[1]) || 0);
