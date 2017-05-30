@@ -62,12 +62,13 @@ var urlParam = function(name, w){
 		if (t != "") {
 			if (/^\d+$/.test(t)){
 			var startoutput = t
-			} else {
+			} /*else {
 				if (t.includes('s')){ var tsec = t.split("s")} else {var tsec = ["", ""]}
 				if (t.includes('m')){ var tmin = t.split("m")} else {var tmin = ["", ""]}
 				if (t.includes('h')){ var thour = t.split("h")} else {var thour = ["", ""]}
 				
 				if (tsec.includes('m')){var tsec = tsec.split("m"); var tsec = [tsec[1], ""]}
+				//else if (tsec.includes('h'){var tsec 
 				
 				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
 				    var startoutput = parseInt(tsec[0]);
@@ -97,7 +98,7 @@ var urlParam = function(name, w){
 				    var startoutput = ((parseInt(tmin[0]) * 60) + (parseInt(tmin[0]) * 60));
 				    console.log("Start is Hours and Minutes")
 				}
-			}
+			}*/
 					
 		}
 	} else {
