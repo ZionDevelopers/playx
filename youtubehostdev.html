@@ -82,7 +82,7 @@ var urlParam = function(name, w){
 				    var startoutput = (parseInt(thour[0]) * 3600);
 				    console.log("Start is Hours")
 				}
-				else if (tsec[0] == "" && tmin[0] != "" && thour[0] != "") {
+				else if (tsec[0] == "" && tmin[0] != "" && thour[0] == "") {
 				    var startoutput = (parseInt(tmin[0]) * 60);
 				    console.log("Start is Minutes")
 				}
