@@ -45,6 +45,8 @@ var urlParam = function(name, w){
 }
 
 //Convert youtube #h#m#s time into seconds
+//&start= or &t= can be either in pure seconds or in any order of hours, minutes, seconds in the format of #h#m#s.
+//Ex: 2h41m12s = 2 hours, 41 minutes, and 12 seconds
 function youtubeTimeConvert(duration){
 	var total = 0;
 	var hours = duration.match(/(\d+)[hH]/);
@@ -55,6 +57,7 @@ function youtubeTimeConvert(duration){
 	if (seconds) total += parseInt(seconds[1]);
 	return total;
 }
+	
 	//OLD Params
 	//var url = unescape(get("url"));
 	//var start = unescape(get("start"));
@@ -69,21 +72,23 @@ function youtubeTimeConvert(duration){
 		var urloutput = url
 	}
 	
-	//Decode Youtube t=#s#m#h format for universal use --by Science
-	if (start === ""){
+	// Start Time Assignment (Universal)
+	if (start === ""){ //if start is empty, look at t
 		if (t != "") {
-			if (/^\d+$/.test(t)){
+			if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
 			    var startoutput = t;
 			    console.log("Time t= is pure")
-			} else {
+			} else { //if characters found, decode from youtube time format
 			    var startoutput = youtubeTimeConvert(t);
 			    console.log("Time t= is in #h#m#s format");
 			}
+		} else { //if start and t are empty, start at 0
+			var startoutput = 0
 		}
 	} else {
-		if ((start != "") && ((/^\d+$/.test(start)) == true)) {
+		if ((start != "") && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
 			var startoutput = start
-		} else {
+		} else { //else, start is in youtube time format, convert to seconds
 			var startoutput = youtubeTimeConvert(start);
 		}
 	}
@@ -91,25 +96,25 @@ function youtubeTimeConvert(duration){
 	//YouTube Embed Code
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
-        	"width": window.innerWidth,
-		"height": window.innerHeight,
-        	videoId: urloutput,
+        	"width": window.innerWidth, //set size to full window or bounds of PlayX screen
+		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+        	videoId: urloutput, //get uri from ?url=, either from ?v= or pure uri
         	playerVars: {
 			autoplay: 1,
-			showinfo: 0,
-			cc_load_policy: 1,
-			iv_load_policy: 3,
-			disablekb: 1,
-			modestbranding: 1,
-			rel: 0,
-			controls: 0,
-			start: startoutput.toString()
+			showinfo: 0, //Disable title / creator label
+			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
+			iv_load_policy: 3, //Removes all annotations
+			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
+			modestbranding: 1, //Remove YouTube logo
+			rel: 0, //Disable end video recommendations
+			controls: 0, //Disable player UI controls
+			start: startoutput.toString() //YT Start: Requires for this value to be in string format for some reason
         		},
     	});
 }
 	
-	
- (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  //Google Analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
