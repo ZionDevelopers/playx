@@ -75,10 +75,12 @@ function youtubeTimeConvert(duration) {
 	if (start === ""){
 		if (t != "") {
 			if (/^\d+$/.test(t)){
-			var startoutput = t
+			    var startoutput = t;
+			    console.log("Time t= is pure")
 			} else {
-			    var startoutput = youtubeTimeConvert(t)
-			    }
+			    var startoutput = youtubeTimeConvert(t);
+			    console.log("Time t= is in #h#m#s format")
+			}
 		}
 	} else {
 		if (start != "") {
