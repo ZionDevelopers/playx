@@ -50,8 +50,8 @@ function youtubeTimeConvert(duration) {
   var match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
 
   if (duration.includes('/[hH]')){ var hours = (parseInt(match[1]) || 0)} else {var hours = 0}
-  if (duration.includes('/[mM]')){ var minutes = (parseInt(match[2]) || 0); else {var minutes = 0}
-  if (duration.includes('/[sS]')){ var seconds = (parseInt(match[3]) || 0); else {var seconds = 0}
+  if (duration.includes('/[mM]')){ var minutes = (parseInt(match[2]) || 0)} else {var minutes = 0}
+  if (duration.includes('/[sS]')){ var seconds = (parseInt(match[3]) || 0)} else {var seconds = 0}
 
   return hours * 3600 + minutes * 60 + seconds;
 }
