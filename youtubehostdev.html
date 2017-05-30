@@ -47,30 +47,14 @@ var urlParam = function(name, w){
 //Convert Youtube t=#h#m#s to seconds
 
 function youtubeTimeConvert(duration) {
-    var matches = duration.match(/[0-9]+[HMS]/g);
-
-    var seconds = 0;
-
-    matches.forEach(function (part) {
-        var unit = part.charAt(part.length-1);
-        var amount = parseInt(part.slice(0,-1));
-
-        switch (unit) {
-            case 'H':
-                seconds += amount*60*60;
-                break;
-            case 'M':
-                seconds += amount*60;
-                break;
-            case 'S':
-                seconds += amount;
-                break;
-            default:
-                // noop
-        }
-    });
-
-    return seconds;
+  var total = 0;
+  var hours = duration.match(/(\d+)H/);
+  var minutes = duration.match(/(\d+)M/);
+  var seconds = duration.match(/(\d+)S/);
+  if (hours) total += parseInt(hours[1]) * 3600;
+  if (minutes) total += parseInt(minutes[1]) * 60;
+  if (seconds) total += parseInt(seconds[1]);
+  return total;
 }
 	
 	//OLD Params
