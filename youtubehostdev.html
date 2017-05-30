@@ -51,7 +51,7 @@ var urlParam = function(name, w){
 	var start = urlParam('start');
 	var t = urlParam('t');
 	
-	if (url.includes("youtube.com") === 1){
+	if (url.includes("youtube.com") == true){
 		var urloutput = GetByURL("v", url)
 	} else {
 		var urloutput = url
