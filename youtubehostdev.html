@@ -67,7 +67,7 @@ var urlParam = function(name, w){
 				if (t.includes('m')){ var tmin = t.split("m")} else {var tmin = ["", ""]}
 				if (t.includes('h')){ var thour = t.split("h")} else {var thour = ["", ""]}
 				
-				if (tsec.includes('m')){var tsec = t.split("m"); var tsec = [tsec[1], ""]}
+				if (tsec.includes('m')){var tsec = tsec.split("m"); var tsec = [tsec[1], ""]}
 				
 				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
 				    var startoutput = parseInt(tsec[0]);
