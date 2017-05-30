@@ -67,13 +67,16 @@ var urlParam = function(name, w){
 				if (t.includes('h')){ var thour = t.split("h")} else {var thour = ""}
 				
 				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
-				    var startoutput = parseInt(tsec[0])
+				    var startoutput = parseInt(tsec[0]);
+				    console.log("Start is Seconds")
 				}
 				if (tsec[0] != "" && tmin[0] != "" && thour[0] == "") {
-				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60))
+				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60));
+				    console.log("Start is Seconds with Minutes")
 				}
 				if (tsec[0] != "" && tmin[0] != "" && thour[0] != "") {
-				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60) + (parseInt(thour[0]) * 3600))
+				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60) + (parseInt(thour[0]) * 3600));
+				    console.log("Start is Seconds with Minutes With Hours")
 				}
 			}
 					
