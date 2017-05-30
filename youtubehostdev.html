@@ -78,6 +78,22 @@ var urlParam = function(name, w){
 				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60) + (parseInt(thour[0]) * 3600));
 				    console.log("Start is Seconds with Minutes With Hours")
 				}
+				else if (tsec[0] == "" && tmin[0] == "" && thour[0] != "") {
+				    var startoutput = (parseInt(thour[0]) * 3600);
+				    console.log("Start is Hours")
+				}
+				else if (tsec[0] == "" && tmin[0] != "" && thour[0] != "") {
+				    var startoutput = ((parseInt(tsec[0]) * 60);
+				    console.log("Start is Minutes")
+				}
+				else if (tsec[0] != "" && tmin[0] == "" && thour[0] != "") {
+				    var startoutput = ((parseInt(tsec[0]) + (parseInt(thour[0]) * 3600));
+				    console.log("Start is Hours and seconds")
+				}
+				else if (tsec[0] == "" && tmin[0] != "" && thour[0] != "") {
+				    var startoutput = ((parseInt(tsec[0]) + (parseInt(tmin[0]) * 60));
+				    console.log("Start is Hours and Minutes")
+				}
 			}
 					
 		}
