@@ -43,6 +43,41 @@ var urlParam = function(name, w){
         val = w.location.search.match(rx);
     return !val ? '':val[1];
 }
+
+//Convert Youtube t=#h#m#s to seconds
+function youtbeTimeConvert(duration) {
+    var a = duration.match(/\d+/g);
+
+    if (duration.indexOf('M') >= 0 && duration.indexOf('H') == -1 && duration.indexOf('S') == -1) {
+        a = [0, a[0], 0];
+    }
+
+    if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1) {
+        a = [a[0], 0, a[1]];
+    }
+    if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1 && duration.indexOf('S') == -1) {
+        a = [a[0], 0, 0];
+    }
+
+    duration = 0;
+
+    if (a.length == 3) {
+        duration = duration + parseInt(a[0]) * 3600;
+        duration = duration + parseInt(a[1]) * 60;
+        duration = duration + parseInt(a[2]);
+    }
+
+    if (a.length == 2) {
+        duration = duration + parseInt(a[0]) * 60;
+        duration = duration + parseInt(a[1]);
+    }
+
+    if (a.length == 1) {
+        duration = duration + parseInt(a[0]);
+    }
+    return duration
+}
+	
 	//OLD Params
 	//var url = unescape(get("url"));
 	//var start = unescape(get("start"));
@@ -62,45 +97,9 @@ var urlParam = function(name, w){
 		if (t != "") {
 			if (/^\d+$/.test(t)){
 			var startoutput = t
-			} /*else {
-				if (t.includes('s')){ var tsec = t.split("s")} else {var tsec = ["", ""]}
-				if (t.includes('m')){ var tmin = t.split("m")} else {var tmin = ["", ""]}
-				if (t.includes('h')){ var thour = t.split("h")} else {var thour = ["", ""]}
-				
-				if (tsec.includes('m')){var tsec = tsec.split("m"); var tsec = [tsec[1], ""]}
-				//else if (tsec.includes('h'){var tsec 
-				
-				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
-				    var startoutput = parseInt(tsec[0]);
-				    console.log("Start is Seconds")
-				}
-				else if (tsec[0] != "" && tmin[0] != "" && thour[0] == "") {
-				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60));
-				    console.log("Start is Seconds with Minutes")
-				}
-				else if (tsec[0] != "" && tmin[0] != "" && thour[0] != "") {
-				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60) + (parseInt(thour[0]) * 3600));
-				    console.log("Start is Seconds with Minutes With Hours")
-				}
-				else if (tsec[0] == "" && tmin[0] == "" && thour[0] != "") {
-				    var startoutput = (parseInt(thour[0]) * 3600);
-				    console.log("Start is Hours")
-				}
-				else if (tsec[0] == "" && tmin[0] != "" && thour[0] == "") {
-				    var startoutput = (parseInt(tmin[0]) * 60);
-				    console.log("Start is Minutes")
-				}
-				else if (tsec[0] != "" && tmin[0] == "" && thour[0] != "") {
-				    var startoutput = ((parseInt(tsec[0]) + (parseInt(thour[0]) * 3600)));
-				    console.log("Start is Hours and seconds")
-				}
-				else if (tsec[0] == "" && tmin[0] != "" && thour[0] != "") {
-				    var startoutput = ((parseInt(tmin[0]) * 60) + (parseInt(tmin[0]) * 60));
-				    console.log("Start is Hours and Minutes")
-				}
-			}*/
-					
-		}
+			} else {
+			    youtubeTimeConvert(t)
+			    }
 	} else {
 		if (start != "") {
 		var startoutput = start
