@@ -44,18 +44,6 @@ var urlParam = function(name, w){
     return !val ? '':val[1];
 }
 
-//Convert Youtube t=#h#m#s to seconds
-
-function youtubeTimeConvert(duration) {
-  var total = 0;
-  var hours = duration.match(/(\d+)H/);
-  var minutes = duration.match(/(\d+)M/);
-  var seconds = duration.match(/(\d+)S/);
-  if (hours) total += parseInt(hours[1]) * 3600;
-  if (minutes) total += parseInt(minutes[1]) * 60;
-  if (seconds) total += parseInt(seconds[1]);
-  return total;
-}
 	
 	//OLD Params
 	//var url = unescape(get("url"));
@@ -78,8 +66,16 @@ function youtubeTimeConvert(duration) {
 			    var startoutput = t;
 			    console.log("Time t= is pure")
 			} else {
-			    var startoutput = youtubeTimeConvert(t);
-			    console.log("Time t= is in #h#m#s format")
+			    var total = 0;
+			    var duration = t;
+  			    var hours = duration.match(/(\d+)H/);
+  			    var minutes = duration.match(/(\d+)M/);
+  			    var seconds = duration.match(/(\d+)S/);
+  			    if (hours) total += parseInt(hours[1]) * 3600;
+  			    if (minutes) total += parseInt(minutes[1]) * 60;
+ 			    if (seconds) total += parseInt(seconds[1]);
+  			    var startoutput = total;
+			    console.log("Time t= is in #h#m#s format");
 			}
 		}
 	} else {
