@@ -62,15 +62,15 @@ var urlParam = function(name, w){
 			if (/^\d+$/.test(t)){
 			var startoutput = t
 			} else {
-				if (t.includes('s')){ var tsec = t.split("s")} else {var tsec = undefined}
-				if (t.includes('m')){ var tmin = t.split("m")} else {var tmin = undefined}
-				if (t.includes('h')){ var thour = t.split("h")} else {var thour = undefined}
+				if (t.includes('s')){ var tsec = t.split("s")}
+				if (t.includes('m')){ var tmin = t.split("m")}
+				if (t.includes('h')){ var thour = t.split("h")}
 				
-				if (tsec[0] != "" && tmin[0] == undefined && thour[0] == undefined) {
+				if (tsec[0] != "" && tmin[0] == "" && thour[0] == "") {
 				    var startoutput = parseInt(tsec[0]);
 				    console.log("Start is Seconds")
 				}
-				else if (tsec[0] != "" && tmin[0] != "" && thour[0] == undefined) {
+				else if (tsec[0] != "" && tmin[0] != "" && thour[0] == "") {
 				    var startoutput = (parseInt(tsec[0]) + (parseInt(tmin[0]) * 60));
 				    console.log("Start is Seconds with Minutes")
 				}
