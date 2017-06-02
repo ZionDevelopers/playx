@@ -330,11 +330,23 @@ local function SettingsPanel(panel)
                     dividerLabelNoMedia:SetTextColor(textColor)
                 end
             panel:AddItem(dividerLabelNoMedia)
-        
         --panel:AddControl("Label", {
         --    Text = "No media is playing at the moment."
         --})
     end
+
+    local chatHelpInfoHeader = vgui.Create("DLabel", panel)
+        chatHelpInfoHeader:SetText( "\nPlayX Chat Commands\n")
+        chatHelpInfoHeader:SetFont("Trebuchet24")
+        chatHelpInfoHeader:SetTextColor(textColor)
+    panel:AddItem(chatHelpInfoHeader)
+
+    local chatHelpInfo = vgui.Create("DLabel", panel)
+        chatHelpInfo:SetText( "-!playx {EXACT URL}\n-!ytplay {search video here}\n    -Plays first result\n")
+        chatHelpInfo:SetTextColor(textColor)
+        chatHelpInfo:SetFont("DermaDefaultBold")
+    panel:AddItem(chatHelpInfo)
+
     panel:Help("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") --Add Space To Extend Menu Color (I know, janky)
 end
 
@@ -675,6 +687,7 @@ local function ControlPanel(panel)
                 end
             panel:AddItem(pauseButton)
 
+
     panel:Help("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") --Add Space To Extend Menu Color (I know, janky)
     
 end
@@ -767,6 +780,101 @@ local function NavigatorPanel(panel)
     })  
 end
 
+surface.CreateFont("Trebuchet24_Underline",{
+    size = 24,
+    underline = true,
+    font = "Trebuchet MS",})
+
+local function PlayXHelpPanel(panel)
+    panel:ClearControls()
+
+    panel:SizeToContents()
+
+    --New Coloring Scheme
+    panel.Paint = function() 
+        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), backgroundColor )
+    end
+
+    local chatHelpInfoHeader = vgui.Create("DLabel", panel)
+        chatHelpInfoHeader:SetText( "\n  PlayX Chat Commands\n")
+        chatHelpInfoHeader:SetFont("Trebuchet24_Underline")
+        --function chatHelpInfoHeader:PerformLayout()
+        --    chatHelpInfoHeader:SizeToContents()
+        --end
+        --chatHelpInfoHeader:SetTextColor(textColor)
+    panel:AddItem(chatHelpInfoHeader)
+
+    local chatHelpInfo = vgui.Create("RichText", panel)
+        chatHelpInfo:Dock( FILL )
+        --chatHelpInfo:SetSize( panel:GetWide(), panel:GetTall() * 5)
+        chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
+        chatHelpInfo:AppendText("- !playx <URL>\n- !play <URL>\n- !link<URL>\n")
+        chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
+        chatHelpInfo:AppendText("- Opens the URL\n")
+        chatHelpInfo:InsertColorChange( 240, 240, 150, 255 )
+        chatHelpInfo:AppendText("(Will Try Auto Detect Provider)\n")
+        chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
+        chatHelpInfo:AppendText("\nEx: !playx http://dl1.webmfiles.org/big-buck-bunny_trailer.webm\n\nEx: !playx https://www.youtube.com/watch?v=ouIdaJhvXx0\n")
+
+        chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
+        chatHelpInfo:AppendText("----------------------------------\n-!ytplay <Youtube Video Search or URL>\n\n")
+        chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
+        chatHelpInfo:AppendText("-Search A Video On Youtube and Play First Result or Insert Youtube URL\n")
+        chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
+        chatHelpInfo:AppendText("\nEx: !ytplay keyboard cat\n\nEx: !ytplay https://www.youtube.com/watch?v=KcAY6-xl8A0\n")
+
+        chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
+        chatHelpInfo:AppendText("----------------------------------\n-!yt <Video Search>\n")
+        chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
+        chatHelpInfo:AppendText("-Search Youtube for Video\n")
+        chatHelpInfo:InsertColorChange( 240, 240, 150, 255 )
+        chatHelpInfo:AppendText("(Only Queues Video To Be Played With !ytplay, Does Not Play It)\n")
+        chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
+        chatHelpInfo:AppendText("\nEx: !yt stanley parable playthrough\n")
+
+        chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
+        chatHelpInfo:AppendText("----------------------------------\n-!ytlisten <Youtube Music Search>\n")
+        chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
+        chatHelpInfo:AppendText("-Search Youtube for Music\n")
+        chatHelpInfo:InsertColorChange( 240, 240, 150, 255 )
+        chatHelpInfo:AppendText("(Will Open Without Video, Only Audio. Best for Music Only Videos.)\n")
+        chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
+        chatHelpInfo:AppendText("\nEx: !ytlisten \n")
+        
+        function chatHelpInfo:PerformLayout()
+            chatHelpInfo:SetFontInternal("HudSelectionText")
+            chatHelpInfo:SetToFullHeight()
+            chatHelpInfo:SetBGColor( Color( 20, 20, 20 ) )
+        end
+    panel:AddItem(chatHelpInfo)
+
+    local concmdHelpInfoHeader = vgui.Create("DLabel", panel)
+        concmdHelpInfoHeader:SetText( "\n  PlayX Console Commands\n")
+        concmdHelpInfoHeader:SetFont("Trebuchet24_Underline")
+    panel:AddItem(concmdHelpInfoHeader)
+
+    local concmdHelpInfo = vgui.Create("RichText", panel)
+        concmdHelpInfo:Dock( FILL )
+        concmdHelpInfo:InsertColorChange( 255, 255, 255, 255 )
+        concmdHelpInfo:AppendText("- playx_open <URL> <provider> <start (seconds)> <novideo (bool)> <usejw (bool)> <ignore length (bool)>\n")
+        concmdHelpInfo:InsertColorChange( 160, 255, 160, 255 )
+        concmdHelpInfo:AppendText("- Opens A Video With Specified Args\n")
+        concmdHelpInfo:InsertColorChange( 240, 240, 150, 255 )
+        concmdHelpInfo:AppendText('(Not all have to be filled, minimum is URL. If Provider Is Blank, Auto Detect Will Be Used. To Signify No Provider, In The Position Of Provider, Use "", Then Continue With Other Vars.)\n')
+        concmdHelpInfo:InsertColorChange( 110, 200, 255, 255 )
+        concmdHelpInfo:AppendText('\nEx: playx_open "https://www.youtube.com/watch?v=fKQV68-U1Bw" "" 18\n- Starts this video at 18 seconds, all other args default.\n\nEx: playx_open "https://www.youtube.com/watch?v=7d7Soe_MiqQ" "" 0 "true" "false" "false"\n- Opens music video with video disabled and all args specified here.')
+
+        function concmdHelpInfo:PerformLayout()
+            concmdHelpInfo:SetFontInternal("HudSelectionText")
+            concmdHelpInfo:SetToFullHeight()
+            concmdHelpInfo:SetBGColor( Color( 20, 20, 20 ) )
+        end
+    panel:AddItem(concmdHelpInfo)
+
+    panel:Help("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+
+end
+
 --- PopulateToolMenu hook.
 local function PopulateToolMenu()
     hasLoaded = true
@@ -774,6 +882,7 @@ local function PopulateToolMenu()
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel) 
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXHelp", "Help", "", "", PlayXHelpPanel)
 end
 
 hook.Add("PopulateToolMenu", "PlayXPopulateToolMenu", PopulateToolMenu)
@@ -784,4 +893,5 @@ function PlayX.UpdatePanels()
     SettingsPanel(controlpanel.Get("PlayXSettings"))
     ControlPanel(controlpanel.Get("PlayXControl"))
     NavigatorPanel(controlpanel.Get("PlayXNavigator"))
+    PlayXHelpPanel(controlpanel.Get("PlayXHelp"))
 end
