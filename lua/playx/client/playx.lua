@@ -372,19 +372,38 @@ function PlayX.OpenSpawnDialog(forRepeater)
     frame:InvalidateLayout(true, true)
 end
 
+--resource.AddFile("resouce/fonts/timeburnernormal.ttf")
+
 surface.CreateFont("HWHeader",{
-    size = 50,
-    font = "DermaLarge"
+    size = 40,
+    shadow = true,
+    font = "RefrigeratorDeluxeW01-Bold"
 })
+
+surface.CreateFont("BodyFont",{
+    size = 23,
+    --weight = 530,
+    shadow = true,
+    font = "Titillium"
+})
+
+surface.CreateFont("MiniHeaderFont",{
+    size = 35,
+    weight = 550,
+    shadow = true,
+    font = "Titillium"
+})
+
+
+--materials\phoenix_storms\stripes
 
 function PlayX.HelpPopup()
     if hw and hw:IsValid() then
         return
     end
 
-    surface.CreateFont("Trebuchet24",{
-    size = 24,
-    font = "Trebuchet MS",})
+--effects\splash3
+--effects/ar2ground2
 
     local helpWindow = vgui.Create( "DFrame" )
                 helpWindow:SetPos( ((ScrW() / 2) - (1560 / 2)) , ((ScrH() / 2) - (750 / 1.6)) )
@@ -393,38 +412,57 @@ function PlayX.HelpPopup()
                 helpWindow:SetDraggable( true )
                 helpWindow:MakePopup()
                 helpWindow.Paint = function()
-                    draw.RoundedBox( 8, 0, 0, helpWindow:GetWide(), helpWindow:GetTall(), Color( 0, 0, 0, 200 ) )
-                    draw.RoundedBox( 8, 520, 16, 520, 50, Color( 0, 0, 0, 220 ) )
-                    draw.RoundedBoxEx( 8, 160, 80, 210, 30, Color(0,0,0,200), true, true, false, false )
-                    draw.RoundedBoxEx( 8, 660, 80, 235, 30, Color(0,0,0,200), true, true, false, false )
+                    draw.RoundedBox( 1, 0, 0, helpWindow:GetWide(), helpWindow:GetTall(), Color( 0, 0, 0, 200 ) )
 
-                    surface.DrawLine( 780,0,780,700 )
-                    surface.DrawLine( 520,0,520,700 )
-                    surface.DrawLine( 1040,0,1040,700 )
+                    surface.SetDrawColor(255,255,255,255)
+                    surface.SetMaterial( Material( "effects/ar2ground2" ) )
+                    surface.DrawTexturedRect(0,590,1560,200)
+
+                    draw.RoundedBox( 6, 560, 10, 440, 40, Color( 0, 0, 0, 100 ) )
+                    draw.RoundedBox( 0, 0, 0, 1560, 60, Color( 0, 0, 0, 70 ) )
+
+                    draw.RoundedBox( 6, 130, 80, 285, 35, Color(0,0,0,150))
+                    draw.RoundedBox( 6, 620, 80, 315, 35, Color(0,0,0,150))
+
+                    surface.DrawLine( 260,0,260,750 )
+                    surface.DrawLine( 780,0,780,750 )
+                    surface.DrawLine( 520,0,520,750 )
+                    surface.DrawLine( 1300,0,1300,750 )
+                    surface.DrawLine( 1040,0,1040,750 )
+
+                    
                 end
                 
                 hw = helpWindow
 
+                --if file.Exists("materials/phoenix_storms\stripes.vtf", "GAME") or file.Exists("materials/vgui/panel/playxlogo.vmt", "GAME") then   
+                --local headerBacker = vgui.Create("Material", helpWindow)
+                --headerBacker:SetPos( 0, 600 )
+                --headerBacker:SetSize(1560,150)
+                --headerBacker:SetMaterial( "effects/ar2ground2" )
+                --headerBacker.AutoSize = false
+                --end
+
                 local hwheader = vgui.Create( "DLabel" , helpWindow )
-                    hwheader:SetPos( 570, 0 )
+                    hwheader:SetPos( 650, -10 )
                     hwheader:SetSize( 1000, 80 )
-                    hwheader:SetText("PlayX Help Information")
+                    hwheader:SetText("--- PlayX Help Menu ---")
                     hwheader:SetFont("HWHeader")
                     hwheader:SetColor( Color( 255, 255, 255, 255))
 
     local chatHelpInfoHeader = vgui.Create("DLabel", helpWindow)
         chatHelpInfoHeader:SetText( "PlayX Chat Commands")
-        chatHelpInfoHeader:SetPos(170, 80)
+        chatHelpInfoHeader:SetPos(150, 80)
         chatHelpInfoHeader:SetSize(250,30)
 
         function chatHelpInfoHeader:PerformLayout()
-            chatHelpInfoHeader:SetFont("Trebuchet24")
+            chatHelpInfoHeader:SetFont("MiniHeaderFont")
             chatHelpInfoHeader:SetColor( Color(255, 255, 255, 255))
         end
 
     local chatHelpInfo = vgui.Create("RichText", helpWindow)
-        chatHelpInfo:SetSize(515,600)
-        chatHelpInfo:SetPos(5,120)
+        chatHelpInfo:SetSize(505,600)
+        chatHelpInfo:SetPos(10,120)
 
         chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
         chatHelpInfo:AppendText("- !playx <URL>\n- !play <URL>\n- !link<URL>\n")
@@ -433,47 +471,47 @@ function PlayX.HelpPopup()
         chatHelpInfo:InsertColorChange( 240, 240, 150, 255 )
         chatHelpInfo:AppendText("(Will Try Auto Detect Provider)\n")
         chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
-        chatHelpInfo:AppendText("\nEx: !playx http://dl1.webmfiles.org/big-buck-bunny_trailer.webm\nEx: !playx https://www.youtube.com/watch?v=ouIdaJhvXx0\n")
+        chatHelpInfo:AppendText("Ex: !playx http://dl1.webmfiles.org/big-buck-bunny_trailer.webm\nEx: !playx https://www.youtube.com/watch?v=ouIdaJhvXx0\n")
 
         chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
-        chatHelpInfo:AppendText("----------------------------------\n-!ytplay <Youtube Video Search or URL>\n")
+        chatHelpInfo:AppendText("----------------------------------------------------------------\n-!ytplay <Youtube Video Search or URL>\n")
         chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
         chatHelpInfo:AppendText("-Search A Video On Youtube and Play First Result or Insert Youtube URL\n")
         chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
-        chatHelpInfo:AppendText("\nEx: !ytplay keyboard cat\nEx: !ytplay https://www.youtube.com/watch?v=KcAY6-xl8A0\n")
+        chatHelpInfo:AppendText("Ex: !ytplay keyboard cat\nEx: !ytplay https://www.youtube.com/watch?v=KcAY6-xl8A0\n")
 
         chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
-        chatHelpInfo:AppendText("----------------------------------\n-!yt <Video Search>\n")
+        chatHelpInfo:AppendText("----------------------------------------------------------------\n-!yt <Video Search>\n")
         chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
         chatHelpInfo:AppendText("-Search Youtube for Video\n")
         chatHelpInfo:InsertColorChange( 240, 240, 150, 255 )
         chatHelpInfo:AppendText("(Only Queues Video To Be Played With !ytplay, Does Not Play It)\n")
         chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
-        chatHelpInfo:AppendText("\nEx: !yt stanley parable playthrough\n")
+        chatHelpInfo:AppendText("Ex: !yt stanley parable playthrough\n")
 
         chatHelpInfo:InsertColorChange( 255, 255, 255, 255 )
-        chatHelpInfo:AppendText("----------------------------------\n-!ytlisten <Youtube Music Search>\n")
+        chatHelpInfo:AppendText("----------------------------------------------------------------\n-!ytlisten <Youtube Music Search>\n")
         chatHelpInfo:InsertColorChange( 160, 255, 160, 255 )
         chatHelpInfo:AppendText("-Search Youtube for Music\n")
         chatHelpInfo:InsertColorChange( 240, 240, 150, 255 )
         chatHelpInfo:AppendText("(Will Open Without Video, Only Audio. Best for Music Only Videos.)\n")
         chatHelpInfo:InsertColorChange( 110, 200, 255, 255 )
-        chatHelpInfo:AppendText("\nEx: !ytlisten \n")
+        chatHelpInfo:AppendText("Ex: !ytlisten \n")
         
         function chatHelpInfo:PerformLayout()
-            chatHelpInfo:SetFontInternal("HudSelectionText")
-            chatHelpInfo:SetBGColor( Color( 20, 20, 20, 230) )
+            chatHelpInfo:SetFontInternal("BodyFont")
+            chatHelpInfo:SetBGColor( Color( 20, 20, 20, 200) )
         end
 
         ------------------------------------------------------
 
         local concmdHelpInfoHeader = vgui.Create("DLabel", helpWindow)
         concmdHelpInfoHeader:SetText( "PlayX Console Commands")
-        concmdHelpInfoHeader:SetPos(670, 80)
-        concmdHelpInfoHeader:SetSize(250,30)
+        concmdHelpInfoHeader:SetPos(640, 80)
+        concmdHelpInfoHeader:SetSize(280,30)
 
         function concmdHelpInfoHeader:PerformLayout()
-            concmdHelpInfoHeader:SetFont("Trebuchet24")
+            concmdHelpInfoHeader:SetFont("MiniHeaderFont")
             concmdHelpInfoHeader:SetColor( Color(255, 255, 255, 255))
         end
 
@@ -491,8 +529,8 @@ function PlayX.HelpPopup()
         concmdHelpInfo:AppendText('\nEx: playx_open "https://www.youtube.com/watch?v=fKQV68-U1Bw" "" 18\n- Starts this video at 18 seconds, all other args default.\n\nEx: playx_open "https://www.youtube.com/watch?v=7d7Soe_MiqQ" "" 0 "true" "false" "false"\n- Opens music video with video disabled and all args specified here.')
 
         function concmdHelpInfo:PerformLayout()
-            concmdHelpInfo:SetFontInternal("HudSelectionText")
-            concmdHelpInfo:SetBGColor( Color( 20, 20, 20, 230 ) )
+            concmdHelpInfo:SetFontInternal("BodyFont")
+            concmdHelpInfo:SetBGColor( Color( 20, 20, 20, 200 ) )
         end
 
                 --helpWindow:InvalidateLayout(true, true)
