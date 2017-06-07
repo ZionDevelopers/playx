@@ -866,6 +866,16 @@ local function ConCmdNavigatorWindow()
     PlayX.OpenNavigatorWindow()
 end
 
+local function ConCmdPlayUI()
+    if !PlayX.PlayUI then
+        PlayX.PlayUI = vgui.Create("PlayUI")
+    else
+        PlayX.PlayUI:Close()
+        PlayX.PlayUI = nil
+    end
+end
+
+
 concommand.Add("playx_resume", ConCmdResume)
 concommand.Add("playx_hide", ConCmdHide)
 concommand.Add("playx_reset_render_bounds", ConCmdResetRenderBounds)
@@ -875,6 +885,7 @@ concommand.Add("playx_navigator_addbookmark", ConCmdGUIBookmarkNavigator)
 concommand.Add("playx_gui_bookmark", ConCmdGUIBookmark)
 concommand.Add("playx_dump_html", ConCmdDumpHTML) -- Debug function
 concommand.Add("playx_navigator_window", ConCmdNavigatorWindow)
+concommand.Add("playx_ui", ConCmdPlayUI)
 
 --- Detect a crash.
 local function DetectCrash()
@@ -884,3 +895,5 @@ local function DetectCrash()
 end
 
 hook.Add("InitPostEntity", "PlayXCrashDetection", DetectCrash)
+
+

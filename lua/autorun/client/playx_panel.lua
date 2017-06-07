@@ -1,64 +1,49 @@
--- PlayX
--- Copyright (c) 2009 sk89q <http://www.sk89q.com>
--- 
--- This program is free software: you can redistribute it and/or modify
--- it under the terms of the GNU General Public License as published by
--- the Free Software Foundation, either version 2 of the License, or
--- (at your option) any later version.
--- 
--- This program is distributed in the hope that it will be useful,
--- but WITHOUT ANY WARRANTY; without even the implied warranty of
--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for more details.
--- 
--- You should have received a copy of the GNU General Public License
--- along with this program.  If not, see <http://www.gnu.org/licenses/>.
--- 
--- $Id$
--- Version 2.7.7 by Nexus [BR] on 20-06-2013 02:43 PM
+local PANEL = {}
+
 
 PlayX._BookmarksPanelList = nil
-
 local hasLoaded = false
 
-local backgroundColor = Color(50,50,50,255)
-local textColor = Color(220,220,220,255)
-local buttonColor = Color(80,80,80,225)
-local buttonPressedColor = Color(30,30,30,255)
-local buttonLineColor = Color(0,200,255,255)
-local buttonHoverColor = Color(255,50,50,255)
-local buttonLinePressColor = Color(0,255,0,255)
+local Colors = {}
+Colors["backgroundColor"] = Color(50,50,50,255)
+Colors["textColor"] = Color(220,220,220,255)
+Colors["buttonColor"] = Color(80,80,80,225)
+Colors["buttonPressedColor"] = Color(30,30,30,255)
+Colors["buttonLineColor"] = Color(0,200,255,255)
+Colors["buttonHoverColor"] = Color(255,50,50,255)
+Colors["buttonLinePressColor"] = Color(0,255,0,255)
+
 local bodyFont = "HudHintTextLarge"
+
 
 --- Draw the settings panel.
 local function SettingsPanel(panel)
-    panel:ClearControls()
     panel:SetLabel( "Playx Settings - Client Side" )
     
     --New Coloring Scheme
     panel.Paint = function() 
-        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), backgroundColor )
+        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), Colors["backgroundColor"])
     end
 
     local enabledCheckBox = vgui.Create("DCheckBoxLabel", panel)
         enabledCheckBox:SetText( "Enabled" )
-        enabledCheckBox:SetTextColor(textColor)
+        enabledCheckBox:SetTextColor(Colors["textColor"])
         enabledCheckBox:SetValue(GetConVar("playx_enabled"))
         enabledCheckBox:SetConVar( "playx_enabled" )
         enabledCheckBox.Paint = function ()
-            enabledCheckBox:SetTextColor(textColor)
+            enabledCheckBox:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(enabledCheckBox)
 
     local dividerLabel = vgui.Create("DLabel", panel)
         dividerLabel:SetText( "--- Modify Client Side Setings Here When Player Enabled ---")
-        dividerLabel:SetTextColor(textColor)
+        dividerLabel:SetTextColor(Colors["textColor"])
         dividerLabel.Paint = function ()
-            dividerLabel:SetTextColor(textColor)
+            dividerLabel:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(dividerLabel)
 
-    --panel:Help("\n") --Add Space
+    panel:Help("\n") --Add Space
 
     --panel:CheckBox("Enabled", "playx_enabled")
     --panel:AddControl("CheckBox", {
@@ -91,11 +76,11 @@ local function SettingsPanel(panel)
 
     local videoRangeCheck = vgui.Create("DCheckBoxLabel", panel)
         videoRangeCheck:SetText("Enable Video Range (Only Play Videos Near Me)")
-        videoRangeCheck:SetTextColor(textColor)
+        videoRangeCheck:SetTextColor(Colors["textColor"])
         videoRangeCheck:SetValue(GetConVar("playx_video_range_enabled"))
         videoRangeCheck:SetConVar("playx_video_range_enabled")
         videoRangeCheck.Paint = function ()
-            videoRangeCheck:SetTextColor(textColor)
+            videoRangeCheck:SetTextColor(Colors["textColor"])
         end
         panel:AddItem(videoRangeCheck)
 
@@ -105,11 +90,11 @@ local function SettingsPanel(panel)
     --}):SetTooltip("Uncheck to play videos in any part of the map")
         local rangeHintCheck = vgui.Create("DCheckBoxLabel", panel)
             rangeHintCheck:SetText("Show Hints when I enter Or Leave Video Range")
-            rangeHintCheck:SetTextColor(textColor)
+            rangeHintCheck:SetTextColor(Colors["textColor"])
             rangeHintCheck:SetValue(GetConVar("playx_video_range_hints_enabled"))
             rangeHintCheck:SetConVar("playx_video_range_hints_enabled")
             rangeHintCheck.Paint = function ()
-                rangeHintCheck:SetTextColor(textColor)
+                rangeHintCheck:SetTextColor(Colors["textColor"])
             end
         panel:AddItem(rangeHintCheck)
 
@@ -123,11 +108,11 @@ local function SettingsPanel(panel)
         volumeSlider:SetMinMax(0,100)
         volumeSlider:SetValue(GetConVar("playx_volume"))
         volumeSlider:SetConVar("playx_volume")
-        volumeSlider.TextArea:SetTextColor(textColor)
-        volumeSlider.Label:SetColor(textColor)
+        volumeSlider.TextArea:SetTextColor(Colors["textColor"])
+        volumeSlider.Label:SetColor(Colors["textColor"])
         volumeSlider.Label.Paint = function () 
-            volumeSlider.Label:SetTextColor(textColor)
-            volumeSlider.TextArea:SetTextColor(textColor)
+            volumeSlider.Label:SetTextColor(Colors["textColor"])
+            volumeSlider.TextArea:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(volumeSlider)
 
@@ -144,11 +129,11 @@ local function SettingsPanel(panel)
         rangeSlider:SetMinMax(500, 5000)
         rangeSlider:SetValue(GetConVar("playx_video_radius"))
         rangeSlider:SetConVar("playx_video_radius")
-        rangeSlider.TextArea:SetTextColor(textColor)
-        rangeSlider.Label:SetColor(textColor)
+        rangeSlider.TextArea:SetTextColor(Colors["textColor"])
+        rangeSlider.Label:SetColor(Colors["textColor"])
         rangeSlider.Label.Paint = function () 
-            rangeSlider.Label:SetTextColor(textColor)
-            rangeSlider.TextArea:SetTextColor(textColor)
+            rangeSlider.Label:SetTextColor(Colors["textColor"])
+            rangeSlider.TextArea:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(rangeSlider)
 	
@@ -162,19 +147,19 @@ local function SettingsPanel(panel)
 
     local dividerLabelAdv = vgui.Create("DLabel", panel)
         dividerLabelAdv:SetText( "\n--- Other Options ---\n")
-        dividerLabelAdv:SetTextColor(textColor)
+        dividerLabelAdv:SetTextColor(Colors["textColor"])
         dividerLabelAdv.Paint = function ()
-            dividerLabelAdv:SetTextColor(textColor)
+            dividerLabelAdv:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(dividerLabelAdv)
 
     local errorWindowsCheck = vgui.Create("DCheckBoxLabel", panel)
         errorWindowsCheck:SetText( "Show Error Message Boxes" )
-        errorWindowsCheck:SetTextColor(textColor)
+        errorWindowsCheck:SetTextColor(Colors["textColor"])
         errorWindowsCheck:SetValue(GetConVar("playx_error_windows"))
         errorWindowsCheck:SetConVar( "playx_error_windows" )
         errorWindowsCheck.Paint = function ()
-            errorWindowsCheck:SetTextColor(textColor)
+            errorWindowsCheck:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(errorWindowsCheck)
 
@@ -189,16 +174,16 @@ local function SettingsPanel(panel)
 
             local hideButton = vgui.Create( "DButton", panel )
                 hideButton:SetText( "Hide Player" )
-                hideButton:SetColor(textColor)
+                hideButton:SetColor(Colors["textColor"])
                 hideButton:SetConsoleCommand("playx_hide")
                 hideButton.Paint = function()    
-                    hideButton:SetColor(textColor)
+                    hideButton:SetColor(Colors["textColor"])
         
                     if hideButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, hideButton:GetWide(), hideButton:GetTall())
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor( Colors["buttonColor"] )
                         surface.DrawRect( 0, 0, hideButton:GetWide(), hideButton:GetTall())
                     end
         
@@ -218,16 +203,16 @@ local function SettingsPanel(panel)
 
                 local reInitButton = vgui.Create( "DButton", panel )
                 reInitButton:SetText( "Re-Initialize Player" )
-                reInitButton:SetColor(textColor)
+                reInitButton:SetColor(Colors["textColor"])
                 reInitButton:SetConsoleCommand("playx_resume")
                 reInitButton.Paint = function()    
-                    reInitButton:SetColor(textColor)
+                    reInitButton:SetColor(Colors["textColor"])
         
                     if reInitButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, reInitButton:GetWide(), reInitButton:GetTall())
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor(  )
                         surface.DrawRect( 0, 0, reInitButton:GetWide(), reInitButton:GetTall())
                     end
         
@@ -242,16 +227,16 @@ local function SettingsPanel(panel)
 
                 local resumeButton = vgui.Create( "DButton", panel )
                 resumeButton:SetText( "Resume Play" )
-                resumeButton:SetColor(textColor)
+                resumeButton:SetColor(Colors["textColor"])
                 resumeButton:SetConsoleCommand("playx_resume")
                 resumeButton.Paint = function()    
-                    resumeButton:SetColor(textColor)
+                    resumeButton:SetColor(Colors["textColor"])
         
                     if resumeButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, resumeButton:GetWide(), resumeButton:GetTall())
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor( Colors["buttonColor"] )
                         surface.DrawRect( 0, 0, resumeButton:GetWide(), resumeButton:GetTall())
                     end
         
@@ -266,9 +251,9 @@ local function SettingsPanel(panel)
             
             local dividerResumeSupported = vgui.Create("DLabel", panel)
                 dividerResumeSupported:SetText( "\nThe Current Media Supports Pausing / Resuming\n")
-                dividerResumeSupported:SetTextColor(textColor)
+                dividerResumeSupported:SetTextColor(Colors["textColor"])
                 dividerResumeSupported.Paint = function ()
-                    dividerResumeSupported:SetTextColor(textColor)
+                    dividerResumeSupported:SetTextColor(Colors["textColor"])
                 end
             panel:AddItem(dividerResumeSupported)
 
@@ -312,9 +297,9 @@ local function SettingsPanel(panel)
 
             local dividerLabelMediaStopWarn = vgui.Create("DLabel", panel)
                 dividerLabelMediaStopWarn:SetText( "\nCurrent Media Cannot Be Resumed Once Stopped\n")
-                dividerLabelMediaStopWarn:SetTextColor(textColor)
+                dividerLabelMediaStopWarn:SetTextColor(Colors["textColor"])
                 dividerLabelMediaStopWarn.Paint = function ()
-                    dividerLabelMediaStopWarn:SetTextColor(textColor)
+                    dividerLabelMediaStopWarn:SetTextColor(Colors["textColor"])
                 end
             panel:AddItem(dividerLabelNoMedia)
             
@@ -325,9 +310,9 @@ local function SettingsPanel(panel)
     else
         local dividerLabelNoMedia = vgui.Create("DLabel", panel)
                 dividerLabelNoMedia:SetText( "\n --No Media Is Currently Playing-- \n")
-                dividerLabelNoMedia:SetTextColor(textColor)
+                dividerLabelNoMedia:SetTextColor(Colors["textColor"])
                 dividerLabelNoMedia.Paint = function ()
-                    dividerLabelNoMedia:SetTextColor(textColor)
+                    dividerLabelNoMedia:SetTextColor(Colors["textColor"])
                 end
             panel:AddItem(dividerLabelNoMedia)
         --panel:AddControl("Label", {
@@ -338,12 +323,12 @@ local function SettingsPanel(panel)
     local chatHelpInfoHeader = vgui.Create("DLabel", panel)
         chatHelpInfoHeader:SetText( "\nPlayX Chat Commands\n")
         chatHelpInfoHeader:SetFont("Trebuchet24")
-        chatHelpInfoHeader:SetTextColor(textColor)
+        chatHelpInfoHeader:SetTextColor(Colors["textColor"])
     panel:AddItem(chatHelpInfoHeader)
 
     local chatHelpInfo = vgui.Create("DLabel", panel)
         chatHelpInfo:SetText( "-!playx {EXACT URL}\n-!ytplay {search video here}\n    -Plays first result\n")
-        chatHelpInfo:SetTextColor(textColor)
+        chatHelpInfo:SetTextColor(Colors["textColor"])
         chatHelpInfo:SetFont("DermaDefaultBold")
     panel:AddItem(chatHelpInfo)
 
@@ -357,7 +342,7 @@ local function ControlPanel(panel)
     
     --New Coloring Scheme
     panel.Paint = function() 
-        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), backgroundColor )
+        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), Colors["backgroundColor"])
     end
     
     -- TODO: Put the Providers ComboBox and URI Text Box On Same Line MAYBE
@@ -381,7 +366,7 @@ local function ControlPanel(panel)
     local selectPnl = vgui.Create( "DPanel" )
     local providerSelectLabel = vgui.Create( "DLabel", selectPnl )
                 providerSelectLabel:SetText( "Provider:" )
-                providerSelectLabel:SetTextColor(textColor)
+                providerSelectLabel:SetTextColor(Colors["textColor"])
                 providerSelectLabel:SetPos( 0, 5.5 )
                 providerSelectLabel:SetFont( "HudHintTextLarge" )
                 providerSelectLabel:SizeToContents()
@@ -389,18 +374,18 @@ local function ControlPanel(panel)
     local providerSelect = vgui.Create("DComboBox", selectPnl)
                 providerSelect:SetPos( 70, 2 )
                 providerSelect:SetWide( 200 )
-                providerSelect:SetColor( textColor )
-                providerSelect:SetTextColor( textColor )
+                providerSelect:SetColor( Colors["textColor"] )
+                providerSelect:SetTextColor( Colors["textColor"] )
                 providerSelect.Paint = function() 
-                    providerSelect:SetColor( textColor )
-                    providerSelect:SetTextColor( textColor )
-                    surface.SetDrawColor( textColor )
+                    providerSelect:SetColor( Colors["textColor"] )
+                    providerSelect:SetTextColor( Colors["textColor"] )
+                    surface.SetDrawColor( Colors["textColor"] )
                     surface.DrawOutlinedRect( 0, 0, providerSelect:GetWide(), providerSelect:GetTall())
                 end
     panel:AddItem(selectPnl)
 
     selectPnl.Paint = function() 
-        draw.RoundedBox( 0, 0, 0,selectPnl:GetWide(),selectPnl:GetTall(), backgroundColor )
+        draw.RoundedBox( 0, 0, 0,selectPnl:GetWide(),selectPnl:GetTall(), Colors["backgroundColor"])
     end
 
     --Add Providers To ComboBox----------------------------
@@ -429,7 +414,7 @@ local function ControlPanel(panel)
     local uripnl = vgui.Create( "DPanel" )
     local uriEntryBoxLabel = vgui.Create( "DLabel", uripnl )
                 uriEntryBoxLabel:SetText( "URI: " )
-                uriEntryBoxLabel:SetTextColor(textColor)
+                uriEntryBoxLabel:SetTextColor(Colors["textColor"])
                 uriEntryBoxLabel:SetPos( 26, 5.5 )
                 uriEntryBoxLabel:SetFont( "HudHintTextLarge" )
                 uriEntryBoxLabel:SizeToContents()
@@ -443,7 +428,7 @@ local function ControlPanel(panel)
                 panel:AddItem(uripnl)
 
     uripnl.Paint = function() 
-        draw.RoundedBox( 0, 0, 0,uripnl:GetWide(),uripnl:GetTall(), backgroundColor )
+        draw.RoundedBox( 0, 0, 0,uripnl:GetWide(),uripnl:GetTall(), Colors["backgroundColor"])
     end
 
     --local textbox = panel:AddControl("TextBox", {
@@ -456,7 +441,7 @@ local function ControlPanel(panel)
     local startatpnl = vgui.Create( "DPanel" )
     local startAtBoxLabel = vgui.Create( "DLabel", startatpnl )
                 startAtBoxLabel:SetText( "Start At: " )
-                startAtBoxLabel:SetTextColor(textColor)
+                startAtBoxLabel:SetTextColor(Colors["textColor"])
                 startAtBoxLabel:SetFont("HudHintTextLarge")
                 startAtBoxLabel:SetPos( 0, 5.5 )
                 startAtBoxLabel:SizeToContents()
@@ -470,7 +455,7 @@ local function ControlPanel(panel)
                 panel:AddItem(startatpnl)
 
     startatpnl.Paint = function() 
-        draw.RoundedBox( 0, 0, 0,startatpnl:GetWide(),startatpnl:GetTall(), backgroundColor )
+        draw.RoundedBox( 0, 0, 0,startatpnl:GetWide(),startatpnl:GetTall(), Colors["backgroundColor"])
     end
 
     --panel:AddControl("TextBox", {
@@ -502,30 +487,30 @@ local function ControlPanel(panel)
                 openMediaButton:SetText( "Open Media" )
                 openMediaButton:SetFont("CenterPrintText")
                 openMediaButton:SetSize(64, 35)
-                openMediaButton:SetColor(textColor)
+                openMediaButton:SetColor(Colors["textColor"])
                 openMediaButton.DoClick = function()
                     RunConsoleCommand("playx_gui_open")
                     RunConsoleCommand("playx_provider", "")
                 end
                 openMediaButton.Paint = function()    
-                    openMediaButton:SetColor(textColor)
+                    openMediaButton:SetColor(Colors["textColor"])
         
                     if openMediaButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, openMediaButton:GetWide(), openMediaButton:GetTall())
-                        surface.SetDrawColor( buttonLinePressColor )
+                        surface.SetDrawColor( Colors["buttonLinePressColor"] )
                         surface.DrawRect( 0, 0, openMediaButton:GetWide(), 3)
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor( Colors["buttonColor"] )
                         surface.DrawRect( 0, 0, openMediaButton:GetWide(), openMediaButton:GetTall())
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, openMediaButton:GetWide(), 3)
                     end
                     if openMediaButton:IsHovered() && not openMediaButton:IsDown() then
-                        surface.SetDrawColor( buttonHoverColor )
+                        surface.SetDrawColor( Colors["buttonHoverColor"] )
                         surface.DrawRect( 0, 0, openMediaButton:GetWide(), 3)
                     elseif not openMediaButton:IsDown() then
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, openMediaButton:GetWide(), 3)
                     end
         
@@ -541,27 +526,27 @@ local function ControlPanel(panel)
                 closeMediaButton:SetText( "Close Media" )
                 closeMediaButton:SetFont("DermaDefaultBold")
                 closeMediaButton:SetSize(64, 35)
-                closeMediaButton:SetColor(textColor)
+                closeMediaButton:SetColor(Colors["textColor"])
                 closeMediaButton:SetConsoleCommand("playx_gui_close")
                 closeMediaButton.Paint = function()    
-                    closeMediaButton:SetColor(textColor)
+                    closeMediaButton:SetColor(Colors["textColor"])
         
                     if closeMediaButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, closeMediaButton:GetWide(), closeMediaButton:GetTall())
-                        surface.SetDrawColor( buttonLinePressColor )
+                        surface.SetDrawColor( Colors["buttonLinePressColor"] )
                         surface.DrawRect( 0, 0, closeMediaButton:GetWide(), 3)
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor( Colors["buttonColor"] )
                         surface.DrawRect( 0, 0, closeMediaButton:GetWide(), closeMediaButton:GetTall())
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, closeMediaButton:GetWide(), 3)
                     end
                     if closeMediaButton:IsHovered() && not closeMediaButton:IsDown() then
-                        surface.SetDrawColor( buttonHoverColor )
+                        surface.SetDrawColor( Colors["buttonHoverColor"] )
                         surface.DrawRect( 0, 0, closeMediaButton:GetWide(), 3)
                     elseif not closeMediaButton:IsDown() then
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, closeMediaButton:GetWide(), 3)
                     end
         
@@ -580,27 +565,27 @@ local function ControlPanel(panel)
                 addBookmarkButton:SetText( "Add Current Media to Bookmarks" )
                 addBookmarkButton:SetFont("CenterPrintText")
                 addBookmarkButton:SetSize(64, 35)
-                addBookmarkButton:SetColor(textColor)
+                addBookmarkButton:SetColor(Colors["textColor"])
                 addBookmarkButton:SetConsoleCommand("playx_gui_bookmark")
                 addBookmarkButton.Paint = function()    
-                    addBookmarkButton:SetColor(textColor)
+                    addBookmarkButton:SetColor(Colors["textColor"])
         
                     if addBookmarkButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, addBookmarkButton:GetWide(), addBookmarkButton:GetTall())
-                        surface.SetDrawColor( buttonLinePressColor )
+                        surface.SetDrawColor( Colors["buttonLinePressColor"] )
                         surface.DrawRect( 0, 0, addBookmarkButton:GetWide(), 3)
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor( Colors["buttonColor"] )
                         surface.DrawRect( 0, 0, addBookmarkButton:GetWide(), addBookmarkButton:GetTall())
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, addBookmarkButton:GetWide(), 3)
                     end
                     if addBookmarkButton:IsHovered() && not addBookmarkButton:IsDown() then
-                        surface.SetDrawColor( buttonHoverColor )
+                        surface.SetDrawColor( Colors["buttonHoverColor"] )
                         surface.DrawRect( 0, 0, addBookmarkButton:GetWide(), 3)
                     elseif not addBookmarkButton:IsDown() then
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, addBookmarkButton:GetWide(), 3)
                     end
         
@@ -614,43 +599,43 @@ local function ControlPanel(panel)
 
     local dividerAdvOptions = vgui.Create("DLabel", panel)
                 dividerAdvOptions:SetText( "\n  --Advanced Options--\n")
-                dividerAdvOptions:SetTextColor(textColor)
+                dividerAdvOptions:SetTextColor(Colors["textColor"])
                 dividerAdvOptions:SetFont(bodyFont)
                 dividerAdvOptions.Paint = function ()
-                    dividerAdvOptions:SetTextColor(textColor)
+                    dividerAdvOptions:SetTextColor(Colors["textColor"])
                 end
             panel:AddItem(dividerAdvOptions)
 
     local lowFrameRateCheckbox = vgui.Create("DCheckBoxLabel", panel)
         lowFrameRateCheckbox:SetText( "Disable Video (Use with music)" )
-        lowFrameRateCheckbox:SetTextColor(textColor)
+        lowFrameRateCheckbox:SetTextColor(Colors["textColor"])
         lowFrameRateCheckbox:SetFont(bodyFont)
         lowFrameRateCheckbox:SetValue(GetConVar("playx_force_low_framerate"))
         lowFrameRateCheckbox:SetConVar( "playx_force_low_framerate" )
         lowFrameRateCheckbox.Paint = function ()
-            lowFrameRateCheckbox:SetTextColor(textColor)
+            lowFrameRateCheckbox:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(lowFrameRateCheckbox)
 
     local doNotAutoStopCheckbox = vgui.Create("DCheckBoxLabel", panel)
         doNotAutoStopCheckbox:SetText( "Disable Auto Stop" )
-        doNotAutoStopCheckbox:SetTextColor(textColor)
+        doNotAutoStopCheckbox:SetTextColor(Colors["textColor"])
         doNotAutoStopCheckbox:SetFont(bodyFont)
         doNotAutoStopCheckbox:SetValue(GetConVar("playx_ignore_length"))
         doNotAutoStopCheckbox:SetConVar( "playx_ignore_length" )
         doNotAutoStopCheckbox.Paint = function ()
-            doNotAutoStopCheckbox:SetTextColor(textColor)
+            doNotAutoStopCheckbox:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(doNotAutoStopCheckbox)
 
     local useJWCheckBox = vgui.Create("DCheckBoxLabel", panel)
         useJWCheckBox:SetText( "Use Better Settings For Better Quality" )
-        useJWCheckBox:SetTextColor(textColor)
+        useJWCheckBox:SetTextColor(Colors["textColor"])
         useJWCheckBox:SetFont(bodyFont)
         useJWCheckBox:SetValue(GetConVar("playx_use_jw"))
         useJWCheckBox:SetConVar( "playx_use_jw" )
         useJWCheckBox.Paint = function ()
-            useJWCheckBox:SetTextColor(textColor)
+            useJWCheckBox:SetTextColor(Colors["textColor"])
         end
     panel:AddItem(useJWCheckBox)
 
@@ -660,27 +645,27 @@ local function ControlPanel(panel)
                 pauseButton:SetText( "Pause (NOT ACTIVE)" )
                 pauseButton:SetFont("CenterPrintText")
                 pauseButton:SetSize(64, 35)
-                pauseButton:SetColor(textColor)
+                pauseButton:SetColor(Colors["textColor"])
                 pauseButton:SetConsoleCommand("playx_pause")
                 pauseButton.Paint = function()    
-                    pauseButton:SetColor(textColor)
+                    pauseButton:SetColor(Colors["textColor"])
         
                     if pauseButton:IsDown() then 
-                        surface.SetDrawColor( buttonPressedColor )
+                        surface.SetDrawColor( Colors["buttonPressedColor"] )
                         surface.DrawRect( 0, 0, pauseButton:GetWide(), pauseButton:GetTall())
-                        surface.SetDrawColor( buttonLinePressColor )
+                        surface.SetDrawColor( Colors["buttonLinePressColor"] )
                         surface.DrawRect( 0, 0, pauseButton:GetWide(), 3)
                     else
-                        surface.SetDrawColor( buttonColor )
+                        surface.SetDrawColor( Colors["buttonColor"] )
                         surface.DrawRect( 0, 0, pauseButton:GetWide(), pauseButton:GetTall())
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, pauseButton:GetWide(), 3)
                     end
                     if pauseButton:IsHovered() && not pauseButton:IsDown() then
-                        surface.SetDrawColor( buttonHoverColor )
+                        surface.SetDrawColor( Colors["buttonHoverColor"] )
                         surface.DrawRect( 0, 0, pauseButton:GetWide(), 3)
                     elseif not pauseButton:IsDown() then
-                        surface.SetDrawColor( buttonLineColor )
+                        surface.SetDrawColor( Colors["buttonLineColor"] )
                         surface.DrawRect( 0, 0, pauseButton:GetWide(), 3)
                     end
         
@@ -694,6 +679,7 @@ end
 --- Draw the control panel.
 local function BookmarksPanel(panel)
     panel:ClearControls()
+    panel:SetLabel("Bookmarks")
     
     panel:SizeToContents(true)
     
@@ -758,6 +744,7 @@ end
 --- Draw the control panel.
 local function NavigatorPanel(panel)
     panel:ClearControls()
+    panel:SetLabel("Navigator")
     
     panel:SizeToContents(true)
     
@@ -785,12 +772,12 @@ surface.CreateFont("Trebuchet24_Underline",{
 
 local function PlayXHelpPanel(panel)
     panel:ClearControls()
-
+    panel:SetLabel("Help")
     panel:SizeToContents()
 
     --New Coloring Scheme
     panel.Paint = function() 
-        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), backgroundColor )
+        draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), Colors["backgroundColor"])
     end
 
     local chatHelpInfoHeader = vgui.Create("DLabel", panel)
@@ -799,7 +786,7 @@ local function PlayXHelpPanel(panel)
         --function chatHelpInfoHeader:PerformLayout()
         --    chatHelpInfoHeader:SizeToContents()
         --end
-        --chatHelpInfoHeader:SetTextColor(textColor)
+        --chatHelpInfoHeader:SetTextColor(Colors["textColor"])
     panel:AddItem(chatHelpInfoHeader)
 
     local chatHelpInfo = vgui.Create("RichText", panel)
@@ -873,23 +860,148 @@ local function PlayXHelpPanel(panel)
 
 end
 
---- PopulateToolMenu hook.
-local function PopulateToolMenu()
-    hasLoaded = true
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", "Settings", "", "", SettingsPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel) 
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXHelp", "Help", "", "", PlayXHelpPanel)
+
+function PANEL:Init()
+
+--[[---------------------------------------------------------
+	Main Panel
+-----------------------------------------------------------]]
+
+	self.frame = vgui.Create("DFrame",nil,"playXUI")
+		self.frame:SetSize(ScrW()/1.2,ScrH()/1.1)
+		self.frame:Center()
+		self.frame:MakePopup()
+		self.frame:SetTitle("PlayX")
+		self.frame.Paint = function(self,w,h)
+			surface.SetDrawColor(Colors["backgroundColor"])
+			surface.DrawRect(0,0,w,h)
+		end
+        self.Close = function()
+            self.frame:Close()
+        end
+
+--[[---------------------------------------------------------
+	DPropertySheets
+-----------------------------------------------------------]]
+	self.mainSheet = vgui.Create("DPropertySheet",self.frame)
+		self.mainSheet:SetPadding(4)
+		self.mainSheet:Dock(FILL)
+		self.mainSheet.Paint = function(self,w,h)
+			surface.SetDrawColor(Colors["backgroundColor"])
+			surface.DrawRect(0,0,w,h)
+		end
+
+			--[[------------------------------------------------------------------------------------------------------------------
+				Administrate Sheet
+			--------------------------------------------------------------------------------------------------------------------]]
+			self.mainSheet.Administrate = vgui.Create("DPanel",self.mainSheet)
+					self.mainSheet.Administrate.Paint = function(self,w,h)
+						surface.SetDrawColor(Colors["buttonColor"])
+						surface.DrawRect(0,0,w,h)
+					end
+				self.mainSheet.Administrate.window = vgui.Create("ControlPanel",self.mainSheet.Administrate)
+				self.mainSheet.Administrate.window:Dock(FILL)
+--				self.mainSheet.Administrate.window.pnlCanvas:DockPadding( 4, 4, 4, 4 )
+				ControlPanel(self.mainSheet.Administrate.window)
+
+			self.mainSheet.Administrate.Tab = self.mainSheet:AddSheet("Administrate",self.mainSheet.Administrate,"icon16/tick.png")
+				self.mainSheet.Administrate.Tab.Tab.Paint = function(self,w,h )
+					surface.SetDrawColor(Colors["buttonColor"])
+					surface.DrawRect(0,0,w,h)
+				end
+
+
+			--[[------------------------------------------------------------------------------------------------------------------
+				Bookmarks Sheet
+			--------------------------------------------------------------------------------------------------------------------]]
+			self.mainSheet.Bookmarks = vgui.Create("DPanel",self.mainSheet)
+					self.mainSheet.Bookmarks.Paint = function(self,w,h)
+						surface.SetDrawColor(Colors["buttonColor"])
+						surface.DrawRect(0,0,w,h)
+					end
+				self.mainSheet.Bookmarks.window = vgui.Create("ControlPanel",self.mainSheet.Bookmarks)
+				self.mainSheet.Bookmarks.window:Dock(FILL)
+--				self.mainSheet.Bookmarks.window.pnlCanvas:DockPadding( 4, 4, 4, 4 )
+				BookmarksPanel(self.mainSheet.Bookmarks.window)
+
+
+			self.mainSheet.Bookmarks.Tab = self.mainSheet:AddSheet("Bookmarks",self.mainSheet.Bookmarks,"icon16/book.png")
+				self.mainSheet.Bookmarks.Tab.Tab.Paint = function(self,w,h )
+					surface.SetDrawColor(Colors["buttonColor"])
+					surface.DrawRect(0,0,w,h)
+				end
+
+
+
+			--[[------------------------------------------------------------------------------------------------------------------
+				Help Sheet
+			--------------------------------------------------------------------------------------------------------------------]]
+			self.mainSheet.Help = vgui.Create("DPanel",self.mainSheet)
+					self.mainSheet.Help.Paint = function(self,w,h)
+						surface.SetDrawColor(Colors["buttonColor"])
+						surface.DrawRect(0,0,w,h)
+					end
+				self.mainSheet.Help.window = vgui.Create("ControlPanel",self.mainSheet.Help)
+				self.mainSheet.Help.window:Dock(FILL)
+--				self.mainSheet.Help.window.pnlCanvas:DockPadding( 4, 4, 4, 4 )
+				PlayXHelpPanel(self.mainSheet.Help.window)
+
+
+			self.mainSheet.Help.Tab = self.mainSheet:AddSheet("Help",self.mainSheet.Help,"icon16/heart.png")
+				self.mainSheet.Help.Tab.Tab.Paint = function(self,w,h )
+					surface.SetDrawColor(Colors["buttonColor"])
+					surface.DrawRect(0,0,w,h)
+				end
+
+
+			--[[------------------------------------------------------------------------------------------------------------------
+				Navigator Sheet
+			--------------------------------------------------------------------------------------------------------------------]]
+			self.mainSheet.Navigator = vgui.Create("Panel",self.mainSheet)
+					self.mainSheet.Navigator.Paint = function(self,w,h)
+						surface.SetDrawColor(Colors["buttonColor"])
+						surface.DrawRect(0,0,w,h)
+					end
+			self.mainSheet.Navigator.Browser = vgui.Create("PlayXBrowser",self.mainSheet.Navigator)
+			self.mainSheet.Navigator.Browser:Dock(FILL)
+
+			self.mainSheet.Navigator.Tab = self.mainSheet:AddSheet("Navigator",self.mainSheet.Navigator,"icon16/zoom.png")
+				self.mainSheet.Navigator.Tab.Tab.Paint = function(self,w,h )
+					surface.SetDrawColor(Colors["buttonColor"])
+					surface.DrawRect(0,0,w,h)
+				end
+    
+
+			--[[------------------------------------------------------------------------------------------------------------------
+				Settings Sheet
+			--------------------------------------------------------------------------------------------------------------------]]
+			self.mainSheet.Settings = vgui.Create("DPanel",self.mainSheet)
+					self.mainSheet.Settings.Paint = function(self,w,h)
+						surface.SetDrawColor(Colors["buttonColor"])
+						surface.DrawRect(0,0,w,h)
+					end
+					self.mainSheet.Settings.window = vgui.Create("ControlPanel",self.mainSheet.Settings)
+					self.mainSheet.Settings.window:Dock(FILL)
+--					self.mainSheet.Settings.window.pnlCanvas:DockPadding( 4, 4, 4, 4 )
+					SettingsPanel(self.mainSheet.Settings.window)
+
+
+
+			self.mainSheet.Settings.Tab = self.mainSheet:AddSheet("Settings",self.mainSheet.Settings,"icon16/page_gear.png")
+				self.mainSheet.Settings.Tab.Tab.Paint = function(self,w,h )
+					surface.SetDrawColor(Colors["buttonColor"])
+					surface.DrawRect(0,0,w,h)
+				end
+
+
 end
 
-hook.Add("PopulateToolMenu", "PlayXPopulateToolMenu", PopulateToolMenu)
+function PANEL:Think()
 
---- Updates the tool panels.
-function PlayX.UpdatePanels()
-    if not hasLoaded then return end
-    SettingsPanel(controlpanel.Get("PlayXSettings"))
-    ControlPanel(controlpanel.Get("PlayXControl"))
-    NavigatorPanel(controlpanel.Get("PlayXNavigator"))
-    PlayXHelpPanel(controlpanel.Get("PlayXHelp"))
+
 end
+
+
+derma.DefineControl( "PlayUI", "PlayX user-interface", PANEL,nil)
+
+
