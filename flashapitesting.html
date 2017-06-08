@@ -12,11 +12,10 @@ body {
 </style>
     
     <script>
-      
-var player = document.getElementById('player');
 
 setInterval(function() {
   try {
+    var player = document.getElementById('player');
     if (player && !player.IsPlaying()) {
       player.play();
       player.seekTo(1200);
