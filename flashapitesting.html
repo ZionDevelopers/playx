@@ -1,0 +1,52 @@
+<html>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #000000;
+  overflow: hidden;
+}
+
+</style>
+    
+    <script>
+setInterval(function() {
+  try {
+    var player = document.getElementById('player');
+    if (player && !player.IsPlaying()) {
+      player.play();
+    }
+  } catch (e) {}
+}, 1000);
+
+</script>
+
+
+    
+<body>
+
+<div style="width: 1920px; height: 1080px; overflow: hidden">
+<object
+  type="application/x-shockwave-flash"
+  src="https://video.google.com/get_player?docid=0ByoZapv_iUMFaUVuOTlkSWozZG8&=docs&partnerid=30&cc_load_policy=1&controls=0&showsearch=0&showinfo=0&version=3&autoplay=1&rel=0&enablejsapi=1&hd=0&start=1200
+"
+  width="100%" height="100%" id="player">
+  <param name="movie" value="]] .. url .. [[">
+  <param name="quality" value="high">
+  <param name="allowscriptaccess" value="always">
+  <param name="allownetworking" value="all">
+  <param name="allowfullscreen" value="false">
+  <param name="FlashVars" value="]] .. flashVars .. [[">
+
+<div style="background: red; color: white; font: 20pt Arial, sans-serif; padding: 10px">
+    Adobe Flash Player <strong style="text-decoration: underline">for other browsers</strong>
+    is not installed. Please visit http://get.adobe.com/flashplayer/otherversions/
+    and select "Other Browsers." Garry's Mod must be restarted after installing.
+</div>
+
+</object> 
+</div>
+</body>
+</html>
