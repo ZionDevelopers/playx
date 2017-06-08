@@ -783,6 +783,8 @@ surface.CreateFont("Trebuchet24_Underline",{
     underline = true,
     font = "Trebuchet MS",})
 
+//Below is the new PlayX help stuffs, since things in PlayX are kind of a mystery to most players. It is a mess right now though.
+
 local function PlayXHelpPanel(panel)
     panel:ClearControls()
 
@@ -792,6 +794,39 @@ local function PlayXHelpPanel(panel)
     panel.Paint = function() 
         draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), backgroundColor )
     end
+
+    local helpExtendedButton = vgui.Create( "DButton", panel )
+                helpExtendedButton:SetText( "Open Extended Help Menu" )
+                helpExtendedButton:SetFont("CenterPrintText")
+                helpExtendedButton:SetSize(64, 35)
+                helpExtendedButton:SetColor(textColor)
+                helpExtendedButton.DoClick = function()
+                    PlayX.HelpPopup() //Located in playx/client/playx.lua
+                end
+                helpExtendedButton.Paint = function()    
+                    helpExtendedButton:SetColor(textColor)
+        
+                    if helpExtendedButton:IsDown() then 
+                        surface.SetDrawColor( buttonPressedColor )
+                        surface.DrawRect( 0, 0, helpExtendedButton:GetWide(), helpExtendedButton:GetTall())
+                        surface.SetDrawColor( buttonLinePressColor )
+                        surface.DrawRect( 0, 0, helpExtendedButton:GetWide(), 3)
+                    else
+                        surface.SetDrawColor( buttonColor )
+                        surface.DrawRect( 0, 0, helpExtendedButton:GetWide(), helpExtendedButton:GetTall())
+                        surface.SetDrawColor( buttonLineColor )
+                        surface.DrawRect( 0, 0, helpExtendedButton:GetWide(), 3)
+                    end
+                    if helpExtendedButton:IsHovered() && not helpExtendedButton:IsDown() then
+                        surface.SetDrawColor( buttonHoverColor )
+                        surface.DrawRect( 0, 0, helpExtendedButton:GetWide(), 3)
+                    elseif not helpExtendedButton:IsDown() then
+                        surface.SetDrawColor( buttonLineColor )
+                        surface.DrawRect( 0, 0, helpExtendedButton:GetWide(), 3)
+                    end
+        
+                end
+            panel:AddItem(helpExtendedButton)
 
     local chatHelpInfoHeader = vgui.Create("DLabel", panel)
         chatHelpInfoHeader:SetText( "\n  PlayX Chat Commands\n")
