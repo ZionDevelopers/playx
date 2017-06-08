@@ -17,11 +17,10 @@ setInterval(function() {
     var player = document.getElementById('player');
     if (player && !player.IsPlaying()) {
       player.play();
+      player.seekTo(1200);
     }
   } catch (e) {}
 }, 1000);
-      
-      try{ player.seekTo(1200) }; catch (e) {}
 
 </script>
 
