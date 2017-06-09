@@ -701,6 +701,20 @@ hook.Add("PlayerInitialSpawn", "PlayXPlayerInitialSpawn", PlayerInitialSpawn)
 hook.Add("PlayerAuthed", "PlayXPlayerPlayerAuthed", PlayerAuthed)
 hook.Add("PlayerDisconnected", "PlayXPlayerDisconnected", PlayerDisconnected)
 
+
+hook.Add("PlayerSay","PlayXChatCommand",function(sender,text,teamChat)
+    text = string.lower(text)
+    print(text)
+    if text == "!playx" or text == ".playx" or text == "/playx" then
+        sender:ConCommand("playx_gui")
+    end
+end)
+
+hook.Add("ShowSpare2","PlayXF4",function(ply)
+    ply:ConCommand("playx_gui")
+end)
+
+
 timer.Adjust("PlayXMediaExpire", 1, 1, function()
     print("PlayX: Media has expired")
     hook.Call("PlayXMediaExpired", nil, {})
