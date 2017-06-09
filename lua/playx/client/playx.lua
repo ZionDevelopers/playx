@@ -1049,7 +1049,7 @@ end
 concommand.Add("playx_resume", ConCmdResume)
 concommand.Add("playx_hide", ConCmdHide)
 concommand.Add("playx_reset_render_bounds", ConCmdResetRenderBounds)
-concommand.Add("playx_gui_open", ConCmdGUIOepn)
+concommand.Add("playx_gui_open", ConCmdGUIOpen)
 
 concommand.Add("playx_gui_close", ConCmdGUIClose)
 concommand.Add("playx_navigator_addbookmark", ConCmdGUIBookmarkNavigator)

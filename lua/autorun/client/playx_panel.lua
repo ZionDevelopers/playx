@@ -13,6 +13,7 @@ PlayXGUI.Colors["buttonPressedColor"] = Color(30,30,30,50)
 PlayXGUI.Colors["buttonLineColor"] = Color(0,200,255,255)
 PlayXGUI.Colors["buttonHoverColor"] = Color(255,50,50,255)
 PlayXGUI.Colors["buttonLinePressColor"] = Color(0,255,0,255)
+PlayXGUI.Colors["menuBackground"] = Color(100, 0, 0, 200)
 PlayXGUI.bodyFont = "HudHintTextLarge"
 
 include("playx/client/vgui/administrate_panel.lua")
@@ -112,17 +113,23 @@ function PANEL:Init()
 						surface.SetDrawColor(PlayXGUI.Colors["buttonColor"])
 						surface.DrawRect(0,0,w,h)
 					end
-				self.mainSheet.Administrate.window = vgui.Create("ControlPanel",self.mainSheet.Administrate)
+				self.mainSheet.Administrate.window = vgui.Create("DPanel",self.mainSheet.Administrate)
 				self.mainSheet.Administrate.window:Dock(FILL)
+				self.mainSheet.Administrate:InvalidateChildren(true)
 --				self.mainSheet.Administrate.window.pnlCanvas:DockPadding( 4, 4, 4, 4 )
-				PlayXGUI.ControlPanel(self.mainSheet.Administrate.window)
 
+			self.frame:InvalidateChildren(true)
 			self.mainSheet.Administrate.Tab = self.mainSheet:AddSheet("Administrate",self.mainSheet.Administrate,"icon16/tick.png")
 				self.mainSheet.Administrate.Tab.Tab.Paint = function(self,w,h )
 					surface.SetDrawColor(PlayXGUI.Colors["buttonColor"])
 					surface.DrawRect(0,0,w,h)
 				end
+			self.frame:InvalidateChildren(true)
+			PlayXGUI.ControlPanel(self.mainSheet.Administrate.window)
 
+			self.mainSheet.Administrate.Think = function()
+				self.mainSheet.Administrate.window:ResizeContent()
+			end
 
 			--[[------------------------------------------------------------------------------------------------------------------
 				Bookmarks Sheet
@@ -186,10 +193,14 @@ function PANEL:Init()
 						surface.SetDrawColor(PlayXGUI.Colors["buttonColor"])
 						surface.DrawRect(0,0,w,h)
 					end
-					self.mainSheet.Settings.window = vgui.Create("ControlPanel",self.mainSheet.Settings)
+					self.mainSheet.Settings.window = vgui.Create("DPanel",self.mainSheet.Settings)
 					self.mainSheet.Settings.window:Dock(FILL)
 --					self.mainSheet.Settings.window.pnlCanvas:DockPadding( 4, 4, 4, 4 )
 					PlayXGUI.SettingsPanel(self.mainSheet.Settings.window)
+
+			self.mainSheet.Settings.Think = function()
+				self.mainSheet.Settings.window:ResizeContent()
+			end
 
 
 

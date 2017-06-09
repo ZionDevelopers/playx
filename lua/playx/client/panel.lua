@@ -691,6 +691,8 @@ local function ControlPanel(panel)
     panel:Help("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") --Add Space To Extend Menu Color (I know, janky)
     
 end
+PANEL = {}
+vgui.Register("dlistview",PANEL,"DListView") --i accidently remove it in the last commit but does this has a use ?
 --- Draw the control panel.
 local function BookmarksPanel(panel)
     panel:ClearControls()

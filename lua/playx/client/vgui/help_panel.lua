@@ -105,7 +105,7 @@ function PlayXGUI.PlayXHelpPanel(panel)
             topPanel:SetSize(0,panel:GetTall()/2)
             topPanel:Dock(TOP)
             bottomPanel:DockPadding(0,10,0,10)
-            bottomPanel:SetSize(0,panel:GetTall()/2-40)
+            bottomPanel:SetSize(0,panel:GetTall()/2)
             bottomPanel:Dock(BOTTOM)
         end
 
