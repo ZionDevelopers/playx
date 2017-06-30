@@ -1,8 +1,21 @@
 <html>
 <head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
-<script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
+	<script>
+		//Client-ID Auth
+		$.ajax({
+ 		type: 'GET',
+ 		url: 'https://api.twitch.tv/lightdrew/channels/twitch',
+ 		headers: {
+		   'Client-ID': 'axjhfp777tflhy0yjb5sftsil'
+		 },
+		 success: function(data) {
+		   console.log(data);
+		 }
+		});
+		
+		
 		/*
 			Embed Player Object
 		*/
@@ -35,7 +48,7 @@
 				params
 			);
 		
-</script>
+	</script>
 	</head>
 <body>
 	<div id="player"></div>
