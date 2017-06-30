@@ -1,0 +1,42 @@
+<html>
+<body>
+<script>
+
+		var self = this;
+
+		this.videoInfo = {};
+
+		/*
+			Embed Player Object
+		*/
+
+			var flashvars = {
+				hostname: "www.twitch.tv",
+				channel: ,
+				auto_play: true,
+
+			var swfurl = "http://www.twitch.tv/swflibs/TwitchPlayer.swf";
+
+			var params = {
+				"allowFullScreen": "true",
+				"allowNetworking": "all",
+				"allowScriptAccess": "always",
+				"movie": swfurl,
+				"wmode": "opaque",
+				"bgcolor": "#000000"
+			};
+
+			swfobject.embedSWF(
+				swfurl,
+				"player",
+				"100%",
+				"104%",
+				"9.0.0",
+				false,
+				flashvars,
+				params
+			);
+		
+</script>
+</body>
+</html>
