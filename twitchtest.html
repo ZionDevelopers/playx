@@ -26,10 +26,11 @@
 			var flashvars = {
 				hostname: "www.twitch.tv",
 				channel: "lightdrew",
-				auto_play: true
+				auto_play: true,
+				client_id: "ed9sgmw5rug4dqo8a0q974b86fcwcj"
 			};
 
-			var swfurl = "http://www.twitch.tv/swflibs/TwitchPlayer.swf?client-id=ed9sgmw5rug4dqo8a0q974b86fcwcj";
+			var swfurl = "http://www.twitch.tv/swflibs/TwitchPlayer.swf";
 
 			var params = {
 				"allowFullScreen": "true",
@@ -37,7 +38,8 @@
 				"allowScriptAccess": "always",
 				"movie": swfurl,
 				"wmode": "opaque",
-				"bgcolor": "#000000"
+				"bgcolor": "#000000",
+				"client_id": "ed9sgmw5rug4dqo8a0q974b86fcwcj"
 			};
 
 			swfobject.embedSWF(
