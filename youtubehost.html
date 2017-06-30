@@ -53,7 +53,7 @@ var urlParam = function(name, w){
 
 	//Insert Params Into Vars
 	var url = urlParam('url');
-	var start = urlParam('start');
+	var start = Math.round(urlParam('start'));
 	
 	//YouTube Embed Code
 	function onYouTubeIframeAPIReady() {
