@@ -7,7 +7,7 @@
 		var channel = "ediTv2";
 		$.ajax({
  		type: 'GET',
- 		url: 'https://api.twitch.tv/kraken/channels/ediTv2',
+ 		url: 'https://api.twitch.tv/kraken/channels/' + channel,
  		headers: {
 		   'Client-ID': 'ed9sgmw5rug4dqo8a0q974b86fcwcj'
 		 },
@@ -26,7 +26,7 @@
 
 			var flashvars = {
 				hostname: "https://twitch.tv?client_id=ed9sgmw5rug4dqo8a0q974b86fcwcj",
-				channel: "ediTv2",
+				channel: channel,
 				auto_play: true,
 				client_id: "ed9sgmw5rug4dqo8a0q974b86fcwcj",
 				cid: "ed9sgmw5rug4dqo8a0q974b86fcwcj"
