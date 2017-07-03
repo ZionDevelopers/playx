@@ -4,9 +4,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
 	<script> 
 		//Client-ID Auth
+		var channel = "ediTv2";
 		$.ajax({
  		type: 'GET',
- 		url: 'https://api.twitch.tv/kraken/channels/lightdrew',
+ 		url: 'https://api.twitch.tv/kraken/channels/ediTv2',
  		headers: {
 		   'Client-ID': 'ed9sgmw5rug4dqo8a0q974b86fcwcj'
 		 },
@@ -24,8 +25,8 @@
 		*/
 
 			var flashvars = {
-				hostname: "https://api.twitch.tv/kraken",
-				channel: "lightdrew",
+				hostname: "https://twitch.tv/",
+				channel: "ediTv2",
 				auto_play: true,
 				client_id: "ed9sgmw5rug4dqo8a0q974b86fcwcj"
 			};
