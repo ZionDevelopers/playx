@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<title>PlayX GoogleDrive Host</title>
+  <body>
+  
+    <div id="player"></div>
+
+    <script>
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+		  playerVars: {
+			docid: '0B2f92SWa9FzmRWUwTDVmd21xb0k',
+			partnerid: 30,
+			showinfo: 0,
+			controls: 1
+		  },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+    </script>
+  </body>
+</html>
