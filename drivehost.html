@@ -1,6 +1,59 @@
 <!DOCTYPE html>
 <html>
 <title>PlayX GoogleDrive Host</title>
+<head>
+	<style type="text/css">
+	body {
+  		margin: 0;
+  		padding: 0;
+  		border: 0;
+  		background: #000000;
+  		overflow: hidden;
+  		}
+	</style>
+</head>
+	
+<script>
+		//Get a var
+	function get(variable)
+	{
+       		var query = window.location.search.substring(1);
+       		var vars = query.split("&");
+       		for (var i=0;i<vars.length;i++) {
+               		var pair = vars[i].split("=");
+               		if(pair[0] == variable){return pair[1];}
+       		}
+       	return(false);
+	}
+	
+	//Separates variable from identifier, returns value of var
+	function getByURL(variable, query)
+	{
+       		var vars = query.split("?");
+       		for (var i=0;i<vars.length;i++) {
+               		var pair = vars[i].split("=");
+               		if(pair[0] == variable){return pair[1];}
+       		}
+       	return(false);
+	}
+	
+	//Look At URL For Params
+	var urlParam = function(name, w){
+    	w = w || window;
+    	var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
+        val = w.location.search.match(rx);
+    	return !val ? '':val[1];
+	}
+	
+	//OLD Params
+	//var url = unescape(get("url"));
+	//var start = unescape(get("start"));
+	
+	//Insert Params Into Vars
+	var url = urlParam('url');
+	var start = Math.round(urlParam('start'));
+</script>
+	
   <body>
   
     <div id="player"></div>
@@ -18,7 +71,7 @@
           height: '390',
           width: '640',
 		  playerVars: {
-			docid: '0B2f92SWa9FzmRWUwTDVmd21xb0k',
+			docid: getByURL("docid", url),
 			partnerid: 30,
 			showinfo: 0,
 			controls: 1
