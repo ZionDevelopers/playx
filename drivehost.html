@@ -20,7 +20,7 @@
       	var firstScriptTag = document.getElementsByTagName('script')[0];
       	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	    
-	//Get a var
+	//Get a var from URL
 	function get(variable)
 	{
        		var query = window.location.search.substring(1);
@@ -29,35 +29,11 @@
                		var pair = vars[i].split("=");
                		if(pair[0] == variable){return pair[1];}
        		}
-       	return(false);
+       		return(false);
 	}
-	
-	//Separates variable from identifier, returns value of var
-	function getByURL(variable, query)
-	{
-       		var vars = query.split("?");
-       		for (var i=0;i<vars.length;i++) {
-               		var pair = vars[i].split("=");
-               		if(pair[0] == variable){return pair[1];}
-       		}
-       	return(false);
-	}
-	
-	//Look At URL For Params
-	var urlParam = function(name, w){
-    	w = w || window;
-    	var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
-        val = w.location.search.match(rx);
-    	return !val ? '':val[1];
-	}
-	
-	//OLD Params
-	//var url = unescape(get("url"));
-	//var start = unescape(get("start"));
-	
-	//Insert Params Into Vars
-	var url = urlParam('url');
-	var start = Math.round(urlParam('start'));
+
+	var docid = get("docid");
+	var start = Math.round(get('start'));
 
       	var player;
       	function onYouTubeIframeAPIReady() {
@@ -65,14 +41,17 @@
           	"width": window.innerWidth,
 		"height": window.innerHeight,
 		playerVars: {
-			docid: get("docid"),
+			docid: docid,
 			partnerid: 30,
 			showinfo: 0,
 			controls: 0,
 			autoplay: 1,
 			start: start,
-			iv_load_policy: 3
-			  
+			cc_load_policy: 0,
+			iv_load_policy: 3,
+			disablekb: 1,
+			modestbranding: 1,
+			rel: 0
 		  },
           events: {
             'onReady': onPlayerReady,
