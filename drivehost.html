@@ -32,8 +32,16 @@
        		return(false);
 	}
 
+	//Set vars with default values yet with url param functionality for customizability / flexibility
 	var docid = get("docid");
 	var start = Math.round(get('start'));
+	var autoplay = get("autoplay") || 1;
+	var controls = get("controls") || 0;
+	var showinfo = get("showinfo") || 0;
+	var disablekb = get("disablekb") || 1;
+	var rel = get("rel") || 0;
+	var cc_load_policy = get("cc_load_policy") || 0;
+	var iv_load_policy = get("iv_load_policy") || 0;
 
       	var player;
       	function onYouTubeIframeAPIReady() {
@@ -42,16 +50,16 @@
 		"height": window.innerHeight,
 		playerVars: {
 			docid: docid,
-			partnerid: 30,
-			showinfo: 0,
-			controls: 0,
-			autoplay: 1,
+			showinfo: showinfo,
+			controls: controls,
+			autoplay: autoplay,
 			start: start,
-			cc_load_policy: 0,
-			iv_load_policy: 3,
-			disablekb: 1,
+			rel: rel,
+			cc_load_policy: cc_load_policy,
+			iv_load_policy: iv_load_policy,
+			disablekb: disablekb,
 			modestbranding: 1,
-			rel: 0
+			partnerid: 30
 		  },
           events: {
             'onReady': onPlayerReady,
