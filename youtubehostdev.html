@@ -67,11 +67,7 @@ function youtubeTimeConvert(duration){
 	var start = urlParam('start');
 	var t = urlParam('t');
 	
-	if (url.includes("youtube.com") == true){
-		var urloutput = getByURL("v", url)
-	} else {
-		var urloutput = url
-	}
+	var videoId = get('v')
 	
 	// Start Time Assignment (Universal)
 	if (start === ""){ //if start is empty, look at t
@@ -99,7 +95,7 @@ function youtubeTimeConvert(duration){
     		player = new YT.Player('player', {
         	"width": window.innerWidth, //set size to full window or bounds of PlayX screen
 		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
-        	videoId: urloutput, //get uri from ?url=, either from ?v= or pure uri
+        	videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
         	playerVars: {
 			autoplay: 1,
 			showinfo: 0, //Disable title / creator label
