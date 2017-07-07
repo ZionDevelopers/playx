@@ -67,7 +67,7 @@ function youtubeTimeConvert(duration){
 	var start = urlParam('start');
 	var t = urlParam('t');
 	
-	var videoId = get('v') || getByURL('v', urlParam('url'))
+	var videoId = get('v') || getByURL('v', get('url'))
 	
 	// Start Time Assignment (Universal)
 	if (start === ""){ //if start is empty, look at t
