@@ -2,35 +2,30 @@
 Settings Sheet -- Draw the settings panel.
 --------------------------------------------------------------------------------------------------------------------]]
 function PlayXGUI.SettingsPanel(panel)
-
-
-	--New Coloring Scheme
 	panel.Paint = function() 
-draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), PlayXGUI.Colors["backgroundColor"])
-end
+		draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), PlayXGUI.Colors["backgroundColor"])
+	end
+
+	local enabledCheckBox = vgui.Create("DCheckBoxLabel", panel)
+		enabledCheckBox:SetPos(20,50)
+		enabledCheckBox:SetText( "Enabled" )
+		enabledCheckBox:SetTextColor(PlayXGUI.Colors["textColor"])
+		enabledCheckBox:SetValue(GetConVar("playx_enabled"))
+		enabledCheckBox:SetConVar( "playx_enabled" )
+		enabledCheckBox.Paint = function ()
+			enabledCheckBox:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
 
 
-local enabledCheckBox = vgui.Create("DCheckBoxLabel", panel)
-enabledCheckBox:SetText( "Enabled" )
-enabledCheckBox:SetTextColor(PlayXGUI.Colors["textColor"])
-enabledCheckBox:SetValue(GetConVar("playx_enabled"))
-enabledCheckBox:SetConVar( "playx_enabled" )
-enabledCheckBox.Paint = function ()
-enabledCheckBox:SetTextColor(PlayXGUI.Colors["textColor"])
-end
+	local dividerLabel = vgui.Create("DLabel", panel)
+		dividerLabel:SetText( "--- Modify Client Side Setings Here When Player Enabled ---")
+		dividerLabel:SetTextColor(PlayXGUI.Colors["textColor"])
+		dividerLabel:SizeToContents()
+		dividerLabel:SetPos(panel:GetWide()/2 - dividerLabel:GetWide()/2,80)
+		dividerLabel.Paint = function ()
+			dividerLabel:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
 
-
-local dividerLabel = vgui.Create("DLabel", panel)
-dividerLabel:SetText( "--- Modify Client Side Setings Here When Player Enabled ---")
-dividerLabel:SetTextColor(PlayXGUI.Colors["textColor"])
-dividerLabel:SizeToContents()
-dividerLabel.Paint = function ()
-dividerLabel:SetTextColor(PlayXGUI.Colors["textColor"])
-end
-
-
-
-	
 	local msgLabel = vgui.Create("DLabel",panel)
 		local Text = "PlayX has detected a crash in a previous session. Is it safe to " ..
 			"re-enable PlayX? For most people, crashes " ..
@@ -53,162 +48,147 @@ end
 	end
 
 	local videoRangeCheck = vgui.Create("DCheckBoxLabel", panel)
-	videoRangeCheck:SetText("Enable Video Range (Only Play Videos Near Me)")
-	videoRangeCheck:SetTextColor(PlayXGUI.Colors["textColor"])
-	videoRangeCheck:SetValue(GetConVar("playx_video_range_enabled"))
-	videoRangeCheck:SetConVar("playx_video_range_enabled")
-	videoRangeCheck.Paint = function ()
+		videoRangeCheck:SetText("Enable Video Range (Only Play Videos Near Me)")
 		videoRangeCheck:SetTextColor(PlayXGUI.Colors["textColor"])
-	end
+		videoRangeCheck:SetValue(GetConVar("playx_video_range_enabled"))
+		videoRangeCheck:SetConVar("playx_video_range_enabled")
+		videoRangeCheck:SetPos(20,100)
+		videoRangeCheck.Paint = function ()
+			videoRangeCheck:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
 
 	local rangeHintCheck = vgui.Create("DCheckBoxLabel", panel)
-	rangeHintCheck:SetText("Show Hints when I enter Or Leave Video Range")
-	rangeHintCheck:SetTextColor(PlayXGUI.Colors["textColor"])
-	rangeHintCheck:SetValue(GetConVar("playx_video_range_hints_enabled"))
-	rangeHintCheck:SetConVar("playx_video_range_hints_enabled")
-	rangeHintCheck.Paint = function ()
+		rangeHintCheck:SetText("Show Hints when I enter Or Leave Video Range")
 		rangeHintCheck:SetTextColor(PlayXGUI.Colors["textColor"])
-	end
-
-	volumeSlider = vgui.Create("DNumSlider", panel)
-	volumeSlider:SetText( "Player Volume:" )
-	volumeSlider:SetMinMax(0,100)
-	volumeSlider:SetValue(GetConVar("playx_volume"))
-	volumeSlider:SetConVar("playx_volume")
-	volumeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
-	volumeSlider.Label:SetColor(PlayXGUI.Colors["textColor"])
-	volumeSlider.Label.Paint = function () 
-		volumeSlider.Label:SetTextColor(PlayXGUI.Colors["textColor"])
-		volumeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
-	end
-
-	rangeSlider = vgui.Create("DNumSlider", panel)
-	rangeSlider:SetText( "Max Range: " )
-	rangeSlider:SetMinMax(500, 5000)
-	rangeSlider:SetValue(GetConVar("playx_video_radius"))
-	rangeSlider:SetConVar("playx_video_radius")
-	rangeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
-	rangeSlider.Label:SetColor(PlayXGUI.Colors["textColor"])
-	rangeSlider.Label.Paint = function () 
-		rangeSlider.Label:SetTextColor(PlayXGUI.Colors["textColor"])
-		rangeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
-	end
-
-	local dividerLabelAdv = vgui.Create("DLabel", panel)
-	dividerLabelAdv:SetText( "--- Other Options ---")
-	dividerLabelAdv:SetTextColor(PlayXGUI.Colors["textColor"])
-	dividerLabelAdv:SizeToContents()
-	dividerLabelAdv.Paint = function ()
-		dividerLabelAdv:SetTextColor(PlayXGUI.Colors["textColor"])
-	end
-
-	local errorWindowsCheck = vgui.Create("DCheckBoxLabel", panel)
-	errorWindowsCheck:SetText( "Show Error Message Boxes" )
-	errorWindowsCheck:SetTextColor(PlayXGUI.Colors["textColor"])
-	errorWindowsCheck:SetValue(GetConVar("playx_error_windows"))
-	errorWindowsCheck:SetConVar( "playx_error_windows" )
-	errorWindowsCheck:SizeToContents()
-	errorWindowsCheck.Paint = function ()
-		errorWindowsCheck:SetTextColor(PlayXGUI.Colors["textColor"])
-	end
-
-
-
-	local hideButton
-	local reInitButton
-	local resumeButton
-	local dividerResumeSupported
-	local dividerLabelMediaStopWarn
-	local dividerLabelNoMedia
-
-			hideButton = vgui.Create( "DButton", panel )
-			hideButton:SetText( "Hide Player" )
-			hideButton:SetSize(40,40)
-			hideButton:SetPos(20,240)
-			hideButton:SetColor(PlayXGUI.Colors["textColor"])
-			hideButton.Paint = function()
-				hideButton:SetColor(PlayXGUI.Colors["textColor"])
-				if hideButton:IsDown() then
-					surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
-					surface.DrawRect( 0, 0, hideButton:GetWide(), hideButton:GetTall())
-				else
-					surface.SetDrawColor( PlayXGUI.Colors["buttonColor"] )
-					surface.DrawRect( 0, 0, hideButton:GetWide(), hideButton:GetTall())
-				end
-			end
-			hideButton:SetConsoleCommand("playx_hide")
-
-			reInitButton = vgui.Create( "DButton", panel )
-			reInitButton:SetText( "Re-Initialize Player" )
-			reInitButton:SetColor(PlayXGUI.Colors["textColor"])
-			reInitButton.Paint = function()    
-				reInitButton:SetColor(PlayXGUI.Colors["textColor"])
-				if reInitButton:IsDown() then
-					surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
-					surface.DrawRect( 0, 0, reInitButton:GetWide(), reInitButton:GetTall())
-				else
-					surface.SetDrawColor( PlayXGUI.Colors["buttonColor"] )
-					surface.DrawRect( 0, 0, reInitButton:GetWide(), reInitButton:GetTall())
-				end
-			end
-
-			resumeButton = vgui.Create( "DButton", panel )
-			resumeButton:SetConsoleCommand("playx_resume")
-			resumeButton:SetText( "Resume Play" )
-			resumeButton:SetColor(PlayXGUI.Colors["textColor"])
-			resumeButton:SetConsoleCommand("playx_resume")
-			resumeButton:SetEnabled(false)
-			resumeButton:SetVisible(false)
-			resumeButton.Paint = function() 
-				resumeButton:SetColor(PlayXGUI.Colors["textColor"])
-				if resumeButton:IsDown() then 
-					surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
-					surface.DrawRect( 0, 0, resumeButton:GetWide(), resumeButton:GetTall())
-				else
-					surface.SetDrawColor( PlayXGUI.Colors["buttonColor"] )
-					surface.DrawRect( 0, 0, resumeButton:GetWide(), resumeButton:GetTall())
-				end
-			end
-
-			dividerResumeSupported = vgui.Create("DLabel", panel)
-			dividerResumeSupported:SetText( "The Current Media Supports Pausing / Resuming")
-			dividerResumeSupported:SizeToContents()
-			dividerResumeSupported.Paint = function () dividerResumeSupported:SetTextColor(PlayXGUI.Colors["textColor"]) end
-			dividerResumeSupported:SetTextColor(PlayXGUI.Colors["textColor"])
-			dividerResumeSupported:SetVisible(false)
-
-
-			dividerLabelMediaStopWarn = vgui.Create("DLabel", panel)
-			dividerLabelMediaStopWarn:SetText( "\nCurrent Media Cannot Be Resumed Once Stopped\n")
-			dividerLabelMediaStopWarn:SizeToContents()
-			dividerLabelMediaStopWarn.Paint = function () 
-				dividerLabelMediaStopWarn:SetTextColor(PlayXGUI.Colors["textColor"]) 
-			end
-
-			dividerLabelNoMedia = vgui.Create("DLabel", panel)
-			dividerLabelNoMedia:SetText( "--No Media Is Currently Playing--")
-			dividerLabelNoMedia:SizeToContents()
-			dividerLabelNoMedia:SetTextColor(PlayXGUI.Colors["textColor"])
-			dividerLabelNoMedia.Paint = function () dividerLabelNoMedia:SetTextColor(PlayXGUI.Colors["textColor"]) end
-
-
-	function panel:ResizeContent()--there is probably a better way to set the size after using dock. But I don't know how
-		enabledCheckBox:SetPos(20,50)
-		dividerLabel:SetPos(panel:GetWide()/2 - dividerLabel:GetWide()/2,80)
-
-		videoRangeCheck:SetPos(20,100)
+		rangeHintCheck:SetValue(GetConVar("playx_video_range_hints_enabled"))
+		rangeHintCheck:SetConVar("playx_video_range_hints_enabled")
 		rangeHintCheck:SetPos(videoRangeCheck:GetWide() + 40,100)
+		rangeHintCheck.Paint = function ()
+			rangeHintCheck:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
 
+	local volumeSlider = vgui.Create("DNumSlider", panel)
 		volumeSlider:SetSize(panel:GetWide()-40,20)
 		volumeSlider:SetPos(20,120)
+		volumeSlider:SetText( "Player Volume:" )
+		volumeSlider:SetMinMax(0,100)
+		volumeSlider:SetValue(GetConVar("playx_volume"))
+		volumeSlider:SetConVar("playx_volume")
+		volumeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
+		volumeSlider.Label:SetColor(PlayXGUI.Colors["textColor"])
+		volumeSlider.Label.Paint = function () 
+			volumeSlider.Label:SetTextColor(PlayXGUI.Colors["textColor"])
+			volumeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
+
+	local rangeSlider = vgui.Create("DNumSlider", panel)
 		rangeSlider:SetSize(panel:GetWide()-40,20)
 		rangeSlider:SetPos(20,140)
+		rangeSlider:SetText( "Max Range: " )
+		rangeSlider:SetMinMax(500, 5000)
+		rangeSlider:SetValue(GetConVar("playx_video_radius"))
+		rangeSlider:SetConVar("playx_video_radius")
+		rangeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
+		rangeSlider.Label:SetColor(PlayXGUI.Colors["textColor"])
+		rangeSlider.Label.Paint = function () 
+			rangeSlider.Label:SetTextColor(PlayXGUI.Colors["textColor"])
+			rangeSlider.TextArea:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
 
+	local dividerLabelAdv = vgui.Create("DLabel", panel)
 		dividerLabelAdv:SetPos(panel:GetWide()/2 - dividerLabelAdv:GetWide()/2,200)
-		errorWindowsCheck:SetPos(20,220)
+		dividerLabelAdv:SetText( "--- Other Options ---")
+		dividerLabelAdv:SetTextColor(PlayXGUI.Colors["textColor"])
+		dividerLabelAdv:SizeToContents()
+		dividerLabelAdv.Paint = function ()
+			dividerLabelAdv:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
 
+	local errorWindowsCheck = vgui.Create("DCheckBoxLabel", panel)
+		errorWindowsCheck:SetPos(20,220)
+		errorWindowsCheck:SetText( "Show Error Message Boxes" )
+		errorWindowsCheck:SetTextColor(PlayXGUI.Colors["textColor"])
+		errorWindowsCheck:SetValue(GetConVar("playx_error_windows"))
+		errorWindowsCheck:SetConVar( "playx_error_windows" )
+		errorWindowsCheck:SizeToContents()
+		errorWindowsCheck.Paint = function ()
+			errorWindowsCheck:SetTextColor(PlayXGUI.Colors["textColor"])
+		end
+
+	local hideButton = vgui.Create( "DButton", panel )
+		hideButton:SetText( "Hide Player" )
+		hideButton:SetSize(40,40)
+		hideButton:SetPos(20,240)
+		hideButton:SetColor(PlayXGUI.Colors["textColor"])
+		hideButton.Paint = function()
+			hideButton:SetColor(PlayXGUI.Colors["textColor"])
+			if hideButton:IsDown() then
+				surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
+				surface.DrawRect( 0, 0, hideButton:GetWide(), hideButton:GetTall())
+			else
+				surface.SetDrawColor( PlayXGUI.Colors["buttonColor"] )
+				surface.DrawRect( 0, 0, hideButton:GetWide(), hideButton:GetTall())
+			end
+		end
+		hideButton:SetConsoleCommand("playx_hide")
+
+	local reInitButton = vgui.Create( "DButton", panel )
+		reInitButton:SetText( "Re-Initialize Player" )
+		reInitButton:SetColor(PlayXGUI.Colors["textColor"])
+		reInitButton:SetConsoleCommand("playx_resume")
+		reInitButton.Paint = function()    
+		reInitButton:SetColor(PlayXGUI.Colors["textColor"])
+		if reInitButton:IsDown() then
+			surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
+			surface.DrawRect( 0, 0, reInitButton:GetWide(), reInitButton:GetTall())
+		else
+			surface.SetDrawColor( PlayXGUI.Colors["buttonColor"] )
+			surface.DrawRect( 0, 0, reInitButton:GetWide(), reInitButton:GetTall())
+			end
+		end
+
+	local resumeButton = vgui.Create( "DButton", panel )
+		resumeButton:SetConsoleCommand("playx_resume")
+		resumeButton:SetText( "Resume Play" )
+		resumeButton:SetColor(PlayXGUI.Colors["textColor"])
+		resumeButton:SetConsoleCommand("playx_resume")
+		resumeButton:SetEnabled(false)
+		resumeButton:SetVisible(false)
+		resumeButton.Paint = function() 
+			resumeButton:SetColor(PlayXGUI.Colors["textColor"])
+			if resumeButton:IsDown() then 
+				surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
+				surface.DrawRect( 0, 0, resumeButton:GetWide(), resumeButton:GetTall())
+			else
+				surface.SetDrawColor( PlayXGUI.Colors["buttonColor"] )
+				surface.DrawRect( 0, 0, resumeButton:GetWide(), resumeButton:GetTall())
+			end
+		end
+
+	local dividerResumeSupported = vgui.Create("DLabel", panel)
+		dividerResumeSupported:SetText( "The Current Media Supports Pausing / Resuming")
+		dividerResumeSupported:SizeToContents()
+		dividerResumeSupported.Paint = function () dividerResumeSupported:SetTextColor(PlayXGUI.Colors["textColor"]) end
+		dividerResumeSupported:SetTextColor(PlayXGUI.Colors["textColor"])
+		dividerResumeSupported:SetVisible(false)
+
+	local dividerLabelMediaStopWarn = vgui.Create("DLabel", panel)
 		dividerLabelMediaStopWarn:SetPos(20,300)
+		dividerLabelMediaStopWarn:SetText( "\nCurrent Media Cannot Be Resumed Once Stopped\n")
+		dividerLabelMediaStopWarn:SizeToContents()
+		dividerLabelMediaStopWarn.Paint = function () 
+			dividerLabelMediaStopWarn:SetTextColor(PlayXGUI.Colors["textColor"]) 
+		end
+
+	local dividerLabelNoMedia = vgui.Create("DLabel", panel)
 		dividerLabelNoMedia:SetPos(20,350)
+		dividerLabelNoMedia:SetText( "--No Media Is Currently Playing--")
+		dividerLabelNoMedia:SizeToContents()
+		dividerLabelNoMedia:SetTextColor(PlayXGUI.Colors["textColor"])
+		dividerLabelNoMedia.Paint = function () dividerLabelNoMedia:SetTextColor(PlayXGUI.Colors["textColor"]) end
+
+	function panel:EnableDisablePanels()--is there a hook when the player does something ? (new request/stops etc.) 
+										--if so add this to the hook-call
 		if PlayX.CurrentMedia then
 			dividerLabelNoMedia:SetVisible(false)
 			reInitButton:SetEnabled(true)
@@ -237,6 +217,7 @@ end
 		elseif not PlayX.CurrentMedia then
 			dividerLabelNoMedia:SetVisible(true)
 		end
+
 		if PlayX.Playing then
 			resumeButton:SetEnabled(false)
 			resumeButton:SetVisible(false)
@@ -249,20 +230,12 @@ end
 			reInitButton:SetVisible(false)
 		end
 
-	if PlayX.CrashDetected then
-		msgLabel:SetVisible(true)
-		msgLabel:SetPos(20,20)
-		msgLabel:SetSize(panel:GetWide()-40,panel:GetTall()-360)
-	elseif not PlayX.CrashDetected then
-		msgLabel:SetVisible(false)
-	end
-
-	--[[ add these buttons back in
-		local reInitButton
-		local resumeButton
-		local dividerResumeSupported
-		local dividerLabelMediaStopWarn
-		local dividerLabelNoMedia
-		]]
+		if PlayX.CrashDetected then
+			msgLabel:SetVisible(true)
+			msgLabel:SetPos(20,20)
+			msgLabel:SetSize(panel:GetWide()-40,panel:GetTall()-360)
+		elseif not PlayX.CrashDetected then
+			msgLabel:SetVisible(false)
+		end
 	end
 end

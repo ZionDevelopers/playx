@@ -2,17 +2,15 @@
 Administrate --- Draw the control panel.
 --------------------------------------------------------------------------------------------------------------------]]
 function PlayXGUI.ControlPanel(panel)
-
 	--New Coloring Scheme
 	panel.Paint = function() 
 		draw.RoundedBox( 0, 0, 0,panel:GetWide(),panel:GetTall(), PlayXGUI.Colors["backgroundColor"])
 	end
 
-	local logo     
+	local logo = nil
 	if file.Exists("materials/vgui/panel/playxlogo.vtf", "GAME") or file.Exists("materials/vgui/panel/playxlogo.vmt", "GAME") then   
 		logo = vgui.Create("Material", panel)
 		logo:SetSize(panel:GetTall(),panel:GetWide())
-		logo:SetPos(50,50)
 		logo:SetMaterial( "vgui/panel/playxlogo" )
 		logo.AutoSize = false
 	else
@@ -20,15 +18,18 @@ function PlayXGUI.ControlPanel(panel)
 		logo:SetText("PLAYX")
 		logo:SetFont("DermaLarge")
 	end
+		logo:SetSize(panel:GetWide()/4,panel:GetTall()/5)
+		logo:SetPos(panel:GetWide()/2-panel:GetWide()/8,0)
 
 	--Create Provider Selection Box--------------------------------------------------------
 	local providerSelectLabel = vgui.Create( "DLabel", panel )
+		providerSelectLabel:SetPos( 20, panel:GetTall()/11*2 )
 		providerSelectLabel:SetText( "Provider:" )
 		providerSelectLabel:SetTextColor(PlayXGUI.Colors["textColor"])
 		providerSelectLabel:SetFont( "HudHintTextLarge" )
 
 	local providerSelect = vgui.Create("DComboBox", panel)
-		providerSelect:SetPos( 100, panel:GetTall()/8*3 )
+		providerSelect:SetPos( providerSelectLabel:GetWide() + 20, panel:GetTall()/11*2 )
 		providerSelect:SetWide( 200 )
 		providerSelect:SetTall(20)
 		providerSelect:SetColor( PlayXGUI.Colors["textColor"] )
@@ -52,7 +53,7 @@ function PlayXGUI.ControlPanel(panel)
 			return self:CloseMenu()
 		end
 
-		--self:OpenMenu() --inserting the function OpenMenu() from dcombobox.lua itself instead of calling it so I can edit the paint-hook directly
+		--self:OpenMenu() --inserting the function OpenMenu() from dcombobox.lua itself instead of calling it, so I can edit the paint-hook directly
 		if ( pControlOpener && pControlOpener == self.TextEntry ) then
 			return
 		end
@@ -103,12 +104,14 @@ function PlayXGUI.ControlPanel(panel)
 
 	--Start At Box--------------------------------------------------------------------------
 	local uriEntryBoxLabel = vgui.Create( "DLabel", panel )
+				uriEntryBoxLabel:SetPos( providerSelectLabel:GetWide() + providerSelect:GetWide() + 40 , panel:GetTall()/11*2 )
 				uriEntryBoxLabel:SetText( "URI: " )
 				uriEntryBoxLabel:SetTextColor(PlayXGUI.Colors["textColor"])
 				uriEntryBoxLabel:SetFont( "HudHintTextLarge" )
 				uriEntryBoxLabel:SizeToContents()
 
 				local uriEntryBox = vgui.Create( "DTextEntry", panel )
+				uriEntryBox:SetPos( providerSelectLabel:GetWide() + providerSelect:GetWide() + uriEntryBoxLabel:GetWide() + 60, panel:GetTall()/11*2 )
 				uriEntryBox:SetWide( 220 )
 				uriEntryBox:SetFont( "DermaDefaultBold" )
 				uriEntryBox:SetConVar( "playx_uri" )
@@ -118,6 +121,9 @@ function PlayXGUI.ControlPanel(panel)
 					draw.RoundedBox( 2, 0, 0, w, h, PlayXGUI.Colors["menuBackground"] ) 
 					self:DrawTextEntryText( PlayXGUI.Colors["textColor"], PlayXGUI.Colors["buttonColor"], PlayXGUI.Colors["buttonLineColor"] )
 				end
+
+
+
 	local startAtBoxLabel = vgui.Create( "DLabel", panel )
 		startAtBoxLabel:SetText( "Start At: " )
 		startAtBoxLabel:SetTextColor(PlayXGUI.Colors["textColor"])
@@ -134,7 +140,20 @@ function PlayXGUI.ControlPanel(panel)
 				self:DrawTextEntryText( PlayXGUI.Colors["textColor"], PlayXGUI.Colors["buttonColor"], PlayXGUI.Colors["buttonLineColor"] )
 			end
 
+	local lengthForAllBoxes = providerSelectLabel:GetWide() + providerSelect:GetWide() + uriEntryBoxLabel:GetWide() + uriEntryBox:GetWide() + 80
+	local checkSize = panel:GetWide() - lengthForAllBoxes >= startAtBoxLabel:GetWide() + startAtBox:GetWide() + 20
+		if checkSize then --if we can squezze the 3rd box there do it
+			startAtBoxLabel:SetPos( lengthForAllBoxes+20, panel:GetTall()/11*2 )
+			startAtBox:SetPos( lengthForAllBoxes+startAtBoxLabel:GetWide() + 40, panel:GetTall()/11*2 )
+		else --else put it below
+			startAtBoxLabel:SetPos( 20, panel:GetTall()/11*3 )
+			startAtBox:SetPos( 80, panel:GetTall()/11*3 )
+		end
+
+
 	local openMediaButton = vgui.Create( "DButton", panel )
+		openMediaButton:SetSize(panel:GetWide()-40, 35)
+		openMediaButton:SetPos(20,panel:GetTall()/11*(4 - (checkSize and 1 or 0)))
 		openMediaButton:SetText( "Open Media" )
 		openMediaButton:SetFont("CenterPrintText")
 		openMediaButton:SetColor(PlayXGUI.Colors["textColor"])
@@ -165,6 +184,8 @@ function PlayXGUI.ControlPanel(panel)
 		end
 
 	local closeMediaButton = vgui.Create( "DButton", panel )
+		closeMediaButton:SetSize(panel:GetWide()-40, 35)
+		closeMediaButton:SetPos(20,panel:GetTall()/11*(5 - (checkSize and 1 or 0)))
 		closeMediaButton:SetText( "Close Media" )
 		closeMediaButton:SetFont("DermaDefaultBold")
 		closeMediaButton:SetColor(PlayXGUI.Colors["textColor"])
@@ -192,6 +213,8 @@ function PlayXGUI.ControlPanel(panel)
 		end
 
 	local addBookmarkButton = vgui.Create( "DButton", panel )
+		addBookmarkButton:SetSize(panel:GetWide()-40, 35)
+		addBookmarkButton:SetPos(20,panel:GetTall()/11*(6 - (checkSize and 1 or 0)))
 		addBookmarkButton:SetText( "Add Current Media to Bookmarks" )
 		addBookmarkButton:SetFont("CenterPrintText")
 		addBookmarkButton:SetColor(PlayXGUI.Colors["textColor"])
@@ -220,6 +243,7 @@ function PlayXGUI.ControlPanel(panel)
 		end
 
 	local dividerAdvOptions = vgui.Create("DLabel", panel)
+		dividerAdvOptions:SetPos(panel:GetWide()/2-dividerAdvOptions:GetWide()/2,panel:GetTall()/11*(7 - (checkSize and 1 or 0)))
 		dividerAdvOptions:SetText( "--Advanced Options--")
 		dividerAdvOptions:SetTextColor(PlayXGUI.Colors["textColor"])
 		dividerAdvOptions:SetFont(PlayXGUI.bodyFont)
@@ -229,6 +253,7 @@ function PlayXGUI.ControlPanel(panel)
 		end
 
 	local lowFrameRateCheckbox = vgui.Create("DCheckBoxLabel", panel)
+		lowFrameRateCheckbox:SetPos(20,panel:GetTall()/11*(8 - (checkSize and 1 or 0)))
 		lowFrameRateCheckbox:SetText( "Disable Video (Use with music)" )
 		lowFrameRateCheckbox:SetTextColor(PlayXGUI.Colors["textColor"])
 		lowFrameRateCheckbox:SetFont(PlayXGUI.bodyFont)
@@ -239,6 +264,7 @@ function PlayXGUI.ControlPanel(panel)
 		end
 
 	local doNotAutoStopCheckbox = vgui.Create("DCheckBoxLabel", panel)
+		doNotAutoStopCheckbox:SetPos(lowFrameRateCheckbox:GetWide()+60,panel:GetTall()/11*(8 - (checkSize and 1 or 0)))
 		doNotAutoStopCheckbox:SetText( "Disable Auto Stop" )
 		doNotAutoStopCheckbox:SetTextColor(PlayXGUI.Colors["textColor"])
 		doNotAutoStopCheckbox:SetFont(PlayXGUI.bodyFont)
@@ -257,17 +283,24 @@ function PlayXGUI.ControlPanel(panel)
 		useJWCheckBox.Paint = function ()
 			useJWCheckBox:SetTextColor(PlayXGUI.Colors["textColor"])
 		end
+		local checkLength = (panel:GetWide() - (lowFrameRateCheckbox:GetWide() + doNotAutoStopCheckbox:GetWide() + 60) ) >= useJWCheckBox:GetWide()
+		if checkLength then
+			useJWCheckBox:SetPos(lowFrameRateCheckbox:GetWide() + doNotAutoStopCheckbox:GetWide() + 80,panel:GetTall()/11*(8 - (checkSize and 1 or 0)))
+		else
+			useJWCheckBox:SetPos(20,panel:GetTall()/11*(9 - (checkSize and 1 or 0)))
+		end
 
 
 
-	 local pauseButton = vgui.Create( "DButton", panel )
+	local pauseButton = vgui.Create( "DButton", panel )
+		pauseButton:SetSize(panel:GetWide()-40, 35)
+		pauseButton:SetPos(20,panel:GetTall()/11*(10 - (checkSize and 1 or 0) - (checkLength and 1 or 0) ))
 		pauseButton:SetText( "Pause (NOT ACTIVE)" )
 		pauseButton:SetFont("CenterPrintText")
-		pauseButton:SetSize(64, 35)
 		pauseButton:SetColor(PlayXGUI.Colors["textColor"])
 		pauseButton:SetConsoleCommand("playx_pause")
-		pauseButton.Paint = function()    
-		pauseButton:SetColor(PlayXGUI.Colors["textColor"])
+		pauseButton.Paint = function()
+			pauseButton:SetColor(PlayXGUI.Colors["textColor"])
 			if pauseButton:IsDown() then 
 				surface.SetDrawColor( PlayXGUI.Colors["buttonPressedColor"] )
 				surface.DrawRect( 0, 0, pauseButton:GetWide(), pauseButton:GetTall())
@@ -287,50 +320,4 @@ function PlayXGUI.ControlPanel(panel)
 				surface.DrawRect( 0, 0, pauseButton:GetWide(), 3)
 			end
 		end
-
-	function panel:ResizeContent()--there is probably a better way to set the size after using dock. But I don't know how
-		logo:SetSize(panel:GetWide()/4,panel:GetTall()/5)
-		logo:SetPos(panel:GetWide()/2-panel:GetWide()/8,0)
-
-		providerSelectLabel:SetPos( 20, panel:GetTall()/11*2 )
-		providerSelect:SetPos( providerSelectLabel:GetWide() + 20, panel:GetTall()/11*2 )
-		uriEntryBoxLabel:SetPos( providerSelectLabel:GetWide() + providerSelect:GetWide() + 40 , panel:GetTall()/11*2 )
-		uriEntryBox:SetPos( providerSelectLabel:GetWide() + providerSelect:GetWide() + uriEntryBoxLabel:GetWide() + 60, panel:GetTall()/11*2 )
-
-		local lengthForAllBoxes = providerSelectLabel:GetWide() + providerSelect:GetWide() + uriEntryBoxLabel:GetWide() + uriEntryBox:GetWide() + 80
-		local checkSize = panel:GetWide() - lengthForAllBoxes >= startAtBoxLabel:GetWide() + startAtBox:GetWide() + 20
-
-		if checkSize then --if we can squezze the 3rd box there do it
-			startAtBoxLabel:SetPos( lengthForAllBoxes+20, panel:GetTall()/11*2 )
-			startAtBox:SetPos( lengthForAllBoxes+startAtBoxLabel:GetWide() + 40, panel:GetTall()/11*2 )
-		else --else put it below
-			startAtBoxLabel:SetPos( 20, panel:GetTall()/11*3 )
-			startAtBox:SetPos( 80, panel:GetTall()/11*3 )
-		end
-
-		openMediaButton:SetPos(20,panel:GetTall()/11*(4 - (checkSize and 1 or 0)))
-		openMediaButton:SetSize(panel:GetWide()-40, 35)
-
-		closeMediaButton:SetPos(20,panel:GetTall()/11*(5 - (checkSize and 1 or 0)))
-		closeMediaButton:SetSize(panel:GetWide()-40, 35)
-
-		addBookmarkButton:SetPos(20,panel:GetTall()/11*(6 - (checkSize and 1 or 0)))
-		addBookmarkButton:SetSize(panel:GetWide()-40, 35)
-
-		dividerAdvOptions:SetPos(panel:GetWide()/2-dividerAdvOptions:GetWide()/2,panel:GetTall()/11*(7 - (checkSize and 1 or 0)))
-
-		lowFrameRateCheckbox:SetPos(20,panel:GetTall()/11*(8 - (checkSize and 1 or 0)))
-		doNotAutoStopCheckbox:SetPos(lowFrameRateCheckbox:GetWide()+60,panel:GetTall()/11*(8 - (checkSize and 1 or 0)))
-		local checkLength = (panel:GetWide() - (lowFrameRateCheckbox:GetWide() + doNotAutoStopCheckbox:GetWide() + 60) ) >= useJWCheckBox:GetWide()
-
-		if checkLength then
-			useJWCheckBox:SetPos(lowFrameRateCheckbox:GetWide() + doNotAutoStopCheckbox:GetWide() + 80,panel:GetTall()/11*(8 - (checkSize and 1 or 0)))
-		else
-			useJWCheckBox:SetPos(20,panel:GetTall()/11*(9 - (checkSize and 1 or 0)))
-		end
-
-		pauseButton:SetPos(20,panel:GetTall()/11*(10 - (checkSize and 1 or 0) - (checkLength and 1 or 0) ))
-		pauseButton:SetSize(panel:GetWide()-40, 35)
-	end
-
 end
