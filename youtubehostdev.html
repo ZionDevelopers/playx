@@ -134,11 +134,11 @@ function youtubeTimeConvert(duration){
 		srcurl += '&amp;docid=' + videoId;
 		swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 		
-		this.player = document.getElementById('player');
-		this.player.style.width = "126.6%";
-		this.player.style.height = "104.2%";
-		this.player.style.marginLeft = "-24.2%";
-		this.player.style.marginTop = "-2%";
+		player = document.getElementById('player');
+		player.style.width = "126.6%";
+		player.style.height = "104.2%";
+		player.style.marginLeft = "-24.2%";
+		player.style.marginTop = "-2%";
 		
 		player.setPlaybackQuality("hd720");
 	}
