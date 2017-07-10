@@ -120,6 +120,9 @@ function youtubeTimeConvert(duration){
     	});
 	} 
 	} else {
+		if (window.swfobject === undefined) window.swfobject = null;
+		window.open = function() { return null; }; // prevent popups
+
 		var srcparams = {
 			allowScriptAccess: "always",
 			bgcolor: "#000000",
