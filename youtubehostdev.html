@@ -131,7 +131,7 @@ function youtubeTimeConvert(duration){
 		};
 		
 		var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0';
-		srcurl += '&amp;docid=' + videoId;
+		srcurl += '&amp;docid=' + videoId + '&amp;nohtml5=1;
 		swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 		
 		setTimeout( function(){
