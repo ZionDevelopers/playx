@@ -704,13 +704,12 @@ hook.Add("PlayerDisconnected", "PlayXPlayerDisconnected", PlayerDisconnected)
 
 hook.Add("PlayerSay","PlayXChatCommand",function(sender,text,teamChat)
     text = string.lower(text)
-    print(text)
     if text == "!playx" or text == ".playx" or text == "/playx" then
         sender:ConCommand("playx_gui")
     end
 end)
 
-hook.Add("ShowSpare2","PlayXF4",function(ply)
+hook.Add("ShowSpare2","PlayXF4",function(ply)--F4 Button
     ply:ConCommand("playx_gui")
 end)
 
