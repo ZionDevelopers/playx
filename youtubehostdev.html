@@ -97,29 +97,8 @@ function youtubeTimeConvert(duration){
 	//If flash is installed, use flash instead of the standard youtube embed
 	//This fixes the random issues with Awesomium and the YT Player
 	//This will be removed once CEF is live.
-	if (!FlashDetect.installed) {
-	
-	//YouTube Embed Code
-	function onYouTubeIframeAPIReady() {
-    		player = new YT.Player('player', {
-        	"width": window.innerWidth, //set size to full window or bounds of PlayX screen
-		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
-        	videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
-        	playerVars: {
-			autoplay: 1,
-			showinfo: 0, //Disable title / creator label
-			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
-			iv_load_policy: 3, //Removes all annotations
-			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
-			modestbranding: 1, //Remove YouTube logo
-			rel: 0, //Disable end video recommendations
-			controls: 0, //Disable player UI controls
-			start: internalstart.toString(), //YT Start: Requires for this value to be in string format for some reason
-			nothtml5: true //EXPERIMENTING WITH FREEZING ISSUE
-        		},
-    	});
-	} 
-	} else {
+	setTimeout( function(){
+	if (FlashDetect.installed) {
 		if (window.swfobject === undefined) window.swfobject = null;
 		window.open = function() { return null; }; // prevent popups
 
@@ -146,7 +125,30 @@ function youtubeTimeConvert(duration){
 		
 		ytplayer.setPlaybackQuality("default");
 		}, 500 );
+		
+	} else {
+	
+	//YouTube Embed Code
+	function onYouTubeIframeAPIReady() {
+    		player = new YT.Player('player', {
+        	"width": window.innerWidth, //set size to full window or bounds of PlayX screen
+		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+        	videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
+        	playerVars: {
+			autoplay: 1,
+			showinfo: 0, //Disable title / creator label
+			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
+			iv_load_policy: 3, //Removes all annotations
+			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
+			modestbranding: 1, //Remove YouTube logo
+			rel: 0, //Disable end video recommendations
+			controls: 0, //Disable player UI controls
+			start: internalstart.toString(), //YT Start: Requires for this value to be in string format for some reason
+			nothtml5: true //EXPERIMENTING WITH FREEZING ISSUE
+        		},
+    	});
 	}
+	}}, 200);
 
 	
   //Google Analytics
