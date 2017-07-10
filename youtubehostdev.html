@@ -14,6 +14,7 @@
 
 <title>PlayX Native Youtube Host</title>
 <script src="https://www.youtube.com/iframe_api"></script>
+<script src="/js/flash_detect_min.js"></script>
 
 <script>
 //Get a var from url format
@@ -107,7 +108,7 @@ function youtubeTimeConvert(duration){
 			rel: 0, //Disable end video recommendations
 			controls: 0, //Disable player UI controls
 			start: internalstart.toString(), //YT Start: Requires for this value to be in string format for some reason
-			nothtml5: 1 //EXPERIMENTING WITH FREEZING ISSUE
+			nothtml5: true //EXPERIMENTING WITH FREEZING ISSUE
         		},
     	});
 }
