@@ -92,6 +92,11 @@ function youtubeTimeConvert(duration){
 		}
 	}
 	
+	//If flash is installed, use flash instead of the standard youtube embed
+	//This fixes the random issues with Awesomium and the YT Player
+	//This will be removed once CEF is live.
+	if !FlashDetect.installed {
+	
 	//YouTube Embed Code
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
@@ -111,6 +116,27 @@ function youtubeTimeConvert(duration){
 			nothtml5: true //EXPERIMENTING WITH FREEZING ISSUE
         		},
     	});
+	} else {
+		var srcparams = {
+			allowScriptAccess: "always",
+			bgcolor: "#000000",
+			wmode: "opaque"
+		};
+
+		var srcattributes = {
+			id: "player",
+		};
+		
+		var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0';
+		srcurl += '&amp;docid=' + videoId + '&amp;ps=docs&amp;partnerid=30';
+		swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
+		
+		player.style.width = "126.6%";
+		player.style.height = "104.2%";
+		player.style.marginLeft = "-24.2%";
+		player.style.marginTop = "-2%";
+		player.setPlaybackQuality("hd720");
+	}
 }
 	
   //Google Analytics
