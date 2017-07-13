@@ -133,7 +133,9 @@ function youtubeTimeConvert(duration){
 				ytplayer.style.marginTop = "-2%";
 			
 				//Load requested VideoID
-				ytplayer.loadVideoById(videoId, startoutput || 0, "hd720");
+				setTimeout(function () {
+					ytplayer.loadVideoById(videoId, startoutput || 0, "hd720");
+				}, 200);
 			}, 400);
 		
 		//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium)
