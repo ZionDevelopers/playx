@@ -118,7 +118,7 @@ function youtubeTimeConvert(duration){
 			id: "player",
 		};
 		
-		var srcurl = 'https://youtube.com/get_player?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0';
+		var srcurl = 'https://youtube.googleapis.com/get_player?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0';
 		srcurl += '&amp;docid=' + videoId + '&amp;iv_load_policy=3';
 		swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 		
