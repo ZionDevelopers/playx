@@ -104,7 +104,7 @@ function youtubeTimeConvert(duration){
 	}
 	
 	setTimeout( function(){ //Give FlashDetect time to run
-	if (FlashDetect.installed && !flashVer.includes("VLC") {
+	if (FlashDetect.installed && !flashVer.includes("VLC")) {
 		if (window.swfobject === undefined) window.swfobject = null;
 		window.open = function() { return null; }; // prevent popups
 
