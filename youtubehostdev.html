@@ -105,7 +105,8 @@ function youtubeTimeConvert(duration){
 	console.log(flashVer);
 	console.log(flashVer.includes("VLC"));
 	
-	setTimeout( function(){ //Give FlashDetect time to run
+	function onYouTubeIframeAPIReady() {
+	console.log("IFrameAPIReady")
 	if (FlashDetect.installed && !flashVer.includes("VLC")) {
 		console.log("Playing in Flash");
 		var srcparams = {
@@ -158,7 +159,7 @@ function youtubeTimeConvert(duration){
         		},
     	});
 	}
-	}, 200);
+	}
 
 	
   //Google Analytics
