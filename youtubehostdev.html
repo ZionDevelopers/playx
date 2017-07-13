@@ -107,6 +107,7 @@ function youtubeTimeConvert(duration){
 	
 	setTimeout( function(){ //Give FlashDetect time to run
 	if (FlashDetect.installed && flashVer.includes("VLC")) {
+		console.log("Playing in Flash");
 		var srcparams = {
 			allowScriptAccess: "always",
 			bgcolor: "#000000",
@@ -141,6 +142,7 @@ function youtubeTimeConvert(duration){
 	} else {
 	
 	//YouTube Embed Code
+	console.log("Playing in HTML5");
 	function onYouTubeIframeAPIReady() {
     		player = new YT.Player('player', {
         	"width": window.innerWidth, //set size to full window or bounds of PlayX screen
