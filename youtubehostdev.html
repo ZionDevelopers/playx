@@ -126,7 +126,7 @@ function youtubeTimeConvert(duration){
 			swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 		
 			//Set Player Params (Because of Weird yva_video scaling)(also wait for iframe to load, acts weird sometimes without delay)
-			function onYouTubePlayerReady( playerId )
+			function onYouTubePlayerReady( playerId ) {
 				console.log("onYouTubePlayerReady Called");
 				ytplayer = document.getElementById('player');
 				ytplayer.style.width = "126.6%";
