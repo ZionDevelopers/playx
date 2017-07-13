@@ -132,10 +132,7 @@ function youtubeTimeConvert(duration){
 		ytplayer.style.marginTop = "-2%";
 		
 		//Load requested VideoID
-		ytplayer.loadVideoById(videoId, start);
-		
-		//Set Playback Quality (since yva_video plays in like 240p or lower on default)
-		ytplayer.setPlaybackQuality("default");
+		ytplayer.loadVideoById(videoId, start, "hd720");
 		}, 500 );
 		
 	//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium)
