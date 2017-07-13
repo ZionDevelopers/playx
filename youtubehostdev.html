@@ -157,8 +157,7 @@ function youtubeTimeConvert(duration){
 			modestbranding: 1, //Remove YouTube logo
 			rel: 0, //Disable end video recommendations
 			controls: 0, //Disable player UI controls
-			start: internalstart.toString(), //YT Start: Requires for this value to be in string format for some reason
-			nothtml5: true //EXPERIMENTING WITH FREEZING ISSUE
+			start: start || 0, //YT Start: Requires for this value to be in string format for some reason
         		},
     	});
 	}
