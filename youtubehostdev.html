@@ -106,7 +106,7 @@ function youtubeTimeConvert(duration){
 	console.log(flashVer.includes("VLC"));
 	
 	setTimeout( function(){ //Give FlashDetect time to run
-	if (FlashDetect.installed && flashVer.includes("VLC")) {
+	if (FlashDetect.installed && !flashVer.includes("VLC")) {
 		console.log("Playing in Flash");
 		var srcparams = {
 			allowScriptAccess: "always",
