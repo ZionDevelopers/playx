@@ -106,59 +106,57 @@ function youtubeTimeConvert(duration){
 	console.log(flashVer.includes("VLC"));
 	
 	function onYouTubeIframeAPIReady() {
-	console.log("IFrameAPIReady");
-	if (FlashDetect.installed && !flashVer.includes("VLC")) {
-		console.log("Playing in Flash");
-		var srcparams = {
-			allowScriptAccess: "always",
-			bgcolor: "#000000",
-			wmode: "opaque"
-		};
-
-		var srcattributes = {
-			id: "player",
-		};
+		console.log("IFrameAPIReady");
+		if (FlashDetect.installed && !flashVer.includes("VLC")) {
+			console.log("Playing in Flash");
+			var srcparams = {
+				allowScriptAccess: "always",
+				bgcolor: "#000000",
+				wmode: "opaque"
+			};
+			
+			var srcattributes = {
+				id: "player",
+			};
+			
+			//Set YouTube Flash Player Source URL (yva_video in this case)
+			var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0';
+			srcurl += '&amp;iv_load_policy=3';
+			swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 		
-		//Set YouTube Flash Player Source URL (yva_video in this case)
-		var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0';
-		srcurl += '&amp;iv_load_policy=3';
-		swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
+			//Set Player Params (Because of Weird yva_video scaling)
+			ytplayer = document.getElementById('player');
+			ytplayer.style.width = "126.6%";
+			ytplayer.style.height = "104.2%";
+			ytplayer.style.marginLeft = "-24.2%";
+			ytplayer.style.marginTop = "-2%";
+			
+			//Load requested VideoID
+			ytplayer.loadVideoById(videoId, start, "hd720");
 		
-		//Set Player Params (Because of Weird yva_video scaling)
-		setTimeout( function(){
-		ytplayer = document.getElementById('player');
-		ytplayer.style.width = "126.6%";
-		ytplayer.style.height = "104.2%";
-		ytplayer.style.marginLeft = "-24.2%";
-		ytplayer.style.marginTop = "-2%";
+		//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium)
+		} else {
 		
-		//Load requested VideoID
-		ytplayer.loadVideoById(videoId, start, "hd720");
-		}, 500 );
-		
-	//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium)
-	} else {
-	
-	//YouTube Embed Code
-	console.log("Playing in HTML5");
+		//YouTube Embed Code
+		console.log("Playing in HTML5");
 		console.log("YouTube API Fired, loading Player");
     		player = new YT.Player('player', {
-        	"width": window.innerWidth, //set size to full window or bounds of PlayX screen
-		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
-        	videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
-        	playerVars: {
-			autoplay: 1,
-			showinfo: 0, //Disable title / creator label
-			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
-			iv_load_policy: 3, //Removes all annotations
-			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
-			modestbranding: 1, //Remove YouTube logo
-			rel: 0, //Disable end video recommendations
-			controls: 0, //Disable player UI controls
-			start: start || 0, //YT Start: Requires for this value to be in string format for some reason
+        		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
+			"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+        		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
+        		playerVars: {
+				autoplay: 1,
+				showinfo: 0, //Disable title / creator label
+				cc_load_policy: 1, //Remedies issues with some captions randomly coming up
+				iv_load_policy: 3, //Removes all annotations
+				disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
+				modestbranding: 1, //Remove YouTube logo
+				rel: 0, //Disable end video recommendations
+				controls: 0, //Disable player UI controls
+				start: start || 0, //YT Start: Requires for this value to be in string format for some reason
         		},
-    	});
-	}
+    		});
+		}
 	}
 
 	
