@@ -131,7 +131,8 @@ function youtubeTimeConvert(duration){
 				ytplayer.style.height = "104.2%";
 				ytplayer.style.marginLeft = "-24.2%";
 				ytplayer.style.marginTop = "-2%";
-			}, 200);
+				ytplayer.setPlaybackQuality("hd720");
+			}, 500);
 		
 		//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium)
 		} else {
