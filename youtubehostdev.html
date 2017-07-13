@@ -97,8 +97,14 @@ function youtubeTimeConvert(duration){
 	//If flash is installed, use flash instead of the standard youtube embed
 	//This fixes the random issues with Awesomium and the YT Player
 	//This will be removed once CEF is live.
-	setTimeout( function(){
 	if (FlashDetect.installed) {
+	var flashVer = FlashDetect.raw;
+	} else {
+		flashVer = null
+	}
+	
+	setTimeout( function(){ //Give FlashDetect time to run
+	if (FlashDetect.installed && !flashVer.includes("VLC") {
 		if (window.swfobject === undefined) window.swfobject = null;
 		window.open = function() { return null; }; // prevent popups
 
