@@ -102,9 +102,11 @@ function youtubeTimeConvert(duration){
 	} else {
 		flashVer = null
 	}
+	console.log(flashVer);
+	console.log(flashVer.includes("VLC"));
 	
 	setTimeout( function(){ //Give FlashDetect time to run
-	if (FlashDetect.installed && !flashVer.includes("VLC")) {
+	if (FlashDetect.installed) {
 		if (window.swfobject === undefined) window.swfobject = null;
 		window.open = function() { return null; }; // prevent popups
 
