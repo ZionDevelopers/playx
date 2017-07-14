@@ -119,7 +119,7 @@ function youtubeTimeConvert(duration){
         				if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
             					//Set up a timer to periodically check value of PercentLoaded
             					var loadCheckInterval = setInterval(function (){
-							console.log(e.ref.PercentLoaded());
+							console.log(e.ref.PercentLoaded().toString());
                 					//Once value == 100 (fully loaded) we can do whatever we want
                 					if(e.ref.PercentLoaded() === 100){
                     						//Execute function
