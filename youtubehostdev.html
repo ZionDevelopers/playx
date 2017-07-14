@@ -135,7 +135,7 @@ function youtubeTimeConvert(duration){
 			var callback = function (e){
     				//Only execute if SWFObject embed was successful
     				if(!e.success || !e.ref){ return false; }
-    				swfLoadEvent(console.log("SWF LOADED)"));
+    				swfLoadEvent(function () {console.log("SWF LOADED)")});
 			};
 			
 			var srcparams = {
