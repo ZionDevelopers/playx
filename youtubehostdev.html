@@ -109,35 +109,6 @@ function youtubeTimeConvert(duration){
 		console.log("IFrameAPIReady");
 		if (FlashDetect.installed) {
 			console.log("Playing in Flash");
-			//OnReady Function
-			function swfLoadEvent(fn){
-    				//Ensure fn is a valid function
-    				if(typeof fn !== "function"){ return false; }
-    				//This timeout ensures we don't try to access PercentLoaded too soon
-    				var initialTimeout = setTimeout(function (){
-        			//Ensure Flash Player's PercentLoaded method is available and returns a value
-        			if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
-            				//Set up a timer to periodically check value of PercentLoaded
-            				var loadCheckInterval = setInterval(function (){
-                				//Once value == 100 (fully loaded) we can do whatever we want
-                				if(e.ref.PercentLoaded() === 100){
-                    					//Execute function
-                    					fn();
-                    					//Clear timer
-                    					clearInterval(loadCheckInterval);
-                				}
-            				}, 1500);
-        			}
-    			}, 200);
-			}
-			
-			//This function is invoked by SWFObject once the <object> has been created
-			var callback = function (e){
-				console.log("SWFOBJECT CALLBACK");
-    				//Only execute if SWFObject embed was successful
-    				if(!e.success || !e.ref){ return false; }
-    				swfLoadEvent(function () {console.log("SWF LOADED")});
-			};
 			
 			var srcparams = {
 				allowScriptAccess: "always",
@@ -154,15 +125,32 @@ function youtubeTimeConvert(duration){
 			srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
 			srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 			swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
-		
+			
+    				//This timeout ensures we don't try to access PercentLoaded too soon
+    				var initialTimeout = setTimeout(function (){
+        				//Ensure Flash Player's PercentLoaded method is available and returns a value
+        				if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
+            					//Set up a timer to periodically check value of PercentLoaded
+            					var loadCheckInterval = setInterval(function (){
+                					//Once value == 100 (fully loaded) we can do whatever we want
+                					if(e.ref.PercentLoaded() === 100){
+                    						//Execute function
+                    						console.log("onYouTubePlayerReady Called");
+								ytplayer = document.getElementById('player');
+								ytplayer.style.width = "126.6%";
+								ytplayer.style.height = "104.2%";
+								ytplayer.style.marginLeft = "-24.2%";
+								ytplayer.style.marginTop = "-2%";
+                   						//Clear timer
+                    						clearInterval(loadCheckInterval);
+                					}
+            					}, 1500);
+       					}
+    				}, 200);
+			
 			//Set Player Params (Because of Weird yva_video scaling)(also wait for iframe to load, acts weird sometimes without delay)
 			function onReady() {
-				console.log("onYouTubePlayerReady Called");
-				ytplayer = document.getElementById('player');
-				ytplayer.style.width = "126.6%";
-				ytplayer.style.height = "104.2%";
-				ytplayer.style.marginLeft = "-24.2%";
-				ytplayer.style.marginTop = "-2%";
+				
 			}
 		//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium)
 		} else {
