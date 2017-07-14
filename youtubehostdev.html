@@ -133,9 +133,10 @@ function youtubeTimeConvert(duration){
 			
 			//This function is invoked by SWFObject once the <object> has been created
 			var callback = function (e){
+				console.log("SWFOBJECT CALLBACK");
     				//Only execute if SWFObject embed was successful
     				if(!e.success || !e.ref){ return false; }
-    				swfLoadEvent(function () {console.log("SWF LOADED)")});
+    				swfLoadEvent(function () {console.log("SWF LOADED")});
 			};
 			
 			var srcparams = {
