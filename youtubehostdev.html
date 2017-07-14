@@ -110,6 +110,8 @@ function youtubeTimeConvert(duration){
 		if (FlashDetect.installed) {
 			console.log("Playing in Flash");
 			
+			//Since yva_video has no onReady function, we need to make our own with SWFObject (to prevent weird bugs from
+			//thing loading too soon before the SWF is ready
 			function swfLoadEvent(fn){
     				//Ensure fn is a valid function
     				if(typeof fn !== "function"){ return false; }
@@ -119,10 +121,10 @@ function youtubeTimeConvert(duration){
         				if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
             					//Set up a timer to periodically check value of PercentLoaded
             					var loadCheckInterval = setInterval(function (){
-							console.log(e.ref.PercentLoaded().toString());
                 					//Once value == 100 (fully loaded) we can do whatever we want
                 					if(e.ref.PercentLoaded() === 100){
                     						//Execute function
+								console.log(e.ref.PercentLoaded().toString());
                     						fn();
                     						//Clear timer
                     						clearInterval(loadCheckInterval);
