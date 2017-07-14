@@ -146,7 +146,7 @@ function youtubeTimeConvert(duration){
 			//Set YouTube Flash Player Source URL (yva_video 
 			var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
 			srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
-			//srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
+			srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 			swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes, callback);
 			
 			//Set Player Params (called by our onReady detection callback defined above)
@@ -157,7 +157,6 @@ function youtubeTimeConvert(duration){
 				ytplayer.style.height = "104.2%";
 				ytplayer.style.marginLeft = "-24.2%";
 				ytplayer.style.marginTop = "-2%";
-				ytplayer.loadVideoById( videoId, startoutput || 0, "hd720");
 			}
 			
 		//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium, random pausing, etc)
