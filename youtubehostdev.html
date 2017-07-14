@@ -126,10 +126,9 @@ function youtubeTimeConvert(duration){
 			srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 			swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 			
+			var callback = function (e){
     				//This timeout ensures we don't try to access PercentLoaded too soon
     				var initialTimeout = setTimeout(function (){
-        				//Ensure Flash Player's PercentLoaded method is available and returns a value
-        				if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
             					//Set up a timer to periodically check value of PercentLoaded
             					var loadCheckInterval = setInterval(function (){
                 					//Once value == 100 (fully loaded) we can do whatever we want
@@ -145,8 +144,8 @@ function youtubeTimeConvert(duration){
                     						clearInterval(loadCheckInterval);
                 					}
             					}, 1500);
-       					}
     				}, 200);
+			};
 			
 			//Set Player Params (Because of Weird yva_video scaling)(also wait for iframe to load, acts weird sometimes without delay)
 			function onReady() {
