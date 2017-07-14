@@ -124,7 +124,7 @@ function youtubeTimeConvert(duration){
                 					//Once value == 100 (fully loaded) we can do whatever we want
                 					if(e.ref.PercentLoaded() === 100){
                     						//Execute function
-								console.log(e.ref.PercentLoaded().toString());
+								console.log(e.ref.PercentLoaded());
                     						fn();
                     						//Clear timer
                     						clearInterval(loadCheckInterval);
