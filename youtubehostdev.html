@@ -19,6 +19,9 @@
 <script src="/playx/js/flash_detect_min.js"></script>
 
 <script>
+	
+	//------------------------------------------------- GET FROM URL FUNCS -------------------------------------------------//
+	
 //Get a var from url format
 function get(variable)
 {
@@ -48,6 +51,11 @@ var urlParam = function(name, w){
     return !val ? '':val[1];
 }
 
+	//------------------------------------------------- END GET FROM URL FUNCS -------------------------------------------------//
+
+
+	//------------------------------------------------- START AT CODE -------------------------------------------------//
+
 //Convert youtube #h#m#s time into seconds
 //&start= or &t= can be either in pure seconds or in any order of hours, minutes, seconds in the format of #h#m#s.
 //Ex: 2h41m12s = 2 hours, 41 minutes, and 12 seconds
@@ -61,129 +69,143 @@ function youtubeTimeConvert(duration){
 	if (seconds) total += parseInt(seconds[1]);
 	return total;
 }
+// Start Time Assignment (Universal)
+if (start === ""){ //if start is empty, look at t
+	if (t != "") {
+		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
+			var startoutput = t;
+			console.log("Time t= is pure")
+		} else { //if characters found, decode from youtube time format
+			var startoutput = youtubeTimeConvert(t);
+			console.log("Time t= is in #h#m#s format");
+		}
+	} else { //if start and t are empty, start at 0
+		var startoutput = 0
+	}
+} else {
+	if ((start != "") && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
+		var startoutput = start
+	} else { //else, start is in youtube time format, convert to seconds
+			var startoutput = youtubeTimeConvert(start);
+	}
+}
 	
-	//OLD Params
-	//var url = unescape(get("url"));
-	//var start = unescape(get("start"));
-	//Insert Params Into Vars
+	
+	//------------------------------------------------- END START AT CODE -------------------------------------------------//
+	
+	
+	//-------------------------------------------- VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
+	
+	//Define Our Vars For Our Players
 	var url = urlParam('url');
 	var start = urlParam('start');
 	var t = urlParam('t');
 	var internalstart = start;
 	
 	var videoId = get('v') || getByURL('v', urlParam('url'))
-	
-	// Start Time Assignment (Universal)
-	if (start === ""){ //if start is empty, look at t
-		if (t != "") {
-			if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
-			    var startoutput = t;
-			    console.log("Time t= is pure")
-			} else { //if characters found, decode from youtube time format
-			    var startoutput = youtubeTimeConvert(t);
-			    console.log("Time t= is in #h#m#s format");
-			}
-		} else { //if start and t are empty, start at 0
-			var startoutput = 0
-		}
-	} else {
-		if ((start != "") && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
-			var startoutput = start
-		} else { //else, start is in youtube time format, convert to seconds
-			var startoutput = youtubeTimeConvert(start);
-		}
-	}
+
+	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
+
+	//------------------------------------------------- FLASH DETECTION -------------------------------------------------//
 	
 	//If flash is installed, use flash instead of the standard youtube embed
 	//This fixes the random issues with Awesomium and the YT Player
 	//This will be removed once CEF is live.
 	if (FlashDetect.installed) {
-	var flashVer = FlashDetect.raw;
+		var flashVer = FlashDetect.raw;
+		console.log("Flash Is Installed, Checking Build");
 	} else {
-		flashVer = null
+			flashVer = null
+		console.log("Flash Is Not Installed");
 	}
-	console.log(flashVer);
-	//console.log(flashVer.includes("VLC"));
+	console.log("Raw Build: " + flashVer);
+
+	if (FlashDetect.installed) {
+		console.log("Playing in Flash");
+	//------------------------------------------------- END FLASH DETECTION -------------------------------------------------//
+
+	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 	
-	function onYouTubeIframeAPIReady() {
-		console.log("IFrameAPIReady");
-		if (FlashDetect.installed) {
-			console.log("Playing in Flash");
-			
-			//Since yva_video has no onReady function, we need to make our own with SWFObject (to prevent weird bugs from
-			//thing loading too soon before the SWF is ready
-			function swfLoadEvent(fn){
-    				if(typeof fn !== "function"){ return false; }
-    				var initialTimeout = setTimeout(function (){
-        				if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
-            					var loadCheckInterval = setInterval(function (){
-                					if(e.ref.PercentLoaded() === 100){
-                    						fn();
-                    						clearInterval(loadCheckInterval);
-                					}
-            					}, 1500);
-        				}
-    				}, 200);
-			}
-			
-			var callback = function (e){
-    				//Only execute if SWFObject embed was successful
-    				if(!e.success || !e.ref){ return false; }
-    				swfLoadEvent(onReady());
-			};
-			
-			//Define Player Params and Attributes (SWFObject Embed for yva_video)
-			var srcparams = {
-				allowScriptAccess: "always",
-				bgcolor: "#000000",
-				wmode: "opaque"
-			};
-			
-			var srcattributes = {
-				id: "player",
-			};
-			
-			//Set YouTube Flash Player Source URL (yva_video 
-			var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
-			srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
-			srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
-			srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
-			swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes, callback);
-			
-			//Set Player Params (called by our onReady detection callback defined above)
-			function onReady() {
-				//console.log("onYouTubePlayerReady Called");
-				ytplayer = document.getElementById('player');
-				ytplayer.style.width = "126.6%";
-				ytplayer.style.height = "104.2%";
-				ytplayer.style.marginLeft = "-24.2%";
-				ytplayer.style.marginTop = "-2%";
-			}
-			
-		//If there is no Flash available, fall back to HTML5 (Majorly glitchy with Awesomium, random pausing, etc)
-		} else {
-		
-		//YouTube Embed Code
-		console.log("Playing in HTML5");
-		console.log("YouTube API Fired, loading Player");
-    		player = new YT.Player('player', {
-        		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
-			"height": window.innerHeight, //set size to full window or bounds of PlayX screen
-        		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
-        		playerVars: {
-				autoplay: 1,
-				showinfo: 0, //Disable title / creator label
-				cc_load_policy: 1, //Remedies issues with some captions randomly coming up
-				iv_load_policy: 3, //Removes all annotations
-				disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
-				modestbranding: 1, //Remove YouTube logo
-				rel: 0, //Disable end video recommendations
-				controls: 0, //Disable player UI controls
-				start: start || 0, //YT Start: Requires for this value to be in string format for some reason
-        		},
-    		});
-		}
+if (FlashDetect.installed) {
+	YouTubeFlashPlayer(videoId, startoutput);
+} else {
+	YouTubeIFramePlayer(videoId, startoutput);
+}
+	
+//YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
+function YouTubeFlashPlayer(videoId, startoutput){
+	//Since yva_video has no onReady function, we need to make our own with SWFObject (to prevent weird bugs from
+	//thing loading too soon before the SWF is ready
+	function swfLoadEvent(fn){
+    		if(typeof fn !== "function"){ return false; }
+    		var initialTimeout = setTimeout(function (){
+        		if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
+            			var loadCheckInterval = setInterval(function (){
+                			if(e.ref.PercentLoaded() === 100){
+                    				fn();
+                    				clearInterval(loadCheckInterval);
+                			}
+            			}, 1500);
+        		}
+    		}, 200);
 	}
+			
+	var callback = function (e){
+    //Only execute if SWFObject embed was successful
+    if(!e.success || !e.ref){ return false; }
+    	swfLoadEvent(onReady());
+	};
+			
+	//Define Player Params and Attributes (SWFObject Embed for yva_video)
+	var srcparams = {
+		allowScriptAccess: "always",
+		bgcolor: "#000000",
+		wmode: "opaque"
+	};
+			
+	var srcattributes = {
+		id: "player",
+	};
+			
+	//Set YouTube Flash Player Source URL (yva_video 
+	var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
+	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
+	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
+	srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
+	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes, callback);
+			
+	//Set Player Params (called by our onReady detection callback defined above)
+	function onReady() {
+		//console.log("onYouTubePlayerReady Called");
+		ytplayer = document.getElementById('player');
+		ytplayer.style.width = "126.6%";
+		ytplayer.style.height = "104.2%";
+		ytplayer.style.marginLeft = "-24.2%";
+		ytplayer.style.marginTop = "-2%";
+	}
+}
+
+//YouTube IFrame Player (Fallback until CEF)
+function YouTubeIFramePlayer(videoId, startOutput){
+	//YouTube Embed Code
+	console.log("Playing in HTML5");
+  player = new YT.Player('player', {
+    "width": window.innerWidth, //set size to full window or bounds of PlayX screen
+		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+    videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
+    playerVars: {
+			autoplay: 1,
+			showinfo: 0, //Disable title / creator label
+			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
+			iv_load_policy: 3, //Removes all annotations
+			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
+			modestbranding: 1, //Remove YouTube logo
+			rel: 0, //Disable end video recommendations
+			controls: 0, //Disable player UI controls
+			start: start || 0, //YT Start: Requires for this value to be in string format for some reason
+    },
+  });
+}
 
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
@@ -194,7 +216,8 @@ function youtubeTimeConvert(duration){
 	function onYouTubePlayerError(e) {
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
-			console.log("Error is greater than 101");
+			console.log("Switching To IFrame API");
+			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
 	
