@@ -55,7 +55,7 @@ var urlParam = function(name, w){
 
 
 	//------------------------------------------------- START AT CODE -------------------------------------------------//
-
+/*
 //Convert youtube #h#m#s time into seconds
 //&start= or &t= can be either in pure seconds or in any order of hours, minutes, seconds in the format of #h#m#s.
 //Ex: 2h41m12s = 2 hours, 41 minutes, and 12 seconds
@@ -86,10 +86,11 @@ if (start === "" || start === undefined){ //if start is empty, look at t
 	if ((start) && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
 		var startoutput = start
 	} else if(start != "" && start != undefined) { //else, start is in youtube time format, convert to seconds
-			var startoutput = youtubeTimeConvert(start);
+		var startoutput = youtubeTimeConvert(start);
 	}
 }
-	
+*/
+var startoutput = 0;
 	
 	//------------------------------------------------- END START AT CODE -------------------------------------------------//
 	
