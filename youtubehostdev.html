@@ -152,7 +152,7 @@ function youtubeTimeConvert(duration){
 			
 			//Set Player Params (called by our onReady detection callback defined above)
 			function onReady() {
-				console.log("onYouTubePlayerReady Called");
+				//console.log("onYouTubePlayerReady Called");
 				ytplayer = document.getElementById('player');
 				ytplayer.style.width = "126.6%";
 				ytplayer.style.height = "104.2%";
@@ -160,7 +160,7 @@ function youtubeTimeConvert(duration){
 				ytplayer.style.marginTop = "-2%";
 			}
 			
-			function onYouTubePlayerReady(){
+			function onYouTubePlayerReady( playerId ) {
 				console.log("onYouTubePlayerReady() Native called *yay*");
 			}
 			
