@@ -102,7 +102,7 @@ if (start === ""){ //if start is empty, look at t
 	var t = urlParam('t');
 	var internalstart = start;
 	
-	var videoId = get('v') || getByURL('v', urlParam('url'))
+	var videoId = get('v') || getByURL('v', urlParam('url'));
 
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 
@@ -186,7 +186,7 @@ function YouTubeFlashPlayer(videoId, startoutput){
 }
 
 //YouTube IFrame Player (Fallback until CEF)
-function YouTubeIFramePlayer(videoId, startOutput){
+function YouTubeIFramePlayer(videoId, startoutput){
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
   player = new YT.Player('player', {
