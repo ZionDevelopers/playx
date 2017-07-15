@@ -70,8 +70,8 @@ function youtubeTimeConvert(duration){
 	return total;
 }
 // Start Time Assignment (Universal)
-if (start === ""){ //if start is empty, look at t
-	if (t != "") {
+if (start === "" || start === undefined){ //if start is empty, look at t
+	if (t != "" t === undefined) {
 		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
 			var startoutput = t;
 			console.log("Time t= is pure")
@@ -85,7 +85,7 @@ if (start === ""){ //if start is empty, look at t
 } else {
 	if ((start) && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
 		var startoutput = start
-	} else { //else, start is in youtube time format, convert to seconds
+	} else if(start != "" && start != undefined) { //else, start is in youtube time format, convert to seconds
 			var startoutput = youtubeTimeConvert(start);
 	}
 }
