@@ -186,8 +186,16 @@ function youtubeTimeConvert(duration){
 	}
 
 	function onYouTubePlayerReady( playerId ) {
+		var player = document.getElementById('player');
 		console.log("onYouTubePlayerReady() Native called *yay*");
-		if (playerId){console.log(playerId.toString())};
+		player.addEventListener("onError", "onYouTubePlayerError");
+	}
+	
+	function onYouTubePlayerError(e) {
+		console.log("Youtube Threw An Error :/");
+		if (e>=101) {
+			console.log("Error is greater than 101");
+		}
 	}
 	
   //Google Analytics
