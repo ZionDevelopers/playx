@@ -213,7 +213,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
 		console.log("onYouTubePlayerReady() Global Called");
-		player.onReady();
+		onReady();
 		player.addEventListener("onError", "onYouTubePlayerError");
 	}
 	
