@@ -1,5 +1,0 @@
---PlayX ChangeLong (may be out of order, I know, fuck me)--
-
--Added start time to lua/playxlib.lua line ~672
--Completetly revamped panel.lua
--Added Init function (PlayX.EndMedia) to PlayX.BeginMedia to fix startat and just housekeeping init to playx/playx.lua line ~389
