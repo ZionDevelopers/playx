@@ -165,11 +165,11 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	//Set Player Params (called by our onReady detection callback defined above)
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
-		ytplayer = document.getElementById('player');
-		ytplayer.style.width = window.innerWidth;
-		ytplayer.style.height = window.innerWidth;
-		ytplayer.style.marginLeft = "-5%";
-		ytplayer.style.marginTop = "-2%";
+		this.player = document.getElementById('player');
+		this.player.style.width = window.innerWidth;
+		this.player.style.height = window.innerWidth;
+		this.player.style.marginLeft = "-5%";
+		this.player.style.marginTop = "-2%";
 	}
 }
 
@@ -201,11 +201,11 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
-		ytplayer = document.getElementById('player');
-		ytplayer.style.width = window.innerWidth;
-		ytplayer.style.height = window.innerWidth;
-		ytplayer.style.marginLeft = "0%";
-		ytplayer.style.marginTop = "0%";
+		this.player = document.getElementById('player');
+		this.player.style.width = "126.6%";
+		this.player.style.height = "104.2%";
+		this.player.style.marginLeft = "-24.2%";
+		this.player.style.marginTop = "-2%";
 	}
 }
 	
