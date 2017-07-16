@@ -213,11 +213,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
 		console.log("onYouTubePlayerReady() Global Called");
-		if(playerType === "Flash"){
-			YouTubeFlashPlayer.onReady();
-		} else if(playerType === "HTML5"){
-			YouTubeIFramePlayer.onReady();
-		}
+		player.onReady();
 		player.addEventListener("onError", "onYouTubePlayerError");
 	}
 	
