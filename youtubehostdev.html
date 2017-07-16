@@ -104,6 +104,8 @@ var startoutput = 0;
 	var internalstart = start;
 	
 	var videoId = get('v') || getByURL('v', urlParam('url'));
+	
+	var playerType;
 
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 
@@ -132,14 +134,15 @@ var startoutput = 0;
 function onYouTubeIframeAPIReady() {
 if (FlashDetect.installed) {
 	YouTubeFlashPlayer(videoId, startoutput);
+	playerType = "Flash";
 } else {
 	YouTubeIFramePlayer(videoId, startoutput);
+	playerType = "HTML5";
 }
 }
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
 var YouTubeFlashPlayer = function(videoId, startoutput){
-	var playerType = "Flash";
 			
 	//Define Player Params and Attributes (SWFObject Embed for yva_video)
 	var srcparams = {
@@ -172,8 +175,6 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 
 //YouTube IFrame Player (Fallback until CEF)
 var YouTubeIFramePlayer = function(videoId, startoutput){
-	
-	var playerType = "HTML5";
 	
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
@@ -224,6 +225,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
+			playerType = "HTML5";
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
