@@ -138,7 +138,8 @@ if (FlashDetect.installed) {
 }
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
-function YouTubeFlashPlayer(videoId, startoutput){
+var YouTubeFlashPlayer = function(videoId, startoutput){
+	var playerType = "Flash";
 			
 	//Define Player Params and Attributes (SWFObject Embed for yva_video)
 	var srcparams = {
@@ -159,7 +160,7 @@ function YouTubeFlashPlayer(videoId, startoutput){
 	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 			
 	//Set Player Params (called by our onReady detection callback defined above)
-	function onReady() {
+	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
 		ytplayer = document.getElementById('player');
 		ytplayer.style.width = "126.6%";
@@ -170,30 +171,33 @@ function YouTubeFlashPlayer(videoId, startoutput){
 }
 
 //YouTube IFrame Player (Fallback until CEF)
-function YouTubeIFramePlayer(videoId, startoutput){
+var YouTubeIFramePlayer = function(videoId, startoutput){
+	
+	var playerType = "HTML5";
+	
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
-  player = new YT.Player('player', {
-    "width": window.innerWidth, //set size to full window or bounds of PlayX screen
+	player = new YT.Player('player', {
+    		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
 		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
-    videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
-    playerVars: {
-	autoplay: 1,
-	showinfo: 0, //Disable title / creator label
-	cc_load_policy: 1, //Remedies issues with some captions randomly coming up
-	iv_load_policy: 3, //Removes all annotations
-	disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
-	modestbranding: 1, //Remove YouTube logo
-	rel: 0, //Disable end video recommendations
-	controls: 0, //Disable player UI controls
-	start: start || 0, //YT Start: Requires for this value to be in string format for some reason
-    },
-	events: {
-		onReady: onYouTubePlayerReady,
-	}
-  });
+    		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
+   		playerVars: {
+			autoplay: 1,
+			showinfo: 0, //Disable title / creator label
+			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
+			iv_load_policy: 3, //Removes all annotations
+			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
+			modestbranding: 1, //Remove YouTube logo
+			rel: 0, //Disable end video recommendations
+			controls: 0, //Disable player UI controls
+			start: start || 0, //YT Start: Requires for this value to be in string format for some reason
+    		},
+		events: {
+			onReady: onYouTubePlayerReady,
+		}
+  	});
 	
-	function onReady(){
+	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
 		ytplayer = document.getElementById('player');
 		ytplayer.style.width = "100";
@@ -208,7 +212,11 @@ function YouTubeIFramePlayer(videoId, startoutput){
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
 		console.log("onYouTubePlayerReady() Global Called");
-		onReady();
+		if(playerType === "Flash"){
+			YouTubeFlashPlayer.onReady();
+		} else if(playerType === "HTML5"){
+			YouTubeIFramePlayer.onReady();
+		}
 		player.addEventListener("onError", "onYouTubePlayerError");
 	}
 	
