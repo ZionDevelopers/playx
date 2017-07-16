@@ -156,7 +156,7 @@ function YouTubeFlashPlayer(videoId, startoutput){
 	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
 	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
-	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes, callback);
+	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 			
 	//Set Player Params (called by our onReady detection callback defined above)
 	function onReady() {
