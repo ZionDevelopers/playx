@@ -201,8 +201,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
 		ytplayer = document.getElementById('player');
-		ytplayer.style.width = "100";
-		ytplayer.style.height = "100";
+		ytplayer.style.width = window.innerWidth;
+		ytplayer.style.height = window.innerHeight;
 		ytplayer.style.marginLeft = "0%";
 		ytplayer.style.marginTop = "0%";
 	}
