@@ -178,9 +178,14 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
+	
+	if(player){player.destroy();
+		delete player();
+	}
+	
 	player = new YT.Player('player', {
-    		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
-		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+    		"width": "1280px", //set size to full window or bounds of PlayX screen
+		"height": "720px", //set size to full window or bounds of PlayX screen
     		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
    		playerVars: {
 			autoplay: 1,
