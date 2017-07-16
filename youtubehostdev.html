@@ -139,27 +139,6 @@ if (FlashDetect.installed) {
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
 function YouTubeFlashPlayer(videoId, startoutput){
-	//Since yva_video has no onReady function, we need to make our own with SWFObject (to prevent weird bugs from
-	//thing loading too soon before the SWF is ready
-	function swfLoadEvent(fn){
-    		if(typeof fn !== "function"){ return false; }
-    		var initialTimeout = setTimeout(function (){
-        		if(typeof e.ref.PercentLoaded !== "undefined" && e.ref.PercentLoaded()){
-            			var loadCheckInterval = setInterval(function (){
-                			if(e.ref.PercentLoaded() === 100){
-                    				fn();
-                    				clearInterval(loadCheckInterval);
-                			}
-            			}, 1500);
-        		}
-    		}, 200);
-	}
-			
-	var callback = function (e){
-    //Only execute if SWFObject embed was successful
-    if(!e.success || !e.ref){ return false; }
-    	swfLoadEvent(onReady());
-	};
 			
 	//Define Player Params and Attributes (SWFObject Embed for yva_video)
 	var srcparams = {
@@ -181,7 +160,7 @@ function YouTubeFlashPlayer(videoId, startoutput){
 			
 	//Set Player Params (called by our onReady detection callback defined above)
 	function onReady() {
-		//console.log("onYouTubePlayerReady Called");
+		console.log("YT Flash Player onReady() Called");
 		ytplayer = document.getElementById('player');
 		ytplayer.style.width = "126.6%";
 		ytplayer.style.height = "104.2%";
@@ -199,22 +178,37 @@ function YouTubeIFramePlayer(videoId, startoutput){
 		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
     videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
     playerVars: {
-			autoplay: 1,
-			showinfo: 0, //Disable title / creator label
-			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
-			iv_load_policy: 3, //Removes all annotations
-			disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
-			modestbranding: 1, //Remove YouTube logo
-			rel: 0, //Disable end video recommendations
-			controls: 0, //Disable player UI controls
-			start: start || 0, //YT Start: Requires for this value to be in string format for some reason
+	autoplay: 1,
+	showinfo: 0, //Disable title / creator label
+	cc_load_policy: 1, //Remedies issues with some captions randomly coming up
+	iv_load_policy: 3, //Removes all annotations
+	disablekb: 1, //Disables keybaord to avoid accidental pausing / seeking of video
+	modestbranding: 1, //Remove YouTube logo
+	rel: 0, //Disable end video recommendations
+	controls: 0, //Disable player UI controls
+	start: start || 0, //YT Start: Requires for this value to be in string format for some reason
     },
+	events: {
+		onReady: onYouTubePlayerReady,
+	}
   });
+	
+	function onReady(){
+		console.log("HTML5 Player onReady() Called");
+		ytplayer = document.getElementById('player');
+		ytplayer.style.width = "100";
+		ytplayer.style.height = "100";
+		ytplayer.style.marginLeft = "0%";
+		ytplayer.style.marginTop = "0%";
+	}
 }
-
+	
+//------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
+	
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
-		console.log("onYouTubePlayerReady() Native called *yay*");
+		console.log("onYouTubePlayerReady() Global Called");
+		onReady();
 		player.addEventListener("onError", "onYouTubePlayerError");
 	}
 	
@@ -225,6 +219,8 @@ function YouTubeIFramePlayer(videoId, startoutput){
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
+	
+//------------------------------------------------- ANALYTICS -------------------------------------------------//
 	
   //Google Analytics
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
