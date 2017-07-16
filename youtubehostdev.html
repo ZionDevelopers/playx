@@ -166,10 +166,10 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
 		ytplayer = document.getElementById('player');
-		ytplayer.style.width = window.innerWidth;
-		ytplayer.style.height = window.innerHeight;
-		ytplayer.style.marginLeft = "-42%";
-		//ytplayer.style.marginTop = "0";
+		ytplayer.style.width = "1280px";
+		ytplayer.style.height = "720px";
+		ytplayer.style.marginLeft = "-35%";
+		ytplayer.style.marginTop = "-2%";
 	}
 }
 
@@ -201,8 +201,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
 		ytplayer = document.getElementById('player');
-		ytplayer.style.width = window.innerWidth;
-		ytplayer.style.height = window.innerHeight;
+		ytplayer.style.width = "1280px";
+		ytplayer.style.height = "720px";
 		ytplayer.style.marginLeft = "0%";
 		ytplayer.style.marginTop = "0%";
 	}
