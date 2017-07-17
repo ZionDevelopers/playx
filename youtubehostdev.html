@@ -132,13 +132,14 @@ var startoutput = 0;
 
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
+inject();
+
 function onYouTubeIframeAPIReady() {
 //if (FlashDetect.installed) {
 //	YouTubeFlashPlayer(videoId, startoutput);
 //	playerType = "Flash";
 //} else {
 	YouTubeIFramePlayer(videoId, startoutput);
-	inject();
 	playerType = "HTML5";
 //}
 }
