@@ -138,38 +138,6 @@ function onYouTubeIframeAPIReady() {
 //} else {
 	YouTubeIFramePlayer(videoId, startoutput);
 	playerType = "HTML5";
-	
-	function makeModifiedTypeChecker(origChecker) {
-    		// Check if a video type is allowed
-    		return function (type) {
-      			if (type === undefined) return '';
-      			var disallowed_types = ['webm', 'vp8', 'vp9', 'mp4', 'avc1.42001E'];
-      			// If video type is in disallowed_types, say we don't support them
-      			for (var i = 0; i < disallowed_types.length; i++) {
-        			if (type.indexOf(disallowed_types[i]) !== -1) return '';
-				console.log(type.indexOf(disallowed_types[i]));
-      			}
-
-			var match = /framerate=(\d+)/.exec(type);
-        		if (match && match[1] > 30) return '';
-
-      			// Otherwise, ask the browser
-      			return origChecker(type);
-    		};
-	}
-
-  	// Override video element canPlayType() function
-  	var videoElem = document.createElement('video');
- 	var origCanPlayType = videoElem.canPlayType.bind(videoElem);
-  	videoElem.__proto__.canPlayType = makeModifiedTypeChecker(origCanPlayType);
-
-  	// Override media source extension isTypeSupported() function
-  	var mse = window.MediaSource;
-  	// Check for MSE support before use
-  	if (mse === undefined) return;
-  	var origIsTypeSupported = mse.isTypeSupported.bind(mse);
-  	mse.isTypeSupported = makeModifiedTypeChecker(origIsTypeSupported);
-
 //}
 }
 	
@@ -214,7 +182,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	player = new YT.Player('player', {
     		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
-		"height": window.innerWidth, //set size to full window or bounds of PlayX screen
+		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
     		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
    		playerVars: {
 			autoplay: 1,
@@ -235,7 +203,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
 		this.player.style.width = window.innerWidth;
-		this.player.style.height = window.innerWidth;
+		this.player.style.height = window.innerHeight;
 		this.player.style.marginLeft = "0";
 		this.player.style.marginTop = "0";
 	}
