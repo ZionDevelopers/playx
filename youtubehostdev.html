@@ -207,6 +207,37 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		this.player.style.marginLeft = "0";
 		this.player.style.marginTop = "0";
 	}
+	
+	function makeModifiedTypeChecker(origChecker) {
+    		// Check if a video type is allowed
+    		return function (type) {
+      			if (type === undefined) return '';
+      			var disallowed_types = ['webm', 'vp8', 'vp9'];
+      			// If video type is in disallowed_types, say we don't support them
+      			for (var i = 0; i < disallowed_types.length; i++) {
+        			if (type.indexOf(disallowed_types[i]) !== -1) return '';
+      			}
+
+			var match = /framerate=(\d+)/.exec(type);
+        		if (match && match[1] > 30) return '';
+
+      			// Otherwise, ask the browser
+      			return origChecker(type);
+    		};
+	}
+
+  	// Override video element canPlayType() function
+  	var videoElem = document.createElement('video');
+ 	var origCanPlayType = videoElem.canPlayType.bind(videoElem);
+  	videoElem.__proto__.canPlayType = makeModifiedTypeChecker(origCanPlayType);
+
+  	// Override media source extension isTypeSupported() function
+  	var mse = window.MediaSource;
+  	// Check for MSE support before use
+  	if (mse === undefined) return;
+  	var origIsTypeSupported = mse.isTypeSupported.bind(mse);
+  	mse.isTypeSupported = makeModifiedTypeChecker(origIsTypeSupported);
+
 }
 	
 //------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
