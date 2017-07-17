@@ -44,9 +44,10 @@ function inject () {
   // Override video element canPlayType() function
   var videoElem = document.createElement('video');
   var origCanPlayType = videoElem.canPlayType.bind(videoElem);
-  console.log("origCanPlayType: " + origCanPlayType);
   videoElem.__proto__.canPlayType = makeModifiedTypeChecker(origCanPlayType);
 
+  console.log(videoElem.__proto__.canPlayType.toString());
+  
   // Override media source extension isTypeSupported() function
   var mse = window.MediaSource;
   // Check for MSE support before use
