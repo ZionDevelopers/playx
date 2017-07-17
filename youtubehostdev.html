@@ -17,37 +17,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
 <script src="/playx/js/flash_detect_min.js"></script>
+<script src="/playx/js/content_script.js"></script>
 	
-<script>
-	function makeModifiedTypeChecker(origChecker) {
-    // Check if a video type is allowed
-    return function (type) {
-      if (type === undefined) return '';
-      var disallowed_types = ['webm', 'vp8', 'vp9', 'mp4', 'video/mp4', 'avc1'];
-      // If video type is in disallowed_types, say we don't support them
-      for (var i = 0; i < disallowed_types.length; i++) {
-        if (type.indexOf(disallowed_types[i]) !== -1) return '';
-      }
-
-      // Otherwise, ask the browser
-      return origChecker(type);
-    };
-  }
-
-  // Override video element canPlayType() function
-  var videoElem = document.createElement('video');
-  var origCanPlayType = videoElem.canPlayType.bind(videoElem);
-  console.log("origCanPlayType: " + origCanPlayType);
-  videoElem.__proto__.canPlayType = makeModifiedTypeChecker(origCanPlayType);
-
-  // Override media source extension isTypeSupported() function
-  var mse = window.MediaSource;
-  // Check for MSE support before use
-  if (mse === undefined) return;
-  var origIsTypeSupported = mse.isTypeSupported.bind(mse);
-  mse.isTypeSupported = makeModifiedTypeChecker(origIsTypeSupported);
-</script>
-
 <script>
 	
 	//------------------------------------------------- GET FROM URL FUNCS -------------------------------------------------//
