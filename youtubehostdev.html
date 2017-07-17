@@ -139,8 +139,10 @@ function onYouTubeIframeAPIReady() {
 //	YouTubeFlashPlayer(videoId, startoutput);
 //	playerType = "Flash";
 //} else {
+	setTimeout(function() {
 	YouTubeIFramePlayer(videoId, startoutput);
 	playerType = "HTML5";
+	}, 1000);
 //}
 }
 	
