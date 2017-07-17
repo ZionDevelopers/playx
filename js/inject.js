@@ -23,6 +23,7 @@
  */
 
 function inject () {
+  console.log("MEDIA SRC SCRIPT LOADED");
 
   // return a custom MIME type checker that can defer to the original function
   function makeModifiedTypeChecker(origChecker) {
