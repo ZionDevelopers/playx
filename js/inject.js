@@ -28,18 +28,19 @@ function inject () {
   // return a custom MIME type checker that can defer to the original function
   function makeModifiedTypeChecker(origChecker) {
     // Check if a video type is allowed
+     console.log("before func, orig checker type check - Type: " + origChecker(type).toString());
     return function (type) {
-      console.log("Type: " + type.toString());
+      console.log("(after func) Type: " + type.toString());
       if (type === undefined) return '';
       var disallowed_types = ['webm', 'vp8', 'vp9', 'mp4', 'video/mp4', 'avc1'];
       // If video type is in disallowed_types, say we don't support them
       for (var i = 0; i < disallowed_types.length; i++) {
-        console.log(disallowed_types[i].toString());
+        //console.log(disallowed_types[i].toString());
         if (type.indexOf(disallowed_types[i]) !== -1) return '';
       }
 
       // Otherwise, ask the browser
-      console.log("origChecker: " + origChecker(type).toString());
+      //console.log("origChecker: " + origChecker(type).toString());
       return origChecker(type);
     };
   }
@@ -49,7 +50,7 @@ function inject () {
   var origCanPlayType = videoElem.canPlayType.bind(videoElem);
   videoElem.__proto__.canPlayType = makeModifiedTypeChecker(origCanPlayType);
 
-  console.log(videoElem.__proto__.canPlayType.toString());
+  //console.log(videoElem.__proto__.canPlayType.toString());
   
   // Override media source extension isTypeSupported() function
   var mse = window.MediaSource;
