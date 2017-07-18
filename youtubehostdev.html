@@ -170,17 +170,17 @@ var startoutput = 0;
 
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
-function onYouTubeIframeAPIReady() {
-if (FlashDetect.installed) {
-	YouTubeFlashPlayer(videoId, startoutput);
-	playerType = "Flash";
-} else {
-	setTimeout(function() {
+//function onYouTubeIframeAPIReady() {
+//if (FlashDetect.installed) {
+//	YouTubeFlashPlayer(videoId, startoutput);
+//	playerType = "Flash";
+//} else {
+//	setTimeout(function() {
 	YouTubeIFramePlayer(videoId, startoutput);
-	playerType = "HTML5";
-	}, 1000);
-}
-}
+	//playerType = "HTML5";
+//	}, 1000);
+//}
+//}
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
 var YouTubeFlashPlayer = function(videoId, startoutput){
@@ -195,16 +195,12 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	var srcattributes = {
 		id: "player",
 	};
-			//https://youtube.googleapis.com/yva_video
-	
-	//var srcurl = 'https://s.ytimg.com/yts/swfbin/player-vflhLf2J8/watch_as3.swf?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
-	//srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
-	//srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
-	//Set YouTube Flash Player Source URL (yva_video 
-	var srcurl = 'https://s.ytimg.com/yts/swfbin/player-vflhLf2J8/watch_as3.swf?enablejsapi=1&autoplay=1';
-	srcurl += '&modestbranding=1&showinfo=0&controls=0&iv_load_policy=3&vq=hd720';
-	srcurl += '&docid=' + videoId + '&start=' + startoutput;
+
+	var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
+	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
+	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	//srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
+	//Set YouTube Flash Player Source URL (yva_video 
 	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 			
 	//Set Player Params (called by our onReady detection callback defined above)
