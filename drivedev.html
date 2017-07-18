@@ -76,6 +76,12 @@
 		}
 		
 	}
+	    
+	function onYouTubePlayerReady( playerId ) {
+		var player = document.getElementById('player');
+		console.log("onYouTubePlayerReady() Global Called");
+		onReady();
+	}
     </script>
 <body>
   
