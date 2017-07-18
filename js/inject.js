@@ -37,7 +37,7 @@ function inject () {
       }
 
       // Otherwise, ask the browser
-      console.log("origChecker: " + origChecker(type)toString());
+      console.log("origChecker: " + origChecker(type).toString());
       return origChecker(type);
     };
   }
