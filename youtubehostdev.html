@@ -156,6 +156,11 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
 	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
 	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
+	
+	if (videoId.length > 11){
+		srcurl += '&amp;partnerid=30&amp;ps=docs';
+	}
+	
 	//srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
 	//Set YouTube Flash Player Source URL (yva_video 
 	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
