@@ -203,7 +203,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("HTML5 Player onReady() Called");
 	}
 	
-	$('#player').load(function() {
+	$('#player').on('load', function(){
 	alert("jQuery Youtube Load Function Called");
 	console.log($('#player').contents());
 	});
