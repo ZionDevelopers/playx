@@ -28,9 +28,9 @@ function inject () {
   // return a custom MIME type checker that can defer to the original function
   function makeModifiedTypeChecker(origChecker) {
     // Check if a video type is allowed
-     console.log("before func, orig checker type check - Type: " + origChecker().toString());
+     //console.log("before func, orig checker type check - Type: " + origChecker().toString());
     return function (type) {
-      console.log("(after func) Type: " + type.toString());
+      //console.log("(after func) Type: " + type.toString());
       if (type === undefined) return '';
       var disallowed_types = ['webm', 'vp8', 'vp9', 'mp4', 'video/mp4', 'avc1'];
       // If video type is in disallowed_types, say we don't support them
