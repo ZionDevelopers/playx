@@ -171,9 +171,6 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		console.log("YT Flash Player onReady() Called");
 	}
 	
-	$('#player').load(function() {
-	console.log($('#player').contents());
-	});
 }
 
 //YouTube IFrame Player (Fallback until CEF)
@@ -206,6 +203,10 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("HTML5 Player onReady() Called");
 	}
 	
+	$('#player').load(function() {
+	alert("jQuery Youtube Load Function Called");
+	console.log($('#player').contents());
+	});
 }
 	
 //------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
