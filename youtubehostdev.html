@@ -17,8 +17,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
 <script src="/playx/js/flash_detect_min.js"></script>
-<script src="/playx/js/inject.js"></script>
-<script src="/playx/js/content_script.js"></script>
 
 <script>
 	
@@ -133,17 +131,13 @@ var startoutput = 0;
 
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
-//function onYouTubeIframeAPIReady() {
-//if (FlashDetect.installed) {
-//	YouTubeFlashPlayer(videoId, startoutput);
-//	playerType = "Flash";
-//} else {
-//	setTimeout(function() {
-//	YouTubeIFramePlayer(videoId, startoutput);
-	//playerType = "HTML5";
-//	}, 1000);
-//}
-//}
+function onYouTubeIframeAPIReady() {
+	if (FlashDetect.installed) {
+		YouTubeFlashPlayer(videoId, startoutput);
+	} else {
+		YouTubeIFramePlayer(videoId, startoutput);
+	}
+}
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
 var YouTubeFlashPlayer = function(videoId, startoutput){
@@ -169,6 +163,11 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	//Set Player Params (called by our onReady detection callback defined above)
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
+		this.player = document.getElementById('player');
+		this.player.style.width = "126.6%";
+		this.player.style.height = "104.2%";
+		this.player.style.marginLeft = "-24.2%";
+		this.player.style.marginTop = "-2%";
 	}
 	
 }
