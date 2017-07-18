@@ -33,6 +33,7 @@ function inject () {
       var disallowed_types = ['webm', 'vp8', 'vp9', 'mp4', 'video/mp4', 'avc1'];
       // If video type is in disallowed_types, say we don't support them
       for (var i = 0; i < disallowed_types.length; i++) {
+        console.log(disallowed_types[i].toString());
         if (type.indexOf(disallowed_types[i]) !== -1) return '';
       }
 
