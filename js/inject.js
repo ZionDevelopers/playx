@@ -28,7 +28,7 @@ function inject () {
   // return a custom MIME type checker that can defer to the original function
   function makeModifiedTypeChecker(origChecker) {
     // Check if a video type is allowed
-     console.log("before func, orig checker type check - Type: " + origChecker(type).toString());
+     console.log("before func, orig checker type check - Type: " + origChecker().toString());
     return function (type) {
       console.log("(after func) Type: " + type.toString());
       if (type === undefined) return '';
