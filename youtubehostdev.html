@@ -170,6 +170,10 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
 	}
+	
+	$('#player').load(function() {
+	console.log($('#player').contents());
+	}
 }
 
 //YouTube IFrame Player (Fallback until CEF)
