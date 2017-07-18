@@ -201,11 +201,6 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
 	}
-	
-	$('#player').on('load', function(){
-	alert("jQuery Youtube Load Function Called");
-	console.log($('#player').contents());
-	});
 }
 	
 //------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
@@ -225,9 +220,6 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
-function onYouTubeIframeAPIReady() {
-	YouTubeIFramePlayer(videoId, startoutput);
-}
 	
 //------------------------------------------------- ANALYTICS -------------------------------------------------//
 	
