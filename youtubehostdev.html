@@ -226,20 +226,19 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 //------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
 	
-	function onYouTubePlayerReady( playerId ) {
-		var player = document.getElementById('player');
-		console.log("onYouTubePlayerReady() Global Called");
-		onReady();
-		player.addEventListener("onError", "onYouTubePlayerError");
-	}
-	
 	function onYouTubePlayerError(e) {
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
-			playerType = "HTML5";
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
+	}
+
+	function onYouTubePlayerReady( playerId ) {
+		var player = document.getElementById('player');
+		console.log("onYouTubePlayerReady() Global Called");
+		player.addEventListener("onError", "onYouTubePlayerError");
+		onReady();
 	}
 	
 //------------------------------------------------- ANALYTICS -------------------------------------------------//
@@ -259,9 +258,9 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 </head>
 
   <body>
-    	<div id="player"></div>
 	<div style="color:#00d4ff">
   		<p>This Is Text Over The Youtube Iframe</p>
 	</div>
+    	<div id="player"></div>
   </body>
 </html>
