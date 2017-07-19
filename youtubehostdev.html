@@ -198,8 +198,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	var player;
 	
 	player = new YT.Player('player', {
-    		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
-		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+    		"width": '100%', //set size to full window or bounds of PlayX screen
+		"height": '100%', //set size to full window or bounds of PlayX screen
     		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
    		playerVars: {
 			wmode: "opaque",
@@ -220,8 +220,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
-		this.player.style.marginLeft = "0";
-		this.player.style.marginTop = "0";
+		this.player.style.marginLeft = "0%";
+		this.player.style.marginTop = "0%";
 	}
 }
 	
