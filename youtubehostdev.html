@@ -72,35 +72,33 @@ function youtubeTimeConvert(duration){
 // Start Time Assignment (Universal)
 
 //Init Working Variables
-var start;
-var t;
+var start = urlParam('start') || "";
+var t = urlParam('t') || "";
+
 var startoutput;
 	
 if (start === ""){ //if start is empty, look at t
 	if (t != "") {
 		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
 			startoutput = t;
-			console.log("XTIME: Time t= is pure");
+			console.log("URL_TIME: Time t= is pure");
 		} else { //if characters found, decode from youtube time format
 			startoutput = youtubeTimeConvert(t);
-			console.log("XTIME: Time t= is in #h#m#s format");
+			console.log("URL_TIME: Time t= is in #h#m#s format");
 		}
 	} else { //if start and t are empty, start at 0
 		startoutput = 0;
+		console.log("URL_TIME: Time Not Specified In URL, Starting At 0
 	}
 } else {
 	if (start){
 		if (/^\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
 			startoutput = start
-			console.log("XTIME: Time start= is pure");
+			console.log("URL_TIME: Time start= is pure");
 		} else { //else, start is in youtube time format, convert to seconds
 			startoutput = youtubeTimeConvert(start);
-			console.log("XTIME: Time start= is in #h#m#s format");
+			console.log("URL_TIME: Time start= is in #h#m#s format");
 		}
-	} else {
-		startoutput = 0;
-		console.log("XTIME: No Time Specified In Url, Starting At 0");
-	}
 }
 	
 	//------------------------------------------------- END START AT CODE -------------------------------------------------//
@@ -110,10 +108,6 @@ if (start === ""){ //if start is empty, look at t
 	
 	//Define Our Vars For Our Players
 	var url = urlParam('url');
-	var start = urlParam('start');
-	var t = urlParam('t');
-	var internalstart = start;
-	
 	var videoId = get('v') || getByURL('v', urlParam('url'));
 	
 	var playerType;
