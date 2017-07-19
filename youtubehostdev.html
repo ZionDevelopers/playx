@@ -178,7 +178,6 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	//Set Player Params (called by our onReady detection callback defined above)
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
-		this.player = document.getElementById('player');
 		this.player.style.width = "126.6%";
 		this.player.style.height = "104.2%";
 		this.player.style.marginLeft = "-24.2%";
@@ -221,6 +220,10 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
+		this.player.style.width = window.innerWidth;
+		this.player.style.height = window.innerWidth;
+		this.player.style.marginLeft = "0";
+		this.player.style.marginTop = "0";
 	}
 }
 	
