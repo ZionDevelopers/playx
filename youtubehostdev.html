@@ -168,7 +168,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	
 	if (videoId.length > 11){
 		console.log("GoogleDrive Video Detected");
-		srcurl += '&amp;partnerid=30&amp;ps=docs';
+		srcurl += '&amp;partnerid=30&amp;ps=docs'+ '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	}
 	
 	//srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
@@ -183,7 +183,9 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		this.player.style.height = "104.2%";
 		this.player.style.marginLeft = "-24.2%";
 		this.player.style.marginTop = "-2%";
-		this.player.loadVideoById(videoId, startoutput, "hd720");
+		if (videoId <= 11){
+			this.player.loadVideoById(videoId, startoutput, "hd720");
+		}
 	}
 	
 }
@@ -194,11 +196,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
 	
-	if (player){
-		player.destroy();
-		delete player();
-		player = undefined;
-	}
+	var player;
 	
 	player = new YT.Player('player', {
     		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
