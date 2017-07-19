@@ -199,6 +199,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	if (player) { this.player.destroy();
 		delete this.player;
+		player.parentNode.removeChild(player);
 	}
 	
 	player = new YT.Player('player', {
