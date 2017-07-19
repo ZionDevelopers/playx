@@ -130,7 +130,7 @@ if (FlashDetect.installed) {
 	console.log("Flash Is Not Installed");
 }
 	
-if (flashBuild.indexOf("VLC")){
+if (flashBuild.match(/VLC/){
 	console.log("WARNING: VLC FLASH DETECTED WHICH DOES NOT WORK ON GARRYSMOD");
 }
 
@@ -139,7 +139,7 @@ if (flashBuild.indexOf("VLC")){
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
 function onYouTubeIframeAPIReady() {
-	if (FlashDetect.installed && !flashBuild.indexOf("VLC")){
+	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
 	} else {
