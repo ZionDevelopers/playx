@@ -55,7 +55,7 @@ var urlParam = function(name, w){
 
 
 	//------------------------------------------------- START AT CODE -------------------------------------------------//
-/*
+
 //Convert youtube #h#m#s time into seconds
 //&start= or &t= can be either in pure seconds or in any order of hours, minutes, seconds in the format of #h#m#s.
 //Ex: 2h41m12s = 2 hours, 41 minutes, and 12 seconds
@@ -70,27 +70,38 @@ function youtubeTimeConvert(duration){
 	return total;
 }
 // Start Time Assignment (Universal)
-if (start === "" || start === undefined){ //if start is empty, look at t
-	if (t != "" && t === undefined) {
+
+//Init Working Variables
+var start;
+var t;
+var startoutput;
+	
+if (start === ""){ //if start is empty, look at t
+	if (t != "") {
 		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
-			var startoutput = t;
-			console.log("Time t= is pure")
+			startoutput = t;
+			console.log("XTIME: Time t= is pure");
 		} else { //if characters found, decode from youtube time format
-			var startoutput = youtubeTimeConvert(t);
-			console.log("Time t= is in #h#m#s format");
+			startoutput = youtubeTimeConvert(t);
+			console.log("XTIME: Time t= is in #h#m#s format");
 		}
 	} else { //if start and t are empty, start at 0
-		var startoutput = 0
+		startoutput = 0;
 	}
 } else {
-	if ((start) && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
-		var startoutput = start
-	} else if(start != "" && start != undefined) { //else, start is in youtube time format, convert to seconds
-		var startoutput = youtubeTimeConvert(start);
+	if (start){
+		if (/^\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
+			startoutput = start
+			console.log("XTIME: Time start= is pure");
+		} else { //else, start is in youtube time format, convert to seconds
+			startoutput = youtubeTimeConvert(start);
+			console.log("XTIME: Time start= is in #h#m#s format");
+		}
+	} else {
+		startoutput = 0;
+		console.log("XTIME: No Time Specified In Url, Starting At 0");
 	}
 }
-*/
-var startoutput = 0;
 	
 	//------------------------------------------------- END START AT CODE -------------------------------------------------//
 	
