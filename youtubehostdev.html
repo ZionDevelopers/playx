@@ -164,7 +164,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 
 	var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
 	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
-	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
+	//srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	
 	if (videoId.length > 11){
 		console.log("GoogleDrive Video Detected");
@@ -183,6 +183,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		this.player.style.height = "104.2%";
 		this.player.style.marginLeft = "-24.2%";
 		this.player.style.marginTop = "-2%";
+		this.player.loadVideoById(videoId, startoutput, "hd720");
 	}
 	
 }
