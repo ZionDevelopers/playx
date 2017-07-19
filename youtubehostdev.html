@@ -239,8 +239,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
 		console.log("onYouTubePlayerReady() Global Called");
-		player.addEventListener("onError", "onYouTubePlayerError");
 		onReady();
+		player.addEventListener("onError", "onYouTubePlayerError");
 	}
 	
 //------------------------------------------------- ANALYTICS -------------------------------------------------//
