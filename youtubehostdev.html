@@ -197,9 +197,11 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	var player;
 	
-	if (player) { this.player.destroy();
-		delete this.player;
+	if (player || this.player) {
+		console.log("Previous Player Detected, Deleting");
 		player.parentNode.removeChild(player);
+		delete this.player;
+		delete player;
 	}
 	
 	player = new YT.Player('player', {
