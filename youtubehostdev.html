@@ -167,6 +167,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	
 	if (videoId.length > 11){
+		console.log("GoogleDrive Video Detected");
 		srcurl += '&amp;partnerid=30&amp;ps=docs';
 	}
 	
