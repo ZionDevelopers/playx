@@ -81,23 +81,23 @@ if (start === ""){ //if start is empty, look at t
 	if (t != "") {
 		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
 			startoutput = t;
-			console.log("URL_TIME: Time t= is pure");
+			console.log("URL_TIME: Time t= is pure, starting at" + t);
 		} else { //if characters found, decode from youtube time format
 			startoutput = youtubeTimeConvert(t);
-			console.log("URL_TIME: Time t= is in #h#m#s format");
+			console.log("URL_TIME: Time t= is in #h#m#s format, starting at" + t);
 		}
 	} else { //if start and t are empty, start at 0
 		startoutput = 0;
-		console.log("URL_TIME: Time Not Specified In URL, Starting At 0");
+		console.log("URL_TIME: Time Not Specified In URL, starting at 0");
 	}
 } else {
 	if (start){
 		if (/^\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
 			startoutput = start
-			console.log("URL_TIME: Time start= is pure");
+			console.log("URL_TIME: Time start= is pure, starting at" + start);
 		} else { //else, start is in youtube time format, convert to seconds
 			startoutput = youtubeTimeConvert(start);
-			console.log("URL_TIME: Time start= is in #h#m#s format");
+			console.log("URL_TIME: Time start= is in #h#m#s format, starting at" + start);
 		}
 	}
 }
@@ -159,7 +159,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		id: "player",
 	};
 
-	var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
+	var srcurl = 'https://youtube.googleapis.com/yva_video?wmode=opaque&amp;enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
 	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
 	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	
@@ -194,6 +194,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
     		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
    		playerVars: {
+			wmode: "opaque",
 			autoplay: 1,
 			showinfo: 0, //Disable title / creator label
 			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
