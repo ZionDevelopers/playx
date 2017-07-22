@@ -233,6 +233,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		if (e>=101) {
 			console.log("Switching To IFrame API");
 			document.getElementById('player').parentNode.removeChild(document.getElementById('player'));
+			document.body.innerHTML += '<div id="player"></div>';
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
