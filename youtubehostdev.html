@@ -163,13 +163,14 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	};
 	
 	//Backup Format: ?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
-	//srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3
+	//srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3';
 
 	//Native YouTube SWF: https://s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf
 	//Backdoor SWF: https://youtube.googleapis.com/yva_video
 	
-	var srcurl = 'https://s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf?enablejsapi=1&amp;docid=' + videoId;
-	//srcurl += '&amp;;
+	var srcurl = 'https://s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf?enablejsapi=1&autoplay=1&fs=1&hl=en';
+	srcurl += '&modestbranding=1&autohide=1&showinfo=0&controls=0&iv_load_policy=3';
+	srcurl += '&docid=' + videoId + '&start=' + startoutput;
 	
 	if (videoId.length > 11){
 		console.log("GoogleDrive Video Detected");
