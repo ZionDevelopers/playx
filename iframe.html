@@ -9,7 +9,7 @@
 
     var player;
     function onYouTubeIframeAPIReady() {
-      player = new YT.Player('embedded_player', {
+      player = new YT.Player(document.getElementById("embedded_player"), {
         events: {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
