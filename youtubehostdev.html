@@ -17,6 +17,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
 <script src="/playx/js/flash_detect_min.js"></script>
+	
+<script src="/yts/jsbin/www-embed-player-vfl8435pg/www-embed-player.js" type="text/javascript" name="www-embed-player/www-embed-player"></script>
+<script src="/yts/jsbin/player-vflrAeTuj/en_US/base.js" name="player/base"></script>
+
 
 <script>
 	
@@ -177,18 +181,17 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		srcurl += '&partnerid=30';
 	}
 	
-	//srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
 	//Set YouTube Flash Player Source URL (yva_video 
 	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 			
 	//Set Player Params (called by our onReady detection callback defined above)
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
-		this.player.style.width = "126.6%";
-		this.player.style.height = "104.2%";
-		this.player.style.marginLeft = "-23.2%";
-		this.player.style.marginTop = "-2%";
-		this.player.setPlaybackQuality("hd720");
+		//this.player.style.width = "126.6%";
+		//this.player.style.height = "104.2%";
+		//this.player.style.marginLeft = "-23.2%";
+		//this.player.style.marginTop = "-2%";
+		//this.player.setPlaybackQuality("hd720");
 		//if (videoId.length <= 11){
 		//	this.player.loadVideoById(videoId, startoutput, "hd720");
 		//}
