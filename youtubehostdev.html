@@ -195,7 +195,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
 	
-	if (player) {
+	if (player || this.player) {
 		console.log("Previous Player Detected, Deleting");
 		player.parentNode.removeChild(player);
 		delete player;
