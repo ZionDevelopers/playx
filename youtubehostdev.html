@@ -197,9 +197,11 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	if (player) {
 		console.log("Previous Player Detected, Deleting");
-	//	player.parentNode.removeChild(player);
+		player.parentNode.removeChild(player);
 		delete player;
 	}
+	
+	var player;
 	
 	player = new YT.Player('player', {
     		"width": '100%', //set size to full window or bounds of PlayX screen
@@ -224,6 +226,11 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
+		this.player = document.getElementById('player');
+		this.player.style.width = "126.6%";
+		this.player.style.height = "104.2%";
+		this.player.style.marginLeft = "-24.2%";
+		this.player.style.marginTop = "-2%";
 	}
 }
 	
