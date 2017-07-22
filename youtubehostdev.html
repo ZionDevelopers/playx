@@ -172,10 +172,10 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	//Native YouTube SWF: https://s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf
 	//Backdoor SWF: https://youtube.googleapis.com/yva_video
 	
-	var srcurl = 'https://s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf?enablejsapi=1&autoplay=1';
+	var srcurl = '//s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf?enablejsapi=1&autoplay=1';
 	srcurl += '&modestbranding=1&autohide=1&showinfo=0&controls=0&iv_load_policy=3&ssl=1&origin=http%3A%2F%2Fziondevelopers.github.io';
 	srcurl += '&docid=' + videoId + '&start=' + startoutput;
-	srcurl += '&framer=http%3A%2F%2Fziondevelopers.github.io%2Fplayx%2Fyoutubehostdev.html%3Fdocid%3D' + videoId + '&loaderUrl=http%3A%2F%2Fziondevelopers.github.io%2Fplayx%2Fyoutubehostdev.html%3Fdocid%3D' + videoId;
+	//srcurl += '&framer=http%3A%2F%2Fziondevelopers.github.io%2Fplayx%2Fyoutubehostdev.html%3Fdocid%3D' + videoId + '&loaderUrl=http%3A%2F%2Fziondevelopers.github.io%2Fplayx%2Fyoutubehostdev.html%3Fdocid%3D' + videoId;
 	
 	
 	if (videoId.length > 11){
