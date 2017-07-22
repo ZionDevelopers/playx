@@ -182,6 +182,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		this.player.style.height = "104.2%";
 		this.player.style.marginLeft = "-23.2%";
 		this.player.style.marginTop = "-2%";
+		this.player.setPlaybackQuality("hd720");
 		if (videoId.length <= 11){
 			this.player.loadVideoById(videoId, startoutput, "hd720");
 		}
