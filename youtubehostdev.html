@@ -13,14 +13,10 @@
 </style>
 
 <title>PlayX Native Youtube Host</title>
-<script src="https://www.youtube.com/iframe_api"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
+<script src="//www.youtube.com/iframe_api"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
 <script src="/playx/js/flash_detect_min.js"></script>
-	
-<script src="https://www.youtube.com/yts/jsbin/www-embed-player-vfl8435pg/www-embed-player.js" type="text/javascript" name="www-embed-player/www-embed-player"></script>
-<script src="https://www.youtube.com/yts/jsbin/player-vflrAeTuj/en_US/base.js" name="player/base"></script>
-
 
 <script>
 	
@@ -173,7 +169,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	//Backdoor SWF: https://youtube.googleapis.com/yva_video
 	
 	var srcurl = '//s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf?enablejsapi=1&autoplay=1';
-	srcurl += '&modestbranding=1&autohide=1&showinfo=0&controls=0&iv_load_policy=3&ssl=1&origin=http%3A%2F%2Fziondevelopers.github.io';
+	srcurl += '&modestbranding=1&autohide=1&showinfo=0&controls=0&iv_load_policy=3&ssl=1&origin=%2F%2Fziondevelopers.github.io';
 	srcurl += '&docid=' + videoId + '&start=' + startoutput;
 	//srcurl += '&framer=http%3A%2F%2Fziondevelopers.github.io%2Fplayx%2Fyoutubehostdev.html%3Fdocid%3D' + videoId + '&loaderUrl=http%3A%2F%2Fziondevelopers.github.io%2Fplayx%2Fyoutubehostdev.html%3Fdocid%3D' + videoId;
 	
