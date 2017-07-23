@@ -139,6 +139,7 @@ if (flashBuild.match(/VLC/)){
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
 function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player');
 	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
