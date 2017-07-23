@@ -150,7 +150,7 @@ function onYouTubeIframeAPIReady() {
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
 var YouTubeFlashPlayer = function(videoId, startoutput){
-	
+	/*
 	var flashUrl = 'https://s.ytimg.com/yts/swfbin/player-vflmo3JlA/watch_as3.swf?enablejsapi=1&autoplay=1';
 	flashUrl += '&modestbranding=1&autohide=1&showinfo=0&controls=0&iv_load_policy=3&el=embedded&origin=https%3A%2F%2Fziondevelopers.github.io&widgetid=1&ssl=1';
 	flashUrl += '&docid=' + videoId + '&start=' + startoutput;
@@ -161,8 +161,8 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	}
 	
 	window.location.replace(flashUrl);
+	*/
 	
-	/*		
 	//Define Player Params and Attributes (SWFObject Embed for yva_video)
 	var srcparams = {
 		allowScriptAccess: "always",
@@ -210,7 +210,6 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		//	this.player.loadVideoById(videoId, startoutput, "hd720");
 		//}
 	}
-	*/
 	
 }
 
