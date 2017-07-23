@@ -209,10 +209,10 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
-		player.style.width = "100%";
-		player.style.height = "100%";
-		player.style.marginLeft = "0%";
-		player.style.marginTop = "0%";
+		//player.style.width = "100%";
+		//player.style.height = "100%";
+		//player.style.marginLeft = "0%";
+		//player.style.marginTop = "0%";
 	}
 }
 	
@@ -229,6 +229,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
+			document.getElementById('player').parentNode.removeChild(document.getElementById('player'));
+			document.body.innerHTML += '<div id="player"></div>';
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
