@@ -141,6 +141,7 @@ if (flashBuild.match(/VLC/)){
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
 function onYouTubeIframeAPIReady() {
+	var player;
 	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
@@ -216,8 +217,6 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
 	
-	var player;
-	
 	console.log("Player: " + player.toString());
 	
 	player = new YT.Player('player', {
@@ -259,7 +258,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
-			//player.destroy();
+			player.destroy();
 			swfobject.removeSWF("player")
 			document.getElementById('player').parentNode.removeChild(document.getElementById('player'));;
 			document.body.innerHTML += '<div id="player"></div>';
