@@ -7,15 +7,7 @@
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player(document.getElementById("embedded_player"), {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }
+    var player = YT.get('id-of-youtube-iframe');
 
   function onPlayerReady() {
     console.log("hey Im ready");
