@@ -214,12 +214,6 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
 	
-	if(player || this.player){
-		player.destroy;
-	}
-	
-	//var player;
-	
 	player = new YT.Player('player', {
     		"width": '100%', //set size to full window or bounds of PlayX screen
 		"height": '100%', //set size to full window or bounds of PlayX screen
@@ -257,6 +251,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
+			player.destroy;
+			delete player;
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
