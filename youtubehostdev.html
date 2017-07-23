@@ -214,6 +214,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
+	if (player) { this.player.destroy();
+	delete this.player;}
 	
 	console.log("Player: " + player.toString());
 	
@@ -256,7 +258,7 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
-			player.destroy();
+			//player.destroy();
 			//swfobject.removeSWF("player");
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
