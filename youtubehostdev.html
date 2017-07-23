@@ -139,7 +139,6 @@ if (flashBuild.match(/VLC/)){
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
 function onYouTubeIframeAPIReady() {
-	player = new YT.Player('player');
 	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
@@ -214,11 +213,6 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
-	if (player) {
-		console.log("Previous Player Detected, Deleting");
-	//	player.parentNode.removeChild(player);
-		delete player;
-	}
 	
 	console.log("Player: " + player.toString());
 	
@@ -262,7 +256,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		if (e>=101) {
 			console.log("Switching To IFrame API");
 			//player.destroy();
-			//swfobject.removeSWF("player");
+			swfobject.removeSWF("player");
+			document.body.innerHTML += '<div id="player"></div>';
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
