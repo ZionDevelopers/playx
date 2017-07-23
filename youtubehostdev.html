@@ -1,3 +1,4 @@
+
 <html>
 <head>
 
@@ -11,17 +12,15 @@
   overflow: hidden;
   }
 </style>
+
 <title>PlayX Native Youtube Host</title>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
 <script src="/playx/js/flash_detect_min.js"></script>
-</head>
-  <body>
-    	<div id="player"></div>
-	  <script>
 
-	//PlayX Media Script v0.01
+<script>
+	
 	//------------------------------------------------- GET FROM URL FUNCS -------------------------------------------------//
 	
 //Get a var from url format
@@ -35,7 +34,6 @@ function get(variable)
        }
        return(false);
 }
-	
 //Separates variable from identifier, returns value of var
 function getByURL(variable, query)
 {
@@ -46,7 +44,6 @@ function getByURL(variable, query)
        }
        return(false);
 }
-	
 //Look At URL For Params
 var urlParam = function(name, w){
     w = w || window;
@@ -54,12 +51,9 @@ var urlParam = function(name, w){
         val = w.location.search.match(rx);
     return !val ? '':val[1];
 }
-
 	//------------------------------------------------- END GET FROM URL FUNCS -------------------------------------------------//
-
-
 	//------------------------------------------------- START AT CODE -------------------------------------------------//
-
+/*
 //Convert youtube #h#m#s time into seconds
 //&start= or &t= can be either in pure seconds or in any order of hours, minutes, seconds in the format of #h#m#s.
 //Ex: 2h41m12s = 2 hours, 41 minutes, and 12 seconds
@@ -74,37 +68,27 @@ function youtubeTimeConvert(duration){
 	return total;
 }
 // Start Time Assignment (Universal)
-
-//Init Working Variables
-var start = urlParam('start') || "";
-var t = urlParam('t') || "";
-
-var startoutput;
-	
-if (start === ""){ //if start is empty, look at t
-	if (t != "") {
+if (start === "" || start === undefined){ //if start is empty, look at t
+	if (t != "" && t === undefined) {
 		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
-			startoutput = t;
-			console.log("URL_TIME: Time t= is pure, starting at" + t);
+			var startoutput = t;
+			console.log("Time t= is pure")
 		} else { //if characters found, decode from youtube time format
-			startoutput = youtubeTimeConvert(t);
-			console.log("URL_TIME: Time t= is in #h#m#s format, starting at" + t);
+			var startoutput = youtubeTimeConvert(t);
+			console.log("Time t= is in #h#m#s format");
 		}
 	} else { //if start and t are empty, start at 0
-		startoutput = 0;
-		console.log("URL_TIME: Time Not Specified In URL, starting at 0");
+		var startoutput = 0
 	}
 } else {
-	if (start){
-		if (/^\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
-			startoutput = start
-			console.log("URL_TIME: Time start= is pure, starting at" + start);
-		} else { //else, start is in youtube time format, convert to seconds
-			startoutput = youtubeTimeConvert(start);
-			console.log("URL_TIME: Time start= is in #h#m#s format, starting at" + start);
-		}
+	if ((start) && ((/^\d+$/.test(start)) == true)) { //if start is occupied and has only numbers, start is in seconds
+		var startoutput = start
+	} else if(start != "" && start != undefined) { //else, start is in youtube time format, convert to seconds
+		var startoutput = youtubeTimeConvert(start);
 	}
 }
+*/
+var startoutput = 0;
 	
 	//------------------------------------------------- END START AT CODE -------------------------------------------------//
 	
@@ -113,85 +97,63 @@ if (start === ""){ //if start is empty, look at t
 	
 	//Define Our Vars For Our Players
 	var url = urlParam('url');
+	var start = urlParam('start');
+	var t = urlParam('t');
+	var internalstart = start;
+	
 	var videoId = get('v') || getByURL('v', urlParam('url'));
 	
 	var playerType;
-
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
-
 	//------------------------------------------------- FLASH DETECTION -------------------------------------------------//
 	
-//If flash is installed, use flash instead of the standard youtube embed
-//This fixes the random issues with Awesomium and the YT Player
-//This will be removed once CEF is live.
-if (FlashDetect.installed) {
-	var flashBuild = FlashDetect.raw;
-	console.log("Flash Is Installed, Raw Build: " + flashBuild);
-} else {
-	flashBuild = "";
-	console.log("Flash Is Not Installed");
-}
+	//If flash is installed, use flash instead of the standard youtube embed
+	//This fixes the random issues with Awesomium and the YT Player
+	//This will be removed once CEF is live.
+	if (FlashDetect.installed) {
+		var flashVer = FlashDetect.raw;
+		console.log("Flash Is Installed, Checking Build");
+	} else {
+			flashVer = null
+		console.log("Flash Is Not Installed");
+	}
+	console.log("Raw Build: " + flashVer);
+	if (FlashDetect.installed) {
+		console.log("Playing in Flash");
+	}
 	
-if (flashBuild.match(/VLC/)){
-	console.log("WARNING: VLC FLASH DETECTED WHICH DOES NOT WORK ON GARRYSMOD");
-}
-
 	//------------------------------------------------- END FLASH DETECTION -------------------------------------------------//
-
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
-
 function onYouTubeIframeAPIReady() {
-	var player;
-	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
-	    	console.log("Calling Flash Video Function");
+	if (FlashDetect.installed) {
 		YouTubeFlashPlayer(videoId, startoutput);
 	} else {
-		console.log("Calling HTML5 Video Function");
 		YouTubeIFramePlayer(videoId, startoutput);
 	}
 }
 	
-//YouTube Flash Player (yva_video or native swf)(Have to use Flash since Awesomium hates HTML5)
+//YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
 var YouTubeFlashPlayer = function(videoId, startoutput){
-	/*
-	var flashUrl = 'https://s.ytimg.com/yts/swfbin/player-vflmo3JlA/watch_as3.swf?enablejsapi=1&autoplay=1';
-	flashUrl += '&modestbranding=1&autohide=1&showinfo=0&controls=0&iv_load_policy=3&el=embedded&origin=https%3A%2F%2Fziondevelopers.github.io&widgetid=1&ssl=1';
-	flashUrl += '&docid=' + videoId + '&start=' + startoutput;
-	
-	if (videoId.length > 11){
-		console.log("GoogleDrive Video Detected");
-		flashUrl += '&partnerid=30';
-	}
-	
-	window.location.replace(flashUrl);
-	*/
-	
+			
 	//Define Player Params and Attributes (SWFObject Embed for yva_video)
 	var srcparams = {
 		allowScriptAccess: "always",
 		bgcolor: "#000000",
-		wmode: "transparent"
+		wmode: "opaque"
 	};
 			
 	var srcattributes = {
 		id: "player",
 	};
-	
-	//Backup Format: ?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
-	//srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3';
-
-	//Native YouTube SWF: https://s.ytimg.com/yts/swfbin/player-vflJESSS0/watch_as3.swf
-	//Backdoor SWF: https://youtube.googleapis.com/yva_video
-	
 	var srcurl = 'https://youtube.googleapis.com/yva_video?enablejsapi=1&amp;autoplay=1&amp;fs=1&amp;hl=en';
-	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3';
-	srcurl += '&docid=' + videoId + '&start=' + startoutput;
+	srcurl += '&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;iv_load_policy=3&amp;vq=hd720';
+	srcurl += '&amp;docid=' + videoId + '&amp;start=' + startoutput;
 	
 	if (videoId.length > 11){
-		console.log("GoogleDrive Video Detected");
-		srcurl += '&partnerid=30';
+		srcurl += '&amp;partnerid=30&amp;ps=docs';
 	}
 	
+	//srcurl += '&amp;oref=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D' + videoId + '&amp;has_verified=1';
 	//Set YouTube Flash Player Source URL (yva_video 
 	swfobject.embedSWF(srcurl, "player", "100.0%", "100.0%", "9", null, null, srcparams, srcattributes);
 			
@@ -201,32 +163,22 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 		this.player = document.getElementById('player');
 		this.player.style.width = "126.6%";
 		this.player.style.height = "104.2%";
-		this.player.style.marginLeft = "-23.2%";
+		this.player.style.marginLeft = "-24.2%";
 		this.player.style.marginTop = "-2%";
-		this.player.setPlaybackQuality("hd720");
-		//if (videoId.length <= 11){
-		//	this.player.loadVideoById(videoId, startoutput, "hd720");
-		//}
 	}
 	
 }
-
 //YouTube IFrame Player (Fallback until CEF)
 var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	//YouTube Embed Code
 	console.log("Playing in HTML5");
 	
-	console.log("Player: " + player.toString());
-	
 	player = new YT.Player('player', {
-    		"width": '100%', //set size to full window or bounds of PlayX screen
-		"height": '100%', //set size to full window or bounds of PlayX screen
-		videoId: videoId,
+    		"width": window.innerWidth, //set size to full window or bounds of PlayX screen
+		"height": window.innerHeight, //set size to full window or bounds of PlayX screen
+    		videoId: videoId, //get uri from ?url=, either from ?v= or pure uri
    		playerVars: {
-			//docid: videoId,
-			//wmode: "transparent",
-			enablejsapi: 1,
 			autoplay: 1,
 			showinfo: 0, //Disable title / creator label
 			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
@@ -244,33 +196,25 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	this.onReady = function(){
 		console.log("HTML5 Player onReady() Called");
-		this.player = document.getElementById('player');
-		this.player.style.width = "100%";
-		this.player.style.height = "100%";
-		this.player.style.marginLeft = "0%";
-		this.player.style.marginTop = "0%";
 	}
 }
 	
 //------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
 	
-	function onYouTubePlayerError(e) {
-		console.log("Youtube Threw An Error :/");
-		if (e>=101) {
-			console.log("Switching To IFrame API");
-			player.destroy();
-			swfobject.removeSWF("player")
-			document.getElementById('player').parentNode.removeChild(document.getElementById('player'));;
-			document.body.innerHTML += '<div id="player"></div>';
-			YouTubeIFramePlayer(videoId, startoutput);
-		}
-	}
-
 	function onYouTubePlayerReady( playerId ) {
 		var player = document.getElementById('player');
 		console.log("onYouTubePlayerReady() Global Called");
 		onReady();
 		player.addEventListener("onError", "onYouTubePlayerError");
+	}
+	
+	function onYouTubePlayerError(e) {
+		console.log("Youtube Threw An Error :/");
+		if (e>=101) {
+			console.log("Switching To IFrame API");
+			playerType = "HTML5";
+			YouTubeIFramePlayer(videoId, startoutput);
+		}
 	}
 	
 //------------------------------------------------- ANALYTICS -------------------------------------------------//
@@ -287,5 +231,9 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
   ga('ziondevelopers.github.io', 'pageview');
 	
 </script>
+</head>
+
+  <body>
+    <div id="player"></div> 
   </body>
 </html>
