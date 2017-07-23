@@ -186,6 +186,9 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	//Set Player Params (called by our onReady detection callback defined above)
 	this.onReady = function() {
 		console.log("YT Flash Player onReady() Called");
+		this.player = document.getElementById('player');
+		this.player.pauseVideo();
+		this.player.playVideo();
 		//this.player.style.width = "126.6%";
 		//this.player.style.height = "104.2%";
 		//this.player.style.marginLeft = "-23.2%";
