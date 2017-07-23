@@ -257,8 +257,8 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		console.log("Youtube Threw An Error :/");
 		if (e>=101) {
 			console.log("Switching To IFrame API");
-			//player.destroy;
-			//delete player;
+			document.getElementById('player').parentNode.removeChild(document.getElementById('player'));
+			document.body.innerHTML += '<div id="player"></div>';
 			YouTubeIFramePlayer(videoId, startoutput);
 		}
 	}
