@@ -216,10 +216,9 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	
 	if(player || this.player){
 		player.destroy;
-		delete player;
 	}
 	
-	var player;
+	//var player;
 	
 	player = new YT.Player('player', {
     		"width": '100%', //set size to full window or bounds of PlayX screen
