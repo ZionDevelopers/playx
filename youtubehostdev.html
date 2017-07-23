@@ -167,7 +167,7 @@ var YouTubeFlashPlayer = function(videoId, startoutput){
 	var srcparams = {
 		allowScriptAccess: "always",
 		bgcolor: "#000000",
-		wmode: "opaque"
+		wmode: "transparent"
 	};
 			
 	var srcattributes = {
@@ -217,9 +217,9 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	player = new YT.Player('player', {
     		"width": '100%', //set size to full window or bounds of PlayX screen
 		"height": '100%', //set size to full window or bounds of PlayX screen
-    		docid: videoId, //get uri from ?url=, either from ?v= or pure uri
    		playerVars: {
-			wmode: "opaque",
+			docid: videoId,
+			wmode: "transparent",
 			autoplay: 1,
 			showinfo: 0, //Disable title / creator label
 			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
