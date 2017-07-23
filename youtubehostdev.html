@@ -217,9 +217,11 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 	player = new YT.Player('player', {
     		"width": '100%', //set size to full window or bounds of PlayX screen
 		"height": '100%', //set size to full window or bounds of PlayX screen
+		videoId: videoId,
    		playerVars: {
-			docid: videoId,
-			wmode: "transparent",
+			//docid: videoId,
+			//wmode: "transparent",
+			enablejsapi: 1,
 			autoplay: 1,
 			showinfo: 0, //Disable title / creator label
 			cc_load_policy: 1, //Remedies issues with some captions randomly coming up
