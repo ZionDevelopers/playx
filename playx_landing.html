@@ -2,7 +2,34 @@
 <html>
   <head>
     <title>PlayX Landing Page / Idle Page</title>
-    <style type="text/css">
+	<img src="img/playx_background_placeholder.png" alt="">
+	<style>
+	img { background: red; }
+
+	@-webkit-keyframes super-rainbow {
+    	0%   { background: red; } 
+    	20%  { background: orange; }
+    	40%  { background: yellow; }
+    	60%  { background: green; }
+    	80%  { background: blue; }
+    	100% { background: violet; }
+	}
+
+	@-moz-keyframes super-rainbow {
+    	0%   { background: red; } 
+    	20%  { background: orange; }
+    	40%  { background: yellow; }
+    	60%  { background: green; }
+    	80%  { background: blue; }
+    	100% { background: violet; }
+	}
+
+	img {
+     	background: red;  
+     	-webkit-animation: super-rainbow 15s infinite alternate linear; 
+     	-moz-animation: super-rainbow 15s infinite alternate linear; 
+	}
+    
 	  body {
 		margin: 0;
 		padding: 0;
@@ -10,13 +37,6 @@
 		background: #000000;
 		overflow: hidden;
 		color: white;
-	    }
-	    html {
-		background: url('img/playx_background_placeholder.png') no-repeat center center fixed; 
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
 	    }
     </style>
 <script type="text/javascript" src="/playx/js/jquery-3.0.0.min.js"></script> <!-- JQuery -->
