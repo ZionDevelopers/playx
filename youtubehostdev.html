@@ -132,9 +132,11 @@ function onYouTubeIframeAPIReady() {
 	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
+		document.body.innerHTML += '<div style="color:#00ff00"><h3>You have flash, good job</h3></div>';
 	} else {
 		console.log("Calling HTML5 Video Function");
 		YouTubeIFramePlayer(videoId, startoutput);
+		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
 	}
 }
 	
@@ -253,9 +255,6 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 </head>
 
   <body>
-	<div style="color:#0000FF">
-  	<h3>This is a heading</h3>
-  	<p>This is a paragraph.</p>
 	</div>
     <div id="player"></div> 
   </body>
