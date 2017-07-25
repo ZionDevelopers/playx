@@ -76,7 +76,7 @@ var startout;
 	
 if (start === ""){ //if start is empty, look at t
 	if (t != "") {
-		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
+		if (/^\d*\.?\d+$/.test(t)){ //if no characters found, t is in seconds
 			startout = t;
 			console.log("URL_TIME: Time t= is pure, starting at" + t);
 		} else { //if characters found, decode from youtube time format
@@ -89,7 +89,7 @@ if (start === ""){ //if start is empty, look at t
 	}
 } else {
 	if (start){
-		if (/^\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
+		if (/^\d*\.?\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
 			startout = start
 			console.log("URL_TIME: Time start= is pure, starting at" + start);
 		} else { //else, start is in youtube time format, convert to seconds
