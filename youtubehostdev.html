@@ -72,32 +72,34 @@ function youtubeTimeConvert(duration){
 var start = urlParam('start') || "";
 var t = urlParam('t') || "";
 
-var startoutput;
+var startout;
 	
 if (start === ""){ //if start is empty, look at t
 	if (t != "") {
 		if (/^\d+$/.test(t)){ //if no characters found, t is in seconds
-			startoutput = t;
+			startout = t;
 			console.log("URL_TIME: Time t= is pure, starting at" + t);
 		} else { //if characters found, decode from youtube time format
-			startoutput = youtubeTimeConvert(t);
+			startout = youtubeTimeConvert(t);
 			console.log("URL_TIME: Time t= is in #h#m#s format, starting at" + t);
 		}
 	} else { //if start and t are empty, start at 0
-		startoutput = 0;
+		startout = 0;
 		console.log("URL_TIME: Time Not Specified In URL, starting at 0");
 	}
 } else {
 	if (start){
 		if (/^\d+$/.test(start)) { //if start is occupied and has only numbers, start is in seconds
-			startoutput = start
+			startout = start
 			console.log("URL_TIME: Time start= is pure, starting at" + start);
 		} else { //else, start is in youtube time format, convert to seconds
-			startoutput = youtubeTimeConvert(start);
+			startout = youtubeTimeConvert(start);
 			console.log("URL_TIME: Time start= is in #h#m#s format, starting at" + start);
 		}
 	}
 }
+	
+	var startoutput = Math.round(startout);
 	
 	//------------------------------------------------- END START AT CODE -------------------------------------------------//
 	
