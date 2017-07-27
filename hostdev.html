@@ -1,24 +1,26 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>PlayX Host for JWPlayer</title>
-    <style type="text/css">
-	  body {
-	    margin: 0;
-	    padding: 0;
-	    border: 0;
-	    background: #000000;
-        overflow: hidden;
-	  }
-    </style>
+	<head>
+
+	<!--Setup layout and black background to avoid floating video on white-->
+	<style type="text/css">
+		body {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: #000000;
+		overflow: hidden;
+		}
+	</style>
+
+	<title>PlayX Host</title>
+		
 	<script type="text/javascript" src="https://www.youtube.com/iframe_api?version=3"></script><!--YouTube IFrame API-->
 	<script type="text/javascript" src="/playx/js/jquery-3.0.0.min.js"></script> <!-- JQuery -->
 	<script type="text/javascript" src="/playx/jwplayer/jwplayer.js"></script> <!-- JWPlayer JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script><!--SWF Object-->
 	<script src="/playx/js/flash_detect_min.js"></script><!--Flash Detection-->
-	<!--<script src="/playx/js/playx.js"></script>-->
 	  
-	  <script>
+	<script>
 		  //------------------------------------------------- GET FROM URL FUNCS -------------------------------------------------//
 	
 //Get a var from url format
@@ -289,9 +291,10 @@ var JWPlayer = function(videoId, startoutput){
   ga('create', 'UA-43230779-1', 'ziondevelopers.github.io'); //Dathus Tracker
   ga('send', 'pageview');
   ga('ziondevelopers.github.io', 'pageview');
-	  </script>
+</script>
 
-  </head>
+</head>
+
   <body>
     <div id="player"></div> 
   </body>
