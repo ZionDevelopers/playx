@@ -21,7 +21,21 @@
 	<script src="/playx/js/flash_detect_min.js"></script><!--Flash Detection-->
 	  
 	<script>
-		  //------------------------------------------------- GET FROM URL FUNCS -------------------------------------------------//
+/*******************************
+*  _____  _            __   __ *
+* |  __ \| |           \ \ / / *
+* | |__) | | __ _ _   _ \ V /  *
+* |  ___/| |/ _` | | | | > <   *
+* | |    | | (_| | |_| |/ . \  *
+* |_|    |_|\__,_|\__, /_/ \_\ *
+*                  __/ |       *
+*                 |___/        *
+* --- JAVASCRIPT API V0.3 ---  *
+*******************************/
+
+var Ver = "PLAYX JSAPI BETA 0.3";
+
+//------------------------------------------------- GET FROM URL FUNCS -------------------------------------------------//
 	
 //Get a var from url format
 function get(variable)
@@ -298,6 +312,8 @@ var JWPlayer = function(videoId, startoutput){
   ga('create', 'UA-43230779-1', 'ziondevelopers.github.io'); //Dathus Tracker
   ga('send', 'pageview');
   ga('ziondevelopers.github.io', 'pageview');
+		
+console.log("PlayX JSAPI Version: " + Ver + " Loaded");
 </script>
 
 </head>
