@@ -105,18 +105,20 @@ if (start === ""){ //if start is empty, look at t
 	//-------------------------------------------- VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 	
 	//Define Our Vars For Our Players
-	var url = urlParam('url') || null;
+	var url = urlParam('url') || undefined;
 		
 	if(url){
 		var urlVOut = getByURL('v', urlParam('url'));
 	}
 		
-	var videoId = get('v') || urlVOut || null;
+	var videoId = get('v') || urlVOut || undefined;
 	var jw = get('jw') || false;
 
 	//Backward Compatability With Legacy PlayX
-	if (url.indexOf("youtube.com") === -1){
-		jw = true;
+	if(url){
+		if (url.indexOf("youtube.com") === -1){
+			jw = true;
+		}
 	}
 	
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
