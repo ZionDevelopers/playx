@@ -106,7 +106,7 @@ if (start === ""){ //if start is empty, look at t
 	
 	//Define Our Vars For Our Players
 	var url = urlParam('url') || null;
-	var videoId = get('v') || getByURL('v', urlParam('url') || null);
+	var videoId = get('v') || if(url){getByURL('v', urlParam('url')} || null);
 	var jw = get('jw') || false;
 
 	//Backward Compatability With Legacy PlayX
