@@ -84,7 +84,7 @@ if (start === ""){ //if start is empty, look at t
 	//Define Our Vars For Our Players
 	var url = urlParam('url');
 	var videoId = get('v') || getByURL('v', urlParam('url'));
-	var jw = get('jw') || "false";
+	var jw = get('jw') || false;
 	
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 	//------------------------------------------------- FLASH DETECTION -------------------------------------------------//
