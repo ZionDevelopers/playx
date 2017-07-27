@@ -82,8 +82,8 @@ if (start === ""){ //if start is empty, look at t
 	//-------------------------------------------- VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 	
 	//Define Our Vars For Our Players
-	var url = urlParam('url');
-	var videoId = get('v') || getByURL('v', urlParam('url'));
+	var url = urlParam('url') || null;
+	var videoId = get('v') || getByURL('v', urlParam('url') || null);
 	var jw = get('jw') || false;
 	
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
@@ -108,6 +108,7 @@ if (start === ""){ //if start is empty, look at t
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
 
 function onYouTubeIframeAPIReady() {
+if(url || videoId){
 	if (FlashDetect.installed && !flashBuild.match(/VLC/) && !jw){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
@@ -118,8 +119,13 @@ function onYouTubeIframeAPIReady() {
 		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
 	} else if(jw){
 		console.log("Calling JWPlayer");
-		JWPlayer(videoId, startoutput);
+		if(url){
+			JWPlayer(url, startoutput);
+		} else {
+			JWPlayer(videoId, startoutput);
+		}
 	}
+}
 }
 	
 //YouTube Flash Player (yva_video)(Have to use Flash since Awesomium hates HTML5)
