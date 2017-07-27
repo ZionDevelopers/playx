@@ -84,6 +84,7 @@ if (start === ""){ //if start is empty, look at t
 	//Define Our Vars For Our Players
 	var url = urlParam('url');
 	var videoId = get('v') || getByURL('v', urlParam('url'));
+	var jw = get('jw') || "false";
 	
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 	//------------------------------------------------- FLASH DETECTION -------------------------------------------------//
@@ -105,15 +106,18 @@ if (start === ""){ //if start is empty, look at t
 	
 	//------------------------------------------------- END FLASH DETECTION -------------------------------------------------//
 	//------------------------------------------------- CHOOSE PLAYER AND PLAY VIDEO -------------------------------------------------//
+
 function onYouTubeIframeAPIReady() {
-	if (FlashDetect.installed && !flashBuild.match(/VLC/)){
+	if (FlashDetect.installed && !flashBuild.match(/VLC/) && !jw){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#00ff00"><h3>You have flash, good job</h3></div>';
-	} else {
+	} else if(!jw){
 		console.log("Calling HTML5 Video Function");
 		YouTubeIFramePlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
+	} else if(jw){
+		JWPlayer(videoId, startoutput);
 	}
 }
 	
@@ -194,6 +198,28 @@ var YouTubeIFramePlayer = function(videoId, startoutput){
 		//player.style.marginTop = "0%";
 	}
 }
+
+var JWPlayer = function(videoId, startoutput){
+	/** Initialize player **/
+	jwplayer("player").setup({
+		"aspectratio": "auto",
+		"autostart": true,
+		"controls": false,
+		"displaydescription": false,
+		"displaytitle": true,	    
+		"file": videoId,
+		"preload": "auto",
+		"primary": "html5", // Use HTML5 As Primary To Have Native WebM / OGG HTML5 Support, Flash Fallback For Other Content
+		"repeat": false,
+		"loop": false,
+		"stagevideo": false,
+		"stretching": "uniform",
+		"visualplaylist": false, 
+		"width": window.innerWidth,
+		"height": window.innerHeight,
+		start: startoutput
+	});
+};
 	
 //------------------------------------------------- GLOBAL PLAYER FUNCTIONS -------------------------------------------------//
 	
