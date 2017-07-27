@@ -117,7 +117,7 @@ function onYouTubeIframeAPIReady() {
 		YouTubeIFramePlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
 	} else if(jw){
-		console.log("Calling JWPlayer);
+		console.log("Calling JWPlayer");
 		JWPlayer(videoId, startoutput);
 	}
 }
