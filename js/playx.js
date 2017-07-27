@@ -85,6 +85,11 @@ if (start === ""){ //if start is empty, look at t
 	var url = urlParam('url') || null;
 	var videoId = get('v') || getByURL('v', urlParam('url') || null);
 	var jw = get('jw') || false;
+
+	//Backward Compatability With Legacy PlayX
+	if (url.indexOf("youtube.com") === -1){
+		jw = true;
+	}
 	
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 	//------------------------------------------------- FLASH DETECTION -------------------------------------------------//
