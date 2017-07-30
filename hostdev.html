@@ -39,12 +39,12 @@ var Ver = "PLAYX JSAPI BETA 0.3";
 
 var gmod = {log: undefined};		
 
-var playxLog = function(logInput){
+var play = {log: function(logInput){
 	if(gmod.log != undefined){
 	gmod.log(logInput);
 	}
 	console.log(logInput);
-};
+}};
 
 playxLog("this is a test of playx.log");
 
