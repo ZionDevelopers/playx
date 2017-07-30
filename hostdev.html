@@ -40,7 +40,7 @@ var Ver = "PLAYX JSAPI BETA 0.3";
 var gmod = {log: undefined};		
 
 var playxLog = function(logInput){
-	if(typeof gmod != undefined){
+	if(gmod.log != undefined){
 	gmod.log(logInput);
 	}
 	console.log(logInput);
