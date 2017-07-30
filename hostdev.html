@@ -38,7 +38,7 @@ var Ver = "PLAYX JSAPI BETA 0.3";
 //Custom Logging
 		
 var playxLog = function(logInput){
-	if(gmod){
+	if(gmod != undefined){
 	gmod.log(logInput);
 	}
 	console.log(logInput);
