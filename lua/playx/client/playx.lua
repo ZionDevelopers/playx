@@ -1022,6 +1022,7 @@ local function ConCmdDumpHTML()
         text:StretchToParent(5, 26, 5, 5)
     end
     
+
     frame:InvalidateLayout(true, true)
     PlayX._SourceCodeText = text
     
@@ -1034,15 +1035,28 @@ local function ConCmdNavigatorWindow()
     PlayX.OpenNavigatorWindow()
 end
 
+local function ConCmdPlayGUI()
+    if !IsValid(PlayX.PlayUI) then
+        PlayX.PlayUI = vgui.Create("PlayUI")
+    elseif PlayX.PlayUI:IsHidden() then
+        PlayX.PlayUI:ShowPanel()
+    else
+        PlayX.PlayUI:HidePanel()
+    end
+end
+
+
 concommand.Add("playx_resume", ConCmdResume)
 concommand.Add("playx_hide", ConCmdHide)
 concommand.Add("playx_reset_render_bounds", ConCmdResetRenderBounds)
 concommand.Add("playx_gui_open", ConCmdGUIOpen)
+
 concommand.Add("playx_gui_close", ConCmdGUIClose)
 concommand.Add("playx_navigator_addbookmark", ConCmdGUIBookmarkNavigator)
 concommand.Add("playx_gui_bookmark", ConCmdGUIBookmark)
 concommand.Add("playx_dump_html", ConCmdDumpHTML) -- Debug function
 concommand.Add("playx_navigator_window", ConCmdNavigatorWindow)
+concommand.Add("playx_gui", ConCmdPlayGUI)
 
 --- Detect a crash.
 local function DetectCrash()
@@ -1052,3 +1066,5 @@ local function DetectCrash()
 end
 
 hook.Add("InitPostEntity", "PlayXCrashDetection", DetectCrash)
+
+

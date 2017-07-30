@@ -17,4 +17,3 @@
 -- $Id$
 include("playx/client/playx.lua")
 
-

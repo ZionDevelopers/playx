@@ -692,7 +692,7 @@ local function ControlPanel(panel)
     
 end
 PANEL = {}
-vgui.Register( "dlistview", PANEL ,"DListView")
+vgui.Register("dlistview",PANEL,"DListView") --i accidently remove it in the last commit but does this has a use ?
 --- Draw the control panel.
 local function BookmarksPanel(panel)
     panel:ClearControls()

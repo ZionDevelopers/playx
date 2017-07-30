@@ -16,7 +16,6 @@
 -- 
 -- $Id$
 -- Version 2.8.3 by Nexus [BR] on 16-12-2013 07:00 PM (-02:00 GMT)
-
 local PANEL = {}
 
 function PANEL:Init()
