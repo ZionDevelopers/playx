@@ -36,13 +36,15 @@
 var Ver = "PLAYX JSAPI BETA 0.3";
 		
 //Custom Logging
-		
+
+var gmod = {log: undefined};		
+
 var playxLog = function(logInput){
 	if(typeof gmod != undefined){
 	gmod.log(logInput);
 	}
 	console.log(logInput);
-}
+};
 
 playxLog("this is a test of playx.log");
 
@@ -58,7 +60,7 @@ function get(variable)
                if(pair[0] == variable){return pair[1];}
        }
        return(false);
-}
+};
 //Separates variable from identifier, returns value of var
 function getByURL(variable, query)
 {
@@ -68,14 +70,14 @@ function getByURL(variable, query)
                if(pair[0] == variable){return pair[1];}
        }
        return(false);
-}
+};
 //Look At URL For Params
 var urlParam = function(name, w){
     w = w || window;
     var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
         val = w.location.search.match(rx);
     return !val ? '':val[1];
-}
+};
 	//------------------------------------------------- END GET FROM URL FUNCS -------------------------------------------------//
 	//------------------------------------------------- START AT CODE -------------------------------------------------//
 //Convert youtube #h#m#s time into seconds
@@ -90,7 +92,7 @@ function youtubeTimeConvert(duration){
 	if (minutes) total += parseInt(minutes[1]) * 60;
 	if (seconds) total += parseInt(seconds[1]);
 	return total;
-}
+};
 // Start Time Assignment (Universal)
 //Init Working Variables
 var start = urlParam('start') || "";
@@ -120,7 +122,7 @@ if (start === ""){ //if start is empty, look at t
 			console.log("URL_TIME: Time start= is in #h#m#s format, starting at" + start);
 		}
 	}
-}
+};
 	
 	var startoutput = Math.round(startout);
 	
