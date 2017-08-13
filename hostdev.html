@@ -183,6 +183,7 @@ if(url || videoId){
 	} else if(!jw && (videoId.length <= 11)){
 		console.log("Calling HTML5 Video Function");
 		//YouTubeIFramePlayer(videoId, startoutput);
+		document.body.innerHTML += '<div style="color:#00ff00"><h3>Flash Detect:</h3></div>';
 		document.body.innerHTML += '<div style="color:#ff0000"><h4>You dont have flash, bad idea</h4></div>';
 	} else if(!jw && (videoId.length > 11)){
 		console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
