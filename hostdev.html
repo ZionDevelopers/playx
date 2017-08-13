@@ -184,10 +184,10 @@ if(url || videoId){
 		console.log("Calling HTML5 Video Function");
 		YouTubeIFramePlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#ff0000"><h4>You dont have flash, bad idea</h4></div>';
-	} //else if(!jw && (videoId.length > 11)){
-		//console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
-		//document.body.innerHTML += '<div style="color:#ff0000;font-family:Arial, Helvetica, sans-serif;font-size:40px;font-weight:bold;text-align:center;border:1px solid red;vertical-align: middle;">' + GDErrorText + '</div>';
-	} /*else if(jw){
+	} /*else if(!jw && (videoId.length > 11)){
+		console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
+		document.body.innerHTML += '<div style="color:#ff0000;font-family:Arial, Helvetica, sans-serif;font-size:40px;font-weight:bold;text-align:center;border:1px solid red;vertical-align: middle;">' + GDErrorText + '</div>';
+	} else if(jw){
 		console.log("Calling JWPlayer");
 		if(url){
 			JWPlayer(url, startoutput);
