@@ -177,10 +177,13 @@ if(url || videoId){
 	    	console.log("Calling Flash Video Function");
 		YouTubeFlashPlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#00ff00"><h3>You have flash, good job</h3></div>';
-	} else if(!jw){
+	} else if(!jw && (videoId.length <= 11)){
 		console.log("Calling HTML5 Video Function");
 		YouTubeIFramePlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
+	} else if(!jw && (videoId.length > 11)){
+		console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
+		document.body.innerHTML += '<div style="color:#ff0000"><h3>WARNING: You Do Not Have Flash Installed. GoogleDrive Requires Flash To Work. Please Download And Install NPAPI Flash (Flash For Other Browsers)</h3></div>';
 	} else if(jw){
 		console.log("Calling JWPlayer");
 		if(url){
