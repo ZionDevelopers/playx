@@ -18,7 +18,7 @@
 	<script src="/playx/js/jquery-3.0.0.min.js"></script> <!-- JQuery -->
 	<script src="/playx/jwplayer/jwplayer.js"></script> <!-- JWPlayer JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script><!--SWF Object-->
-	<!--<script src="https://www.youtube.com/iframe_api"></script>YouTube IFrame API-->
+	<script src="https://www.youtube.com/iframe_api"></script><!--YouTube IFrame API-->
 	</head>
 	<body>
 	<script>
@@ -35,14 +35,6 @@
 *******************************/
 
 var Ver = "PLAYX JSAPI BETA 0.3";
-		
-setTimeout(function() {
-    var headID = document.getElementsByTagName("head")[0];         
-    var newScript = document.createElement('script');
-    newScript.type = 'text/javascript';
-    newScript.src = 'https://www.youtube.com/iframe_api';
-    headID.appendChild(newScript);
-}, 500);
 		
 //Custom Logging
 
@@ -183,14 +175,14 @@ if (start === ""){ //if start is empty, look at t
 
 function onYouTubeIframeAPIReady() {
 
-if(url || videoId){/*
+if(url || videoId){
 	if (FlashDetect.installed && !flashBuild.match(/VLC/) && !jw){
 	    	console.log("Calling Flash Video Function");
 		//YouTubeFlashPlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#00ff00"><h3>You have flash, good job</h3></div>';
 	} else if(!jw && (videoId.length <= 11)){
 		console.log("Calling HTML5 Video Function");
-		YouTubeIFramePlayer(videoId, startoutput);
+		//YouTubeIFramePlayer(videoId, startoutput);
 		document.body.innerHTML += '<div style="color:#ff0000"><h4>You dont have flash, bad idea</h4></div>';
 	} else if(!jw && (videoId.length > 11)){
 		console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
@@ -202,7 +194,7 @@ if(url || videoId){/*
 		} else {
 			JWPlayer(videoId, startoutput);
 		}
-	}*/
+	}
 	
 	YouTubeIFramePlayer(videoId, startoutput);
 }
