@@ -149,6 +149,8 @@ if (start === ""){ //if start is empty, look at t
 			jw = true;
 		}
 	}
+		
+	var GDErrorText = "WARNING: You Do Not Have Flash Installed. GoogleDrive Requires Flash To Work. Please Download And Install NPAPI Flash (Flash For Other Browsers)"
 	
 	//-------------------------------------------- END VARIABLE DECLARATION AND PLAYERS --------------------------------------------//
 	//------------------------------------------------- FLASH DETECTION -------------------------------------------------//
@@ -183,7 +185,7 @@ if(url || videoId){
 		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
 	} else if(!jw && (videoId.length > 11)){
 		console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
-		document.body.innerHTML += '<div style="color:#ff0000;font-family:Arial, Helvetica, sans-serif;font-size:40px;font-weight:bold;text-align:center;border:1px solid red;">WARNING: You Do Not Have Flash Installed. GoogleDrive Requires Flash To Work. Please Download And Install NPAPI Flash (Flash For Other Browsers)</div>';
+		document.body.innerHTML += '<div style="color:#ff0000;font-family:Arial, Helvetica, sans-serif;font-size:40px;font-weight:bold;text-align:center;border:1px solid red;vertical-align: middle;">' + GDErrorText + '</div>';
 	} else if(jw){
 		console.log("Calling JWPlayer");
 		if(url){
