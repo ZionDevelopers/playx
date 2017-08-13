@@ -183,7 +183,7 @@ if(url || videoId){
 		document.body.innerHTML += '<div style="color:#ff0000"><h3>You dont have flash, bad idea</h3></div>';
 	} else if(!jw && (videoId.length > 11)){
 		console.log("GoogleDrive Video with IFrame Player Detected: Incompatible");
-		document.body.innerHTML += '<div style="color:#ff0000;font-family:Arial, Helvetica, sans-serif;font-size:40px;font-weight:bold;">WARNING: You Do Not Have Flash Installed. GoogleDrive Requires Flash To Work. Please Download And Install NPAPI Flash (Flash For Other Browsers)</div>';
+		document.body.innerHTML += '<div style="color:#ff0000;font-family:Arial, Helvetica, sans-serif;font-size:40px;font-weight:bold;text-align:center;border:1px solid red;">WARNING: You Do Not Have Flash Installed. GoogleDrive Requires Flash To Work. Please Download And Install NPAPI Flash (Flash For Other Browsers)</div>';
 	} else if(jw){
 		console.log("Calling JWPlayer");
 		if(url){
