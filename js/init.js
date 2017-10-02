@@ -69,7 +69,7 @@ $(document).ready(function () {
 			jwplayer("player").setup({
 			  "aspectratio": "auto",
 			  "autostart": true,
-			  "controls": false,
+			  "controls": true,
 			  "displaydescription": false,
 			  "displaytitle": true,	    
 			  "file": url,
