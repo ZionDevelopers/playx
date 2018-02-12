@@ -74,7 +74,7 @@ $(document).ready(function () {
 			  "displaytitle": true,	    
 			  "file": url,
 			  "preload": "auto",
-			  "primary": "html5", // Use HTML5 As Primary To Have Native YouTube WebM HTML5 Support, Flash Fallback For Other Content
+			  "primary": "flash", // Use HTML5 As Primary To Have Native YouTube WebM HTML5 Support, Flash Fallback For Other Content
 			  "repeat": false,
 			  "loop": false,
 			  "stagevideo": false,
