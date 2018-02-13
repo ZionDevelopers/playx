@@ -37,7 +37,7 @@ jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 var url = unescape(get("url"));
 
 // Youtube API Fallback
-/*
+
 window.onYouTubeIframeAPIReady = function() {
 	window.jwplayer = new YT.Player("player", {
 		"width": window.innerWidth,
@@ -59,12 +59,12 @@ window.onYouTubeIframeAPIReady = function() {
 	jwplayer.pause = jwplayer.pauseVideo
 	jwplayer.play = jwplayer.playVideo
 }
-*/
+
 $(document).ready(function () {	
 	// Check for URL
 	if (url != "false") {
 		// Uncomment For Youtube API Fallack
-		//if (url.indexOf("youtube.com") === -1) {
+		if (url.indexOf("youtube.com") === -1) {
 			/** Initialize player **/
 			jwplayer("player").setup({
 			  "aspectratio": "auto",
@@ -83,6 +83,6 @@ $(document).ready(function () {
 			  "width": window.innerWidth,
 			  "height": window.innerHeight
 			});
-		//}
+		}
 	}
 });
