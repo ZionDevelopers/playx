@@ -86,6 +86,11 @@ function YouTube.GetPlayer(uri, useJW)
 end
 
 function YouTube.QueryMetadata(uri, callback, failCallback)
+	callback({
+                ["URL"] = "https://www.youtube.com/watch?v=" .. uri,
+            })
+			--[[
+
     local vars = playxlib.URLEscapeTable({
         ["part"] = "snippet,statistics,contentDetails",
         ["key"] = apiKey,
@@ -171,6 +176,7 @@ function YouTube.QueryMetadata(uri, callback, failCallback)
             })
         end
     end)
+	--]]
 end
 
 list.Set("PlayXProviders", "YouTube", YouTube)

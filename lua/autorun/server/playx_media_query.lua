@@ -80,38 +80,32 @@ local function FindMatch(str, patterns)
 end
 
 local function SearchYouTube(q, successF, failureF)
-    local vars = URLEncodeTable({
-        ["q"] = q,
-        ["orderby"] = "relevance",
-        ["fields"] = "items(id,snippet(title,thumbnails(default(url))))",
-        ["maxResults"] = "1",
-        -- ["format"] = "5", -- We can now play embedded videos!
-        ["part"] = "snippet",
-        ["key"] = "AIzaSyD74kTqDqj6YQQdKYH9n5-6kG-l_oX_41A"
+	local vars = URLEncodeTable({
+		["search_query"] = q
     })
-    local url = "https://www.googleapis.com/youtube/v3/search?" .. vars
+    local url = "https://www.youtube.com/results?" .. vars --"https://www.googleapis.com/youtube/v3/search?" .. vars
+	http.Fetch(url,
+	-- onSuccess function
+	function( body, length, headers, code )
+		local spos, epos = string.find(body, "/watch?v=", 1, true)
+		if spos then
+			local stpos, etpos = string.find(body, "\"title\":{\"runs\":[{\"text\":\"", 1, true)
+			local stepos, stetpos = string.find(body, "\"}],\"accessibility", etpos+1, true)
+			local title = string.sub(body, etpos+1, stepos-1)
+			successF( string.sub(body, spos+9, spos+19), title)
+		else
+			failureF(string.format("PlayX ERROR: No video found for query '%s'", q))
+		end
+	end,
 
-    http.Fetch(url, function(result, size)
-        if size > 0 then
-            local searchTable = util.JSONToTable(result)
-
-            if(searchTable.items) then
-                if(searchTable.items[1]) then
-                    if(searchTable.items[1].id) then
-                        successF(searchTable.items[1].id.videoId,searchTable.items[1].snippet.title)
-                    else
-                        failureF("An error occurred while querying YouTube.")
-                    end
-                else
-                    failureF("An error occurred while querying YouTube.")
-                end
-            else
-                failureF("An error occurred while querying YouTube.")
-            end
-        else
-            failureF("An error occurred while querying YouTube.")
-        end
-    end)
+	-- onFailure
+	function( message )
+		failureF("An error occurred while querying YouTube.")
+	end,
+	{ 
+	
+	}
+)
 end
 
 local function Play(ply, provider, uri, lowFramerate)
@@ -144,7 +138,6 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
         if m[1] == "yt" or (m[1] == "ytplay" and m[2]) or (m[1] == "ytlisten" and m[2]) then
             local function successF(videoID, title)
                 lastResult = videoID
-
                 if m[1] ~= "yt" then -- Play
                     Play(ply, "YouTube", videoID, m[1] == "ytlisten")
                 end
@@ -156,7 +149,7 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
             end
 
             local function failureF(msg)
-                ply:ChatPrint(string.format("YouTube query: No video found for query '%s'.", q))
+                ply:ChatPrint(msg)
             end
 
             SearchYouTube(m[2], successF, failureF)
