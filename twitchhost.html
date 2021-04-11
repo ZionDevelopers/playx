@@ -56,13 +56,17 @@
 	//Insert Params Into Vars
 	var channel = get('channel');
 	var videoId = get('videoId');
-	if (channel != "") {
+	if (channel != false) {
 		var data = {
+			width: "100%",
+			height: "100%"
 			channel: channel
 		}
-	} else if(videoId != "") {
+	} else if(videoId != false) {
 		var data = {
-		video: videoId
+			width: "100%",
+			height: "100%"
+			video: videoId
 	  }
 	}	
 	
