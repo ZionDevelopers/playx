@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
 		<!--Set Background to Black to Avoid "Floating Video" On White-->
 		<style type="text/css">
 			body {
@@ -21,37 +20,8 @@
 		<link rel="manifest" href="/playx/img/favicon/site.webmanifest">
 		<!-- Favicons: END -->
 		<script src="https://www.youtube.com/iframe_api"></script>
+		<script src="/playx/js/common.js"></script>
 		<script>
-			//Get a var from URL
-			function get(variable){
-				var query = window.location.search.substring(1);
-				var vars = query.split("&");
-				for (var i=0;i<vars.length;i++) {
-					var pair = vars[i].split("=");
-						if(pair[0] == variable){return pair[1];}
-					}
-				return(false);
-			}
-
-			//Get a param from a pure URL Format, so pull a param from a pure ?url= param
-			function getByURL(variable, query){
-				var vars = query.split("?");
-				for (var i=0;i<vars.length;i++) {
-						var pair = vars[i].split("=");
-						if(pair[0] == variable){return pair[1];
-				}
-				}
-				return(false);
-			}
-
-			//Look At URL For Params
-			var urlParam = function(name, w){
-				w = w || window;
-			var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
-			val = w.location.search.match(rx);
-				return !val ? '':val[1];
-			}
-
 			//Insert Params Into Vars
 			var videoId = get('v') || getByURL('v', urlParam('url')) //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
 			var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
@@ -81,19 +51,13 @@
 
 			//Play Video On Ready And Set Resolution (experimental)
 			function onPlayerReady(event) {
-			event.target.playVideo();
-			player.setPlaybackQuality("hd1080");
+				event.target.playVideo();
+				player.setPlaybackQuality("hd1080");
 			}	
 		</script>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-6XKXQZL55B');
-		</script>
+		<script src="/playx/js/tracking.js"></script>
 	</head>
 	<body>
     	<div id="player"></div> 
