@@ -133,7 +133,3 @@ end
 
 list.Set("PlayXProviders", "YouTube", YouTube)
 list.Set("PlayXProvidersList", "YouTube", {"YouTube"})
-
-list.Set("PlayXProviders", "YouTube", YouTube)
-list.Set("PlayXProvidersList", "YouTube", {"YouTube"})
-
