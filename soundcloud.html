@@ -11,33 +11,23 @@
         <!-- Favicons: END -->
         <script src="//connect.soundcloud.com/sdk.js"></script>
         <script type="text/javascript" src="/playx/js/jquery-3.6.3.min.js"></script>
+        <script type="text/javascript" src="/playx/js/common.js"></script>
         <script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 SC.initialize({
-                client_id: "3775c0743f360c022a2fed672e33909d"
+                    client_id: "3775c0743f360c022a2fed672e33909d"
                 });
 
                 var widget = SC.Widget(document.querySelector('iframe'));
-                widget.load(getParameterByName('url'), { auto_play: true, sharing: false, liking: false, download: false });
+                widget.load(get('url'), { auto_play: true, sharing: false, liking: false, download: false });
                 widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-                    if (e.currentPosition < parseInt(getParameterByName('t'))) {
-                        widget.seekTo(parseInt(getParameterByName('t')));
-                        widget.setVolume(parseInt(getParameterByName('vol')));
+                    if (e.currentPosition < parseInt(get('t'))) {
+                        widget.seekTo(parseInt(get('t')));
+                        widget.setVolume(parseInt(get('vol')));
                     }
                 });
             });
-
-            function getParameterByName(name) {
-                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-                var regexS = "[\\?&]" + name + "=([^&#]*)";
-                var regex = new RegExp(regexS);
-                var results = regex.exec(window.location.search);
-                if (results == null)
-                    return "";
-                else
-                    return decodeURIComponent(results[1].replace(/\+/g, " "));
-            }
         </script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
