@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
-<title>PlayX GoogleDrive Host</title>
 <head>
+	<title>PlayX Host for Google Drive</title>
 	<style type="text/css">
-	body {
-  		margin: 0;
-  		padding: 0;
-  		border: 0;
-  		background: #000000;
-  		overflow: hidden;
-  		}
+		body {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			background: #000000;
+			overflow: hidden;
+		}
 	</style>
-</head>
-
     <script>
       	var tag = document.createElement('script');
 
@@ -20,35 +18,35 @@
       	var firstScriptTag = document.getElementsByTagName('script')[0];
       	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	    
-	//Get a var from URL
-	function get(variable)
-	{
-       		var query = window.location.search.substring(1);
-       		var vars = query.split("&");
-       		for (var i=0;i<vars.length;i++) {
-               		var pair = vars[i].split("=");
-               		if(pair[0] == variable){return pair[1];}
-       		}
-       		return(false);
-	}
+		//Get a var from URL
+		function get(variable)
+		{
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+					var pair = vars[i].split("=");
+					if(pair[0] == variable){return pair[1];}
+			}
+			return(false);
+		}
 
-	//Set vars with default values yet with url param functionality for customizability / flexibility
-	var docid = get("docid");
-	var start = Math.round(get('start'));
-	var autoplay = get("autoplay") || 1;
-	var controls = get("controls") || 0;
-	var showinfo = get("showinfo") || 0;
-	var disablekb = get("disablekb") || 1;
-	var rel = get("rel") || 0;
-	var cc_load_policy = get("cc_load_policy") || 0;
-	var iv_load_policy = get("iv_load_policy") || 0;
+		//Set vars with default values yet with url param functionality for customizability / flexibility
+		var docid = get("docid");
+		var start = Math.round(get('start'));
+		var autoplay = get("autoplay") || 1;
+		var controls = get("controls") || 0;
+		var showinfo = get("showinfo") || 0;
+		var disablekb = get("disablekb") || 1;
+		var rel = get("rel") || 0;
+		var cc_load_policy = get("cc_load_policy") || 0;
+		var iv_load_policy = get("iv_load_policy") || 0;
 
-      	var player;
-      	function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          	"width": window.innerWidth,
-		"height": window.innerHeight,
-		playerVars: {
+		var player;
+		function onYouTubeIframeAPIReady() {
+		player = new YT.Player('player', {
+			"width": window.innerWidth,
+			"height": window.innerHeight,
+			playerVars: {
 			docid: docid,
 			showinfo: showinfo,
 			controls: controls,
@@ -60,32 +58,30 @@
 			disablekb: disablekb,
 			modestbranding: 1,
 			partnerid: 30
-		  },
-          events: {
-            'onReady': onPlayerReady,
-          }
-        });
-      }
+			},
+			events: {
+				'onReady': onPlayerReady,
+			}
+			});
+		}
 
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
+		function onPlayerReady(event) {
+		event.target.playVideo();
+		}
 
     </script>
 	
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-	gtag('config', 'G-6XKXQZL55B');
+		gtag('config', 'G-6XKXQZL55B');
 	</script>
 </head>
-<body>
-  
-	<div id="player"></div>
-  
+<body>  
+	<div id="player"></div>  
 </body>
 </html>

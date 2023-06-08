@@ -1,52 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>PlayX SoundCloud Player</title>
-<!-- Credit of HTML: http://gmcinema.net/ingame/soundcloud.html -->
-<script src="//connect.soundcloud.com/sdk.js"></script>
-<script type="text/javascript" src="/playx/js/jquery-3.6.3.min.js"></script>
-<script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        SC.initialize({
-	       client_id: "3775c0743f360c022a2fed672e33909d"
-	    });
+    <head>
+        <title>PlayX Host for SoundCloud</title>
+        <!-- Credit of HTML: http://gmcinema.net/ingame/soundcloud.html -->
+        <!-- Favicons: START -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/playx/img/favicon/site.webmanifest">
+        <!-- Favicons: END -->
+        <script src="//connect.soundcloud.com/sdk.js"></script>
+        <script type="text/javascript" src="/playx/js/jquery-3.6.3.min.js"></script>
+        <script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                SC.initialize({
+                client_id: "3775c0743f360c022a2fed672e33909d"
+                });
 
-        var widget = SC.Widget(document.querySelector('iframe'));
-        widget.load(getParameterByName('url'), { auto_play: true, sharing: false, liking: false, download: false });
-        widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-            if (e.currentPosition < parseInt(getParameterByName('t'))) {
-                widget.seekTo(parseInt(getParameterByName('t')));
-                widget.setVolume(parseInt(getParameterByName('vol')));
+                var widget = SC.Widget(document.querySelector('iframe'));
+                widget.load(getParameterByName('url'), { auto_play: true, sharing: false, liking: false, download: false });
+                widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+                    if (e.currentPosition < parseInt(getParameterByName('t'))) {
+                        widget.seekTo(parseInt(getParameterByName('t')));
+                        widget.setVolume(parseInt(getParameterByName('vol')));
+                    }
+                });
+            });
+
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+                var regexS = "[\\?&]" + name + "=([^&#]*)";
+                var regex = new RegExp(regexS);
+                var results = regex.exec(window.location.search);
+                if (results == null)
+                    return "";
+                else
+                    return decodeURIComponent(results[1].replace(/\+/g, " "));
             }
-        });
-    });
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var regexS = "[\\?&]" + name + "=([^&#]*)";
-        var regex = new RegExp(regexS);
-        var results = regex.exec(window.location.search);
-        if (results == null)
-            return "";
-        else
-            return decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-</script>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-6XKXQZL55B');
-	</script>
-
-</head>
-<body>
-<script type="text/javascript">
-document.write('<iframe id="player" width="100%" height="97%" style="border:0 none" src="https://w.soundcloud.com/player/?url=' + encodeURIComponent(getParameterByName('url')) + '"></iframe>');
-</script>
-</body>
+            gtag('config', 'G-6XKXQZL55B');
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            document.write('<iframe id="player" width="100%" height="97%" style="border:0 none" src="https://w.soundcloud.com/player/?url=' + encodeURIComponent(getParameterByName('url')) + '"></iframe>');
+        </script>
+    </body>
 </html>

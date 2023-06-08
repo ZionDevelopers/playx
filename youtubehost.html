@@ -1,98 +1,100 @@
 <html>
-<head>
+	<head>
 
-<!--Set Background to Black to Avoid "Floating Video" On White-->
-<style type="text/css">
-	body {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: #000000;
-  overflow: hidden;
-  }
-</style>
-
-<title>PlayX Youtube Host</title>
-<script src="https://www.youtube.com/iframe_api"></script>
-
-<script>
-
-	//Get a var from URL
-	function get(variable){
-       		var query = window.location.search.substring(1);
-       		var vars = query.split("&");
-       		for (var i=0;i<vars.length;i++) {
-       			var pair = vars[i].split("=");
-               		if(pair[0] == variable){return pair[1];}
-       			}
-       		return(false);
-	}
-
-	//Get a param from a pure URL Format, so pull a param from a pure ?url= param
-	function getByURL(variable, query){
-       		var vars = query.split("?");
-       		for (var i=0;i<vars.length;i++) {
-               		var pair = vars[i].split("=");
-               		if(pair[0] == variable){return pair[1];
+		<!--Set Background to Black to Avoid "Floating Video" On White-->
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				background: #000000;
+				overflow: hidden;
 			}
-       		}
-       		return(false);
-	}
+		</style>
 
-	//Look At URL For Params
-	var urlParam = function(name, w){
-    		w = w || window;
-   		var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
-		val = w.location.search.match(rx);
-    		return !val ? '':val[1];
-	}
-
-	//Insert Params Into Vars
-	var videoId = get('v') || getByURL('v', urlParam('url')) //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
-	var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
-	
-	//YouTube Embed Code
-	function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
-			"width": window.innerWidth,
-			"height": window.innerHeight,
-			videoId: videoId,
-        		playerVars: {
-				autoplay: 1,
-				showinfo: 0,
-				cc_load_policy: 0,
-				iv_load_policy: 3,
-				disablekb: 1,
-				modestbranding: 1,
-				rel: 0,
-				controls: 0,
-				start: start
-        		},
-			events: {
-				'onReady': onPlayerReady
+		<title>PlayX Host for YouTube</title>
+		<!-- Favicons: START -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/playx/img/favicon/site.webmanifest">
+		<!-- Favicons: END -->
+		<script src="https://www.youtube.com/iframe_api"></script>
+		<script>
+			//Get a var from URL
+			function get(variable){
+				var query = window.location.search.substring(1);
+				var vars = query.split("&");
+				for (var i=0;i<vars.length;i++) {
+					var pair = vars[i].split("=");
+						if(pair[0] == variable){return pair[1];}
+					}
+				return(false);
 			}
-    		});
-	}
-	
-	//Play Video On Ready And Set Resolution (experimental)
-	function onPlayerReady(event) {
-		event.target.playVideo();
-		player.setPlaybackQuality("hd1080");
-	}	
-</script>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
 
-	gtag('config', 'G-6XKXQZL55B');
-	</script>
+			//Get a param from a pure URL Format, so pull a param from a pure ?url= param
+			function getByURL(variable, query){
+				var vars = query.split("?");
+				for (var i=0;i<vars.length;i++) {
+						var pair = vars[i].split("=");
+						if(pair[0] == variable){return pair[1];
+				}
+				}
+				return(false);
+			}
 
-</head>
+			//Look At URL For Params
+			var urlParam = function(name, w){
+				w = w || window;
+			var rx = new RegExp('[\&|\?]'+name+'=([^\&\#]+)'),
+			val = w.location.search.match(rx);
+				return !val ? '':val[1];
+			}
 
-  <body>
-    <div id="player"></div> 
-  </body>
+			//Insert Params Into Vars
+			var videoId = get('v') || getByURL('v', urlParam('url')) //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
+			var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
+
+			//YouTube Embed Code
+			function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+				"width": window.innerWidth,
+				"height": window.innerHeight,
+				videoId: videoId,
+					playerVars: {
+					autoplay: 1,
+					showinfo: 0,
+					cc_load_policy: 0,
+					iv_load_policy: 3,
+					disablekb: 1,
+					modestbranding: 1,
+					rel: 0,
+					controls: 0,
+					start: start
+					},
+				events: {
+					'onReady': onPlayerReady
+				}
+				});
+			}
+
+			//Play Video On Ready And Set Resolution (experimental)
+			function onPlayerReady(event) {
+			event.target.playVideo();
+			player.setPlaybackQuality("hd1080");
+			}	
+		</script>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-6XKXQZL55B');
+		</script>
+	</head>
+	<body>
+    	<div id="player"></div> 
+	</body>
 </html>
