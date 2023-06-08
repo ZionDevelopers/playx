@@ -19,9 +19,9 @@
 		<link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
 		<link rel="manifest" href="/playx/img/favicon/site.webmanifest">
 		<!-- Favicons: END -->
-		<script src="https://www.youtube.com/iframe_api"></script>
-		<script src="/playx/js/common.js"></script>
-		<script>
+		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+		<script type="text/javascript" src="/playx/js/common.js"></script>
+		<script type="text/javascript">
 			//Insert Params Into Vars
 			var videoId = get('v') || getByURL('v', urlParam('url')) //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
 			var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
@@ -56,8 +56,8 @@
 			}	
 		</script>
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-		<script src="/playx/js/tracking.js"></script>
+		<script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+		<script type="text/javascript" src="/playx/js/tracking.js"></script>
 	</head>
 	<body>
     	<div id="player"></div> 

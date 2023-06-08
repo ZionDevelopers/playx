@@ -11,10 +11,11 @@
 				background: #000000;
 				overflow: hidden;
 			}
+
 			div#player {
 				width: 100%;
 				height: 100%;
-			}			
+			}
 		</style>
 
 		<title>PlayX Host for Twitch</title>
@@ -38,7 +39,7 @@
 					height: "100%",
 					channel: channel
 				}
-			} else if(videoId != false) {
+			} else if (videoId != false) {
 				var data = {
 					width: "100%",
 					height: "100%",
@@ -50,8 +51,9 @@
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
 		<script src="/playx/js/tracking.js"></script>
 	</head>
+
 	<body>
-		<div id="player"></div> 
+		<div id="player"></div>
 		<script>
 			var player = new Twitch.Player("player", data);
 		</script>
