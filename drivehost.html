@@ -11,25 +11,14 @@
 			overflow: hidden;
 		}
 	</style>
+	<script src="/playx/js/common.js"></script>
     <script>
       	var tag = document.createElement('script');
 
       	tag.src = "https://www.youtube.com/iframe_api";
       	var firstScriptTag = document.getElementsByTagName('script')[0];
-      	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	    
-		//Get a var from URL
-		function get(variable)
-		{
-			var query = window.location.search.substring(1);
-			var vars = query.split("&");
-			for (var i=0;i<vars.length;i++) {
-				var pair = vars[i].split("=");
-				if(pair[0] == variable){return pair[1];}
-			}
-			return(false);
-		}
-
+      	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);	    
+		
 		//Set vars with default values yet with url param functionality for customizability / flexibility
 		var docid = get("docid");
 		var start = Math.round(get('start'));
@@ -73,13 +62,7 @@
 	
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-6XKXQZL55B');
-	</script>
+	<script src="/playx/js/tracking.js"></script>
 </head>
 <body>  
 	<div id="player"></div>  
