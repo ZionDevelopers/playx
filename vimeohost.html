@@ -17,6 +17,11 @@
         <style type="text/css">
             body {
                 margin: 0;
+                padding: 0;
+            }
+            div#player{
+                width: 100%;
+                height: 100%;
             }
         </style>
     </head>
@@ -24,17 +29,17 @@
     <body>
         <div id="player"></div>	
         <script type="text/javascript" >
-          var options = {
-            url: "https://player.vimeo.com/video/"+get('id'),
-            width: '100%',
-            height: '100%'
-          };
+            var options = {
+                url: "https://player.vimeo.com/video/"+get('id'),
+                width: window.innerWidth,
+                height: window.innerHeight,
+            };
 
-          var videoPlayer = new Vimeo.Player('player', options);
+            var videoPlayer = new Vimeo.Player('player', options);
 
-          videoPlayer.on('play', function() {
-            console.log('Played the video');
-          });
+            videoPlayer.on('play', function() {
+                console.log('Played the video');
+            });
         </script>
     </body>
 </html>
