@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		
-		<title>PlayX Host for Vimeo</title>
-		<!-- Favicons: START -->
-		<link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
-		<link rel="manifest" href="/playx/img/favicon/site.webmanifest">
-		<!-- Favicons: END -->
-                
-                <script type="text/javascript" src="/playx/js/common.js"></script>
-                <script src="https://player.vimeo.com/api/player.js"></script>               
-		<!-- Google tag (gtag.js) -->
-		<script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-		<script type="text/javascript" src="/playx/js/tracking.js"></script>
-	</head>
+    <head>
+        <title>PlayX Host for Vimeo</title>
+        <!-- Favicons: START -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/playx/img/favicon/site.webmanifest">
+        <!-- Favicons: END -->
 
-	<body>
-		<div id="player"></div>	
-                 <script>
-                  var options = {
-                    url: "https://player.vimeo.com/video/"+get('id'),
-                    width: 800
-                  };
+        <script type="text/javascript" src="/playx/js/common.js"></script>
+        <script src="https://player.vimeo.com/api/player.js"></script>               
+        <!-- Google tag (gtag.js) -->
+        <script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+        <script type="text/javascript" src="/playx/js/tracking.js"></script>
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+        </style>
+    </head>
 
-                  var videoPlayer = new Vimeo.Player('player', options);
+    <body>
+        <div id="player"></div>	
+        <script type="text/javascript" >
+          var options = {
+            url: "https://player.vimeo.com/video/"+get('id'),
+            width: '100%',
+            height: '100%'
+          };
 
-                  videoPlayer.on('play', function() {
-                    console.log('Played the video');
-                  });
-                </script>
-	</body>
+          var videoPlayer = new Vimeo.Player('player', options);
+
+          videoPlayer.on('play', function() {
+            console.log('Played the video');
+          });
+        </script>
+    </body>
 </html>
