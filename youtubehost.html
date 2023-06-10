@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<!--Set Background to Black to Avoid "Floating Video" On White-->
-		<style type="text/css">
-			body {
-				margin: 0;
-				padding: 0;
-				border: 0;
-				background: #000000;
-				overflow: hidden;
-			}
-		</style>
+    <head>
+        <!--Set Background to Black to Avoid "Floating Video" On White-->
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                background: #000000;
+                overflow: hidden;
+            }
+        </style>
 
-		<title>PlayX Host for YouTube</title>
-		<!-- Favicons: START -->
-		<link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
-		<link rel="manifest" href="/playx/img/favicon/site.webmanifest">
-		<!-- Favicons: END -->
-		<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-		<script type="text/javascript" src="/playx/js/common.js"></script>
-		<script type="text/javascript">
-			//Insert Params Into Vars
-			var videoId = get('v') || getByURL('v', urlParam('url')) //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
-			var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
+        <title>PlayX Host for YouTube</title>
+        <!-- Favicons: START -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/playx/img/favicon/site.webmanifest">
+        <!-- Favicons: END -->
+        <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+        <script type="text/javascript" src="/playx/js/common.js"></script>
+        <script type="text/javascript">
+            //Insert Params Into Vars
+            var videoId = get('v') || getByURL('v', urlParam('url')) //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
+            var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
 
-			//YouTube Embed Code
-			function onYouTubeIframeAPIReady() {
-			player = new YT.Player('player', {
-				"width": window.innerWidth,
-				"height": window.innerHeight,
-				videoId: videoId,
-					playerVars: {
-					autoplay: 1,
-					showinfo: 0,
-					cc_load_policy: 0,
-					iv_load_policy: 3,
-					disablekb: 1,
-					modestbranding: 1,
-					rel: 0,
-					controls: 0,
-					start: start
-					},
-				events: {
-					'onReady': onPlayerReady
-				}
-				});
-			}
+            //YouTube Embed Code
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    "width": window.innerWidth,
+                    "height": window.innerHeight,
+                    videoId: videoId,
+                    playerVars: {
+                        autoplay: 1,
+                        showinfo: 0,
+                        cc_load_policy: 0,
+                        iv_load_policy: 3,
+                        disablekb: 1,
+                        modestbranding: 1,
+                        rel: 0,
+                        controls: 0,
+                        start: start
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
 
-			//Play Video On Ready And Set Resolution (experimental)
-			function onPlayerReady(event) {
-				event.target.playVideo();
-				player.setPlaybackQuality("hd1080");
-			}	
-		</script>
-		<!-- Google tag (gtag.js) -->
-		<script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-		<script type="text/javascript" src="/playx/js/tracking.js"></script>
-	</head>
-	<body>
-    	<div id="player"></div> 
-	</body>
+            //Play Video On Ready And Set Resolution (experimental)
+            function onPlayerReady(event) {
+                event.target.playVideo();
+                player.setPlaybackQuality("hd1080");
+            }
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+        <script type="text/javascript" src="/playx/js/tracking.js"></script>
+    </head>
+    <body>
+        <div id="player"></div> 
+    </body>
 </html>
