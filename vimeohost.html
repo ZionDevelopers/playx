@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>PlayX Host for Vimeo</title>
+		<!-- Favicons: START -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/playx/img/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/playx/img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/playx/img/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/playx/img/favicon/site.webmanifest">
+		<!-- Favicons: END -->
+
+                <script src="https://player.vimeo.com/api/player.js"></script>
+                <script>
+                  var options = {
+                    url: "https://player.vimeo.com/video/76979871?h=8272103f6e",
+                    width: 800
+                  };
+
+                  var videoPlayer = new Vimeo.Player('player', options);
+
+                  videoPlayer.on('play', function() {
+                    console.log('Played the video');
+                  });
+                </script>
+		<!-- Google tag (gtag.js) -->
+		<script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+		<script type="text/javascript" src="/playx/js/tracking.js"></script>
+	</head>
+
+	<body>
+		<div id="player"></div>		
+	</body>
+</html>
