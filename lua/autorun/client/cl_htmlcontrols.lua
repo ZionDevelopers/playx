@@ -9,7 +9,7 @@
 -- Credit: Based on Cinema Fixed Edition: <https://raw.githubusercontent.com/FarukGamer/cinema/master/workshop/gamemodes/cinema_modded/gamemode/modules/scoreboard/controls/cl_htmlcontrols.lua>
 
 -- $Id$
--- Version 2.9.1 by Dathus [BR] on 2023-06-10 3:25 PM (-03:00 GMT)
+-- Version 2.9.1 by Dathus [BR] on 2023-06-10 3:30 PM (-03:00 GMT)
 
 local PANEL = {}
 
