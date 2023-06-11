@@ -27,7 +27,7 @@
         <script>
             var path = get('path');
             $.ajax({
-                url: path,
+                url: 'https://livestream.com/'+path,
                 crossDomain: true,
                 success: function (html) {
                     var newpath = html.match(/<meta name="twitter:player" content="([a-z0-9:\/.]+)/);
