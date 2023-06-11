@@ -26,8 +26,10 @@
     </head>
 
     <body>
-        <div id="player"></div>	
-        <script>
-            document.write('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+get('path')+'/player?width='+window.innerWidth+'&height='+window.innerHeight+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+window.innerWidth+'" height="'+window.innerHeight+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
+        <div id="player">
+            <script type="text/javascript">
+                document.write('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+get('path')+'/player?width='+window.innerWidth+'&height='+window.innerHeight+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+window.innerWidth+'" height="'+window.innerHeight+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
+            </script>
+        </div>	
     </body>
 </html>
