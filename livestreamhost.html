@@ -32,7 +32,7 @@
                     url: 'https://playx.juliocesar.me/livestream.php?path='+path,
                     crossDomain: true,
                     success: function (newpath) {                        
-                        $('#player').write('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+newpath+'/player?width='+(window.innerWidth-5)+'&height='+(window.innerHeight-4)+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+(window.innerWidth-5)+'" height="'+(window.innerHeight-4)+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
+                        $('#player').html('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+newpath+'/player?width='+(window.innerWidth-5)+'&height='+(window.innerHeight-4)+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+(window.innerWidth-5)+'" height="'+(window.innerHeight-4)+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
                     }
                 });
             });
