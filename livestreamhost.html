@@ -24,13 +24,22 @@
                 height: 100%;
             }
         </style>
+        <script>
+            var path = get('path');
+            $.ajax({
+                url: path,
+                crossDomain: true,
+                success: function (html) {
+                    var newpath = html.match(/<meta name="twitter:player" content="([a-z0-9:\/.]+)/);
+                    path = newpath[1].replace('https://livestream.com/','',).replace('/player', '');  
+                    document.getElementById("player").write('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+path+'/player?width='+(window.innerWidth-5)+'&height='+(window.innerHeight-4)+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+(window.innerWidth-5)+'" height="'+(window.innerHeight-4)+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
+                }
+            });
+        </script>
     </head>
 
     <body>
         <div id="player">
-            <script type="text/javascript">
-                document.write('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+get('path')+'/player?width='+(window.innerWidth-5)+'&height='+(window.innerHeight-4)+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+(window.innerWidth-5)+'" height="'+(window.innerHeight-4)+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
-            </script>
         </div>	
     </body>
 </html>
