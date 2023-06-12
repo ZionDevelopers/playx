@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>PlayX - Nav</title>
-  <meta name="description" content="Garry's Mod PlayX addon web portal.">
-  <meta name="keywords"
-  content="garrysmod,playx,youtube,request,search,vimeo,video,media">
-  <meta name="author" content="Science, leuit">
-  <link rel="stylesheet" href="css/playx-nav.css">
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- 	<!-- Google tag (gtag.js) -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-   <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-   gtag('js', new Date());
- 
-   gtag('config', 'G-6XKXQZL55B');
-   </script>
- 
-</head>
-<body>
-  <div style="position:absolute; top:0px; left:0; right:0; bottom:0;">
-    <section class="container">
-      <img style="height: 120px; width: 120px; margin: 0" src="img/logos/playx.png"></img>
-      <h1 style="margin: 0;">Select your desired service</h1>
-      <div class="services">
-        <span class="media-service logo-youtube" data-href="https://youtube.com/" data-name="youtube" data-service="yt" onclick="selectService(this)"></span>
-        <span class="media-service logo-soundcloud" data-href="https://www.soundcloud.com/" data-name="soundcloud" data-service="sc" onclick="selectService(this)"></span>
-        <span class="media-service logo-vimeo" data-href="https://vimeo.com" data-name="vimeo" data-service="vimeo" onclick="selectService(this)"></span>
-        <span class="media-service logo-reddit"></span>
+    <head>
+        <meta charset="utf-8">
+        <title>PlayX - Nav</title>
+        <meta name="description" content="Garry's Mod PlayX addon web portal.">
+        <meta name="keywords"
+        content="garrysmod,playx,youtube,request,search,vimeo,video,media">
+        <meta name="author" content="Science, leuit">
+        <link rel="stylesheet" href="css/playx-nav.css">
+        <script src="/playx/js/jquery-3.7.0.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+         <script src="/playx/js/tracking.js"></script>
+    </head>
+    <body>
+      <div style="position:absolute; top:0px; left:0; right:0; bottom:0;">
+        <section class="container">
+          <img style="height: 120px; width: 120px; margin: 0" src="img/logos/playx.png"></img>
+          <h1 style="margin: 0;">Select your desired service</h1>
+          <div class="services">
+            <span class="media-service logo-youtube" data-href="https://youtube.com/" data-name="youtube" data-service="yt" onclick="selectService(this)"></span>
+            <span class="media-service logo-soundcloud" data-href="https://www.soundcloud.com/" data-name="soundcloud" data-service="sc" onclick="selectService(this)"></span>
+            <span class="media-service logo-vimeo" data-href="https://vimeo.com" data-name="vimeo" data-service="vimeo" onclick="selectService(this)"></span>
+            <span class="media-service logo-reddit"></span>
+          </div>
+          <div class="url-container">
+            <input id="urlInput" class="url-input" placeholder=".mp4 .mp3 .wav .ogg .jpg .png .webm" autofocus="" onkeydown="onUrlKeyDown(event)">
+            <a class="url-submit" href="javascript:requestUrl();">Submit</a>
+          </div>
+        </section>
       </div>
-      <div class="url-container">
-        <input id="urlInput" class="url-input" placeholder=".mp4 .mp3 .wav .ogg .jpg .png .webm" autofocus="" onkeydown="onUrlKeyDown(event)">
-        <a class="url-submit" href="javascript:requestUrl();">Submit</a>
-      </div>
-    </section>
-  </div>
-  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-  <script src="js/playx-nav-request.js"></script>
-  <!-- <script src="scripts/jquery.js"></script> -->
-
-
-</body>
+      <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+      <script src="js/playx-nav-request.js"></script>
+    </body>
 </html>
