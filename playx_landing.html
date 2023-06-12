@@ -1,64 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PlayX Landing Page / Idle Page</title>
-	<img src="img/playx_background_knockout_placeholder.png" alt="">
-	<style>
-	img { background: red; }
+    <head>
+        <title>PlayX Landing Page / Idle Page</title>	
+        <style>
+            img { background: red; }
 
-	@-webkit-keyframes super-rainbow {
-    	0%   { background: red; } 
-    	20%  { background: orange; }
-    	40%  { background: yellow; }
-    	60%  { background: green; }
-    	80%  { background: blue; }
-    	100% { background: violet; }
-	}
+            @-webkit-keyframes super-rainbow {
+                0%   { background: red; } 
+                20%  { background: orange; }
+                40%  { background: yellow; }
+                60%  { background: green; }
+                80%  { background: blue; }
+                100% { background: violet; }
+            }
 
-	@-moz-keyframes super-rainbow {
-    	0%   { background: red; } 
-    	20%  { background: orange; }
-    	40%  { background: yellow; }
-    	60%  { background: green; }
-    	80%  { background: blue; }
-    	100% { background: violet; }
-	}
+            @-moz-keyframes super-rainbow {
+                0%   { background: red; } 
+                20%  { background: orange; }
+                40%  { background: yellow; }
+                60%  { background: green; }
+                80%  { background: blue; }
+                100% { background: violet; }
+            }
 
-	img {
-	min-height: 100%;
-  	min-width: 1024px;
-  	width: 100%;
-  	height: auto;
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-     	background: red;  
-     	-webkit-animation: super-rainbow 15s infinite alternate linear; 
-     	-moz-animation: super-rainbow 15s infinite alternate linear; 
-	}
-    
-	  body {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		background: #000000;
-		overflow: hidden;
-		color: white;
-	    }
-    </style>
+            img {
+                min-height: 100%;
+                min-width: 1024px;
+                width: 100%;
+                height: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: red;  
+                -webkit-animation: super-rainbow 15s infinite alternate linear; 
+                -moz-animation: super-rainbow 15s infinite alternate linear; 
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                background: #000000;
+                overflow: hidden;
+                color: white;
+            }
+        </style>
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-6XKXQZL55B');
-	</script>
-
-<script src="/playx/js/jquery-3.7.0.min.js"></script> <!-- JQuery -->
+	<script src="/playx/js/tracking.js"></script>
+        <script src="/playx/js/jquery-3.7.0.min.js"></script> <!-- JQuery -->
   </head>
   <body>
-	  This is a development landing page :p
+      <img src="img/playx_background_knockout_placeholder.png" alt="">
+      This is a development landing page :p
   </body>
 </html>

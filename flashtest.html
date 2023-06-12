@@ -1,28 +1,21 @@
 <html>
-<head>
-	<title> Flash Detection Test </title>
-	<script src="/playx/js/flash_detect_min.js"></script>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+    <head>
+        <title> Flash Detection Test </title>
+        <script src="/playx/js/flash_detect_min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+        <script src="/playx/js/tracking.js"></script>
 
-	gtag('config', 'G-6XKXQZL55B');
-	</script>
-
-</head>
-<body>
-<script>
-
-if (FlashDetect.installed) {
-  document.body.style.backgroundColor = "green";
-  document.write(FlashDetect.raw);
-  } else {
-  document.body.style.backgroundColor = "red";
-  document.write(FlashDetect.raw);
-  }
-</script>
-  </body>
+    </head>
+    <body>
+        <script>
+            if (FlashDetect.installed) {
+                document.body.style.backgroundColor = "green";
+                document.write(FlashDetect.raw);
+            } else {
+                document.body.style.backgroundColor = "red";
+                document.write(FlashDetect.raw);
+            }
+        </script>
+    </body>
 </html>
