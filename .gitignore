@@ -29,5 +29,6 @@ Thumbs.db
 .buildpath
 .project
 .settings
-nbproject/project.properties
+/nbproject/private/
 *.xml
+nbproject/project.properties
