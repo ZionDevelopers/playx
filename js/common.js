@@ -30,3 +30,12 @@ var urlParam = function (name, w) {
         val = w.location.search.match(rx);
     return !val ? '' : val[1];
 }
+
+// Send data to PlayX's lua functions 
+function sendPlayerData(data) {
+    var str = "";
+    for (var key in data) {
+        str += encodeURIComponent(key) + "=" + encodeURIComponent(data[key]) + "&"
+    }
+    playx.processPlayerData(str);
+}

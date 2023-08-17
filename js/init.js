@@ -30,16 +30,6 @@ $(document).ready(function () {
             "height": window.innerHeight
         });  
         
-        var knownState = "";
-
-        function sendPlayerData(data) {
-            var str = "";
-            for (var key in data) {
-                str += encodeURIComponent(key) + "=" + encodeURIComponent(data[key]) + "&"
-            }
-            playx.processPlayerData(str);
-        }
-
         function getStats(stats) {
             sendPlayerData({ State: jwplayer().getState(), Position: stats.position, Duration: stats.duration });
         }

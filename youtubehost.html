@@ -50,11 +50,33 @@
                 });
             }
 
+            function updateStats() {
+                var state = player.getPlayerState();
+                var stateText = 'unknow';
+                
+                if (state == -1) {
+                    stateText = 'unstarted';
+                } else if (state == 0) {
+                    stateText = 'ended';
+                } else if(state == 1) {
+                    stateText = 'playing';
+                } else if (state == 2) {
+                    stateText = 'paused';
+                } else if (state == 3) {
+                    stateText = 'buffering';
+                } else if (state == 5) {
+                    stateText = 'video cued';
+                }
+                
+                sendPlayerData({ State: stateText, Position: player.getCurrentTime(), Duration: player.getDuration() });
+            }            
+
             //Play Video On Ready And Set Resolution (experimental)
             function onPlayerReady(event) {
+                setInterval(updateStats, 100);
                 event.target.playVideo();
                 player.setPlaybackQuality("hd1080");
-                player.setVolume(vol);
+                player.setVolume(vol);                
             }
         </script>
         <!-- Google tag (gtag.js) -->
