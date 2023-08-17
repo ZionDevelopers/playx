@@ -770,34 +770,12 @@ function playxlib.GenerateJWPlayer(width, height, start, volume, uri, provider)
     end
 	
     return playxlib.HandlerResult{
-        url = PlayX.HostURL .. '?url=' .. playxlib.url(uri),
+        url = PlayX.HostURL .. '?url=' .. playxlib.url(uri) .. "&start=" .. tostring(start) .. "&vol=" .. tostring(volume),
         center = false,
         volumeFunc = volumeFunc,
         playFunc = playFunc,
-        pauseFunc = pauseFunc,
-        js = [[  
-var knownState = "";
-
-function sendPlayerData(data) {
-    var str = "";
-    for (var key in data) {
-        str += encodeURIComponent(key) + "=" + encodeURIComponent(data[key]) + "&"
-    }
-    playx.processPlayerData(str);
-}
-
-function getStats(duration, position) {
-    sendPlayerData({ State: jwplayer().getState(), Position: position, Duration: duration });
-}
-
-jwplayer().on('ready', function () {
-    jwplayer().on('time', getStats);
-    jwplayer().setVolume(]] .. tostring(volume) .. [[);
-    jwplayer().seek(]] .. tostring(start) .. [[);
-});
-
-]]
-}
+        pauseFunc = pauseFunc        
+  }
 end
 --
 --- Generates the HTML code for an included JavaScript file.
