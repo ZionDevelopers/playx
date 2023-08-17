@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.6 by Dathus [BR] on 2023-06-11 4:54 PM (-03:00 GMT)
+-- Version 2.9.9 by Dathus [BR] on 2023-08-16 9:40PM (-03:00 GMT)
 
 playxlib = {}
 
@@ -632,7 +632,7 @@ function playxlib.GenerateTwitchEmbed(width, height, start, volume, uri, provide
     end
 	
     return playxlib.HandlerResult{
-        url = uri .. "&start=" .. start,
+        url = uri .. "&start=" .. start .. "&vol=" .. tostring(playxlib.volumeFloat(volume)),
         volumeFunc = volumeFunc,
         playFunc = playFunc,
         pauseFunc = pauseFunc
@@ -714,7 +714,7 @@ function playxlib.GenerateVimeoEmbed(width, height, start, volume, uri, provider
     end
   
     return playxlib.HandlerResult{
-        url = uri .. "&start=" .. start,
+        url = uri .. "&start=" .. start .. "&vol=" .. tostring(playxlib.volumeFloat(volume)),
         volumeFunc = volumeFunc,
         playFunc = playFunc,
         pauseFunc = pauseFunc
@@ -739,7 +739,7 @@ function playxlib.GenerateYoutubeEmbed(width, height, start, volume, uri, provid
     end
   
     return playxlib.HandlerResult{
-        url = uri .. "&start=" .. tostring(math.floor(start)),
+        url = uri .. "&start=" .. tostring(math.floor(start)) .. "&vol=" .. tostring(volume),
         volumeFunc = volumeFunc,
         playFunc = playFunc,
         pauseFunc = pauseFunc
@@ -792,6 +792,7 @@ function getStats(duration, position) {
 
 jwplayer().onReady(function () {
     jwplayer().onTime(getStats)
+    jwplayer().setVolume(]] .. tostring(volume) .. [[);
 });
 
 jwplayer().seek(]] .. tostring(start) .. [[);
