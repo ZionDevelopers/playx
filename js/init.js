@@ -2,6 +2,8 @@ jwplayer.key = "lmwviL3c55Ymnx4fMjEUQeiU00zeXf6TCiDHQA==";
 
 // Get URL
 var url = unescape(get("url"));
+var start = get('start') ? parseInt(get('start')) : 0;
+var vol = get('vol') ? parseInt(get('vol')) : 100;
 
 jwplayer.pause = jwplayer.pauseVideo
 jwplayer.play = jwplayer.playVideo
@@ -26,6 +28,26 @@ $(document).ready(function () {
             "visualplaylist": false,
             "width": window.innerWidth,
             "height": window.innerHeight
-        });        
+        });  
+        
+        var knownState = "";
+
+        function sendPlayerData(data) {
+            var str = "";
+            for (var key in data) {
+                str += encodeURIComponent(key) + "=" + encodeURIComponent(data[key]) + "&"
+            }
+            playx.processPlayerData(str);
+        }
+
+        function getStats(stats) {
+            sendPlayerData({ State: jwplayer().getState(), Position: stats.position, Duration: stats.duration });
+        }
+
+        jwplayer().on('ready', function () {
+            jwplayer().on('time', getStats);
+            jwplayer().setVolume(vol);
+            jwplayer().seek(start);
+        });
     }
 });
