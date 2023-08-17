@@ -14,6 +14,7 @@
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
         <script src="/playx/js/tracking.js"></script>
+        <script src="/playx/js/common.js"></script>
         <style type="text/css">
             body {
                 margin: 0;
@@ -34,15 +35,26 @@
                 width: window.innerWidth,
                 height: window.innerHeight-4,
             };
-            var vol = get('vol') ? parseFloat(get('vol')) : 1.0;
-
+            var vol = get('vol') ? parseFloat(get('vol')) : 1.0;            
             var videoPlayer = new Vimeo.Player('player', options);
-            videoPlayer.play();
-            videoPlayer.setCurrentTime(get('start'));
+            videoPlayer.on('bufferstart', function () {
+                sendPlayerData({ State: 'buffering' });
+            });
+            videoPlayer.on('timeupdate', function (stats) {
+                sendPlayerData({ Position: stats.seconds, Duration: stats.duration });
+            });            
             videoPlayer.on('play', function() {
-                console.log('Played the video');
+                sendPlayerData({ State: 'playing' });
                 videoPlayer.setVolume(vol);
             });
+            videoPlayer.on('pause', function() {
+                sendPlayerData({ State: 'paused' });
+            });
+            videoPlayer.on('ended', function() {
+                sendPlayerData({ State: 'ended' });
+            });
+            videoPlayer.play();
+            videoPlayer.setCurrentTime(get('start'));
         </script>
     </body>
 </html>
