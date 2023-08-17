@@ -33,6 +33,7 @@
             var channel = get('channel');
             var videoId = get('videoId');
             var vol = get('vol') ? parseFloat(get('vol')) : 1.0;
+            var start = get('start') ? parseFloat(get('start')) : 0.0;
             if (channel != false) {
                 var data = {
                     width: "100%",
@@ -58,7 +59,25 @@
             var player = new Twitch.Player("player", data);
             player.addEventListener(Twitch.Player.READY, function () {
                 player.setVolume(vol);
+                if (videoId != false) {                    
+                    player.seek(start);                    
+                    setInterval(function () {
+                        sendPlayerData({ Position: parseInt(player.getCurrentTime()), Duration: parseInt(player.getDuration()) });
+                    }, 100);
+                }
             });
+            
+            player.addEventListener(Twitch.Player.PLAY, function () {
+                sendPlayerData({ State: 'playing' });
+            });
+            
+            player.addEventListener(Twitch.Player.PAUSE, function () {
+                sendPlayerData({ State: 'paused' });
+            });
+            
+            player.addEventListener(Twitch.Player.ENDED, function () {
+                sendPlayerData({ State: 'ended' });
+            });            
         </script>
     </body>
 </html>
