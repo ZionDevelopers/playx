@@ -21,12 +21,33 @@
 
                 var widget = SC.Widget(document.querySelector('iframe'));
                 widget.load(get('url'), { auto_play: true, sharing: false, liking: false, download: false });
-                widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-                    if (e.currentPosition < parseInt(get('t'))) {
-                        widget.seekTo(parseInt(get('t')));
-                        widget.setVolume(parseInt(get('vol')));
-                    }
+                
+                widget.bind(SC.Widget.Events.READY, function(e) {                    
+                    widget.seekTo(parseInt(get('t')));
+                    widget.setVolume(parseInt(get('vol')));                    
                 });
+                
+                widget.bind(SC.Widget.Events.PLAY_PROGRESS, function (e) {
+                    widget.getDuration(function (duration) {
+                        sendPlayerData({ Position: e.currentPosition * 1000, Duration: duration * 1000 });
+                    });
+                });
+                
+                widget.bind(SC.Widget.Events.LOAD_PROGRESS, function () {
+                    sendPlayerData({ State: 'loading' });
+                });
+                
+                widget.bind(SC.Widget.Events.PLAY, function () {
+                    sendPlayerData({ State: 'playing' });
+                });
+                
+                widget.bind(SC.Widget.Events.PAUSE, function () {
+                    sendPlayerData({ State: 'paused' });
+                });
+                
+                widget.bind(SC.Widget.Events.FINISH, function () {
+                    sendPlayerData({ State: 'finished' });
+                });                
             });
         </script>
         <!-- Google tag (gtag.js) -->
