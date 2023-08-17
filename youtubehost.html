@@ -25,7 +25,8 @@
             //Insert Params Into Vars
             var videoId = get('v') || getByURL('v', urlParam('url')); //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
             var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
-
+            var vol = get('vol') ? parseInt(get('vol')) : 100;
+            
             //YouTube Embed Code
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
@@ -53,6 +54,7 @@
             function onPlayerReady(event) {
                 event.target.playVideo();
                 player.setPlaybackQuality("hd1080");
+                player.setVolume(vol);
             }
         </script>
         <!-- Google tag (gtag.js) -->

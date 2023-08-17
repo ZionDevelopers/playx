@@ -34,12 +34,14 @@
                 width: window.innerWidth,
                 height: window.innerHeight-4,
             };
+            var vol = get('vol') ? parseFloat(get('vol')) : 1.0;
 
             var videoPlayer = new Vimeo.Player('player', options);
             videoPlayer.play();
             videoPlayer.setCurrentTime(get('start'));
             videoPlayer.on('play', function() {
                 console.log('Played the video');
+                player.setVolume(vol);
             });
         </script>
     </body>
