@@ -790,8 +790,8 @@ function getStats(duration, position) {
     sendPlayerData({ State: jwplayer().getState(), Position: position, Duration: duration });
 }
 
-jwplayer().onReady(function () {
-    jwplayer().onTime(getStats)
+jwplayer().on('ready', function () {
+    jwplayer().on('time', getStats);
     jwplayer().setVolume(]] .. tostring(volume) .. [[);
     jwplayer().seek(]] .. tostring(start) .. [[);
 });
