@@ -43,9 +43,18 @@ $(document).ready(function () {
         function getStats(stats) {
             sendPlayerData({ State: jwplayer().getState(), Position: stats.position, Duration: stats.duration });
         }
+        
+        function updateState() {
+            sendPlayerData({ State: jwplayer().getState()});
+        }
 
         jwplayer().on('ready', function () {
             jwplayer().on('time', getStats);
+            jwplayer().on('play', updateState);
+            jwplayer().on('pause', updateState);
+            jwplayer().on('buffer', updateState);
+            jwplayer().on('complete', updateState);
+            jwplayer().on('idle', updateState);
             jwplayer().setVolume(vol);
             jwplayer().seek(start);
         });
