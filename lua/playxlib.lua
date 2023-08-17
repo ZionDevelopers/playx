@@ -793,9 +793,8 @@ function getStats(duration, position) {
 jwplayer().onReady(function () {
     jwplayer().onTime(getStats)
     jwplayer().setVolume(]] .. tostring(volume) .. [[);
+    jwplayer().seek(]] .. tostring(start) .. [[);
 });
-
-jwplayer().seek(]] .. tostring(start) .. [[);
 
 ]]
 }

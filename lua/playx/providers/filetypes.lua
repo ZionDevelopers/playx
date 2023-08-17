@@ -155,7 +155,7 @@ function FlashVideo.GetPlayer(uri, useJW)
         return {
             ["Handler"] = "JWVideo",
             ["URI"] = uri,
-            ["ResumeSupported"] = false,
+            ["ResumeSupported"] = true,
             ["LowFramerate"] = false,
             ["MetadataFunc"] = function(callback, failCallback)
                 FlashVideo.QueryMetadata(uri, callback, failCallback)
