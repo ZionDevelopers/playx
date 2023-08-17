@@ -52,20 +52,20 @@
 
             function updateStats() {
                 var state = player.getPlayerState();
-                var stateText = 'unknow';
+                var stateText = 'Unknow';
                 
                 if (state == -1) {
-                    stateText = 'unstarted';
+                    stateText = 'Unstarted';
                 } else if (state == 0) {
-                    stateText = 'ended';
+                    stateText = 'COMPLETED';
                 } else if(state == 1) {
-                    stateText = 'playing';
+                    stateText = 'PLAYING';
                 } else if (state == 2) {
-                    stateText = 'paused';
+                    stateText = 'PAUSED';
                 } else if (state == 3) {
-                    stateText = 'buffering';
+                    stateText = 'BUFFERING';
                 } else if (state == 5) {
-                    stateText = 'video cued';
+                    stateText = 'Video Cued';
                 }
                 
                 sendPlayerData({ State: stateText, Position: player.getCurrentTime(), Duration: player.getDuration() });

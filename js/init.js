@@ -30,12 +30,26 @@ $(document).ready(function () {
             "height": window.innerHeight
         });  
         
+        function translateState(state) {
+            if (state == 'playing') {
+                state = 'PLAYING';
+            } else if(state == 'paused') {
+                state = 'PAUSED';
+            } else if (state == 'buffering') {
+                state = 'BUFFERING';
+            } else if (state == 'idle') {
+                state = 'Idle';
+            }
+           
+           return state;
+        }
+        
         function getStats(stats) {
-            sendPlayerData({ State: jwplayer().getState(), Position: stats.position, Duration: stats.duration });
+            sendPlayerData({ State: translateState(jwplayer().getState()), Position: stats.position, Duration: stats.duration });
         }
         
         function updateState() {
-            sendPlayerData({ State: jwplayer().getState()});
+            sendPlayerData({ State: translateState(jwplayer().getState())});
         }
 
         jwplayer().on('ready', function () {
@@ -43,7 +57,9 @@ $(document).ready(function () {
             jwplayer().on('play', updateState);
             jwplayer().on('pause', updateState);
             jwplayer().on('buffer', updateState);
-            jwplayer().on('complete', updateState);
+            jwplayer().on('complete', function () {
+                sendPlayerData({ State: 'COMPLETED'});
+            });
             jwplayer().on('idle', updateState);
             jwplayer().setVolume(vol);
             jwplayer().seek(start);

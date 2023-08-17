@@ -68,15 +68,15 @@
             });
             
             player.addEventListener(Twitch.Player.PLAY, function () {
-                sendPlayerData({ State: 'playing' });
+                sendPlayerData({ State: 'PLAYING' });
             });
             
             player.addEventListener(Twitch.Player.PAUSE, function () {
-                sendPlayerData({ State: 'paused' });
+                sendPlayerData({ State: 'PAUSED' });
             });
             
             player.addEventListener(Twitch.Player.ENDED, function () {
-                sendPlayerData({ State: 'ended' });
+                sendPlayerData({ State: 'COMPLETED' });
             });            
         </script>
     </body>

@@ -34,19 +34,19 @@
                 });
                 
                 widget.bind(SC.Widget.Events.LOAD_PROGRESS, function () {
-                    sendPlayerData({ State: 'loading' });
+                    sendPlayerData({ State: 'BUFFERING' });
                 });
                 
                 widget.bind(SC.Widget.Events.PLAY, function () {
-                    sendPlayerData({ State: 'playing' });
+                    sendPlayerData({ State: 'PLAYING' });
                 });
                 
                 widget.bind(SC.Widget.Events.PAUSE, function () {
-                    sendPlayerData({ State: 'paused' });
+                    sendPlayerData({ State: 'PAUSED' });
                 });
                 
                 widget.bind(SC.Widget.Events.FINISH, function () {
-                    sendPlayerData({ State: 'finished' });
+                    sendPlayerData({ State: 'COMPLETED' });
                 });                
             });
         </script>

@@ -38,20 +38,20 @@
             var vol = get('vol') ? parseFloat(get('vol')) : 1.0;            
             var videoPlayer = new Vimeo.Player('player', options);
             videoPlayer.on('bufferstart', function () {
-                sendPlayerData({ State: 'buffering' });
+                sendPlayerData({ State: 'BUFFERING' });
             });
             videoPlayer.on('timeupdate', function (stats) {
                 sendPlayerData({ Position: stats.seconds, Duration: stats.duration });
             });            
             videoPlayer.on('play', function() {
-                sendPlayerData({ State: 'playing' });
+                sendPlayerData({ State: 'PLAYING' });
                 videoPlayer.setVolume(vol);
             });
             videoPlayer.on('pause', function() {
-                sendPlayerData({ State: 'paused' });
+                sendPlayerData({ State: 'PAUSED' });
             });
             videoPlayer.on('ended', function() {
-                sendPlayerData({ State: 'ended' });
+                sendPlayerData({ State: 'COMPLETED' });
             });
             videoPlayer.play();
             videoPlayer.setCurrentTime(get('start'));
