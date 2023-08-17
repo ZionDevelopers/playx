@@ -56,7 +56,7 @@
         <div id="player"></div>
         <script>
             var player = new Twitch.Player("player", data);
-            player.addEventListener(Twitch.Player.PLAY, function () {
+            player.addEventListener(Twitch.Player.READY, function () {
                 player.setVolume(vol);
             });
         </script>
