@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.8.3 by Nexus [BR] on 16-12-2013 07:00 PM (-02:00 GMT)
+-- Version 2.9.11 by Dathus [BR] on 2023-08-19 11:35 PM (-03:00 GMT)
 
 include("shared.lua")
 
@@ -458,13 +458,13 @@ function ENT:HUDPaint()
         or "Title Unavailable"
     draw.SimpleText(titleText,
                     "PlayXDefaultBold",
-                    ScrW() / 2, 25, Color(255, 255, 255, 255),
+                    ScrW() / 2, 35, Color(255, 255, 255, 255),
                     TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
     
     if text then
         draw.SimpleText(text,
                         "Default",
-                        ScrW() / 2, by + 60, Color(255, 255, 255, 255),
+                        ScrW() / 2, by + 44, Color(255, 255, 255, 255),
                         TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
     end
     
