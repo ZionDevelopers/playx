@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.8.23 by Science on 26-05-2017 06:00 PM
+-- Version 2.9.10 by Dathus [BR] on 2023-08-19 9:52PM (-03:00 GMT)
 
 CreateClientConVar("playx_enabled", 1, true, false)
 CreateClientConVar("playx_fps", 14, true, false)
@@ -24,7 +24,7 @@ CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
 CreateClientConVar("playx_debug", 0, true, false, "Enable Error Messages From Playx In Console")
 CreateClientConVar("playx_navigator_homepage_url", "https://ziondevelopers.github.io/playx", true, false)
--- CreateClientConVar("playx_video_quality", "1080p", true, false);
+CreateClientConVar("playx_fullscreen", 0, true, false)
 
 surface.CreateFont( "HUDNumber",{
 	font="Trebuchet MS",
@@ -58,6 +58,7 @@ for _, file in pairs(p) do
 end
 
 include("playx/client/panel.lua")
+include("playx/client/context-menu.lua")
 
 PlayX.Enabled = true
 PlayX.Playing = false
@@ -76,6 +77,7 @@ PlayX.HintDelay = 1
 PlayX.Pause = 0
 PlayX.StartPaused = 0
 PlayX.NavigatorCapturedURL = ""
+PlayX.IsFullscreen = false
 
 local spawnWindow = nil
 
@@ -874,4 +876,42 @@ local function DetectCrash()
     end
 end
 
+local fullScreenMTimeout = 0
+
+local function fullScreenManager()
+  -- Check if Shift Enter is Pressed
+  if input.IsKeyDown(KEY_LSHIFT) and input.IsKeyDown(KEY_ENTER) and CurTime()-fullScreenMTimeout > 0.5 then
+    local c = GetConVarNumber("playx_fullscreen")
+    -- Check if is Already Activated
+    if c == 1 then
+      -- Disable Fullscreen
+      c = 0
+    else
+      -- Enable Fullscreen
+      c = 1
+    end
+    fullScreenMTimeout = CurTime()
+    -- Set ConVar
+    RunConsoleCommand("playx_fullscreen", c)
+  end
+end
+
+local function fullScreenHUDPaint()
+  local player = PlayX.GetInstance()
+  
+  if IsValid(player) then 
+    if player.Browser ~= nil and GetConVarNumber("playx_fullscreen") == 1 then
+      render.SetMaterial(player.BrowserMat)
+      render.DrawQuad(Vector(0, 0, 0), Vector(ScrW(), 0, 0), Vector(ScrW(), ScrH(), 0), Vector(0, ScrH(), 0))
+                 
+      PlayX.IsFullscreen = true
+    elseif player.Browser ~= nil then
+      PlayX.IsFullscreen = false
+    end  
+  end
+end
+
+-- Manage Fullscreen Hotkey
+hook.Add("Think", "PlayXFullscreenHotkey", fullScreenManager)
 hook.Add("InitPostEntity", "PlayXCrashDetection", DetectCrash)
+hook.Add("HUDPaint", "PlayXFullscreen", fullScreenHUDPaint)

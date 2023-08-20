@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.7.6 by Nexus [BR] on 20-03-2013 09:38 AM
+-- Version 2.9.10 by Dathus [BR] on 2023-08-19 9:52 PM (-03:00 GMT)
 
 -- Check if vON Library is Loaded Already
 if von == nil then
@@ -19,6 +19,7 @@ AddCSLuaFile("autorun/client/playx_init.lua")
 AddCSLuaFile("playxlib.lua")
 AddCSLuaFile("playx/client/playx.lua")
 AddCSLuaFile("playx/client/bookmarks.lua")
+AddCSLuaFile("playx/client/context-menu.lua")
 AddCSLuaFile("playx/client/vgui/playx_browser.lua")
 AddCSLuaFile("playx/client/panel.lua")
 

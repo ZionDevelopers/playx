@@ -57,23 +57,6 @@ local function SettingsPanel(panel)
         Label = "Show hints about video range",
         Command = "playx_video_range_hints_enabled",
     }):SetTooltip("Uncheck to not see hints about video out of range")
-
-    --[[ Scrapped because youtube api don't support it anymore >:-(
-    local videoQualityOptions = {
-      ['1080p'] = {['playx_video_quality'] = '1080p'},
-      ['720p'] = {['playx_video_quality'] = '720p'},
-      ['480p'] = {['playx_video_quality'] = '480p'},
-      ['360p'] = {['playx_video_quality'] = '360p'},
-      ['240p'] = {['playx_video_quality'] = '240p'},
-      ['144p'] = {['playx_video_quality'] = '144p'},
-    };  
-    
-    panel:AddControl("ListBox", {
-        Label = "Video Quality:",
-        Options = videoQualityOptions,
-        Command = "playx_video_quality"
-    });
-    ]]
     
     panel:AddControl("Slider", {
         Label = "Volume:",
