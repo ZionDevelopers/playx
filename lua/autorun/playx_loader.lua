@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.11 by Dathus [BR] on 2023-08-19 11:35 PM (-03:00 GMT)
+-- Version 2.9.12 by Dathus [BR] on 2023-08-27 8:03 PM (-03:00 GMT)
 
 --Setup Loading Log Formatation
 function loadingLog (text)
@@ -60,6 +60,6 @@ end
 Msg( "\n/====================================\\\n")
 Msg( "||               PlayX              ||\n" )
 Msg( "||----------------------------------||\n" )
-loadingLog("Version 2.9.11")
-loadingLog("Updated on 2023-08-19 11:35 PM")
+loadingLog("Version 2.9.12")
+loadingLog("Updated on 2023-08-27 8:03 PM")
 Msg( "\\====================================/\n\n" )

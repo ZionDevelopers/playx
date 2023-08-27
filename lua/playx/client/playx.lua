@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.10 by Dathus [BR] on 2023-08-19 9:52PM (-03:00 GMT)
+-- Version 2.9.12 by Dathus [BR] on 2023-08-27 8:03 PM (-03:00 GMT)
 
 CreateClientConVar("playx_enabled", 1, true, false)
 CreateClientConVar("playx_fps", 14, true, false)
@@ -900,7 +900,7 @@ local function fullScreenHUDPaint()
   local player = PlayX.GetInstance()
   
   if IsValid(player) then 
-    if player.Browser ~= nil and GetConVarNumber("playx_fullscreen") == 1 then
+    if player.Browser ~= nil and player.BrowserMat ~= nil and GetConVarNumber("playx_fullscreen") == 1 then
       render.SetMaterial(player.BrowserMat)
       render.DrawQuad(Vector(0, 0, 0), Vector(ScrW(), 0, 0), Vector(ScrW(), ScrH(), 0), Vector(0, ScrH(), 0))
                  
