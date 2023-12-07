@@ -307,7 +307,7 @@ local JSObjects = {
 -- Called by the engine when a callback function is called
 --
 function PANEL:OnCallback( obj, func, args )
-
+  
   -- Hack for adding window callbacks
   obj = JSObjects[obj] or obj
 
@@ -360,5 +360,31 @@ end
 function PANEL:FinishedURL( url )
 
 end
+
+function PANEL:OnBeginLoadingDocument (url)
+  print("Triggered OnBeginLoadingDocument: " .. url)
+end
+
+function PANEL:OnChangeTargetURL (url)
+  print("Triggered OnChangeTargetURL: " .. url)
+end
+
+function PANEL:OnChangeTitle (title)
+  print("Triggered OnChangeTargetURL: " .. title)
+end
+
+function PANEL:OnChildViewCreated( sourceURL, targetURL, isPopup )
+  print("Triggered OnChildViewCreated: " .. sourceURL .. ", " .. targetURL .. " - ")
+  print(isPopup)
+end
+
+function PANEL:OnDocumentReady( url )
+  print("Triggered OnDocumentReady: "..url)
+end
+
+function PANEL:OnFinishLoadingDocument( url )
+  print("Triggered OnFinishLoadingDocument: "..url)
+end
+
 
 derma.DefineControl( "PlayXHTML", "Extended DHTML control", PANEL, "Awesomium" )
