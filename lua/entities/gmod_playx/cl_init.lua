@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.11 by Dathus [BR] on 2023-08-19 11:35 PM (-03:00 GMT)
+-- Version 2.9.13 by Dathus [BR] on 2023-12-28 9:57 PM (-03:00 GMT)
 
 include("shared.lua")
 
@@ -246,15 +246,26 @@ end
 
 function ENT:GetProjectorTrace()
     -- Potential GC bottleneck?
-    local excludeEntities = player.GetAll()
-    table.insert(excludeEntities, self.Entity)
-    local dir = self.Entity:GetForward() * self.Forward * 4000 +
-                self.Entity:GetRight() * self.Right * 4000 +
-                self.Entity:GetUp() * self.Up * 4000
-    local tr = util.QuickTrace(self.Entity:LocalToWorld(self.Entity:OBBCenter()),
-                               dir, excludeEntities)
-    
-    return tr
+    local excludeEntities = player.GetHumans()
+    if self.Forward ~= nil then
+      table.insert(excludeEntities, self.Entity)
+      
+      local dir = self.Entity:GetForward() * self.Forward * 4000 +
+                  self.Entity:GetRight() * self.Right * 4000 +
+                  self.Entity:GetUp() * self.Up * 4000
+      local tr = util.QuickTrace(self.Entity:LocalToWorld(self.Entity:OBBCenter()),
+                                 dir, excludeEntities)
+      
+      return tr
+    else
+      local dir = self.Entity:GetForward() * 4000 +
+                  self.Entity:GetRight() * 4000 +
+                  self.Entity:GetUp() * 4000
+      local tr = util.QuickTrace(self.Entity:LocalToWorld(self.Entity:OBBCenter()),
+                                 dir, excludeEntities)
+      
+      return tr
+    end
 end
 
 function ENT:ResetRenderBounds()
