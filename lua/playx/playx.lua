@@ -85,12 +85,25 @@ end
 -- @return Entity or nil
 function PlayX.GetInstance()
     local props = ents.FindByClass("gmod_playx")
-    if table.Count(props) >= 1 then
-    	return props[1]
-    else
-    	return nil
+    local players = player.GetHumans()
+    local player = nil
+    for _, ply in pairs(players) do
+      if PlayX.IsPermitted(ply) then
+        player = ply
+      end
     end
+    local closest = nil
+    local minDist = math.huge
+    for _, prop in ipairs(props) do
+        local dist = prop:GetPos():Distance(player:GetPos())
+        if dist < minDist then
+            closest = prop
+            minDist = dist
+        end
+    end
+    return closest
 end
+
 
 --- Checks whether the JW player is enabled.
 -- @return Whether the JW player is enabled
@@ -144,9 +157,10 @@ end
 -- @param repeater Spawn repeater
 -- @return Success, and error message
 function PlayX.SpawnForPlayer(ply, model, repeater)
+    --[[
     if not repeater and PlayX.PlayerExists() then
         return false, "There is already a PlayX player somewhere on the map", nil
-    end
+    end]]
     
     if not util.IsValidModel(model) then
         return false, "The server doesn't have the selected model", nil

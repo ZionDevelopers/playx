@@ -168,11 +168,17 @@ end
 -- @return Entity or nil
 function PlayX.GetInstance()
     local props = ents.FindByClass("gmod_playx")
-    if table.Count(props) >= 1 then
-    	return props[1]
-    else
-    	return nil
+    local player = LocalPlayer()
+    local closest = nil
+    local minDist = math.huge
+    for _, prop in ipairs(props) do
+        local dist = prop:GetPos():Distance(player:GetPos())
+        if dist < minDist then
+            closest = prop
+            minDist = dist
+        end
     end
+    return closest
 end
 
 --- Checks whether the host URL is valid.
