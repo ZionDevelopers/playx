@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 --
 -- $Id$
--- Version 2.9.6 by Dathus [BR] on 2023-06-11 4:54 PM (-03:00 GMT)
+-- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
 
 local Vimeo = {}
 
@@ -26,7 +26,7 @@ function Vimeo.GetPlayer(uri, useJW)
   if uri:lower():find("^[0-9]+$") then
     return {
       ["Handler"] = "Vimeo",
-      ["URI"] = GetConVarString("playx_vimeo_host_url"):Trim() .. "?id=" .. uri,
+      ["URI"] = GetConVar("playx_vimeo_host_url"):GetString():Trim() .. "?id=" .. uri,
       ["ResumeSupported"] = true,
       ["LowFramerate"] = false,
       ["MetadataFunc"] = function(callback, failCallback)

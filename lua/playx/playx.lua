@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.5 by Dathus [BR] on 2023-06-11 10:02 AM (-03:00 GMT)
+-- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
 
 
 -- FCVAR_GAMEDLL makes cvar change detection work
@@ -17,17 +17,20 @@ CreateConVar("playx_twitch_host_url", "https://ziondevelopers.github.io/playx/tw
 CreateConVar("playx_vimeo_host_url", "https://ziondevelopers.github.io/playx/vimeohost.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_livestream_host_url", "https://ziondevelopers.github.io/playx/livestreamhost.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_soundcloud_host_url", "https://ziondevelopers.github.io/playx/soundcloud.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_google_api_v3_youtube_key_main", "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk", {FCVAR_GAMEDLL})
+CreateConVar("playx_google_api_v3_youtube_key_backup", "AIzaSyDMkG6thBbGv9m7iuuT4avu6eyC4AXE75w", {FCVAR_GAMEDLL})
 CreateConVar("playx_jw_youtube", "1", {FCVAR_ARCHIVE})
 CreateConVar("playx_admin_timeout", "120", {FCVAR_ARCHIVE})
 CreateConVar("playx_expire", "-1", {FCVAR_ARCHIVE})
 CreateConVar("playx_race_protection", "1", {FCVAR_ARCHIVE})
 CreateConVar("playx_wire_input", "0", {FCVAR_ARCHIVE})
 CreateConVar("playx_wire_input_delay", "2", {FCVAR_ARCHIVE})
+CreateConVar("playx_version", PlayX.Version, {FCVAR_ARCHIVE, FCVAR_REPLICATED})
+CreateConVar("playx_version_updated", PlayX.VersionUpdated, {FCVAR_ARCHIVE,FCVAR_REPLICATED})
 
 -- Note: Not using cvar replication because this can start causing problems
 -- if the server has been left online for a while.
 
-PlayX = {}
 util.AddNetworkString("PlayXBegin") -- Add to Pool
 util.AddNetworkString("PlayXProvidersList") -- Add to Pool
 
@@ -707,3 +710,69 @@ timer.Adjust("PlayXAdminTimeout", 1, 1, function()
     hook.Call("PlayXAdminTimeout", nil, {})
     PlayX.EndMedia()
 end)
+
+--- Manage YouTube API calls with Backup switch for keys
+-- @param path example: youtube/v3/search
+-- @param oVars table with vars to be requested
+-- @param successF function to be called on success
+-- @param failureF function to be called on failures
+-- @param useBackup true for forcing the use of backupKey
+function PlayX.YouTubeAPIManager (path, oVars, successF, failureF, useBackup)
+    -- Get original api key
+    local GoogleAPIV3_YoutubeKey = GetConVar("playx_google_api_v3_youtube_key_main"):GetString():Trim()
+    -- Get backup api key
+    local GoogleAPIV3_YoutubeKeyBackup = GetConVar("playx_google_api_v3_youtube_key_main"):GetString():Trim()
+    
+    -- Check if useBackup is not sent
+    if useBackup == nil or useBackup == false then
+        -- Set the original key
+        oVars["key"] = GoogleAPIV3_YoutubeKey
+    -- Check if useBackup is sent
+    elseif useBackup == true then
+        -- Replace the original key with a backup
+        oVars["key"] = GoogleAPIV3_YoutubeKeyBackup
+    end
+
+    -- Encode table to be compatible with urls
+    local vars = playxlib.URLEscapeTable(oVars)
+    -- Concatenate google api path with vars
+    local url = "https://www.googleapis.com/" .. path .. "?" .. vars
+
+    -- Do the http request
+    http.Fetch(url, function(result, size)
+        if size > 0 then
+            local searchTable = util.JSONToTable(result)
+            
+            -- Check for error
+            if searchTable.error then 
+                -- Check for errors
+                if searchTable.error.errors[1] then
+                    -- Check for error reason that is quota Exceed
+                    if searchTable.error.errors[1].reason == "quotaExceeded" then
+                        -- Replace key with backup
+                        GoogleAPIV3_YoutubeKey = GoogleAPIV3_YoutubeKeyBackup  
+
+                        PlayX.YouTubeAPIManager(path, oVars, successF, failureF, true) 
+                        return false
+                    end
+                end
+            end
+
+            if searchTable.items then
+                if searchTable.items[1] then
+                    if searchTable.items[1].id then
+                        successF(searchTable)
+                    else
+                        failureF("An error occurred while querying YouTube.")
+                    end
+                else
+                    failureF("An error occurred while querying YouTube.")
+                end
+            else
+                failureF("An error occurred while querying YouTube.")
+            end
+        else
+            failureF("An error occurred while querying YouTube.")
+        end
+    end)
+end
