@@ -6,9 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.8.32 by Dathus [BR] on 2023-06-09 5:00 PM (-03:00 GMT)
-
-local apiKey = "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk"
+-- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
 
 local YouTube = {}
 
@@ -30,7 +28,7 @@ end
 
 function YouTube.GetPlayer(uri, useJW)
     if uri:find("^[A-Za-z0-9_%-]+$") then
-        local url = GetConVarString("playx_youtube_host_url") .. "?v=" .. uri
+        local url = GetConVar("playx_youtube_host_url"):GetString() .. "?v=" .. uri
 
         return {
             ["Handler"] = "YoutubeNative",
@@ -45,23 +43,14 @@ function YouTube.GetPlayer(uri, useJW)
 end
 
 function YouTube.QueryMetadata(uri, callback, failCallback)
-    local vars = playxlib.URLEscapeTable({
-        ["part"] = "snippet,statistics,contentDetails",
-        ["key"] = apiKey,
-        ["maxResults"] = "1",
-        ["id"] = uri,
-        ["client"] = game.SinglePlayer() and "SP" or ("MP:" .. GetConVar("hostname"):GetString())
-    })
-
-    local url = Format("https://www.googleapis.com/youtube/v3/videos?%s", vars)
-
-    http.Fetch(url, function(result, size)
-        if size == 0 then
-            failCallback("HTTP request failed (size = 0)")
-            return
-        end
-        local resultsTable = util.JSONToTable(result)
-        
+  local vars = {
+      ["part"] = "snippet,statistics,contentDetails",
+      ["maxResults"] = "1",
+      ["id"] = uri,
+      ["client"] = game.SinglePlayer() and "SP" or ("MP:" .. GetConVar("hostname"):GetString())
+  }
+      
+  local function successF (resultsTable)        
         -- Do a check to avoid error
         if resultsTable.pageInfo.resultsPerPage == 0 or resultsTable.items[1] == nil then
           PrintMessage(HUD_PRINTTALK, "The Youtube video \""..uri.."\" that you tried to play is unavailable!")
@@ -128,7 +117,9 @@ function YouTube.QueryMetadata(uri, callback, failCallback)
                 ["URL"] = "https://www.youtube.com/watch?v=" .. uri,
             })
         end
-    end)
+    end
+
+    PlayX.YouTubeAPIManager("youtube/v3/videos", vars, successF, function () end)
 end
 
 list.Set("PlayXProviders", "YouTube", YouTube)

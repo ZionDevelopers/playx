@@ -30,7 +30,7 @@
 -- To install, drop this file into your lua/autorun/server folder.
 --
 -- $Id$
--- Version 2.8.25 by Dathus on 2021-03-31 06:06 PM (-03:00 GMT)
+-- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
 
 local lastResult = nil
 
@@ -44,35 +44,6 @@ local function UnHTMLEncode(s)
     return s
 end
 
-local function URLEncode(s)
-    s = tostring(s)
-    local new = ""
-
-    for i = 1, #s do
-        local c = s:sub(i, i)
-        local b = c:byte()
-        if (b >= 65 and b <= 90) or (b >= 97 and b <= 122) or
-            (b >= 48 and b <= 57) or
-            c == "_" or c == "." or c == "~" then
-            new = new .. c
-        else
-            new = new .. string.format("%%%X", b)
-        end
-    end
-
-    return new
-end
-
-local function URLEncodeTable(vars)
-    local str = ""
-
-    for k, v in pairs(vars) do
-        str = str .. URLEncode(k) .. "=" .. URLEncode(v) .. "&"
-    end
-
-    return str:sub(1, -2)
-end
-
 local function FindMatch(str, patterns)
     for _, pattern in pairs(patterns) do
         local m = {str:match(pattern)}
@@ -83,39 +54,16 @@ local function FindMatch(str, patterns)
 end
 
 local function SearchYouTube(q, successF, failureF)
-    local vars = URLEncodeTable({
+    local vars = {
         ["q"] = q,
         ["orderby"] = "relevance",
         ["fields"] = "items(id,snippet(title,thumbnails(default(url))))",
         ["maxResults"] = "1",
-        -- ["format"] = "5", -- We can now play embedded videos!
         ["part"] = "snippet",
-        ["key"] = "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk",
         ["type"] = "video"
-    })
-    local url = "https://www.googleapis.com/youtube/v3/search?" .. vars
+    }
 
-    http.Fetch(url, function(result, size)
-        if size > 0 then
-            local searchTable = util.JSONToTable(result)
-
-            if(searchTable.items) then
-                if(searchTable.items[1]) then
-                    if(searchTable.items[1].id) then
-                        successF(searchTable.items[1].id.videoId,searchTable.items[1].snippet.title)
-                    else
-                        failureF("An error occurred while querying YouTube.")
-                    end
-                else
-                    failureF("An error occurred while querying YouTube.")
-                end
-            else
-                failureF("An error occurred while querying YouTube.")
-            end
-        else
-            failureF("An error occurred while querying YouTube.")
-        end
-    end)
+    PlayX.YouTubeAPIManager("youtube/v3/search", vars, successF, failureF)
 end
 
 local function Play(ply, provider, uri, lowFramerate)
@@ -146,7 +94,9 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
 
     if m then
         if m[1] == "yt" or (m[1] == "ytplay" and m[2]) or (m[1] == "ytlisten" and m[2]) then
-            local function successF(videoID, title)
+            local function successF(result)
+                videoID = result.items[1].id.videoId
+                title = result.items[1].snippet.title
                 lastResult = videoID
 
                 if m[1] ~= "yt" then -- Play
@@ -193,13 +143,16 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
         "https?://[A-Za-z0-9%.%-]*%.youtube%.com/v/([A-Za-z0-9_%-]+)",
         "https?://youtube%-nocookie%.com/watch%?.*v=([A-Za-z0-9_%-]+)",
         "https?://[A-Za-z0-9%.%-]*%.youtube%-nocookie%.com/watch%?.*v=([A-Za-z0-9_%-]+)",
+        "https?://[A-Za-z0-9%.%-]*%.youtube%.com/live/([A-Za-z0-9_%-]+)"
     })
 
     if m then
         lastResult = m[1]
 
-        local function successF(videoID, title)
-            lastResult = videoID
+        local function successF(result)
+            lastResult = result.items[1].id.videoId
+            local videoID = lastResult
+            local title = result.items[1].snippet.title
 
             for _, v in pairs(player.GetAll()) do
                 v:ChatPrint(string.format("YouTube video %s: \"%s\"",

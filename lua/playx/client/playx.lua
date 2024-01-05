@@ -25,6 +25,8 @@ CreateClientConVar("playx_video_radius", 1000, true, false)
 CreateClientConVar("playx_debug", 0, true, false, "Enable Error Messages From Playx In Console")
 CreateClientConVar("playx_navigator_homepage_url", "https://ziondevelopers.github.io/playx", true, false)
 CreateClientConVar("playx_fullscreen", 0, true, false)
+CreateClientConVar("playx_version", PlayX.Version, true, false)
+CreateClientConVar("playx_version_updated", PlayX.VersionUpdated, true, false)
 
 surface.CreateFont( "HUDNumber",{
 	font="Trebuchet MS",
