@@ -165,11 +165,7 @@ end
 -- @param model Model path
 -- @param repeater Spawn repeater
 -- @return Success, and error message
-PlayX.SpawnForPlayer = function(ply, model, repeater)
-    if not repeater and PlayX.PlayerExists() then
-        return false, "There is already a PlayX player somewhere on the map", nil
-    end]]
-    
+PlayX.SpawnForPlayer = function(ply, model, repeater)    
     if not util.IsValidModel(model) then
         return false, "The server doesn't have the selected model", nil
     end
