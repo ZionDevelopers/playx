@@ -649,7 +649,7 @@ end
 PlayX.RangeCheck = function () 
 	-- Setup Vars
 	local enabled = GetConVar("playx_video_range_enabled"):GetBool()
-    local radius = GetConVarNumber("playx_video_radius")
+  local radius = GetConVarNumber("playx_video_radius")
 	local showHints = GetConVarNumber("playx_video_range_hints_enabled")
 	local distance = 0
 	local ent = nil
