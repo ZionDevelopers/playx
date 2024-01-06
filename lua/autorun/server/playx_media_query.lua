@@ -30,7 +30,7 @@
 -- To install, drop this file into your lua/autorun/server folder.
 --
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 3.0.0 by Dathus [BR] on 2024-01-06 12:53 PM (-03:00 GMT)
 
 local lastResult = nil
 

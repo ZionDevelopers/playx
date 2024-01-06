@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 3.0.0 by Dathus [BR] on 2024-01-06 12:55 PM (-03:00 GMT)
 
 
 -- FCVAR_GAMEDLL makes cvar change detection work
@@ -93,12 +93,25 @@ end
 -- @return Entity|nil
 PlayX.GetInstance = function ()
     local props = ents.FindByClass("gmod_playx")
-    if table.Count(props) >= 1 then
-    	return props[1]
-    else
-    	return nil
+    local players = player.GetHumans()
+    local player = nil
+    for _, ply in pairs(players) do
+      if PlayX.IsPermitted(ply) then
+        player = ply
+      end
     end
+    local closest = nil
+    local minDist = math.huge
+    for _, prop in ipairs(props) do
+        local dist = prop:GetPos():Distance(player:GetPos())
+        if dist < minDist then
+            closest = prop
+            minDist = dist
+        end
+    end
+    return closest
 end
+
 
 --- Checks whether the JW player is enabled.
 -- @return Whether the JW player is enabled
@@ -155,7 +168,7 @@ end
 PlayX.SpawnForPlayer = function(ply, model, repeater)
     if not repeater and PlayX.PlayerExists() then
         return false, "There is already a PlayX player somewhere on the map", nil
-    end
+    end]]
     
     if not util.IsValidModel(model) then
         return false, "The server doesn't have the selected model", nil
