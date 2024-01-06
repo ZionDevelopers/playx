@@ -27,14 +27,14 @@ local function SettingsPanel(panel)
 	       "with the new versions of Gmod and PlayX are very rare, but a handful " ..
 	       "of people crash every time something is played. Try enabling " ..
 	       "PlayX a few times to determine whether you fall into this group."})
-	    msg:SetWrap(true)
-        msg:SetColor(Color(255, 255, 255, 255))
-        msg:SetTextColor(Color(255, 255, 255, 255))
-		msg:SetTextInset(8, 0)
-		msg:SetContentAlignment(7)
-		msg:SetAutoStretchVertical( true )
-        msg.Paint = function(self)
-            draw.RoundedBox(6, 0, 0, self:GetWide(), self:GetTall(), Color(255, 0, 0, 100))
+          msg:SetWrap(true)
+          msg:SetColor(Color(255, 255, 255, 255))
+          msg:SetTextColor(Color(255, 255, 255, 255))
+          msg:SetTextInset(8, 0)
+          msg:SetContentAlignment(7)
+          msg:SetAutoStretchVertical( true )
+          msg.Paint = function(self)
+          draw.RoundedBox(6, 0, 0, self:GetWide(), self:GetTall(), Color(255, 0, 0, 100))
         end
     end
     
@@ -309,8 +309,7 @@ local function PopulateToolMenu()
     hasLoaded = true
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", "Settings", "", "", SettingsPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXYoutubeFavorites", "Bookmarks (Youtube)", "", "", YoutubeFavoritesPanel) 
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel)     
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXHistory", "Play History", "", "", HistoryPanel) 
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXQueue", "Queue", "", "", QueuePanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
