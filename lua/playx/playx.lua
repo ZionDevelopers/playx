@@ -54,6 +54,11 @@ function PlayX.AccessManager(ply)
 	if evolve ~= nil then
 		result = ply:EV_HasPrivilege( "PlayX Access" )
 	end
+
+	-- Check if SAM is loaded
+	if sam ~= nil then
+		result = ply:HasPermission( "PlayX Access" )
+	end
 	
 	if result == false then
 		result = ply:IsAdmin()
