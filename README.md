@@ -14,6 +14,9 @@ For now to this addon to work you need to use the x86-64 branch.
 
 For Twitch Streams/VODs, Mature content may not work, for some providers you will need [CEF Codec Fix][CEFCodecFix].
 
+### Disclaimer
+There is a bug in Garry's Mod/Awesomium itself that prevents our PlayX (and not only PlayX) to open media randomly, <a href="https://github.com/ZionDevelopers/playx/issues/134">this bug</a> was already reported to <a href="https://github.com/Facepunch/garrysmod-issues/issues/5617">Facepunch</a> but no luck with that until now.
+
 ### Workshop Ready!
 
 PlayX is now available via the Steam Workshop! Go to [its Workshop page][workshop] and press `Subscribe`, and it will automatically appear in Garry's Mod.
