@@ -68,13 +68,15 @@ end
 
 local function Play(ply, provider, uri, lowFramerate)
     if PlayX.IsPermitted(ply) then
-        PrintMessage(HUD_PRINTCONSOLE, ply:Nick().." started a video!")
-        local result, err = PlayX.OpenMedia(provider, uri, 0, lowFramerate, true, false)
-        if not result then
-            ply:ChatPrint("PlayX ERROR: " .. err)
-        end
+      -- Send player manager variable        
+      PlayX.PlayerManager = ply
+      PrintMessage(HUD_PRINTCONSOLE, ply:Nick().." started a video!")
+      local result, err = PlayX.OpenMedia(provider, uri, 0, lowFramerate, true, false)
+      if not result then
+        ply:ChatPrint("PlayX ERROR: " .. err)
+      end
     else
-        ply:ChatPrint("NOTE: You are not permitted to control the player")
+      ply:ChatPrint("NOTE: You are not permitted to control the player")
     end
 end
 

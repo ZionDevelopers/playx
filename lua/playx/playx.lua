@@ -638,13 +638,13 @@ local function ConCmdOpen(ply, cmd, args)
             if not result then
                 PlayX.SendError(ply, err)
             else            			   	   	
-			   	-- Add History to Server
-			   	--table.insert(PlayX.History, {["Player"] = ply:GetName(), ["Time"] = os.date("%H:%M:%S %Y-%M-%D"), ["URI"] = uri})		   	
-			   			    
-			    --[[ Send History to Server
-			   	net.Start("PlayXHistory")
-			   	net.WriteTable(PlayX.History)
-			   	net.Broadcast() ]]--  
+    			   	-- Add History to Server
+    			   	table.insert(PlayX.History, {["Player"] = ply:GetName(), ["Time"] = os.date("%H:%M:%S %Y-%M-%D"), ["URI"] = uri})		   	
+    			   			    
+    			    -- Send History to Server
+    			   	net.Start("PlayXHistory")
+    			   	net.WriteTable(PlayX.History)
+    			   	net.Broadcast() 
             end
         end
     end
