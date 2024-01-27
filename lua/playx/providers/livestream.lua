@@ -26,7 +26,7 @@ function Livestream.GetPlayer(url, useJW)
   if url:find("^[A-Za-z0-9_%-%/]+$") then
     return {
       ["Handler"] = "Livestream",
-      ["URI"] = GetConVarString("playx_livestream_host_url"):Trim() .. "?path=accounts/" .. url,
+      ["URI"] = GetConVar("playx_livestream_host_url"):GetString():Trim() .. "?path=accounts/" .. url,
       ["ResumeSupported"] = false,
       ["LowFramerate"] = false,
       ["MetadataFunc"] = function(callback, failCallback)

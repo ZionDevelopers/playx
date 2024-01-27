@@ -22,7 +22,7 @@ end
 
 function TwitchVod.GetPlayer(uri, useJW)
     if uri:find("^[0-9]+$") then
-        local url = GetConVarString("playx_twitch_host_url"):Trim() .. "?videoId=" .. uri
+        local url = GetConVar("playx_twitch_host_url"):GetString():Trim() .. "?videoId=" .. uri
         
         return {
           ["Handler"] = "TwitchVod",

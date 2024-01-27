@@ -304,6 +304,32 @@ local function NavigatorPanel(panel)
     })  
 end
 
+-- Setup Apply Key Function
+local function applyFullscreenKey()
+  RunConsoleCommand( "playx_fullscreen_register_key", GetConVar("playx_fullscreen_bindkey"):GetInt() )
+end 
+
+-- Setup Panel
+local function fullscreenPanel(panel)
+  -- Clear Controls
+  panel:ClearControls()
+  -- Add Panel Elements
+  panel:AddControl("Header", {Text = "Key"})  
+  panel:AddControl("Numpad", {Label = "Fullscreen Key", Command = "playx_fullscreen_bindkey", ButtonSize = "18"})  
+  
+  -- Add Buton to Apply                  
+  local Button = vgui.Create("DButton") 
+  Button:SetSize(50, 20)
+  Button:SetText("Apply")
+  Button.DoClick = function( button )
+    -- Run Apply on Click
+    applyFullscreenKey()
+  end
+  
+  -- Add Buton to panel   
+  panel:AddItem(Button)                    
+end
+
 --- PopulateToolMenu hook.
 local function PopulateToolMenu()
     hasLoaded = true
@@ -311,6 +337,7 @@ local function PopulateToolMenu()
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", "Administrate", "", "", ControlPanel)
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", "Bookmarks (Local)", "", "", BookmarksPanel) 
     spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", "Navigator", "", "", NavigatorPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXFullscreen", "Fullscreen", "", "", fullscreenPanel)    
 end
 
 hook.Add("PopulateToolMenu", "PlayXPopulateToolMenu", PopulateToolMenu)
@@ -321,4 +348,16 @@ function PlayX.UpdatePanels()
     SettingsPanel(controlpanel.Get("PlayXSettings"))
     ControlPanel(controlpanel.Get("PlayXControl"))
     NavigatorPanel(controlpanel.Get("PlayXNavigator"))
+    fullscreenPanel(controlpanel.Get( "PlayXFullscreen"))
 end
+
+-- Setup Timer for Apply on Start
+timer.Create( "RetardedApplyKeyDelay", 1, 1, function()
+  -- Apply New Key
+  applyFullscreenKey()
+end)
+
+-- Add Command
+concommand.Add("playx_fullscreen_register_key", function(ply, com, args)
+  RunConsoleCommand("playx_fullscreen_bindkey", tonumber(args[1]))
+end)

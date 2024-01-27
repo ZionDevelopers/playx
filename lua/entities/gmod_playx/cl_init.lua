@@ -197,14 +197,14 @@ function ENT:Play(handler, uri, start, volume, handlerArgs)
 		if not IsValid(self) then return end
 		MsgN("PlayX: Page loaded, preparing to inject")		
         self:InjectPage()
-        if (PlayX.VideoRangeStatus == 0 and GetConVarNumber("playx_video_range_enabled") == 1) or (PlayX.Pause == 1 and GetConVarNumber("playx_video_range_enabled") == 1) then
+        if (PlayX.VideoRangeStatus == 0 and GetConVar("playx_video_range_enabled"):GetInt() == 1) or (PlayX.Pause == 1 and GetConVar("playx_video_range_enabled"):GetInt() == 1) then
 			self.Browser:RunJavascript('document.body.innerHTML = ""')
 			PlayX.StartPaused = 1
 			PlayX.Pause = 0
 		end	
 		
 		-- Initial Volume Change Fix
-		timer.Create("playxVolumeFix", 0.5, 5, function () if IsValid(self) then self:ChangeVolume(GetConVarNumber("playx_volume"))  end end)	
+		timer.Create("playxVolumeFix", 0.5, 5, function () if IsValid(self) then self:ChangeVolume(GetConVar("playx_volume"):GetFloat())  end end)	
     end
     
     self.Playing = true

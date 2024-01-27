@@ -27,6 +27,7 @@ CreateClientConVar("playx_navigator_homepage_url", "https://ziondevelopers.githu
 CreateClientConVar("playx_fullscreen", 0, true, false)
 CreateClientConVar("playx_version", PlayX.Version, true, false)
 CreateClientConVar("playx_version_updated", PlayX.VersionUpdated, true, false)
+CreateClientConVar("playx_fullscreen_bindkey", KEY_F11, true, false)
 
 surface.CreateFont( "HUDNumber",{
 	font="Trebuchet MS",
@@ -66,8 +67,8 @@ PlayX.Enabled = true
 PlayX.Playing = false
 PlayX.CurrentMedia = nil
 PlayX.SeenNotice = false
-PlayX.JWPlayerURL = GetConVarString("playx_jw_url")
-PlayX.HostURL = GetConVarString("playx_host_url")
+PlayX.JWPlayerURL = GetConVarString("playx_jw_url"):Trim()
+PlayX.HostURL = GetConVarString("playx_host_url"):Trim()
 PlayX.ShowRadioHUD = true
 PlayX.HasChrome = chrome ~= nil and chrome.NewBrowser ~= nil
 PlayX.SupportsChrome = chrome ~= nil and chrome.NewBrowser ~= nil
@@ -882,7 +883,7 @@ local fullScreenMTimeout = 0
 
 local function fullScreenManager()
   -- Check if Shift Enter is Pressed
-  if input.IsKeyDown(KEY_LSHIFT) and input.IsKeyDown(KEY_ENTER) and CurTime()-fullScreenMTimeout > 0.5 then
+  if input.IsKeyDown(GetConVar("playx_fullscreen_bindkey"):GetInt()) and CurTime()-fullScreenMTimeout > 0.5 then
     local c = GetConVarNumber("playx_fullscreen")
     -- Check if is Already Activated
     if c == 1 then

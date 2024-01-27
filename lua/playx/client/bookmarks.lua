@@ -291,12 +291,6 @@ function PlayX.AddBookmark(title, provider, uri, keyword, startAt, lowFramerate)
         end
     end
     
-    -- Let's update the bookmarks window
-    if bookmarksWindowList then
-        local bookmarks = bookmarksWindowList
-        bookmarks:AddLine(title, uri, provider, keyword)
-    end
-    
     return true
 end
 

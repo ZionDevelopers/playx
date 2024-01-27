@@ -30,7 +30,7 @@ function SoundCloud.GetPlayer(uri, useJW)
   local url = uri
   return {
     ["Handler"] = "SoundCloud",
-    ["URI"] = GetConVarString("playx_soundcloud_host_url") .. '?url=' .. url,
+    ["URI"] = GetConVar("playx_soundcloud_host_url"):GetString():Trim() .. '?url=' .. url,
     ["ResumeSupported"] = true,
     ["LowFramerate"] = false,
     ["QueryMetadata"] = function(callback, failCallback)

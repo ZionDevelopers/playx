@@ -95,7 +95,7 @@ function PANEL:Init()
   self.HomeButton:DockMargin( Spacing, Margins, Spacing * 3, Margins )
   self.HomeButton.DoClick = function()
     self.HTML:Stop()
-    self.HTML:OpenURL( GetConVarString("playx_navigator_homepage_url"):Trim() )
+    self.HTML:OpenURL( GetConVar("playx_navigator_homepage_url"):GetString():Trim() )
     self.Cur = 1
   end
 
@@ -119,7 +119,7 @@ function PANEL:Init()
     PlayX.NavigatorCapturedURL = self.HTML.URL;    
     self:Open("", self.HTML.URL);
     self.HTML:Stop()
-    self.HTML:OpenURL( GetConVarString("playx_navigator_homepage_url"):Trim() )
+    self.HTML:OpenURL( GetConVar("playx_navigator_homepage_url"):GetString():Trim() )
     PlayX._NavigatorWindow:Close();
   end
 
