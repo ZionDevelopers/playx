@@ -30,6 +30,9 @@ e2function void pxOpenMedia(string url)
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
+	
+	PlayX.PlayerManager = self.player
+	
 	PlayX.OpenMedia("", url,0,nil,nil,nil)
 end
 
@@ -38,6 +41,9 @@ e2function void pxOpenMedia(string url,string provider)
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
+	
+	PlayX.PlayerManager = self.player
+	
 	PlayX.OpenMedia( provider, url,0,nil,nil,nil)
 end
 
@@ -46,6 +52,9 @@ e2function void pxOpenMedia(string url,string provider,number starttime)
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
+	
+	PlayX.PlayerManager = self.player
+	
 	PlayX.OpenMedia( provider, url,starttime,nil,nil,nil)
 end
 
@@ -54,6 +63,9 @@ e2function void pxOpenMedia(string url,string provider,number starttime,number f
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
+	
+	PlayX.PlayerManager = self.player
+	
 	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),nil,nil)
 end
 
@@ -62,6 +74,9 @@ e2function void pxOpenMedia(string url,string provider,number starttime,number f
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
+	
+	PlayX.PlayerManager = self.player
+	
 	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),(useJW!=0),nil)
 end
 
@@ -70,6 +85,9 @@ e2function void pxOpenMedia(string url,string provider,number starttime,number f
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
+	
+	PlayX.PlayerManager = self.player
+	
 	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),(useJW!=0),(ignoreLength!=0))
 end
 

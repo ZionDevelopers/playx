@@ -77,6 +77,7 @@ PlayX.CurrentMedia = nil
 PlayX.AdminTimeoutTimerRunning = false
 PlayX.LastOpenTime = 0
 PlayX.PlayerManager = nil
+PlayX.LastInstance = nil
 
 
 --- Checks if a player instance exists in the game.
@@ -90,15 +91,21 @@ end
 function PlayX.GetInstance()
     local props = ents.FindByClass("gmod_playx")
     local player = PlayX.PlayerManager
-   
     local closest = nil
-    local minDist = math.huge
-    for _, prop in ipairs(props) do
-        local dist = prop:GetPos():Distance(player:GetPos())
-        if dist < minDist then
-            closest = prop
-            minDist = dist
-        end
+       
+    -- check for last instance
+    if PlayX.LastInstance == nil then      
+      local minDist = math.huge
+      for _, prop in ipairs(props) do
+          local dist = prop:GetPos():Distance(player:GetPos())
+          if dist < minDist then
+              closest = prop
+              minDist = dist
+          end
+      end
+    else
+      closest = PlayX.LastInstance
+      PlayX.LastInstance = nil
     end
     return closest
 end

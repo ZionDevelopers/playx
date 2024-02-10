@@ -180,6 +180,8 @@ function ENT:TriggerInput(iname, value)
                 local forceLowFramerate = self.InputForceLowFramerate
                 local useJW = not self.InputDisableJW
                 
+                PlayX.LastInstance = self.Entity
+                
                 if uri == "" then
                     Wire_TriggerOutput(self.Entity, "InputError", "Empty URI inputted")
                 elseif start == nil then
