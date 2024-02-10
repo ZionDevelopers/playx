@@ -76,6 +76,7 @@ end
 PlayX.CurrentMedia = nil
 PlayX.AdminTimeoutTimerRunning = false
 PlayX.LastOpenTime = 0
+PlayX.PlayerManager = nil
 
 
 --- Checks if a player instance exists in the game.
@@ -88,13 +89,8 @@ end
 -- @return Entity or nil
 function PlayX.GetInstance()
     local props = ents.FindByClass("gmod_playx")
-    local players = player.GetHumans()
-    local player = nil
-    for _, ply in pairs(players) do
-      if PlayX.IsPermitted(ply) then
-        player = ply
-      end
-    end
+    local player = PlayX.PlayerManager
+   
     local closest = nil
     local minDist = math.huge
     for _, prop in ipairs(props) do
@@ -164,6 +160,8 @@ function PlayX.SpawnForPlayer(ply, model, repeater)
     if not repeater and PlayX.PlayerExists() then
         return false, "There is already a PlayX player somewhere on the map", nil
     end]]
+    
+    PlayX.PlayerManager = ply
     
     if not util.IsValidModel(model) then
         return false, "The server doesn't have the selected model", nil
@@ -587,6 +585,8 @@ local function ConCmdOpen(ply, cmd, args)
         local forceLowFramerate = playxlib.CastToBool(args[4], false)
         local useJW = playxlib.CastToBool(args[5], true)
         local ignoreLength = playxlib.CastToBool(args[6], false)
+        
+        PlayX.PlayerManager = ply
         
         if start == nil then
             PlayX.SendError(ply, "The time format you entered for \"Start At\" isn't understood")
