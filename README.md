@@ -32,6 +32,12 @@ Simply clone this repository into your `addons` folder:
 
 PlayX uses Youtube API to play and search videos, by using PlayX to play youtube videos you agree with [Youtube Terms][YouTubeTerms] and [Google Privacy Policy][GooglePrivacyPolicy]
 
+### Personal Information collection
+We don't store, collect or sell any personal information, But we use Google Analytics for statistics.
+
+### Contact Information
+ziondevelopers@juliocesar.me
+
 ### License
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
