@@ -6,11 +6,11 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.16 by Dathus [BR] on 2024-01-27 4:17 PM (-03:00 GMT)
+-- Version 2.9.17 by Dathus [BR] on 2024-09-20 12:33 PM (-03:00 GMT)
 
 PlayX = {}
-PlayX.Version = "2.9.16"
-PlayX.VersionUpdated = "2024-01-27 4:17 PM"
+PlayX.Version = "2.9.17"
+PlayX.VersionUpdated = "2024-09-20 12:33 PM"
 
 --Setup Loading Log Formatation
 function loadingLog (text)

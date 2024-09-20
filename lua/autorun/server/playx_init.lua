@@ -6,12 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.10 by Dathus [BR] on 2023-08-19 9:52 PM (-03:00 GMT)
-
--- Check if vON Library is Loaded Already
-if von == nil then
-	include("von.lua")
-end
+-- Version 2.9.17 by Dathus [BR] on 2024-09-20 12:33 PM (-03:00 GMT)
 
 resource.AddWorkshop("106516163")
 
