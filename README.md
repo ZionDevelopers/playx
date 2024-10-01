@@ -33,7 +33,7 @@ Simply clone this repository into your `addons` folder:
 PlayX uses Youtube API to play and search videos, by using PlayX to play youtube videos you agree with [Youtube Terms][YouTubeTerms] and [Google Privacy Policy][GooglePrivacyPolicy]
 
 ### Personal Information collection
-We don't store, collect or sell any personal information / user information, But we use Google Analytics for anonymous statistics. We don't share user information with any parties at all. We don't use cookies to track user, we don't collect any information from users devices. We don't serve ads but YouTube does.
+We don't store, collect or sell any personal information / user information, But we use Google Analytics for anonymous statistics. We don't share user information with any parties at all. We don't use cookies to track user, we don't collect any information from users' devices. We don't serve ads but YouTube does.
 
 ### Contact Information
 ziondevelopers@juliocesar.me
