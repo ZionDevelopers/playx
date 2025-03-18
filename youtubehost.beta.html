@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Set Background to Black to Avoid "Floating Video" On White-->
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                background: #000000;
+                overflow: hidden;
+            }
+        </style>
+
+        <title>PlayX Host for YouTube (beta)</title>
+        <!-- Favicons: START -->
+        <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="img/favicon/site.webmanifest">
+        <!-- Favicons: END -->
+        <script src="https://raw.githubusercontent.com/Vendicated/Vencord/refs/heads/main/src/plugins/youtubeAdblock.desktop/adguard.js"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script src="js/common.js"></script>
+        <script>
+            //Insert Params Into Vars
+            var videoId = get('v') || getByURL('v', urlParam('url')); //Set videoId to either plain ?v= or if format is ?url= then get videoId from ?url= (for backwards compatability)
+            var start = Math.round(urlParam('start')); //Pull start time param from url (for backwards compatability, new method uses JS)
+            var vol = get('vol') ? parseInt(get('vol')) : 100;
+            
+            //YouTube Embed Code
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    "width": window.innerWidth,
+                    "height": window.innerHeight,
+                    videoId: videoId,
+                    playerVars: {
+                        autoplay: 1,
+                        showinfo: 0,
+                        cc_load_policy: 0,
+                        iv_load_policy: 3,
+                        disablekb: 1,
+                        modestbranding: 1,
+                        rel: 0,
+                        controls: 1,
+                        start: start
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+
+            function updateStats() {
+                var state = player.getPlayerState();
+                var stateText = 'Unknow';
+                
+                if (state == -1) {
+                    stateText = 'Unstarted';
+                } else if (state == 0) {
+                    stateText = 'COMPLETED';
+                } else if(state == 1) {
+                    stateText = 'PLAYING';
+                } else if (state == 2) {
+                    stateText = 'PAUSED';
+                } else if (state == 3) {
+                    stateText = 'BUFFERING';
+                } else if (state == 5) {
+                    stateText = 'Video Cued';
+                }
+                
+                sendPlayerData({ State: stateText, Position: player.getCurrentTime(), Duration: player.getDuration() });
+            }            
+
+            //Play Video On Ready And Set Resolution (experimental)
+            function onPlayerReady(event) {
+                setInterval(updateStats, 100);
+                event.target.playVideo();
+                player.setPlaybackQuality("hd1080");
+                player.setVolume(vol);                
+            }
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
+        <script src="js/tracking.js"></script>		
+    </head>
+    <body>
+        <div id="player"></div> 
+    </body>
+</html>
