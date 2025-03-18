@@ -19,8 +19,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
         <link rel="manifest" href="img/favicon/site.webmanifest">
         <!-- Favicons: END -->
-        <script src="https://raw.githubusercontent.com/Vendicated/Vencord/refs/heads/main/src/plugins/youtubeAdblock.desktop/adguard.js"></script>
-        <script src="https://www.youtube.com/iframe_api"></script>
+        
         <script src="js/common.js"></script>
         <script>
             //Insert Params Into Vars
@@ -82,7 +81,20 @@
         </script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-        <script src="js/tracking.js"></script>		
+        <script src="js/tracking.js"></script>	
+        <script type="module">
+        import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
+
+        const player = await VidstackPlayer.create({
+          target: '#player',
+          src: 'youtube/'+videoId,
+          autoplay: true,
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      </script>
+
+
     </head>
     <body>
         <div id="player"></div> 
