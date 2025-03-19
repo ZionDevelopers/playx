@@ -12,14 +12,15 @@
             }
         </style>
 
-        <title>PlayX Host for YouTube (beta)</title>
+        <title>PlayX Host for YouTube</title>
         <!-- Favicons: START -->
         <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
         <link rel="manifest" href="img/favicon/site.webmanifest">
         <!-- Favicons: END -->
-        
+		<script src="https://github.com/gv3Dev/No-Ads-Youtube/raw/refs/heads/main/adBlock.user.js"></script>
+        <script src="https://www.youtube.com/iframe_api"></script>
         <script src="js/common.js"></script>
         <script>
             //Insert Params Into Vars
@@ -29,7 +30,7 @@
             
             //YouTube Embed Code
             function onYouTubeIframeAPIReady() {
-             /*   player = new YT.Player('player', {
+                player = new YT.Player('player', {
                     "width": window.innerWidth,
                     "height": window.innerHeight,
                     videoId: videoId,
@@ -47,7 +48,7 @@
                     events: {
                         'onReady': onPlayerReady
                     }
-                });*/
+                });
             }
 
             function updateStats() {
@@ -81,20 +82,7 @@
         </script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
-        <script src="js/tracking.js"></script>	
-        <script type="module">
-        import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
-
-        const player = await VidstackPlayer.create({
-          target: '#player',
-          src: 'youtube/'+videoId,
-          autoplay: true,
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
-      </script>
-
-
+        <script src="js/tracking.js"></script>		
     </head>
     <body>
         <div id="player"></div> 
