@@ -33,7 +33,9 @@
                     "width": window.innerWidth,
                     "height": window.innerHeight,
                     videoId: videoId,
+                    host: 'https://www.youtube-nocookie.com',
                     playerVars: {
+                        origin: window.location.host,
                         autoplay: 1,
                         showinfo: 0,
                         cc_load_policy: 0,
