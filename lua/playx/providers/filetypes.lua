@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.8.5 by Nexus [BR] on 10-01-2014 09:25 PM (-02:00 GMT)
+-- Version 2.9.18 by Dathus [BR] on 2025-11-29 02:48 PM (-03:00 GMT)
 
 local Shoutcast = {}
 
@@ -141,6 +141,8 @@ function FlashVideo.Detect(uri)
         "^https?://.+%.FLV$",
         "^https?://.+%.mp4$",
         "^https?://.+%.MP4$",
+        "^https?://.+%.webm$",
+        "^https?://.+%.WEBM$",
         "^https?://.+%.aac$",
         "^https?://.+%.AAC$",
     })
@@ -171,7 +173,7 @@ function FlashVideo.QueryMetadata(uri, callback, failCallback)
 end
 
 list.Set("PlayXProviders", "FlashVideo", FlashVideo)
-list.Set("PlayXProvidersList", "FlashVideo", {"FLV/MP4/AAC"})
+list.Set("PlayXProvidersList", "FlashVideo", {"FLV/MP4/AAC/WEBM"})
 
 local Image = {}
 
