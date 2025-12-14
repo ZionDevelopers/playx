@@ -22,13 +22,13 @@
         <script>
             $(document).ready(function () {
                 var url = get('url');
-                $("#player").html('<img src="'+url+'" />');
+                $("#player").html('<img src="'+url+'" style="max-height: 100%; max-width: 100%" />');
                 var width = $('#player img').width();
                 var height = $('#player img').height();
                 var maxWidth = screen.width;
                 var maxHeight = screen.height;
                 var finalSize = calculateAspectRatioFit(width, height, maxWidth, maxHeight);
-                $("#player img").css({width: finalSize.width, height: finalSize.height});
+                //$("#player img").css({width: finalSize.width, height: finalSize.height});
             });
 
         </script>
