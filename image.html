@@ -23,7 +23,14 @@
             $(document).ready(function () {
                 var url = get('url');
                 $("#player").html('<img src="'+url+'" />');
+                var width = $('#player img').width();
+                var height = $('#player img').height();
+                var maxWidth = screen.width;
+                var maxHeight = screen.width;
+                var finalSize = calculateAspectRatioFit(width, height, maxWidth, maxHeight);
+                $("#player img").css({width: finalSize.width, height: finalSize.height});
             });
+
         </script>
 
         <!-- Google tag (gtag.js) -->
