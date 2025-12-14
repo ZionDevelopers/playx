@@ -26,7 +26,7 @@
                 var width = $('#player img').width();
                 var height = $('#player img').height();
                 var maxWidth = screen.width;
-                var maxHeight = screen.width;
+                var maxHeight = screen.height;
                 var finalSize = calculateAspectRatioFit(width, height, maxWidth, maxHeight);
                 $("#player img").css({width: finalSize.width, height: finalSize.height});
             });
