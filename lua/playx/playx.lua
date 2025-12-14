@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.15 by Srlion on 2024-01-06 7:05 PM (-03:00 GMT)
+-- Version 2.9.19 by Dathus [BR] on 2025-12-14 10:50 AM (-03:00 GMT)
 
 -- FCVAR_GAMEDLL makes cvar change detection work
 CreateConVar("playx_jw_url", "https://ziondevelopers.github.io/playx/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
@@ -16,6 +16,7 @@ CreateConVar("playx_twitch_host_url", "https://ziondevelopers.github.io/playx/tw
 CreateConVar("playx_vimeo_host_url", "https://ziondevelopers.github.io/playx/vimeohost.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_livestream_host_url", "https://ziondevelopers.github.io/playx/livestreamhost.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_soundcloud_host_url", "https://ziondevelopers.github.io/playx/soundcloud.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_image_host_url", "https://ziondevelopers.github.io/playx/image.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_main", "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk", {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_backup", "AIzaSyDMkG6thBbGv9m7iuuT4avu6eyC4AXE75w", {FCVAR_GAMEDLL})
 CreateConVar("playx_jw_youtube", "1", {FCVAR_ARCHIVE})

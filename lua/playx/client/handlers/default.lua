@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.8.28 by Dathus on 2021-04-12 4:51 PM (-03:00 GMT)
+-- Version 2.9.19 by Dathus [BR] on 2025-12-14 10:50 AM (-03:00 GMT)
 
 list.Set("PlayXHandlers", "IFrame", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateIFrame(width, height, uri)
@@ -34,12 +34,6 @@ list.Set("PlayXHandlers", "Flash", function(width, height, start, volume, uri, h
     local center = handlerArgs.Center
     local result = playxlib.GenerateFlashPlayer(width, height, uri, flashVars, nil, forcePlay)
     result.center = center
-    return result
-end)
-
-list.Set("PlayXHandlers", "Image", function(width, height, start, volume, uri, handlerArgs)
-    local result = playxlib.GenerateImageViewer(width, height, uri)
-    result.center = true
     return result
 end)
 
