@@ -25,7 +25,7 @@
             //Insert Params Into Vars
             var list = get('list');
             var videoId = get('v');
-            var index = get('index');
+            var index = get('index') ? parseInt(get('index')) : 0;
             var start = get('start') ? get('start') : 0;
             var vol = get('vol') ? parseInt(get('vol')) : 100;
             
@@ -80,25 +80,15 @@
                 setInterval(updateStats, 100);
                 event.target.playVideo();
                 player.setPlaybackQuality("hd1080");
-                player.setVolume(vol); 
-                 if (index != false) {
-                    player.loadPlaylist(
-                        {
-                            listType: 'playlist',
-                            list: list,                        
-                            index: index,
-                            startSeconds: start
-                        }
-                    );
-                } else {
-                    player.loadPlaylist(
-                        {
-                            listType: 'playlist',
-                            list: list,                            
-                            startSeconds: start
-                        }
-                    );
-                }
+                player.setVolume(vol);                  
+                player.loadPlaylist(
+                    {
+                        listType: 'playlist',
+                        list: list,                        
+                        index: index,
+                        startSeconds: start
+                    }
+                );                
             }
         </script>
         <!-- Google tag (gtag.js) -->
