@@ -30,12 +30,12 @@
             var vol = get('vol') ? parseInt(get('vol')) : 100;
             
             //YouTube Embed Code
-            function onYouTubeIframeAPIReady(event) {
+            function onYouTubeIframeAPIReady() {
                 player = new YT.Player('player', {
                     "width": window.innerWidth,
                     "height": window.innerHeight,                   
                     host: 'https://www.youtube-nocookie.com',
-                    videoId: videoId,
+                   // videoId: videoId,
                     playerVars: {
                         origin: window.location.host,
                         autoplay: 1,
@@ -53,7 +53,7 @@
                     }
                 });
                 if (index != false) {
-                    event.target.loadPlaylist(
+                    player.loadPlaylist(
                         {
                             listType: 'playlist',
                             list: list,                        
@@ -62,7 +62,7 @@
                         }
                     );
                 } else {
-                    event.target.loadPlaylist(
+                    player.loadPlaylist(
                         {
                             listType: 'playlist',
                             list: list,                            
