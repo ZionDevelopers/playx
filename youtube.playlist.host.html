@@ -35,7 +35,7 @@
                     "width": window.innerWidth,
                     "height": window.innerHeight,                   
                     host: 'https://www.youtube-nocookie.com',
-                   // videoId: videoId,
+                    videoId: videoId,
                     playerVars: {
                         origin: window.location.host,
                         autoplay: 1,
@@ -51,25 +51,7 @@
                     events: {
                         'onReady': onPlayerReady
                     }
-                });
-                if (index != false) {
-                    player.loadPlaylist(
-                        {
-                            listType: 'playlist',
-                            list: list,                        
-                            index: index,
-                            startSeconds: start
-                        }
-                    );
-                } else {
-                    player.loadPlaylist(
-                        {
-                            listType: 'playlist',
-                            list: list,                            
-                            startSeconds: start
-                        }
-                    );
-                }
+                });               
             }
 
             function updateStats() {
@@ -98,7 +80,25 @@
                 setInterval(updateStats, 100);
                 event.target.playVideo();
                 player.setPlaybackQuality("hd1080");
-                player.setVolume(vol);                
+                player.setVolume(vol); 
+                 if (index != false) {
+                    player.loadPlaylist(
+                        {
+                            listType: 'playlist',
+                            list: list,                        
+                            index: index,
+                            startSeconds: start
+                        }
+                    );
+                } else {
+                    player.loadPlaylist(
+                        {
+                            listType: 'playlist',
+                            list: list,                            
+                            startSeconds: start
+                        }
+                    );
+                }
             }
         </script>
         <!-- Google tag (gtag.js) -->
