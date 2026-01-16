@@ -2,7 +2,7 @@ var videoId = get("v") || getByURL("v", urlParam("url"));
 var start = Math.round(urlParam("start"));
 var vol = get("vol") ? parseInt(get("vol")) : 100;
 
-if (window.location.host == "ziondevelopers.github.io") {
+if (window.location.host == "ziondevelopers.github.io" || window.location.host == "playx.b-cdn.net") {
 	window.location.href = "https://ziondevelopers.b-cdn.net"+window.location.pathname + window.location.search;
 }
 
