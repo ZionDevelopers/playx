@@ -9,8 +9,8 @@
 -- Version 2.9.20 by Dathus [BR] on 2026-01-15 05:22 PM (-03:00 GMT)
 
 PlayX = {}
-PlayX.Version = "2.9.20"
-PlayX.VersionUpdated = "2026-01-15 05:22 PM"
+PlayX.Version = "2.9.21"
+PlayX.VersionUpdated = "2026-01-16 11:47 AM"
 
 --Setup Loading Log Formatation
 function loadingLog (text)

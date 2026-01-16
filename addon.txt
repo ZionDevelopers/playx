@@ -1,8 +1,8 @@
 "AddonInfo"
 {
     "name" "PlayX"
-    "version" "2.9.20"
-    "up_date"	"2026-01-15"
+    "version" "2.9.21"
+    "up_date"	"2026-01-16"
     "author_name" "Dathus [BR]"
     "author_url" "http://www.juliocesar.me"
     "info" "Internet media player"
