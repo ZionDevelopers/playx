@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.9 by Dathus [BR] on 2023-08-16 9:40PM (-03:00 GMT)
+-- Version 2.9.24 by Dathus [BR] on 2026-01-17 12:47 PM (-03:00 GMT)
 
 playxlib = {}
 
@@ -740,6 +740,39 @@ function playxlib.GenerateYoutubeEmbed(width, height, start, volume, uri, provid
   
     return playxlib.HandlerResult{
         url = uri .. "&start=" .. tostring(math.floor(start)) .. "&vol=" .. tostring(volume),
+        volumeFunc = volumeFunc,
+        playFunc = playFunc,
+        pauseFunc = pauseFunc
+    }    
+end
+
+--- Generates the HTML for the Google Drive Embed
+-- @param width
+-- @param height
+-- @param url
+-- @return HTML
+function playxlib.GenerateGoogleDriveEmbed(width, height, start, volume, uri, provider)
+    local volumeFunc = function(volume)
+        return [[var player = YT.get("ucc-2"); player.setVolume(]] .. tostring(volume) .. [[)]]
+    end
+    local playFunc = function()
+        return [[var player = YT.get("ucc-2"); player.playVideo()]]
+    end
+    
+    local pauseFunc = function()
+        return [[var player = YT.get("ucc-2"); player.pauseVideo()]]
+    end
+
+    local js = [[
+        setTimout(function () {
+            var player = YT.get("ucc-2"); 
+            player.setVolume(]] .. tostring(volume) .. [[);
+        }, 1000);
+    ]];
+  
+    return playxlib.HandlerResult{
+        url = uri,
+        js = js,
         volumeFunc = volumeFunc,
         playFunc = playFunc,
         pauseFunc = pauseFunc

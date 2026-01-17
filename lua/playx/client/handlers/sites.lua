@@ -36,3 +36,8 @@ end)
 list.Set("PlayXHandlers", "TwitchVod", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateTwitchEmbed(width, height, start, volume, uri, "twitchvod")
 end)
+
+
+list.Set("PlayXHandlers", "GoogleDrive", function(width, height, start, volume, uri, handlerArgs)
+    return playxlib.GenerateGoogleDriveEmbed(width, height, start, volume, uri, "googledrive")
+end)
