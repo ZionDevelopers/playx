@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
 		width: window.innerWidth,
 		height: window.innerHeight,
 		host: "https://www.youtube-nocookie.com",
-		videoId,
+		videoId: videoId,
 		playerVars: {
 			origin: window.location.host,
 			autoplay: 1,
@@ -62,8 +62,8 @@ function onPlayerReady(event) {
 	player.setVolume(vol);
 	player.loadPlaylist({
 		listType: "playlist",
-		list,
-		index,
+		list: list,
+		index: index,
 		startSeconds: start
 	})
 }
