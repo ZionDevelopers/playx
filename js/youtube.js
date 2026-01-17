@@ -10,7 +10,7 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player("player", {
 		width: window.innerWidth,
 		height: window.innerHeight,
-		videoId,
+		videoId: videoId,
 		host: "https://www.youtube-nocookie.com",
 		playerVars: {
 			origin: window.location.host,
