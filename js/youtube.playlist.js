@@ -12,8 +12,7 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player("player", {
 		width: window.innerWidth,
 		height: window.innerHeight,
-		host: "https://www.youtube-nocookie.com",
-		videoId: videoId,
+		host: "https://www.youtube-nocookie.com",		
 		playerVars: {
 			origin: window.location.host,
 			autoplay: 1,
@@ -23,8 +22,11 @@ function onYouTubeIframeAPIReady() {
 			disablekb: 1,
 			modestbranding: 1,
 			rel: 0,
-			controls: 1,
-			start
+			controls: 1,			
+			listType: "playlist",
+			list: list,
+			index: index,
+			startSeconds: start	
 		},
 		events: {
 			onReady: onPlayerReady
@@ -59,11 +61,5 @@ function onPlayerReady(event) {
 	setInterval(updateStats, 100);
 	event.target.playVideo();
 	player.setPlaybackQuality("hd1080");
-	player.setVolume(vol);
-	player.loadPlaylist({
-		listType: "playlist",
-		list: list,
-		index: index,
-		startSeconds: start
-	})
+	player.setVolume(vol);	
 }
