@@ -26,7 +26,7 @@ function onYouTubeIframeAPIReady() {
 			listType: "playlist",
 			list: list,
 			index: index,
-			startSeconds: start	
+			start: start	
 		},
 		events: {
 			onReady: onPlayerReady
