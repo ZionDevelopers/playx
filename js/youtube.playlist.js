@@ -36,7 +36,7 @@ function onYouTubeIframeAPIReady() {
 
 function updateStats() {
 	var state = player.getPlayerState();
-	var stateText = "Unknow";
+	var stateText = "Unknown";
 	if (state == -1) {
 		stateText = "Unstarted"
 	} else if (state == 0) {
