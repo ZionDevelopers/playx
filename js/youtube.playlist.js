@@ -61,5 +61,7 @@ function onPlayerReady(event) {
 	setInterval(updateStats, 100);
 	event.target.playVideo();
 	player.setPlaybackQuality("hd1080");
-	player.setVolume(vol);	
+	setTimeout(function () {
+		player.setVolume(vol);	
+	}, 1000);
 }
