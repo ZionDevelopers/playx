@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.20 by Dathus [BR] on 2026-01-15 05:22 PM (-03:00 GMT)
+-- Version 2.9.24 by Dathus [BR] on 2026-01-17 12:47 PM (-03:00 GMT)
 
 list.Set("PlayXHandlers", "Vimeo", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateVimeoEmbed(width, height, start, volume, uri, "vimeo")
