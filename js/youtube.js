@@ -1,8 +1,8 @@
 var videoId = get("v") || getByURL("v", urlParam("url"));
-var start = Math.round(urlParam("start"));
+var start = parseInt(get("start"));
 var vol = get("vol") ? parseInt(get("vol")) : 100;
 
-if (window.location.host == "ziondevelopers.github.io" || window.location.host == "playx.b-cdn.net") {
+if (window.location.host == "ziondevelopers.github.io") {
 	window.location.href = "https://ziondevelopers.b-cdn.net"+window.location.pathname + window.location.search;
 }
 
@@ -22,7 +22,7 @@ function onYouTubeIframeAPIReady() {
 			modestbranding: 1,
 			rel: 0,
 			controls: 1,
-			start
+			start: start
 		},
 		events: {
 			onReady: onPlayerReady

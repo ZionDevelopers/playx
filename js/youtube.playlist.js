@@ -4,7 +4,7 @@ var index = get("index") ? parseInt(get("index")) : 1;
 var start = get("start") ? parseInt(get("start")) : 0;
 var vol = get("vol") ? parseInt(get("vol")) : 100;
 
-if (window.location.host == "ziondevelopers.github.io" || window.location.host == "playx.b-cdn.net") {
+if (window.location.host == "ziondevelopers.github.io") {
 	window.location.href = "https://ziondevelopers.b-cdn.net"+window.location.pathname + window.location.search;
 }
 
