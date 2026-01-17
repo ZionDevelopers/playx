@@ -6,14 +6,16 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.20 by Dathus [BR] on 2026-01-15 05:22 PM (-03:00 GMT)
+-- Version 2.9.23 by Dathus [BR] on 2026-01-17 09:35 AM (-03:00 GMT)
 
 local YouTubePlaylist = {}
 
 function YouTubePlaylist.Detect(uri)
     local m = playxlib.FindMatch(uri, {
         "^https?://youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)&index=([0-9]+)",
-        "^https?://[A-Za-z0-9%.%-]*%.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)&index=([0-9]+)",       
+        "^https?://www.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)&index=([0-9]+)",   
+        "^https?://youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)",
+        "^https?://www.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)",         
     })
 
     if m then
@@ -22,8 +24,8 @@ function YouTubePlaylist.Detect(uri)
 end
 
 function YouTubePlaylist.GetPlayer(uri, useJW)
-    if uri[1]:find("^[A-Za-z0-9_%-]+$") then
-        local url = GetConVar("playx_youtube_playlist_host_url"):GetString() .. "?v=" .. uri[1] .. "&list=".. uri [2] .. "&index=" .. uri[3]
+    if uri[1]:find("^[A-Za-z0-9_%-]+$") and uri[2]:find("^[A-Za-z0-9_%-]+$") then
+        local url = GetConVar("playx_youtube_playlist_host_url"):GetString() .. "?v=" .. uri[1] .. "&list=".. uri [2] .. "&index=" .. (uri[3] or 1)
 
         return {
             ["Handler"] = "YoutubePlaylist",
