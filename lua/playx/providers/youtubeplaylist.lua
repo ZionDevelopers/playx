@@ -6,16 +6,16 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.23 by Dathus [BR] on 2026-01-17 09:35 AM (-03:00 GMT)
+-- Version 2.9.25 by Dathus [BR] on 2026-01-17 08:08 PM (-03:00 GMT)
 
 local YouTubePlaylist = {}
 
 function YouTubePlaylist.Detect(uri)
     local m = playxlib.FindMatch(uri, {
         "^https?://youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)&index=([0-9]+)",
-        "^https?://www.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)&index=([0-9]+)",   
+        "^https?://www%.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)&index=([0-9]+)",   
         "^https?://youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)",
-        "^https?://www.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)",         
+        "^https?://www%.youtube%.com/watch%?.*v=([A-Za-z0-9_%-]+)&list=([A-Za-z0-9_%-]+)",         
     })
 
     if m then
