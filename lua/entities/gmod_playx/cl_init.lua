@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.13 by Dathus [BR] on 2023-12-28 9:57 PM (-03:00 GMT)
+-- Version 2.9.26 by Dathus [BR] on 2026-01-18 11:25 AM (-03:00 GMT)
 
 include("shared.lua")
 
@@ -193,7 +193,7 @@ function ENT:Play(handler, uri, start, volume, handlerArgs)
         self:CreateBrowser()
     end
 
-    self.Browser.FinishedURL = function()
+    self.Browser.FinishedURL = function()        
 		if not IsValid(self) then return end
 		MsgN("PlayX: Page loaded, preparing to inject")		
         self:InjectPage()
@@ -553,30 +553,30 @@ function ENT:InjectPage()
     end
     
     if self.CurrentPage.ForceURL then
-        self.Browser:Exec([[
+        self.Browser:Call([[
 document.body.style.overflow = 'hidden';
 ]])
     end
     
     if self.CurrentPage.JS then
-        self.Browser:Exec(self.CurrentPage.JS)
+        self.Browser:Call(self.CurrentPage.JS)
     end
     
     if self.CurrentPage.JSInclude then
-        self.Browser:Exec([[
+        self.Browser:Call([[
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.src = ']] .. playxlib.JSEscape(self.CurrentPage.JSInclude) .. [[';
 document.body.appendChild(script);
 ]])
     elseif self.CurrentPage.Body then
-        self.Browser:Exec([[
+        self.Browser:Call([[
 document.body.innerHTML = ']] .. playxlib.JSEscape(self.CurrentPage.Body) .. [[';
 ]])
     end
     
     if not self.CurrentPage.ForceURL then
-        self.Browser:Exec([[
+        self.Browser:Call([[
 document.body.style.margin = '0';
 document.body.style.padding = '0';
 document.body.style.border = '0';
@@ -586,7 +586,7 @@ document.body.style.overflow = 'hidden';
     end
 
     if self.CurrentPage.CSS then
-        self.Browser:Exec([[
+        self.Browser:Call([[
 var style = document.createElement('style');
 style.type = 'text/css';
 style.styleSheet.cssText = ']] .. playxlib.JSEscape(self.CurrentPage.CSS) .. [[';
@@ -595,7 +595,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
     end
     
     if not self.CurrentPage.ForceURL and (self.LowFramerateMode or self.NoScreen) then
-        self.Browser:Exec([[
+        self.Browser:Call([[
 var elements = document.getElementsByTagName('*');
 for (var i = 0; i < elements.length; i++) {
     elements[i].style.position = 'absolute';

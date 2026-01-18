@@ -8,7 +8,7 @@
 -- Credit: Based on Cinema Fixed Edition: <https://raw.githubusercontent.com/FarukGamer/cinema/master/workshop/gamemodes/cinema_modded/gamemode/modules/scoreboard/controls/cl_html.lua>
 
 -- $Id$
--- Version 2.9.3 by Dathus [BR] on 2023-06-10 7:54 PM (-03:00 GMT)
+-- Version 2.9.26 by Dathus [BR] on 2026-01-18 11:25 AM (-03:00 GMT)
 
 local RealTime = RealTime
 
@@ -51,12 +51,14 @@ AccessorFunc( PANEL, "m_bAllowLua",       "AllowLua",     FORCE_BOOL )
 -----------------------------------------------------------]]
 function PANEL:Init()
 
+  self.LoadedContent = true
   self.History = {}
   self.CurrentPage = 0
 
   self.URL = ""
 
   self:SetScrollbars( true )
+  self:SetAllowLua( true )
 
   self.JS = {}
   self.Callbacks = {}
@@ -174,10 +176,11 @@ function PANEL:Think()
       self:OnFinishLoading()
 
     end
-
+    
     -- Run queued javascript
     if self.JS then
-      for k, v in pairs( self.JS ) do
+      
+      for k, v in ipairs( self.JS ) do        
         self:RunJavascript( v )
       end
       self.JS = nil
@@ -244,8 +247,13 @@ end
 -- Called when the page finishes loading all assets
 --
 function PANEL:OnFinishLoading()
-
+  self:FinishedURL()
 end
+
+function PANEL:Call( js )
+	self:QueueJavascript( js )
+end
+
 
 function PANEL:QueueJavascript( js )
 
@@ -264,7 +272,6 @@ function PANEL:QueueJavascript( js )
 end
 
 PANEL.QueueJavaScript = PANEL.QueueJavascript
-PANEL.Call = PANEL.QueueJavascript
 
 function PANEL:ConsoleMessage( msg, func )
 
