@@ -29,7 +29,7 @@
             $(document).ready(function () {
                 var path = get('path');
                 $.ajax({
-                    url: 'https://playx.juliocesar.me/livestream.php?path='+path,
+                    url: 'https://juliocesar.me/playx/livestream.php?path='+path,
                     crossDomain: true,
                     success: function (newpath) {                        
                         $('#player').html('<iframe id="ls_embed_1686487364" src="https://livestream.com/'+newpath+'/player?width='+(window.innerWidth-5)+'&height='+(window.innerHeight-4)+'&enableInfoAndActivity=true&defaultDrawer=feed&autoPlay=true&mute=false" width="'+(window.innerWidth-5)+'" height="'+(window.innerHeight-4)+'" frameborder="0" scrolling="no" allowfullscreen> </iframe>');
