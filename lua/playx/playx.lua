@@ -6,18 +6,18 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.22 by Dathus [BR] on 2026-01-16 02:23 PM (-03:00 GMT)
+-- Version 2.9.27 by Dathus [BR] on 2026-01-21 09:04 PM (-03:00 GMT)
 
 -- FCVAR_GAMEDLL makes cvar change detection work
-CreateConVar("playx_jw_url", "https://ziondevelopers.github.io/playx/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
-CreateConVar("playx_host_url", "https://ziondevelopers.github.io/playx/host.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_youtube_host_url", "https://ziondevelopers.b-cdn.net/playx/youtubehost.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_youtube_playlist_host_url", "https://ziondevelopers.b-cdn.net/playx/youtube.playlist.host.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_twitch_host_url", "https://ziondevelopers.github.io/playx/twitchhost.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_vimeo_host_url", "https://ziondevelopers.github.io/playx/vimeohost.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_livestream_host_url", "https://ziondevelopers.github.io/playx/livestreamhost.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_soundcloud_host_url", "https://ziondevelopers.github.io/playx/soundcloud.html",        {FCVAR_GAMEDLL})
-CreateConVar("playx_image_host_url", "https://ziondevelopers.github.io/playx/image.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_jw_url", "https://playx.juliocesar.me/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
+CreateConVar("playx_host_url", "https://playx.juliocesar.me/host.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_youtube_host_url", "https://playx.juliocesar.me/youtubehost.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_youtube_playlist_host_url", "https://playx.juliocesar.me/youtube.playlist.host.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_twitch_host_url", "https://playx.juliocesar.me/twitchhost.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_vimeo_host_url", "https://playx.juliocesar.me/vimeohost.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_livestream_host_url", "https://playx.juliocesar.me/livestreamhost.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_soundcloud_host_url", "https://playx.juliocesar.me/soundcloud.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_image_host_url", "https://playx.juliocesar.me/image.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_main", "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk", {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_backup", "AIzaSyDMkG6thBbGv9m7iuuT4avu6eyC4AXE75w", {FCVAR_GAMEDLL})
 CreateConVar("playx_jw_youtube", "1", {FCVAR_ARCHIVE})

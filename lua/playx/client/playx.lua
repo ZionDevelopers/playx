@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 2.9.27 by Dathus [BR] on 2026-01-21 09:04 PM (-03:00 GMT)
 
 CreateClientConVar("playx_enabled", 1, true, false)
 CreateClientConVar("playx_fps", 14, true, false)
@@ -23,7 +23,7 @@ CreateClientConVar("playx_video_range_enabled", 1, true, false)
 CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
 CreateClientConVar("playx_debug", 0, true, false, "Enable Error Messages From Playx In Console")
-CreateClientConVar("playx_navigator_homepage_url", "https://ziondevelopers.github.io/playx", true, false)
+CreateClientConVar("playx_navigator_homepage_url", "https://playx.juliocesar.me", true, false)
 CreateClientConVar("playx_fullscreen", 0, true, false)
 CreateClientConVar("playx_version", PlayX.Version, true, false)
 CreateClientConVar("playx_version_updated", PlayX.VersionUpdated, true, false)
