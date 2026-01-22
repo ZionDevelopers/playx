@@ -3,6 +3,7 @@ var videoId = get("v");
 var index = get("index") ? parseInt(get("index")) : 1;
 var start = get("start") ? parseInt(get("start")) : 0;
 var vol = get("vol") ? parseInt(get("vol")) : 100;
+index = index-1;
 
 window.onload = function () {
 	player = new YT.Player("player", {
