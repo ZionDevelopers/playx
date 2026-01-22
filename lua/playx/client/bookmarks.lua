@@ -5,7 +5,7 @@
 -- This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
--- $Id$
+-- Version 2.9.30 by Dathus [BR] on 2026-01-22 06:35 PM (-03:00 GMT)
 
 PlayX.BookmarksWindow = nil
 PlayX.Bookmarks = {}
@@ -140,12 +140,14 @@ function Bookmark:Delete()
             -- Now let's update the window
             if bookmarksWindowList ~= nil then
                 local bookmarks = bookmarksWindowList
-                for _, line in pairs(bookmarks:GetLines()) do
-                   if line:GetValue(1):lower() == self.Title:lower() then
-                        bookmarks:RemoveLine(line:GetID())
-                        break
-                   end
-                end
+                pcall(function () 
+                    for _, line in pairs(bookmarks:GetLines()) do
+                        if line:GetValue(1):lower() == self.Title:lower() then
+                                bookmarks:RemoveLine(line:GetID())
+                                break
+                        end
+                    end
+                end)
             end
             
             return true
