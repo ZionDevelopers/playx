@@ -18,11 +18,7 @@ window.onload = function () {
 			disablekb: 1,
 			modestbranding: 1,
 			rel: 0,
-			controls: 1,			
-			listType: "playlist",
-			list: list,
-			index: index,
-			start: start	
+			controls: 1
 		},
 		events: {
 			onReady: onPlayerReady
@@ -54,6 +50,7 @@ function updateStats() {
 }
 
 function onPlayerReady(event) {
+	event.target.loadPlaylist({ list: list, listType: 'playlist', index: index, startSeconds: start });
 	setInterval(updateStats, 100);
 	event.target.playVideo();
 	player.setPlaybackQuality("hd1080");
