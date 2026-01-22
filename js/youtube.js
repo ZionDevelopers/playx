@@ -3,6 +3,7 @@ var start = parseInt(get("start"));
 var vol = get("vol") ? parseInt(get("vol")) : 100;
 
 function onYouTubeIframeAPIReady() {
+	console.log('IFrame loaded');
 	setTimeout(function () {
 		player = new YT.Player("player", {
 			width: window.innerWidth,
