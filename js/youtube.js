@@ -2,32 +2,30 @@ var videoId = get("v") || getByURL("v", urlParam("url"));
 var start = parseInt(get("start"));
 var vol = get("vol") ? parseInt(get("vol")) : 100;
 
-if (window.location.host == "ziondevelopers.github.io") {
-	window.location.href = "https://ziondevelopers.b-cdn.net"+window.location.pathname + window.location.search;
-}
-
 function onYouTubeIframeAPIReady() {
-	player = new YT.Player("player", {
-		width: window.innerWidth,
-		height: window.innerHeight,
-		videoId: videoId,
-		host: "https://www.youtube-nocookie.com",
-		playerVars: {
-			origin: window.location.host,
-			autoplay: 1,
-			showinfo: 0,
-			cc_load_policy: 0,
-			iv_load_policy: 3,
-			disablekb: 1,
-			modestbranding: 1,
-			rel: 0,
-			controls: 1,
-			start: start
-		},
-		events: {
-			onReady: onPlayerReady
-		}
-	})
+	setTimeout(function () {
+		player = new YT.Player("player", {
+			width: window.innerWidth,
+			height: window.innerHeight,
+			videoId: videoId,
+			host: "https://www.youtube-nocookie.com",
+			playerVars: {
+				origin: window.location.host,
+				autoplay: 1,
+				showinfo: 0,
+				cc_load_policy: 0,
+				iv_load_policy: 3,
+				disablekb: 1,
+				modestbranding: 1,
+				rel: 0,
+				controls: 1,
+				start: start
+			},
+			events: {
+				onReady: onPlayerReady
+			}
+		});
+	}, 1000);
 }
 
 function updateStats() {
