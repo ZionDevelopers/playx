@@ -2,9 +2,6 @@ var videoId = get("v") || getByURL("v", urlParam("url"));
 var start = parseInt(get("start"));
 var vol = get("vol") ? parseInt(get("vol")) : 100;
 
-function onYouTubeIframeAPIReady() {
-}
-
 function updateStats() {
 	var state = player.getPlayerState();
 	var stateText = "Unknow";
