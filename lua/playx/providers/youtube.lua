@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 2.9.28 by Dathus [BR] on 2026-01-21 09:50 PM (-03:00 GMT)
 
 local YouTube = {}
 
@@ -90,7 +90,7 @@ function YouTube.QueryMetadata(uri, callback, failCallback)
         local faves = resultsTable.items[1].statistics.favoriteCount
         local views = resultsTable.items[1].statistics.viewCount
 
-        local likes = resultsTable.items[1].statistics.likeCount
+        local likes = resultsTable.items[1].statistics.likeCount or 1
         local numRaters = likes -- + resultsTable.items[1].statistics.dislikeCount
         local rating = likes/numRaters * 5
 

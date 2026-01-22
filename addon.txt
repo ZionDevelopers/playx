@@ -1,7 +1,7 @@
 "AddonInfo"
 {
     "name" "PlayX"
-    "version" "2.9.27"
+    "version" "2.9.28"
     "up_date"	"2026-01-21"
     "author_name" "Dathus [BR]"
     "author_url" "http://www.juliocesar.me"
