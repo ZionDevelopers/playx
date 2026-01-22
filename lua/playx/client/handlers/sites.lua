@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.24 by Dathus [BR] on 2026-01-17 12:47 PM (-03:00 GMT)
+-- Version 2.9.29 by Dathus [BR] on 2026-01-22 05:14 PM (-03:00 GMT)
 
 list.Set("PlayXHandlers", "Vimeo", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateVimeoEmbed(width, height, start, volume, uri, "vimeo")
@@ -15,10 +15,6 @@ end)
 -- Initial soundcloud handler by Xerasin, I fixed and make it better for my PlayX version.
 list.Set("PlayXHandlers", "SoundCloud", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateSoundcloudEmbed(width, height, start*1000, volume, uri, "soundcloud")
-end)
-
-list.Set("PlayXHandlers", "Livestream", function(width, height, start, volume, uri, handlerArgs)
-    return playxlib.GenerateLivestreamEmbed(width, height, start, volume, uri, "livestream")
 end)
 
 list.Set("PlayXHandlers", "YoutubeNative", function(width, height, start, volume, uri, handlerArgs)

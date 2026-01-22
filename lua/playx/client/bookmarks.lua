@@ -127,7 +127,7 @@ function Bookmark:Delete()
             table.remove(PlayX.Bookmarks, i)
                         
             -- Now let's update the panel
-            if PlayX._BookmarksPanelList then
+            if PlayX._BookmarksPanelList ~= nil then
                 local bookmarks = PlayX._BookmarksPanelList
                 for _, line in pairs(bookmarks:GetLines()) do
                    if line:GetValue(1):lower() == self.Title:lower() then
@@ -138,7 +138,7 @@ function Bookmark:Delete()
             end
             
             -- Now let's update the window
-            if bookmarksWindowList then
+            if bookmarksWindowList ~= nil then
                 local bookmarks = bookmarksWindowList
                 for _, line in pairs(bookmarks:GetLines()) do
                    if line:GetValue(1):lower() == self.Title:lower() then
