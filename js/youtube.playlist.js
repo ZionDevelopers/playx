@@ -18,14 +18,16 @@ window.onload = function () {
 			disablekb: 1,
 			modestbranding: 1,
 			rel: 0,
-			controls: 1
+			controls: 1,			
+			listType: "playlist",
+			list: list,
+			index: index,
+			start: start	
 		},
 		events: {
 			onReady: onPlayerReady
 		}
-	});
-
-	player.loadPlaylist(list, index, start);
+	})
 }
 
 function updateStats() {
