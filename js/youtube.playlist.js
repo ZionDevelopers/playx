@@ -8,7 +8,8 @@ window.onload = function () {
 	player = new YT.Player("player", {
 		width: window.innerWidth,
 		height: window.innerHeight,
-		host: "https://www.youtube-nocookie.com",		
+		host: "https://www.youtube-nocookie.com",	
+		videoId: videoId,	
 		playerVars: {
 			origin: window.location.host,
 			autoplay: 1,
