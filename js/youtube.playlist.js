@@ -24,12 +24,8 @@ window.onload = function () {
 			onReady: onPlayerReady
 		}
 	});
-	
-	player.loadPlaylist({list: list,
-		listType:"playlist",
-		index:index,
-		startSeconds:start
-	});
+
+	player.loadPlaylist(list, index, start);
 }
 
 function updateStats() {
