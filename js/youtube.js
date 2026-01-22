@@ -57,5 +57,4 @@ window.onload= function () {
 				onReady: onPlayerReady
 			}
 		});
-	}, 1000);
 }
