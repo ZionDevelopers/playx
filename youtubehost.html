@@ -10,71 +10,13 @@
 		<link rel="manifest" href="img/favicon/site.webmanifest">
 		<script src="https://www.youtube.com/iframe_api"></script>
 		<script src="js/common.js"></script>
+		<script src="js/youtube.js"></script>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XKXQZL55B"></script>
 		<script src="js/tracking.js"></script>
 	</head>
 
 	<body>
 		<div id="player"></div>
-		<script>
-			var videoId = get("v") || getByURL("v", urlParam("url"));
-			var start = parseInt(get("start"));
-			var vol = get("vol") ? parseInt(get("vol")) : 100;
-
-			function onYouTubeIframeAPIReady() {
-				player = new YT.Player("player", {
-					width: window.innerWidth,
-					height: window.innerHeight,
-					videoId: videoId,
-					host: "https://www.youtube-nocookie.com",
-					playerVars: {
-						origin: window.location.host,
-						autoplay: 1,
-						showinfo: 0,
-						cc_load_policy: 0,
-						iv_load_policy: 3,
-						disablekb: 1,
-						modestbranding: 1,
-						rel: 0,
-						controls: 1,
-						start: start
-					},
-					events: {
-						onReady: onPlayerReady
-					}
-				})
-			}
-
-			function updateStats() {
-				var state = player.getPlayerState();
-				var stateText = "Unknow";
-				if (state == -1) {
-					stateText = "Unstarted"
-				} else if (state == 0) {
-					stateText = "COMPLETED"
-				} else if (state == 1) {
-					stateText = "PLAYING"
-				} else if (state == 2) {
-					stateText = "PAUSED"
-				} else if (state == 3) {
-					stateText = "BUFFERING"
-				} else if (state == 5) {
-					stateText = "Video Cued"
-				}
-				sendPlayerData({
-					State: stateText,
-					Position: player.getCurrentTime(),
-					Duration: player.getDuration()
-				})
-			}
-
-			function onPlayerReady(event) {
-				setInterval(updateStats, 100);
-				event.target.playVideo();
-				player.setPlaybackQuality("hd1080");
-				player.setVolume(vol)
-			}
-		</script>
 	</body>
 
 </html>
