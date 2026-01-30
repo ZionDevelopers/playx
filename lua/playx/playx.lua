@@ -56,8 +56,8 @@ function PlayX.AccessManager(ply)
 		result = ply:EV_HasPrivilege( "PlayX Access" )
 	end
 
-	-- Check if SAM is loaded
-	if sam ~= nil then
+	-- Check if SAM or Lyn is loaded
+	if sam ~= nil or Lyn ~= nil then
 		result = ply:HasPermission( "PlayX Access" )
 	end
 	
