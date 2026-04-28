@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.32 by DathusBR on 2026-04-28 11:23 PM (-03:00 GMT)
+-- Version 2.9.33 by DathusBR on 2026-04-28 11:40 PM (-03:00 GMT)
 
 -- FCVAR_GAMEDLL makes cvar change detection work
 CreateConVar("playx_jw_url", "https://playx.juliocesar.me/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
@@ -726,7 +726,7 @@ function PlayX.YouTubeAPIManager (path, oVars, successF, failureF, useBackup)
     -- Get original api key
     local GoogleAPIV3_YoutubeKey = GetConVar("playx_google_api_v3_youtube_key_main"):GetString():Trim()
     -- Get backup api key
-    local GoogleAPIV3_YoutubeKeyBackup = GetConVar("playx_google_api_v3_youtube_key_main"):GetString():Trim()
+    local GoogleAPIV3_YoutubeKeyBackup = GetConVar("playx_google_api_v3_youtube_key_backup"):GetString():Trim()
     
     -- Check if useBackup is not sent
     if useBackup == nil or useBackup == false then
