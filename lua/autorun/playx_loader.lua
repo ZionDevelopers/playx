@@ -10,7 +10,7 @@
 
 PlayX = {}
 PlayX.Version = "2.9.33"
-PlayX.VersionUpdated = "2026-04-28 11:40 PM"
+PlayX.VersionUpdated = "2026-04-28 11:40 AM"
 
 --Setup Loading Log Formatation
 function loadingLog (text)
