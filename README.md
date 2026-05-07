@@ -8,7 +8,7 @@ Just download this addon by clicking on Download ZIP and extract the addon in ``
 
 
 ### Requirement
-![Requirement](https://playx.juliocesar.me/img/branch.png)
+![Requirement](https://playx.juliocesar.me/img/branch.png?v1)
 
 For now to this addon to work you need to use the x86-64 branch.
 
