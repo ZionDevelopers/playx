@@ -197,5 +197,6 @@ PlayX.importTranslation("ja", {
     ["admin_joined_during_timeout"] = "PlayX: 許可されたユーザーが認証されました (接続); タイムアウトを殺す",
     ["admin_timeout_set"] = "PlayX: サーバーに管理者がいません; タイムアウトを %fs に設定",
     ["admin_timeout_ended"] = "PlayX: 拡張期間に管理者が存在しませんでした; メディアタイムアウト",
-    ["media_expired"] = "PlayX: メディアはすでに期限切れです"
+    ["media_expired"] = "PlayX: メディアはすでに期限切れです",
+    ["panel_enabled"] = "有効"
 })

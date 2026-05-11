@@ -197,5 +197,6 @@ PlayX.importTranslation("pl", {
     ["admin_joined_during_timeout"] = "PlayX: Autoryzowany użytkownik uwierzytelniony (połączenie); zabijanie timeout",
     ["admin_timeout_set"] = "PlayX: Brak admina na serwerze; ustawianie timeout na %fs",
     ["admin_timeout_ended"] = "PlayX: Żadni administratorzy nie byli obecni przez przedłużony okres; timeout mediów",
-    ["media_expired"] = "PlayX: Media już wygasły"
+    ["media_expired"] = "PlayX: Media już wygasły",
+    ["panel_enabled"] = "Włączony"
 })

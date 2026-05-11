@@ -197,5 +197,6 @@ PlayX.importTranslation("ko", {
     ["admin_joined_during_timeout"] = "PlayX: 허가된 사용자가 인증됨 (연결); 타임아웃 죽이기",
     ["admin_timeout_set"] = "PlayX: 서버에 관리자가 없습니다; 타임아웃을 %fs로 설정",
     ["admin_timeout_ended"] = "PlayX: 확장 기간 동안 관리자가 존재하지 않았습니다; 미디어 타임아웃",
-    ["media_expired"] = "PlayX: 미디어가 이미 만료되었습니다"
+    ["media_expired"] = "PlayX: 미디어가 이미 만료되었습니다",
+    ["panel_enabled"] = "활성화됨"
 })

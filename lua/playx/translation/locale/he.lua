@@ -197,5 +197,6 @@ PlayX.importTranslation("he", {
     ["admin_joined_during_timeout"] = "PlayX: משתמש מורשה אומת (חיבור); הורג את ה-timeout",
     ["admin_timeout_set"] = "PlayX: אין אדמין בשרת; הגדרת timeout ל-%fs",
     ["admin_timeout_ended"] = "PlayX: לא היה אדמינים נוכחים לתקופה מורחבת; timeout של מדיה",
-    ["media_expired"] = "PlayX: המדיה כבר פגה"
+    ["media_expired"] = "PlayX: המדיה כבר פגה",
+    ["panel_enabled"] = "מופעל"
 })

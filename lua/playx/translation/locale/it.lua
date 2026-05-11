@@ -197,5 +197,6 @@ PlayX.importTranslation("it", {
     ["admin_joined_during_timeout"] = "PlayX: Utente autorizzato autenticato (connessione); uccisione timeout",
     ["admin_timeout_set"] = "PlayX: Nessun admin sul server; impostazione timeout a %fs",
     ["admin_timeout_ended"] = "PlayX: Nessun amministratore presente per un periodo prolungato; timeout media",
-    ["media_expired"] = "PlayX: I media sono già scaduti"
+    ["media_expired"] = "PlayX: I media sono già scaduti",
+    ["panel_enabled"] = "Abilitato"
 })

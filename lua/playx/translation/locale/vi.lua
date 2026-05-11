@@ -197,5 +197,6 @@ PlayX.importTranslation("vi", {
     ["admin_joined_during_timeout"] = "PlayX: Người dùng được ủy quyền đã xác thực (kết nối); đang giết timeout",
     ["admin_timeout_set"] = "PlayX: Không có admin trên máy chủ; đang đặt timeout thành %fs",
     ["admin_timeout_ended"] = "PlayX: Không có quản trị viên nào hiện diện trong thời gian kéo dài; timeout phương tiện",
-    ["media_expired"] = "PlayX: Phương tiện đã hết hạn"
+    ["media_expired"] = "PlayX: Phương tiện đã hết hạn",
+    ["panel_enabled"] = "Đã bật"
 })

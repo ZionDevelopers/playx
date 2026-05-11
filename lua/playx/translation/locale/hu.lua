@@ -197,5 +197,6 @@ PlayX.importTranslation("hu", {
     ["admin_joined_during_timeout"] = "PlayX: Engedélyezett felhasználó hitelesítve (csatlakozás); timeout ölése",
     ["admin_timeout_set"] = "PlayX: Nincs admin a szerveren; timeout beállítása %fs-ra",
     ["admin_timeout_ended"] = "PlayX: Nem voltak adminisztrátorok jelen kiterjesztett időn keresztül; média timeout",
-    ["media_expired"] = "PlayX: A média már lejárt"
+    ["media_expired"] = "PlayX: A média már lejárt",
+    ["panel_enabled"] = "Engedélyezve"
 })

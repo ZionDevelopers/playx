@@ -197,5 +197,6 @@ PlayX.importTranslation("th", {
     ["admin_joined_during_timeout"] = "PlayX: ผู้ใช้ที่ได้รับอนุญาตยืนยันแล้ว (การเชื่อมต่อ); กำลังฆ่าตัวหมดเวลา",
     ["admin_timeout_set"] = "PlayX: ไม่มีแอดมินบนเซิร์ฟเวอร์; กำลังตั้งตัวหมดเวลาเป็น %fs",
     ["admin_timeout_ended"] = "PlayX: ไม่มีผู้ดูแลระบบอยู่ช่วงเวลาที่ขยาย; หมดเวลาสื่อ",
-    ["media_expired"] = "PlayX: สื่อหมดอายุแล้ว"
+    ["media_expired"] = "PlayX: สื่อหมดอายุแล้ว",
+    ["panel_enabled"] = "เปิดใช้งาน"
 })

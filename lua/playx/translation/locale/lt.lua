@@ -197,5 +197,6 @@ PlayX.importTranslation("lt", {
     ["admin_joined_during_timeout"] = "PlayX: Leidžiamas vartotojas autentifikuotas (prisijungimas); žudantis timeout",
     ["admin_timeout_set"] = "PlayX: Serveryje nėra admino; nustatant timeout į %fs",
     ["admin_timeout_ended"] = "PlayX: Išplėstinį laikotarpį nebuvo administratoriaus; medijos timeout",
-    ["media_expired"] = "PlayX: Medija jau baigėsi"
+    ["media_expired"] = "PlayX: Medija jau baigėsi",
+    ["panel_enabled"] = "Įjungta"
 })

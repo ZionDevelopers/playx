@@ -197,5 +197,6 @@ PlayX.importTranslation("et", {
     ["admin_joined_during_timeout"] = "PlayX: Lubatud kasutaja autenditud (ühendamine); tapmine timeout",
     ["admin_timeout_set"] = "PlayX: Admin pole serveris; timeout määramine %fs jaoks",
     ["admin_timeout_ended"] = "PlayX: Administraatoreid pole olnud pikema aja jooksul kohal; meedia timeout",
-    ["media_expired"] = "PlayX: Meedia on juba aegunud"
+    ["media_expired"] = "PlayX: Meedia on juba aegunud",
+    ["panel_enabled"] = "Lubatud"
 })

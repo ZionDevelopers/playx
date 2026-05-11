@@ -197,5 +197,6 @@ PlayX.importTranslation("sv-SE", {
     ["admin_joined_during_timeout"] = "PlayX: Auktoriserad användare autentiserad (anslutning); dödar timeout",
     ["admin_timeout_set"] = "PlayX: Ingen admin på server; sätter timeout till %fs",
     ["admin_timeout_ended"] = "PlayX: Inga administratörer har varit närvarande under en förlängd period; media timeout",
-    ["media_expired"] = "PlayX: Media har redan gått ut"
+    ["media_expired"] = "PlayX: Media har redan gått ut",
+    ["panel_enabled"] = "Aktiverad"
 })

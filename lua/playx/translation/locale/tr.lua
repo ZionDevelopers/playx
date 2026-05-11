@@ -197,5 +197,6 @@ PlayX.importTranslation("tr", {
     ["admin_joined_during_timeout"] = "PlayX: Yetkili kullanıcı doğrulandı (bağlantı); zaman aşımını öldürüyor",
     ["admin_timeout_set"] = "PlayX: Sunucuda yönetici yok; zaman aşımını %fs'ye ayarlıyor",
     ["admin_timeout_ended"] = "PlayX: Uzun bir süre boyunca hiçbir yönetici mevcut değildi; medya zaman aşımı",
-    ["media_expired"] = "PlayX: Medya zaten süresi doldu"
+    ["media_expired"] = "PlayX: Medya zaten süresi doldu",
+    ["panel_enabled"] = "Etkinleştirildi"
 })

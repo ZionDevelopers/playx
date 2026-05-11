@@ -197,5 +197,6 @@ PlayX.importTranslation("de", {
     ["admin_joined_during_timeout"] = "PlayX: Erlaubter Benutzer auth (verbinden); Timeout töten",
     ["admin_timeout_set"] = "PlayX: Kein Admin auf Server; Timeout auf %fs setzen",
     ["admin_timeout_ended"] = "PlayX: Keine Administratoren waren für einen erweiterten Zeitraum anwesend; Timeout von Medien",
-    ["media_expired"] = "PlayX: Medien sind bereits abgelaufen"
+    ["media_expired"] = "PlayX: Medien sind bereits abgelaufen",
+    ["panel_enabled"] = "Aktiviert"
 })

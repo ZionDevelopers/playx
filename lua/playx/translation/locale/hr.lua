@@ -197,5 +197,6 @@ PlayX.importTranslation("hr", {
     ["admin_joined_during_timeout"] = "PlayX: Ovlašteni korisnik autentificiran (spajanje); ubijanje timeouta",
     ["admin_timeout_set"] = "PlayX: Nema admina na serveru; postavljanje timeouta na %fs",
     ["admin_timeout_ended"] = "PlayX: Nisu bili prisutni administratori za produženo vrijeme; timeout medija",
-    ["media_expired"] = "PlayX: Mediji su već istekli"
+    ["media_expired"] = "PlayX: Mediji su već istekli",
+    ["panel_enabled"] = "Omogućeno"
 })

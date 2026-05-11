@@ -197,5 +197,6 @@ PlayX.importTranslation("ru", {
     ["admin_joined_during_timeout"] = "PlayX: Авторизованный пользователь аутентифицирован (соединение); убивание таймаута",
     ["admin_timeout_set"] = "PlayX: Нет админа на сервере; установка таймаута на %fs",
     ["admin_timeout_ended"] = "PlayX: Администраторы не присутствовали в течение продленного периода; таймаут медиа",
-    ["media_expired"] = "PlayX: Медиа уже истекли"
+    ["media_expired"] = "PlayX: Медиа уже истекли",
+    ["panel_enabled"] = "Включено"
 })

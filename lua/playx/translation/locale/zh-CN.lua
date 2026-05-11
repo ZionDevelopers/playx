@@ -197,5 +197,6 @@ PlayX.importTranslation("zh-CN", {
     ["admin_joined_during_timeout"] = "PlayX: 已授权用户认证 (连接); 杀死超时",
     ["admin_timeout_set"] = "PlayX: 服务器上没有管理员; 设置超时为 %fs",
     ["admin_timeout_ended"] = "PlayX: 在延长期间没有管理员存在; 媒体超时",
-    ["media_expired"] = "PlayX: 媒体已过期"
+    ["media_expired"] = "PlayX: 媒体已过期",
+    ["panel_enabled"] = "已启用"
 })

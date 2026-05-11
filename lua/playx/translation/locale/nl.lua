@@ -197,5 +197,6 @@ PlayX.importTranslation("nl", {
     ["admin_joined_during_timeout"] = "PlayX: Geautoriseerde gebruiker geverifieerd (verbinding); timeout doden",
     ["admin_timeout_set"] = "PlayX: Geen admin op server; timeout instellen op %fs",
     ["admin_timeout_ended"] = "PlayX: Geen administrators aanwezig geweest voor verlengde periode; media timeout",
-    ["media_expired"] = "PlayX: Media zijn al verlopen"
+    ["media_expired"] = "PlayX: Media zijn al verlopen",
+    ["panel_enabled"] = "Ingeschakeld"
 })

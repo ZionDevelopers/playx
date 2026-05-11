@@ -17,7 +17,7 @@ local function SettingsPanel(panel)
     panel:ClearControls()
 
     panel:AddControl("CheckBox", {
-        Label = "Enabled",
+        Label = PlayX.translate("panel_enabled"),
         Command = "playx_enabled",
     })
     

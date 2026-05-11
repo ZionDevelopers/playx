@@ -197,5 +197,6 @@ PlayX.importTranslation("el", {
     ["admin_joined_during_timeout"] = "PlayX: Επιτρεπόμενος χρήστης auth (σύνδεση); σκοτώνει timeout",
     ["admin_timeout_set"] = "PlayX: Κανένας admin στον διακομιστή; ορίζει timeout σε %fs",
     ["admin_timeout_ended"] = "PlayX: Κανένας διαχειριστής δεν ήταν παρών για εκτεταμένη περίοδο; timeout μέσων",
-    ["media_expired"] = "PlayX: Τα μέσα έχουν ήδη λήξει"
+    ["media_expired"] = "PlayX: Τα μέσα έχουν ήδη λήξει",
+    ["panel_enabled"] = "Ενεργοποιημένο"
 })

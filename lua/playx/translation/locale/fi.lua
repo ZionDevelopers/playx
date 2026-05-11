@@ -197,5 +197,6 @@ PlayX.importTranslation("fi", {
     ["admin_joined_during_timeout"] = "PlayX: Sallittu käyttäjä todennettu (yhdistäminen); tappaminen timeout",
     ["admin_timeout_set"] = "PlayX: Ei adminia palvelimella; timeout asettaminen %fs",
     ["admin_timeout_ended"] = "PlayX: Administraattoreita ei ole ollut läsnä laajennetun ajan; media timeout",
-    ["media_expired"] = "PlayX: Media on jo vanhentunut"
+    ["media_expired"] = "PlayX: Media on jo vanhentunut",
+    ["panel_enabled"] = "Käytössä"
 })
