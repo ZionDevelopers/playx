@@ -14,6 +14,8 @@ For now to this addon to work you need to use the x86-64 branch.
 
 For Twitch Streams/VODs, Mature content may not work, for some providers you will need [Gmod Patch Tool][GmodPatchTool].
 
+### Localization
+PlayX is now translated to all languages that Garry's Mod have language. This was done by A.I, and could have errors, please report if you found any!
 
 ### Workshop Ready!
 
