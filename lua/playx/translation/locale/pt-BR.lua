@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.2 by DathusBR on 2026-05-11 05:54 PM (-03:00 GMT)
 
 PlayX.importTranslation("pt-BR", {
     ["version"] = "Versão %s",
@@ -37,7 +37,7 @@ PlayX.importTranslation("pt-BR", {
     ["title_unavailable"] = "Título Indisponível",
     ["video_played_via_wire_input"] = "Vídeo tocado via entrada de fio: %s",
     ["player_purpose"] = "Reprodutor de mídia da Internet",
-    ["player_instructions"] = "Crie um e use o menu de desova.",
+    ["player_instructions"] = "Crie um e use o menu de colocação.",
     ["playx_repeater"] = "Repetidor PlayX",
     ["undone_playx_repeater"] = "Repetidor PlayX desfeito",
     ["cleanup_playx_repeater"] = "Repetidores PlayX",
