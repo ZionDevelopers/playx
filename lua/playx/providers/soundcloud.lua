@@ -7,7 +7,7 @@
 --
 -- Soundcloud provider coded initially by Xerasin
 
--- Version 2.9.6 by Dathus [BR] on 2023-06-11 4:54 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 local SoundCloud = {}
 
@@ -48,7 +48,7 @@ function SoundCloud.QueryMetadata(uri, callback, failCallback)
   http.Fetch(url,function(content,size)
     local dec = util.JSONToTable(content)
     if content == NULL or not dec then
-      if failCallback then failCallback("Failed to get Metadata") end
+      if failCallback then failCallback(PlayX.translate("error_metadata_fetch")) end
       return
     end
     if(dec and dec["title"] ~= nil) then

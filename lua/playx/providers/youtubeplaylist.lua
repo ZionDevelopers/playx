@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.28 by Dathus [BR] on 2026-01-21 09:50 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 local YouTubePlaylist = {}
 
@@ -50,7 +50,7 @@ function YouTubePlaylist.QueryMetadata(uri, callback, failCallback)
   local function successF (resultsTable)        
         -- Do a check to avoid error
         if resultsTable.pageInfo.resultsPerPage == 0 or resultsTable.items[1] == nil then
-          PrintMessage(HUD_PRINTTALK, "The Youtube video \""..uri.."\" that you tried to play is unavailable!")
+          PrintMessage(HUD_PRINTTALK, PlayX.translate("error_video_not_found", uri))
           return false
         end
                 

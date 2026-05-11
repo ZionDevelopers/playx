@@ -6,15 +6,15 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.26 by Dathus [BR] on 2026-01-18 11:25 AM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 include("shared.lua")
 
-language.Add("gmod_playx", "PlayX Player")
-language.Add("Undone_gmod_playx", "Undone PlayX Player")
-language.Add("Undone_#gmod_playx", "Undone PlayX Player")
-language.Add("Cleanup_gmod_playx", "PlayX Player")
-language.Add("Cleaned_gmod_playx", "Cleaned up the PlayX Player")
+language.Add("gmod_playx", PlayX.translate("playx_player"))
+language.Add("Undone_gmod_playx", PlayX.translate("undone_playx_player"))
+language.Add("Undone_#gmod_playx", PlayX.translate("undone_playx_player"))
+language.Add("Cleanup_gmod_playx", PlayX.translate("cleanup_playx_player"))
+language.Add("Cleaned_gmod_playx", PlayX.translate("cleaned_playx_player"))
 
 surface.CreateFont( "PlayXDefaultBold", {font = "Tahoma", size = 13, weight = 1000})
 
@@ -195,7 +195,7 @@ function ENT:Play(handler, uri, start, volume, handlerArgs)
 
     self.Browser.FinishedURL = function()        
 		if not IsValid(self) then return end
-		MsgN("PlayX: Page loaded, preparing to inject")		
+		MsgN(PlayX.translate("page_loaded"))
         self:InjectPage()
         if (PlayX.VideoRangeStatus == 0 and GetConVar("playx_video_range_enabled"):GetInt() == 1) or (PlayX.Pause == 1 and GetConVar("playx_video_range_enabled"):GetInt() == 1) then
 			self.Browser:RunJavascript('document.body.innerHTML = ""')
@@ -354,24 +354,24 @@ function ENT:DrawScreen(centerX, centerY)
                             Vector(self.HTMLWidth, self.HTMLHeight, 0),
                             Vector(0, self.HTMLHeight, 0)) 
         else
-            local text = "Video started in low framerate mode."
+            local text = PlayX.translate("video_started_low_framerate")
             
             if self.PlayerData.State then
                 text = self.PlayerData.State
                 
                 if text == "BUFFERING" then
-                    text = "Buffering" .. string.rep(".", CurTime() % 3)
+                    text = PlayX.translate("video_buffering") .. string.rep(".", CurTime() % 3)
                 elseif text == "PLAYING" then
-                    text = "Playing"
+                    text = PlayX.translate("video_playing")
                 elseif text == "ERROR" then
-                    text = "ERROR"
+                    text = PlayX.translate("video_error")
                 elseif text == "COMPLETED" then
-                    text = "Playback Complete."
+                    text = PlayX.translate("video_completed")
                     self:Stop()
                 elseif text == "STOPPED" then
-                    text = "Stopped"
+                    text = PlayX.translate("video_stopped")
                 elseif text == "PAUSED" then
-                    text = "Paused"
+                    text = PlayX.translate("video_paused")
                 end
             end
             
@@ -417,12 +417,12 @@ function ENT:DrawScreen(centerX, centerY)
         end
     else
         if PlayX.CrashDetected then
-            draw.SimpleText("Disabled due to detected crash (see tool menu -> Options)",
+            draw.SimpleText(PlayX.translate("disabled_due_to_crash"),
                             "HUDNumber",
                             centerX, centerY, Color(255, 255, 0, 255),
                             TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         elseif not PlayX.Enabled then
-            draw.SimpleText("Re-enable the player in the tool menu -> Options",
+            draw.SimpleText(PlayX.translate("reenable_after_crash"),
                             "HUDNumber",
                             centerX, centerY, Color(255, 255, 255, 255),
                             TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -442,18 +442,18 @@ function ENT:HUDPaint()
         text = self.PlayerData.State
         
         if text == "BUFFERING" then
-            text = "Buffering" .. string.rep(".", CurTime() % 3)
+            text = PlayX.translate("video_buffering") .. string.rep(".", CurTime() % 3)
         elseif text == "PLAYING" then
-            text = "Playing"
+            text = PlayX.translate("video_playing")
         elseif text == "ERROR" then
-            text = "ERROR"
+            text = PlayX.translate("video_error")
         elseif text == "COMPLETED" then
-            text = "Playback Completed."
+            text = PlayX.translate("video_completed")
             self:Stop()
         elseif text == "STOPPED" then
-            text = "Stopped"
+            text = PlayX.translate("video_stopped")
         elseif text == "PAUSED" then
-            text = "Paused"
+            text = PlayX.translate("video_paused")
         end
     end
     
@@ -466,7 +466,7 @@ function ENT:HUDPaint()
     draw.RoundedBox(6, bx, by, bw, bh, Color(0, 0, 0, 150))
         
     local titleText = PlayX.CurrentMedia.Title and PlayX.CurrentMedia.Title:sub(1, 50) 
-        or "Title Unavailable"
+        or PlayX.translate("title_unavailable")
     draw.SimpleText(titleText,
                     "PlayXDefaultBold",
                     ScrW() / 2, 35, Color(255, 255, 255, 255),

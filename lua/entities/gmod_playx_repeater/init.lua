@@ -6,6 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("cl_init.lua")

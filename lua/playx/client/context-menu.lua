@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.10 by Dathus [BR] on 2023-08-19 9:52 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 -- Add Hook for MenuPar Polulate
 hook.Add( "PopulateMenuBar", "", function( menubar )
@@ -14,5 +14,5 @@ hook.Add( "PopulateMenuBar", "", function( menubar )
   -- Get / Add Context Menu Bar: PlayX
   local mbar = menubar:AddOrGetMenu( "PlayX" )
 
-  mbar:AddCVar( "Fullscreen", "playx_fullscreen", "1", "0" )    
+  mbar:AddCVar( PlayX.translate("fullscreen_contextmenu"), "playx_fullscreen", "1", "0" )    
 end )

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.7.6 by Nexus [BR] on 20-03-2013 09:56 AM
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("cl_init.lua")
@@ -187,7 +187,7 @@ function ENT:TriggerInput(iname, value)
                 elseif start < 0 then
                     Wire_TriggerOutput(self.Entity, "InputError", "Non-negative start time is required")
                 else
-                    MsgN(string.format("Video played via wire input: %s", uri))
+                    MsgN(PlayX.translate("video_played_via_wire_input", uri))
                     print(provider, uri, start, forceLowFramerate, useJW)
                     
                     local result, err = PlayX.OpenMedia(provider, uri, start,

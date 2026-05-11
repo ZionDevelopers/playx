@@ -6,15 +6,21 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+
+if PlayX.translation == nil then
+    include("playx/translation/translation.lua")
+    PlayX.initTranslation()
+end
 
 ENT.Type = "anim"
 ENT.Base = "base_anim"
  
-ENT.PrintName = "PlayX Player"
-ENT.Author = "sk89q"
-ENT.Contact = "http://www.sk89q.com"
-ENT.Purpose = "Internet media player"
-ENT.Instructions = "Spawn one, and then use the spawn menu."
+ENT.PrintName = PlayX.translate("playx_player")
+ENT.Author = "DathusBR"
+ENT.Contact = "https://www.juliocesar.me"
+ENT.Purpose = PlayX.translate("player_purpose")
+ENT.Instructions = PlayX.translate("player_instructions")
 ENT.Category = "PlayX"
 
 ENT.WireDebugName = "PlayX Player"

@@ -30,7 +30,7 @@
 -- To install, drop this file into your lua/autorun/server folder.
 --
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 local lastResult = nil
 
@@ -68,13 +68,13 @@ end
 
 local function Play(ply, provider, uri, lowFramerate)
     if PlayX.IsPermitted(ply) then
-        PrintMessage(HUD_PRINTCONSOLE, ply:Nick().." started a video!")
+        PrintMessage(HUD_PRINTCONSOLE, PlayX.translate("started_playing", ply:Nick()))
         local result, err = PlayX.OpenMedia(provider, uri, 0, lowFramerate, true, false)
         if not result then
-            ply:ChatPrint("PlayX ERROR: " .. err)
+            ply:ChatPrint(PlayX.translate("playx_error", err))
         end
     else
-        ply:ChatPrint("NOTE: You are not permitted to control the player")
+        ply:ChatPrint(PlayX.translate("not_permitted"))
     end
 end
 
@@ -104,13 +104,12 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
                 end
 
                 for _, v in pairs(player.GetAll()) do
-                    v:ChatPrint(string.format("YouTube query: Query '%s': http://www.youtube.com/watch?v=%s (%s).",
-                                              m[2], videoID, title))
+                    v:ChatPrint(PlayX.translate("youtube_query_result", m[2], videoID, title))
                 end
             end
 
             local function failureF(msg)
-                ply:ChatPrint(string.format("YouTube query: No video found for query '%s'.", q))
+                ply:ChatPrint(PlayX.translate("youtube_query_failure", m[2]))
             end
 
             SearchYouTube(m[2], successF, failureF)
@@ -118,7 +117,7 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
             if lastResult then
                 Play(ply, "YouTube", lastResult, m[1] == "ytlisten")
             else
-                ply:ChatPrint("ERROR: No last result exists!")
+                ply:ChatPrint(PlayX.translate("youtube_query_no_results", m[2]))
             end
         end
 
@@ -155,8 +154,7 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
             local title = result.items[1].snippet.title
 
             for _, v in pairs(player.GetAll()) do
-                v:ChatPrint(string.format("YouTube video %s: \"%s\"",
-                                          videoID, title))
+                v:ChatPrint(PlayX.translate("youtube_query_result", m[1], videoID, title))                                          
             end
         end
 

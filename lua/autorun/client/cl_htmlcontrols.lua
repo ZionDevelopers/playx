@@ -9,12 +9,12 @@
 -- Credit: Based on Cinema Fixed Edition: <https://raw.githubusercontent.com/FarukGamer/cinema/master/workshop/gamemodes/cinema_modded/gamemode/modules/scoreboard/controls/cl_htmlcontrols.lua>
 
 -- $Id$
--- Version 2.9.7 by Dathus [BR] on 2023-06-11 8:37 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 local PANEL = {}
 
 function PANEL:Open(provider, uri)
-  MsgN("PlayXBrowser: Requested to open <" .. provider .. "> / <"  .. uri .. ">")
+  MsgN(PlayX.translate("open_bookmark", provider, uri))
   PlayX.RequestOpenMedia(provider, uri, 0, false, GetConVar("playx_use_jw"):GetBool(),
     GetConVar("playx_ignore_length"):GetBool())
 end
@@ -109,8 +109,8 @@ function PANEL:Init()
 
   self.RequestButton = vgui.Create( "DButton", self )
   self.RequestButton:SetSize( ButtonSize * 8, ButtonSize )
-  self.RequestButton:SetText( "Request URL" )
-  self.RequestButton:SetTooltip( "Click to play" )
+  self.RequestButton:SetText( PlayX.translate("request_url") )
+  self.RequestButton:SetTooltip( PlayX.translate("click_to_play") )
   -- self.RequestButton:SetDisabled( true )
   self.RequestButton:Dock( RIGHT )
   self.RequestButton:DockMargin( 8, 4, 8, 4 )
@@ -172,23 +172,6 @@ function PANEL:SetHTML( html )
     self.NavStack = self.NavStack + 1
     self:StartedLoading()
     self:UpdateHistory( url )
-
-    --[[
-
-    -- Check for valid URL
-
-    if theater.ExtractURLData( url, Theater ) then
-
-      self.RequestButton:SetDisabled( false )
-
-    else
-
-      self.RequestButton:SetDisabled( true )
-
-    end
-
-    ]]
-
   end
 
 end

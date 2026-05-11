@@ -5,7 +5,7 @@
 -- This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
--- Version 2.9.30 by Dathus [BR] on 2026-01-22 06:35 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 PlayX.BookmarksWindow = nil
 PlayX.Bookmarks = {}
@@ -16,16 +16,16 @@ local advancedView = false
 function PlayX.BookmarkDelete(line)
     local title = line:GetValue(1)
     
-    Derma_Query("Are you sure you want to delete '" .. title .. "'?",
-                "Delete Bookmark",
-                "Yes", function()
+    Derma_Query(PlayX.translate("delete_bookmark_title", title),
+                PlayX.translate("delete_bookmark"),
+                PlayX.translate("yes"), function()
                     local bookmark = PlayX.GetBookmark(title)
                     if bookmark then
                         bookmark:Delete()
                         PlayX.SaveBookmarks()
                     end
                 end,
-                "No", function() end)
+                PlayX.translate("no"), function() end)
 end
 
 local function IsTrue(s)
@@ -52,7 +52,7 @@ end
 
 function Bookmark:Update(title, provider, uri, keyword, startAt, lowFramerate)
     if self.Deleted then
-        Error("Operation performed on deleted bookmark")    
+        Error(PlayX.translate("operation_performed_on_deleted_bookmark"))    
     end
     
     local title = title:Trim()
@@ -63,16 +63,16 @@ function Bookmark:Update(title, provider, uri, keyword, startAt, lowFramerate)
     local lowFramerate = lowFramerate
     
     if title == "" then
-        return false, "A title is required."
+        return false, PlayX.translate("a_title_is_required")
     end
     if uri == "" then
-        return false, "A URI is required."
+        return false, PlayX.translate("a_uri_is_required")
     end
     
     for _, bookmark in pairs(PlayX.Bookmarks) do
         if keyword ~= "" and keyword:lower() == bookmark.Keyword:lower() and
             self.Title:lower() ~= bookmark.Title:lower() then
-            return false, "An existing, different entry already has the keyword '" .. keyword .. "'."
+            return false, PlayX.translate("keyword_already_exists", keyword)
         end
     end
     
@@ -93,7 +93,7 @@ function Bookmark:Update(title, provider, uri, keyword, startAt, lowFramerate)
                 line:SetValue(1, title)
                 line:SetValue(2, uri)
                 if keyword ~= "" then
-                    line:SetTooltip("Keyword: " .. keyword)
+                    line:SetTooltip(PlayX.translate("keyboard_tooltip", keyword))
                 else
                     line:SetTooltip(false)
                 end
@@ -159,7 +159,7 @@ end
 
 function Bookmark:Play()
     if self.Deleted then
-        Error("Operation performed on deleted bookmark")    
+        Error(PlayX.translate("operation_performed_on_deleted_bookmark"))    
     end
     
     PlayX.NavigatorCapturedURL = ""
@@ -171,7 +171,7 @@ end
 
 function Bookmark:CopyToPanel()
     if self.Deleted then
-        Error("Operation performed on deleted bookmark")    
+        Error(PlayX.translate("operation_performed_on_deleted_bookmark"))    
     end
     
     RunConsoleCommand("playx_provider", self.Provider)
@@ -223,7 +223,7 @@ This Is Halloween,,http://youtube.com/watch?v=i_zYrYkbrGY,,0:00,
         for k, bookmark in pairs(PlayX.Bookmarks) do
             local line = bookmarks:AddLine(bookmark.Title, bookmark.URI)
             if bookmark.Keyword ~= "" then
-                line:SetTooltip("Keyword: " .. bookmark.Keyword)
+                line:SetTooltip(PlayX.translate("keyboard_tooltip", bookmark.Keyword))
             end
         end
     end
@@ -266,18 +266,18 @@ function PlayX.AddBookmark(title, provider, uri, keyword, startAt, lowFramerate)
     local lowFramerate = lowFramerate and lowFramerate or false
     
     if title == "" then
-        return false, "A title is required."
+        return false, PlayX.translate("a_title_is_required")
     end
     if uri == "" then
-        return false, "A URI is required."
+        return false, PlayX.translate("a_uri_is_required")
     end
     
     for _, bookmark in pairs(PlayX.Bookmarks) do
         if keyword ~= "" and keyword:lower() == bookmark.Keyword:lower() then
-            return false, "An existing entry already has the keyword '" .. keyword .. "'."
+            return false, PlayX.translate("keyword_already_exists", keyword)
         end
         if title:lower() == bookmark.Title:lower() then
-            return false, "An existing entry already has the title '" .. title .. "'."
+            return false, PlayX.translate("a_title_is_required")
         end
     end
     
@@ -289,7 +289,7 @@ function PlayX.AddBookmark(title, provider, uri, keyword, startAt, lowFramerate)
         local bookmarks = PlayX._BookmarksPanelList
         local line = bookmarks:AddLine(title, uri)
         if keyword ~= "" then
-            line:SetTooltip("Keyword: " .. keyword)
+            line:SetTooltip(PlayX.translate("keyboard_tooltip", keyword))
         end
     end
     
@@ -327,7 +327,7 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     local frame = vgui.Create("DFrame")
     PlayX.BookmarksWindow = frame
-    frame:SetTitle("Local PlayX Bookmarks")
+    frame:SetTitle(PlayX.translate("local_bookmarks_title"))
     frame:SetDeleteOnClose(true)
     frame:SetScreenLock(true)
     frame:SetSize(math.min(600, ScrW() - 20), ScrH() * 4/5)
@@ -337,26 +337,26 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Title input
     local titleLabel = vgui.Create("DLabel", frame)
-    titleLabel:SetText("Title:")
+    titleLabel:SetText(PlayX.translate("bookmark_title_field"))
     titleLabel:SetWide(200)
     local titleInput = vgui.Create("DTextEntry", frame)
     titleInput:SetWide(250)
     
     -- URI input
     local uriLabel = vgui.Create("DLabel", frame)
-    uriLabel:SetText("URI:")
+    uriLabel:SetText(PlayX.translate("bookmark_uri_field"))
     uriLabel:SetWide(200)
     local uriInput = vgui.Create("DTextEntry", frame)
     uriInput:SetWide(250)
     
     -- Advanced link
     surface.SetFont("Default")
-    local w, h = surface.GetTextSize("<< Advanced")
+    local w, h = surface.GetTextSize(PlayX.translate("bookmark_advanced_button"))
     local advancedLink = vgui.Create("DButton", frame)
     advancedLink:SetText("")
     advancedLink:SetTall(20)
     advancedLink:SetWide(w + 5)
-    advancedLink:SetTooltip("Show advanced bookmark settings")
+    advancedLink:SetTooltip(PlayX.translate("bookmark_advanced_button_tooltip"))
     advancedLink:SetCursor("hand")
     advancedLink.DoClick = function()
         advancedView = not advancedView
@@ -364,7 +364,7 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     end
     advancedLink.Paint = function()
         local textStyleColor = advancedLink:GetTextStyleColor()
-        local text = asdvancedView and "<< Advanced" or "Advanced >>"
+        local text = asdvancedView and PlayX.translate("bookmark_advanced_button_backwards") or PlayX.translate("bookmark_advanced_button")
         surface.SetFont("Default")
         surface.SetDrawColor(textStyleColor)
         surface.SetTextColor(textStyleColor)
@@ -376,15 +376,15 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Keyword input
     local keywordLabel = vgui.Create("DLabel", frame)
-    keywordLabel:SetText("Keyword:")
+    keywordLabel:SetText(PlayX.translate("bookmark_keyword_field"))
     keywordLabel:SetWide(200)
     local keywordInput = vgui.Create("DTextEntry", frame)
     keywordInput:SetWide(100)
-    keywordInput:SetTooltip("Keywords can be entered in the Administrate panel as a URI")
-    
+    keywordInput:SetTooltip(PlayX.translate("bookmark_keyword_field_tooltip"))
+
     -- Time input
     local startAtLabel = vgui.Create("DLabel", frame)
-    startAtLabel:SetText("Start At:")
+    startAtLabel:SetText(PlayX.translate("bookmark_start_at_field"))
     startAtLabel:SetWide(200)
     local startAtInput = vgui.Create("DTextEntry", frame)
     startAtInput:SetWide(50)
@@ -392,16 +392,16 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Low framerate checkbox
     local lowFramerateCheck = vgui.Create("DCheckBoxLabel", frame)
-    lowFramerateCheck:SetText("Force low framerate")
+    lowFramerateCheck:SetText(PlayX.translate("bookmark_force_low_framerate"))
     lowFramerateCheck:SetWide(200)
     
     -- Provider input
     local providerLabel = vgui.Create("DLabel", frame)
-    providerLabel:SetText("Provider:")
+    providerLabel:SetText(PlayX.translate("bookmark_provider_field"))
     providerLabel:SetWide(200)
     local providerInput = vgui.Create("DTextEntry", frame)
     providerInput:SetWide(150)
-    providerInput:SetTooltip("Leave blank for auto-detection")
+    providerInput:SetTooltip(PlayX.translate("bookmark_provider_field_tooltip"))
     
     --providerInput:AddChoice("")
     --for id, name in pairs(PlayX.Providers) do
@@ -410,9 +410,9 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Update button
     local updateButton = vgui.Create("DButton", frame)
-    updateButton:SetText("Update")
+    updateButton:SetText(PlayX.translate("bookmark_update_button"))
     updateButton:SetWide(80)
-    updateButton:SetTooltip("Update the selected entry with these values")
+    updateButton:SetTooltip(PlayX.translate("bookmark_update_button_tooltip"))
     updateButton.DoClick = function()
         local oldTitle = ""
         local line = nil
@@ -421,7 +421,7 @@ function PlayX.OpenBookmarksWindow(selectTitle)
             line = bookmarks:GetLine(bookmarks:GetSelectedLine())
             oldTitle = line:GetValue(1)
         else
-            Derma_Message("A bookmark is not selected.", "Error", "OK")
+            Derma_Message(PlayX.translate("error_bookmark_not_selected"), "Error", "OK")
             return
         end
             
@@ -435,14 +435,14 @@ function PlayX.OpenBookmarksWindow(selectTitle)
         local bookmark = PlayX.GetBookmark(oldTitle)
         
         if not bookmark then
-            Derma_Message("The selected bookmark does not exist.", "Error", "OK")
+            Derma_Message(PlayX.translate("error_bookmark_not_found"), PlayX.translate("error"), PlayX.translate("ok"))
             return
         end
         
         local result, err = bookmark:Update(title, provider, uri, keyword,
                                             startAt, lowFramerate)
         if not result then
-            Derma_Message(err, "Error", "OK")
+            Derma_Message(err, PlayX.translate("error"), PlayX.translate("ok"))
             return
         end
         
@@ -451,9 +451,9 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Add button
     local addButton = vgui.Create("DButton", frame)
-    addButton:SetText("Add")
+    addButton:SetText(PlayX.translate("bookmark_add_button"))
     addButton:SetWide(80)
-    addButton:SetTooltip("Add a new entry with these values")
+    addButton:SetTooltip(PlayX.translate("bookmark_add_button_tooltip"))
     addButton.DoClick = function()
         local title = titleInput:GetValue():Trim()
         local provider = providerInput:GetValue():Trim()
@@ -474,15 +474,15 @@ function PlayX.OpenBookmarksWindow(selectTitle)
 	        
 	        PlayX.SaveBookmarks()
         else
-            Derma_Message(err, "Error", "OK")
+            Derma_Message(err, PlayX.translate("error"), PlayX.translate("ok"))
         end
     end
     
     -- Clear button
     local clearButton = vgui.Create("DButton", frame)
-    clearButton:SetText("Clear")
+    clearButton:SetText(PlayX.translate("bookmark_clear_button"))
     clearButton:SetWide(80)
-    clearButton:SetTooltip("Clear the form")
+    clearButton:SetTooltip(PlayX.translate("bookmark_clear_button_tooltip"))
     clearButton.DoClick = function()
         titleInput:SetValue("")
         uriInput:SetValue("")
@@ -496,21 +496,21 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Delete button
     local deleteButton = vgui.Create("DButton", frame)
-    deleteButton:SetText("Delete...")
+    deleteButton:SetText(PlayX.translate("bookmark_delete_button"))
     deleteButton:SetWide(80)
-    deleteButton:SetTooltip("Delete the selected entry (after confirmation)")
+    deleteButton:SetTooltip(PlayX.translate("bookmark_delete_button_tooltip"))
     deleteButton.DoClick = function()
         if bookmarks:GetSelectedLine() then
             -- GetSelected() not working
             PlayX.BookmarkDelete(bookmarks:GetLine(bookmarks:GetSelectedLine()))
         else
-            Derma_Message("A bookmark is not selected.", "Error", "OK")
+            Derma_Message(PlayX.translate("error_bookmark_not_selected"), PlayX.translate("error"), PlayX.translate("ok"))
         end
     end
     
     -- Close button
     local closeButton = vgui.Create("DButton", frame)
-    closeButton:SetText("Close")
+    closeButton:SetText(PlayX.translate("bookmark_close_button"))
     closeButton:SetWide(80)
     closeButton.DoClick = function()
         frame:Close()
@@ -518,18 +518,18 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Reload button
     local reloadButton = vgui.Create("DButton", frame)
-    reloadButton:SetText("Reload")
+    reloadButton:SetText(PlayX.translate("bookmark_reload_button"))
     reloadButton:SetWide(80)
-    reloadButton:SetTooltip("Reload the bookmarks from disk")
+    reloadButton:SetTooltip(PlayX.translate("bookmark_reload_button_tooltip"))
     reloadButton.DoClick = function()
         PlayX.LoadBookmarks()
     end
     
     -- Save button
     local saveButton = vgui.Create("DButton", frame)
-    saveButton:SetText("Save")
+    saveButton:SetText(PlayX.translate("bookmark_save_button"))
     saveButton:SetWide(80)
-    saveButton:SetTooltip("Save the bookmarks to disk (automatically done after every operation)")
+    saveButton:SetTooltip(PlayX.translate("bookmark_save_button_tooltip"))
     saveButton.DoClick = function()
         PlayX.SaveBookmarks()
     end
@@ -538,10 +538,10 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     bookmarks = vgui.Create("DListView", frame)
     bookmarksWindowList = bookmarks
     bookmarks:SetMultiSelect(false)
-    bookmarks:AddColumn("Title")
-    bookmarks:AddColumn("URI")
-    bookmarks:AddColumn("Provider"):SetFixedWidth(100)
-    bookmarks:AddColumn("Keyword"):SetFixedWidth(90)
+    bookmarks:AddColumn(PlayX.translate("bookmark_column_title"))
+    bookmarks:AddColumn(PlayX.translate("bookmark_column_uri"))
+    bookmarks:AddColumn(PlayX.translate("bookmark_column_provider")):SetFixedWidth(100)
+    bookmarks:AddColumn(PlayX.translate("bookmark_column_keyword")):SetFixedWidth(90)
     
     for k, bookmark in pairs(PlayX.Bookmarks) do
         bookmarks:AddLine(bookmark.Title, bookmark.URI, bookmark.Provider,
@@ -561,17 +561,17 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     bookmarks.OnRowRightClick = function(lst, index, line)
         local menu = DermaMenu()
-        menu:AddOption("Open", function()
+        menu:AddOption(PlayX.translate("bookmark_open_button"), function()
 	        PlayX.GetBookmark(line:GetValue(1):Trim()):Play()
             frame:Close()
         end)
-        menu:AddOption("Delete...", function()
+        menu:AddOption(PlayX.translate("bookmark_delete_button"), function()
             PlayX.BookmarkDelete(line)
         end)
-        menu:AddOption("Copy URI", function()
+        menu:AddOption(PlayX.translate("bookmark_copy_uri"), function()
             SetClipboardText(line:GetValue(2))
         end)
-        menu:AddOption("Copy to 'Administrate'", function()
+        menu:AddOption(PlayX.translate("bookmark_copy_to_administrate"), function()
             PlayX.GetBookmark(line:GetValue(1):Trim()):CopyToPanel()
             frame:Close()
         end)

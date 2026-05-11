@@ -6,14 +6,15 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 include("shared.lua")
 
-language.Add("gmod_playx_repeater", "PlayX Repeater")
-language.Add("Undone_gmod_playx_repeater", "Undone PlayX Repeater")
-language.Add("Undone_#gmod_playx_repeater", "Undone PlayX Repeater")
-language.Add("Cleanup_gmod_playx_repeater", "PlayX Repeaters")
-language.Add("Cleaned_gmod_playx_repeater", "Cleaned up PlayX Repeaters")
+language.Add("gmod_playx_repeater", PlayX.translate("playx_repeater"))
+language.Add("Undone_gmod_playx_repeater", PlayX.translate("undone_playx_repeater"))
+language.Add("Undone_#gmod_playx_repeater", PlayX.translate("undone_playx_repeater"))
+language.Add("Cleanup_gmod_playx_repeater", PlayX.translate("cleanup_playx_repeater"))
+language.Add("Cleaned_gmod_playx_repeater", PlayX.translate("cleaned_playx_repeater"))
 
 function ENT:Initialize()
     self.Entity:DrawShadow(false)
@@ -29,13 +30,13 @@ function ENT:DrawScreen(centerX, centerY)
         if not self.SourceInstance.NoScreen then
             self.SourceInstance:DrawScreen(centerX, centerY)
         else
-        draw.SimpleText("PlayX source has no screen",
+        draw.SimpleText(PlayX.translate("playx_source_no_screen"),
                         "HUDNumber",
                         centerX, centerY, Color(255, 255, 255, 255),
                         TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
         end
     else
-        draw.SimpleText("PlayX source is required for repeater",
+        draw.SimpleText(PlayX.translate("playx_source_required"),
                         "HUDNumber",
                         centerX, centerY, Color(255, 255, 255, 255),
                         TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)

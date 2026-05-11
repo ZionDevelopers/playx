@@ -6,9 +6,10 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-10 08:25 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
-PlayX.Translation = PlayX.Translation or {}
+PlayX = PlayX or {}
+PlayX.Translation = {}
 PlayX.Translation.translations = {}
 PlayX.Translation.language = ""
 PlayX.Translation.fallback = "en"
@@ -35,12 +36,22 @@ end
 -- Start translation
 PlayX.initTranslation = function ()
     PlayX.Translation.language = PlayX.getLanguage()
+    cvars.AddChangeCallback("gmod_language", function (cvar, old, new)
+        PlayX.Translation.language = PlayX.getLanguage()
+    end)
     -- Load translations
     local p = file.Find("playx/translation/locale/*.lua","LUA")
     for _, file in pairs(p) do
         local status, err = pcall(function() include("playx/translation/locale/" .. file) end)
         if not status then
             ErrorNoHalt("Failed to load translation(s) in " .. file .. ": " .. err)
+        end
+
+        if SERVER then
+            local status, err = pcall(function() AddCSLuaFile("playx/translation/locale/" .. file) end)
+            if not status then
+                ErrorNoHalt("Failed to load translation(s) in " .. file .. ": " .. err)
+            end
         end
     end
 end
@@ -52,5 +63,11 @@ end
 PlayX.translate = function (key, ...)
     local translationTable = PlayX.Translation.translations[PlayX.Translation.language] or PlayX.Translation.translations[PlayX.Translation.fallback]
     local translation = translationTable[key] or key
-    return string.format(translation, ...)
+    local args = {...}
+    if #args > 0 then
+        return string.format(translation, ...)
+    else
+        return translation
+    end
+    
 end

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-10 08:25 PM (-03:00 GMT)
+-- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
 
 PlayX = {}
 PlayX.Version = "2.12.0"
@@ -69,6 +69,6 @@ PlayX.initTranslation()
 Msg( "\n/====================================\\\n")
 Msg( "||               PlayX              ||\n" )
 Msg( "||----------------------------------||\n" )
-loadingLog(PlayX.translate("playx_version", PlayX.Version))
-loadingLog(PlayX.translate("playx_updated", PlayX.VersionUpdated))
+loadingLog(PlayX.translate("version", PlayX.Version))
+loadingLog(PlayX.translate("updated", PlayX.VersionUpdated))
 Msg( "\\====================================/\n\n" )
