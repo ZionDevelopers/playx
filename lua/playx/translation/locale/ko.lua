@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("ko", {
     ["version"] = "버전 %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("ko", {
     ["panel_use_jw"] = "적용 가능한 경우 향상된 플레이어 사용",
     ["panel_start_at"] = "시작:",
     ["panel_provider"] = "제공자:",
+    ["panel_provider_auto_detect"] = "자동 감지",
+    ["providers_staticweb"] = "브라우징할 수 없는 웹페이지",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "플레이어가 더 낮은 프레임률을 사용하도록 강제하여 느린 시스템에서 성능을 향상시킬 수 있습니다.",
     ["panel_uri_tooltip"] = "예: http://www.youtube.com/watch?v=NWdTcxv4V-g",

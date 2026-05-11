@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("fi", {
     ["version"] = "Versio %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("fi", {
     ["panel_use_jw"] = "Käytä parannettua soitinta, kun sovellettavissa",
     ["panel_start_at"] = "Aloita:",
     ["panel_provider"] = "Tarjoaja:",
+    ["panel_provider_auto_detect"] = "Automaattinen tunnistus",
+    ["providers_staticweb"] = "Ei-selauskelpoinen verkkosivu",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Pakottaa soittimen käyttämään matalampaa kuvataajuutta, mikä voi parantaa suorituskykyä hitaammissa järjestelmissä.",
     ["panel_uri_tooltip"] = "Esimerkki: http://www.youtube.com/watch?v=NWdTcxv4V-g",

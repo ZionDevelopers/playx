@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("he", {
     ["version"] = "גרסה %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("he", {
     ["panel_use_jw"] = "השתמש בנגן משופר כשניתן",
     ["panel_start_at"] = "התחל ב:",
     ["panel_provider"] = "ספק:",
+    ["panel_provider_auto_detect"] = "זיהוי אוטומטי",
+    ["providers_staticweb"] = "דף אינטרנט לא ניתן לדפדף",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "אלץ את הנגן להשתמש בקצב פריימים נמוך יותר, מה שעשוי לשפר ביצועים במערכות איטיות יותר.",
     ["panel_uri_tooltip"] = "דוגמה: http://www.youtube.com/watch?v=NWdTcxv4V-g",

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("bg", {
     ["version"] = "Версия %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("bg", {
     ["panel_use_jw"] = "Използвай подобрен плейър, когато е приложимо",
     ["panel_start_at"] = "Започни от:",
     ["panel_provider"] = "Доставчик:",
+    ["panel_provider_auto_detect"] = "Автоматично откриване",
+    ["providers_staticweb"] = "Небраузваема уеб страница",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Принуждава плейъра да използва по-ниска честота на кадрите, което може да подобри производителността на по-бавни системи.",
     ["panel_uri_tooltip"] = "Пример: http://www.youtube.com/watch?v=NWdTcxv4V-g",

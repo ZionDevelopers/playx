@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("ja", {
     ["version"] = "バージョン %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("ja", {
     ["panel_use_jw"] = "適用可能な場合、改良されたプレイヤーを使用",
     ["panel_start_at"] = "開始:",
     ["panel_provider"] = "プロバイダー:",
+    ["panel_provider_auto_detect"] = "自動検出",
+    ["providers_staticweb"] = "閲覧不可のウェブページ",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "プレイヤーに低いフレームレートを使用させることで、より遅いシステムでのパフォーマンスを向上させることができます。",
     ["panel_uri_tooltip"] = "例: http://www.youtube.com/watch?v=NWdTcxv4V-g",

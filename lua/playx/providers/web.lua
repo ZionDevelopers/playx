@@ -6,6 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 local StaticWeb = {}
 
@@ -34,4 +35,4 @@ function StaticWeb.QueryMetadata(uri, callback, failCallback)
 end
 
 list.Set("PlayXProviders", "StaticWeb", StaticWeb)
-list.Set("PlayXProvidersList", "StaticWeb", {"Non-browsable Webpage"})
+list.Set("PlayXProvidersList", "StaticWeb", {PlayX.translate("providers_staticweb")})

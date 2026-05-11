@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("hu", {
     ["version"] = "Verzió %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("hu", {
     ["panel_use_jw"] = "Használj javított lejátszót, ha alkalmazható",
     ["panel_start_at"] = "Kezdés:",
     ["panel_provider"] = "Szolgáltató:",
+    ["panel_provider_auto_detect"] = "Automatikus észlelés",
+    ["providers_staticweb"] = "Nem böngészhető weboldal",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Kényszeríti a lejátszót alacsonyabb képkockasebesség használatára, ami javíthatja a teljesítményt lassabb rendszereken.",
     ["panel_uri_tooltip"] = "Példa: http://www.youtube.com/watch?v=NWdTcxv4V-g",

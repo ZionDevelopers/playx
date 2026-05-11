@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("zh-TW", {
     ["version"] = "版本 %s",
@@ -121,6 +121,8 @@ PlayX.importTranslation("zh-TW", {
     ["panel_use_jw"] = "當適用時使用增強播放器",
     ["panel_start_at"] = "開始於:",
     ["panel_provider"] = "提供商:",
+    ["panel_provider_auto_detect"] = "自動偵測",
+    ["providers_staticweb"] = "不可瀏覽的網頁",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "強制播放器使用較低的幀率，這可以在較慢的系統上提高效能。",
     ["panel_uri_tooltip"] = "範例: http://www.youtube.com/watch?v=NWdTcxv4V-g",

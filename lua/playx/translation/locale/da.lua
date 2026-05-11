@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
 PlayX.importTranslation("da", {
     ["version"] = "Version %s",
@@ -121,8 +121,11 @@ PlayX.importTranslation("da", {
     ["panel_use_jw"] = "Brug en forbedret afspiller når det er muligt",
     ["panel_start_at"] = "Start ved:",
     ["panel_provider"] = "Udbyder:",
+    ["panel_provider_auto_detect"] = "Automatisk registrering",
+    ["providers_staticweb"] = "Ikke-gennemsebar webside",
     ["panel_uri"] = "URI:",
-    ["panel_force_low_framerate_tooltip"] = "Tvinger afspilleren til at bruge en lavere billedfrekvens, hvilket kan forbedre ydeevnen på langsommere systemer.",
+    ["panel_force_low_framerate_tooltip"] = "Tvinger afspilleren til at bruge en lavere billedhastighed, hvilket kan forbedre ydeevnen på langsommere systemer.",
+
     ["panel_uri_tooltip"] = "Eksempel: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "Nøgleord: %s",
     ["bookmark_open_selected_button"] = "Åbn valgt",
