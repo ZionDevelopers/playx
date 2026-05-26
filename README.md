@@ -10,9 +10,10 @@ Just download this addon by clicking on Download ZIP and extract the addon in ``
 ### Requirement
 ![Requirement](https://playx.juliocesar.me/img/branch.png?v1)
 
-For now to this addon to work you need to use the x86-64 branch.
+YouTube, SoundCloud, Images, MP3 and WebM work by default on Windows. <br />
+Everything else needs the x86-64 BETA branch and [Gmod Patch Tool][GmodPatchTool].
 
-For Twitch Streams/VODs, Mature content may not work, for some providers you will need [Gmod Patch Tool][GmodPatchTool].
+For Twitch Streams/VODs, Mature content may not work.
 
 ### Localization
 PlayX is now translated to all languages that Garry's Mod have language. This was done by A.I, and could have errors, please report if you found any!
