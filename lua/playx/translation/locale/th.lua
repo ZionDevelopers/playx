@@ -125,7 +125,6 @@ PlayX.importTranslation("th", {
     ["providers_staticweb"] = "หน้าเว็บที่ไม่สามารถเรียกดูได้",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "บังคับผู้เล่นให้ใช้เฟรมเรตต่ำกว่า ซึ่งอาจปรับปรุงประสิทธิภาพบนระบบที่ช้าลง.",
-
     ["panel_uri_tooltip"] = "ตัวอย่าง: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "คำสำคัญ: %s",
     ["bookmark_open_selected_button"] = "เปิดที่เลือก",

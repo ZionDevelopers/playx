@@ -125,7 +125,6 @@ PlayX.importTranslation("tr", {
     ["providers_staticweb"] = "Göz atılamayan web sayfası",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Oyuncuyu daha düşük kare hızı kullanmaya zorlar, bu daha yavaş sistemlerde performansı iyileştirebilir.",
-
     ["panel_uri_tooltip"] = "Örnek: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "Anahtar kelime: %s",
     ["bookmark_open_selected_button"] = "Seçileni aç",

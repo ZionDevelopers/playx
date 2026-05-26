@@ -125,7 +125,6 @@ PlayX.importTranslation("da", {
     ["providers_staticweb"] = "Ikke-gennemsebar webside",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Tvinger afspilleren til at bruge en lavere billedhastighed, hvilket kan forbedre ydeevnen på langsommere systemer.",
-
     ["panel_uri_tooltip"] = "Eksempel: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "Nøgleord: %s",
     ["bookmark_open_selected_button"] = "Åbn valgt",

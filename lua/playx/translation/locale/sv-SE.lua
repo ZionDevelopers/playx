@@ -125,7 +125,6 @@ PlayX.importTranslation("sv-SE", {
     ["providers_staticweb"] = "Webbsida som inte kan bläddras",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Tvingar spelaren att använda lägre bildfrekvens, vilket kan förbättra prestanda på långsammare system.",
-
     ["panel_uri_tooltip"] = "Exempel: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "Nyckelord: %s",
     ["bookmark_open_selected_button"] = "Öppna vald",

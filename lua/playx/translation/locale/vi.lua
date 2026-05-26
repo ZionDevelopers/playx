@@ -125,7 +125,6 @@ PlayX.importTranslation("vi", {
     ["providers_staticweb"] = "Trang web không thể duyệt",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Buộc trình phát sử dụng tốc độ khung hình thấp hơn, có thể cải thiện hiệu suất trên hệ thống chậm hơn.",
-
     ["panel_uri_tooltip"] = "Ví dụ: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "Từ khóa: %s",
     ["bookmark_open_selected_button"] = "Mở đã chọn",

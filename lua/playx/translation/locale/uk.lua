@@ -125,7 +125,6 @@ PlayX.importTranslation("uk", {
     ["providers_staticweb"] = "Непереглядна веб-сторінка",
     ["panel_uri"] = "URI:",
     ["panel_force_low_framerate_tooltip"] = "Примушує програвач використовувати нижчу частоту кадрів, що може покращити продуктивність на повільніших системах.",
-
     ["panel_uri_tooltip"] = "Приклад: http://www.youtube.com/watch?v=NWdTcxv4V-g",
     ["bookmark_keyword_tooltip"] = "Ключове слово: %s",
     ["bookmark_open_selected_button"] = "Відкрити вибране",
