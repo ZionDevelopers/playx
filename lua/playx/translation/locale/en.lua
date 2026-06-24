@@ -8,7 +8,7 @@
 -- $Id$
 -- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
-PlayX.importTranslation("en", {
+PlayX.Translation.import("en", {
     ["version"] = "Version %s",
     ["updated"] = "Updated on %s",
     ["open_bookmark"] = "PlayXBrowser: Requested to open <%s> / <%s>",

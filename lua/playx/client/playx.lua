@@ -22,7 +22,7 @@ CreateClientConVar("playx_error_windows", 1, true, false)
 CreateClientConVar("playx_video_range_enabled", 1, true, false)
 CreateClientConVar("playx_video_range_hints_enabled", 1, true, false)
 CreateClientConVar("playx_video_radius", 1000, true, false)
-CreateClientConVar("playx_debug", 0, true, false, PlayX.translate("debug_cvar_tooltip"))
+CreateClientConVar("playx_debug", 0, true, false, PlayX.Translation.get("debug_cvar_tooltip"))
 CreateClientConVar("playx_navigator_homepage_url", "https://playx.juliocesar.me", true, false)
 CreateClientConVar("playx_fullscreen", 0, true, false)
 CreateClientConVar("playx_version", PlayX.Version, true, false)
@@ -56,7 +56,7 @@ local p = file.Find("playx/client/handlers/*.lua","LUA")
 for _, file in pairs(p) do
     local status, err = pcall(function() include("playx/client/handlers/" .. file) end)
     if not status then
-        ErrorNoHalt(PlayX.translate("error_loading_handler_file", file, err))
+        ErrorNoHalt(PlayX.Translation.get("error_loading_handler_file", file, err))
     end
 end
 
@@ -107,7 +107,7 @@ local function BeginPlay()
                                       PlayX.GetPlayerVolume(), PlayX.CurrentMedia.HandlerArgs})
     
     if not PlayX.SeenNotice then
-        PlayX.ShowHint(PlayX.translate("seen_notice_hint"))
+        PlayX.ShowHint(PlayX.Translation.get("seen_notice_hint"))
         PlayX.SeenNotice = true
     end
     
@@ -236,11 +236,11 @@ end
 -- be printed to console. 
 function PlayX.ResumePlay()
     if not PlayX.PlayerExists() then
-        Msg(PlayX.translate("error_no_player_spawned"))
+        Msg(PlayX.Translation.get("error_no_player_spawned"))
     elseif not PlayX.CurrentMedia then
-        Msg(PlayX.translate("error_no_media_queued"))
+        Msg(PlayX.Translation.get("error_no_media_queued"))
     elseif not PlayX.CurrentMedia.ResumeSupported then
-        Msg(PlayX.translate("error_resume_not_supported"))
+        Msg(PlayX.Translation.get("error_resume_not_supported"))
     elseif PlayX.Enabled then
         BeginPlay()
     end
@@ -250,9 +250,9 @@ end
 -- console. 
 function PlayX.HidePlayer()
     if not PlayX.PlayerExists() then
-        Msg(PlayX.translate("error_no_player_spawned"))
+        Msg(PlayX.Translation.get("error_no_player_spawned"))
     elseif not PlayX.CurrentMedia then
-        Msg(PlayX.translate("error_no_media_queued"))
+        Msg(PlayX.Translation.get("error_no_media_queued"))
     elseif PlayX.Enabled then
         EndPlay()
     end
@@ -262,9 +262,9 @@ end
 -- printed to console.
 function PlayX.ResetRenderBounds()
     if not PlayX.PlayerExists() then
-        Msg(PlayX.translate("error_no_player_spawned"))
+        Msg(PlayX.Translation.get("error_no_player_spawned"))
     elseif not PlayX.GetInstance().IsProjector then
-        Msg(PlayX.translate("error_not_projector"))
+        Msg(PlayX.Translation.get("error_not_projector"))
     else
         PlayX.GetInstance():ResetRenderBounds()
     end
@@ -301,7 +301,7 @@ function PlayX.OpenSpawnDialog(forRepeater)
     
     local frame = vgui.Create("DFrame")
     frame:SetDeleteOnClose(true)
-    frame:SetTitle(PlayX.translate("spawn_dialog_title", (forRepeater and PlayX.translate("spawn_dialog_repeater") or PlayX.translate("spawn_dialog_player"))))
+    frame:SetTitle(PlayX.Translation.get("spawn_dialog_title", (forRepeater and PlayX.Translation.get("spawn_dialog_repeater") or PlayX.Translation.get("spawn_dialog_player"))))
     frame:SetSize(275, 400)
     frame:SetSizable(true)
     frame:Center()
@@ -329,25 +329,25 @@ function PlayX.OpenSpawnDialog(forRepeater)
     end
     
     local cancelButton = vgui.Create("DButton", frame)
-    cancelButton:SetText(PlayX.translate("spawn_dialog_cancel_button"))
+    cancelButton:SetText(PlayX.Translation.get("spawn_dialog_cancel_button"))
     cancelButton:SetWide(80)
     cancelButton.DoClick = function()
         frame:Close()
     end
     
     local customModelButton = vgui.Create("DButton", frame)
-    customModelButton:SetText(PlayX.translate("spawn_dialog_custom_button"))
+    customModelButton:SetText(PlayX.Translation.get("spawn_dialog_custom_button"))
     customModelButton:SetWide(80)
-    customModelButton:SetTooltip(PlayX.translate("spawn_dialog_custom_button_tooltip"))
+    customModelButton:SetTooltip(PlayX.Translation.get("spawn_dialog_custom_button_tooltip"))
     customModelButton.DoClick = function()
-        Derma_StringRequest(PlayX.translate("spawn_dialog_custom_title"), PlayX.translate("spawn_dialog_custom_message"), "",
+        Derma_StringRequest(PlayX.Translation.get("spawn_dialog_custom_title"), PlayX.Translation.get("spawn_dialog_custom_message"), "",
             function(text)
                 local text = text:Trim()
                 if text ~= "" then
                     RunConsoleCommand("playx_spawn" .. (forRepeater and "_repeater" or ""), text)
                     frame:Close()
                 else
-                    Derma_Message(PlayX.translate("spawn_dialog_custom_error"), PlayX.translate("error"), PlayX.translate("ok"))
+                    Derma_Message(PlayX.Translation.get("spawn_dialog_custom_error"), PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
                 end
             end)
     end
@@ -377,7 +377,7 @@ function PlayX.OpenNavigatorWindow()
     
     local frame = vgui.Create("DFrame")
     PlayX._NavigatorWindow = frame
-    frame:SetTitle(PlayX.translate("navigator_title"))
+    frame:SetTitle(PlayX.Translation.get("navigator_title"))
     frame:SetDeleteOnClose(false)
     frame:SetScreenLock(true)
     frame:SetSize(ScrW() * 0.8, ScrH() * 0.9)
@@ -412,7 +412,7 @@ end
 -- @param handlerArgs
 function PlayX.BeginMedia(handler, uri, playAge, resumeSupported, lowFramerate, handlerArgs)
     if not PlayX.PlayerExists() then -- This should not happen
-        ErrorNoHalt(PlayX.translate("error_no_player_spawned_on_play"))
+        ErrorNoHalt(PlayX.Translation.get("error_no_player_spawned_on_play"))
         return
     end
     
@@ -421,9 +421,9 @@ function PlayX.BeginMedia(handler, uri, playAge, resumeSupported, lowFramerate, 
     
     if list.Get("PlayXHandlers")[handler] then
         if uri:len() > 325 then
-            print(PlayX.translate("playing_using_handler", uri, handler))
+            print(PlayX.Translation.get("playing_using_handler", uri, handler))
         else
-            Msg(PlayX.translate("playing_using_handler", uri, handler) .. "\n")
+            Msg(PlayX.Translation.get("playing_using_handler", uri, handler) .. "\n")
         end
         
         PlayX.CurrentMedia = {
@@ -448,13 +448,13 @@ function PlayX.BeginMedia(handler, uri, playAge, resumeSupported, lowFramerate, 
             PlayX.UpdatePanels()
             
             if resumeSupported then
-                LocalPlayer():ChatPrint(PlayX.translate("a_video_started_playing_enable_to_see_resume"))
+                LocalPlayer():ChatPrint(PlayX.Translation.get("a_video_started_playing_enable_to_see_resume"))
             else
-                LocalPlayer():ChatPrint(PlayX.translate("a_video_started_playing_enable_to_see_not_resume")) 
+                LocalPlayer():ChatPrint(PlayX.Translation.get("a_video_started_playing_enable_to_see_not_resume")) 
             end
         end
     else
-        Msg(PlayX.translate("error_no_handler", handler, uri))
+        Msg(PlayX.Translation.get("error_no_handler", handler, uri))
     end
 end
 
@@ -479,7 +479,7 @@ end
 function PlayX.TriggerCrashProtection()
     chat.AddText(
         Color(255, 255, 0, 255),
-        PlayX.translate("crash_detected_warning")
+        PlayX.Translation.get("crash_detected_warning")
     )
     
     RunConsoleCommand("playx_enabled", "0")
@@ -498,11 +498,11 @@ end
 -- @param err
 function PlayX.ShowError(err)
     if GetConVar("playx_error_windows"):GetBool() then
-        Derma_Message(err, PlayX.translate("error"), PlayX.translate("ok"))
+        Derma_Message(err, PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
         gui.EnableScreenClicker(true)
         gui.EnableScreenClicker(false)
     else
-	    GAMEMODE:AddNotify(PlayX.translate("playx_error", tostring(err)), NOTIFY_ERROR, 7);
+	    GAMEMODE:AddNotify(PlayX.Translation.get("playx_error", tostring(err)), NOTIFY_ERROR, 7);
 	    surface.PlaySound("ambient/water/drip" .. math.random(1, 4) .. ".wav")
 	end
 end
@@ -596,7 +596,7 @@ end
 
 --- Called on PlayXJWURL user message.
 local function UMsgJWURL(um)
-    Msg(PlayX.translate("jw_url_received"))
+    Msg(PlayX.Translation.get("jw_url_received"))
     
     PlayX.JWPlayerURL = um:ReadString()
     
@@ -605,7 +605,7 @@ end
 
 --- Called on PlayXHostURL user message.
 local function UMsgHostURL(um)
-    Msg(PlayX.translate("host_url_received"))
+    Msg(PlayX.Translation.get("host_url_received"))
     
     PlayX.HostURL = um:ReadString()
     
@@ -622,7 +622,7 @@ end
 --- Called on PlayXMetadata user message, which gets sent on standard metadata
 -- information (title).
 local function UMsgMetadata(um)
-    Msg(PlayX.translate("metadata_received"))
+    Msg(PlayX.Translation.get("metadata_received"))
     
     local title = um:ReadString()
     
@@ -671,7 +671,7 @@ local function PlayXRangeCheck()
 							end
 							
 							if showHints == 1 and PlayX.HintDelay == 0 then
-								PlayX.ShowHint(PlayX.translate("out_of_range_hint"))
+								PlayX.ShowHint(PlayX.Translation.get("out_of_range_hint"))
 								PlayX.HintDelay = 1
 							end		
 						end
@@ -689,7 +689,7 @@ local function PlayXRangeCheck()
 								end
 							end
 							if showHints == 1 and PlayX.HintDelay == 0 then
-								PlayX.ShowHint(PlayX.translate("in_range_hint"))
+								PlayX.ShowHint(PlayX.Translation.get("in_range_hint"))
 								PlayX.HintDelay = 1
 							end		
 						end
@@ -772,7 +772,7 @@ local function ConCmdGUIBookmark()
     local lowFramerate = GetConVar("playx_force_low_framerate"):GetBool()
     
     if uri == "" then
-        Derma_Message(PlayX.translate("error_no_uri"), PlayX.translate("error"), PlayX.translate("ok"))
+        Derma_Message(PlayX.Translation.get("error_no_uri"), PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
     else
         Derma_StringRequest("Add Bookmark", "Enter a name for the bookmark", "",
             function(title)
@@ -781,11 +781,11 @@ local function ConCmdGUIBookmark()
 			        local result, err = PlayX.AddBookmark(title, provider, uri, "", startAt, lowFramerate)
 			        
 			        if result then
-                        Derma_Message(PlayX.translate("bookmark_added"), PlayX.translate("bookmark_added_title"), PlayX.translate("ok"))
+                        Derma_Message(PlayX.Translation.get("bookmark_added"), PlayX.Translation.get("bookmark_added_title"), PlayX.Translation.get("ok"))
 			            
 			            PlayX.SaveBookmarks()
 			        else
-			            Derma_Message(err, PlayX.translate("error"), PlayX.translate("ok"))
+			            Derma_Message(err, PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
 			        end
                 end
             end)
@@ -794,20 +794,20 @@ end
 
 local function ConCmdGUIBookmarkNavigator()    
     if PlayX.NavigatorCapturedURL == "" then
-        Derma_Message(PlayX.translate("error_no_uri"), PlayX.translate("error"), PlayX.translate("ok"))
+        Derma_Message(PlayX.Translation.get("error_no_uri"), PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
     else
-	    Derma_StringRequest(PlayX.translate("bookmark_add_title_for_navigator"), PlayX.translate("bookmark_add_input_for_navigator"), "",
+	    Derma_StringRequest(PlayX.Translation.get("bookmark_add_title_for_navigator"), PlayX.Translation.get("bookmark_add_input_for_navigator"), "",
 	        function(title)
 	            local title = title:Trim()
 	            if title ~= "" then
 			        local result, err = PlayX.AddBookmark(title, "", PlayX.NavigatorCapturedURL, "", "", false)
 			        
 			        if result then
-	                    Derma_Message(PlayX.translate("bookmark_added"), PlayX.translate("bookmark_added_title"), PlayX.translate("ok"))
+	                    Derma_Message(PlayX.Translation.get("bookmark_added"), PlayX.Translation.get("bookmark_added_title"), PlayX.Translation.get("ok"))
 			            
 			            PlayX.SaveBookmarks()
 			        else
-			            Derma_Message(err, PlayX.translate("error"), PlayX.translate("ok"))
+			            Derma_Message(err, PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
 			        end
 	            end
 	        end)
@@ -824,7 +824,7 @@ local function ConCmdDumpHTML()
     end
     
     local frame = vgui.Create("DFrame")
-    frame:SetTitle(PlayX.translate("html_source_code_title"))
+    frame:SetTitle(PlayX.Translation.get("html_source_code_title"))
     frame:SetDeleteOnClose(false)
     frame:SetScreenLock(true)
     frame:SetSize(ScrW() * 0.8, ScrH() * 0.9)

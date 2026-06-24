@@ -68,13 +68,13 @@ end
 
 local function Play(ply, provider, uri, lowFramerate)
     if PlayX.IsPermitted(ply) then
-        PrintMessage(HUD_PRINTCONSOLE, PlayX.translate("started_playing", ply:Nick()))
+        PrintMessage(HUD_PRINTCONSOLE, PlayX.Translation.get("started_playing", ply:Nick()))
         local result, err = PlayX.OpenMedia(provider, uri, 0, lowFramerate, true, false)
         if not result then
-            ply:ChatPrint(PlayX.translate("playx_error", err))
+            ply:ChatPrint(PlayX.Translation.get("playx_error", err))
         end
     else
-        ply:ChatPrint(PlayX.translate("not_permitted"))
+        ply:ChatPrint(PlayX.Translation.get("not_permitted"))
     end
 end
 
@@ -104,12 +104,12 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
                 end
 
                 for _, v in pairs(player.GetAll()) do
-                    v:ChatPrint(PlayX.translate("youtube_query_result", m[2], videoID, title))
+                    v:ChatPrint(PlayX.Translation.get("youtube_query_result", m[2], videoID, title))
                 end
             end
 
             local function failureF(msg)
-                ply:ChatPrint(PlayX.translate("youtube_query_failure", m[2]))
+                ply:ChatPrint(PlayX.Translation.get("youtube_query_failure", m[2]))
             end
 
             SearchYouTube(m[2], successF, failureF)
@@ -117,7 +117,7 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
             if lastResult then
                 Play(ply, "YouTube", lastResult, m[1] == "ytlisten")
             else
-                ply:ChatPrint(PlayX.translate("youtube_query_no_results", m[2]))
+                ply:ChatPrint(PlayX.Translation.get("youtube_query_no_results", m[2]))
             end
         end
 
@@ -154,7 +154,7 @@ hook.Add("PlayerSay", "PlayXMediaQueryPlayerSay", function(ply, text, teamchat, 
             local title = result.items[1].snippet.title
 
             for _, v in pairs(player.GetAll()) do
-                v:ChatPrint(PlayX.translate("youtube_query_result", m[1], videoID, title))                                          
+                v:ChatPrint(PlayX.Translation.get("youtube_query_result", m[1], videoID, title))                                          
             end
         end
 

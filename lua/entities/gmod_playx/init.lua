@@ -187,7 +187,7 @@ function ENT:TriggerInput(iname, value)
                 elseif start < 0 then
                     Wire_TriggerOutput(self.Entity, "InputError", "Non-negative start time is required")
                 else
-                    MsgN(PlayX.translate("video_played_via_wire_input", uri))
+                    MsgN(PlayX.Translation.get("video_played_via_wire_input", uri))
                     print(provider, uri, start, forceLowFramerate, useJW)
                     
                     local result, err = PlayX.OpenMedia(provider, uri, start,

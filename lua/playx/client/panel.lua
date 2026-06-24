@@ -17,12 +17,12 @@ local function SettingsPanel(panel)
     panel:ClearControls()
 
     panel:AddControl("CheckBox", {
-        Label = PlayX.translate("panel_enabled"),
+        Label = PlayX.Translation.get("panel_enabled"),
         Command = "playx_enabled",
     })
     
     if PlayX.CrashDetected then
-	    local msg = panel:AddControl("Label", {Text = PlayX.translate("panel_crash_detected")})
+	    local msg = panel:AddControl("Label", {Text = PlayX.Translation.get("panel_crash_detected")})
 	    msg:SetWrap(true)
         msg:SetColor(Color(255, 255, 255, 255))
         msg:SetTextColor(Color(255, 255, 255, 255))
@@ -39,42 +39,42 @@ local function SettingsPanel(panel)
     end
 
     panel:AddControl("CheckBox", {
-        Label = PlayX.translate("panel_error_windows"),
+        Label = PlayX.Translation.get("panel_error_windows"),
         Command = "playx_error_windows",
-    }):SetTooltip(PlayX.translate("panel_error_windows_tooltip"))
+    }):SetTooltip(PlayX.Translation.get("panel_error_windows_tooltip"))
 	
 	panel:AddControl("CheckBox", {
-        Label = PlayX.translate("panel_only_play_videos_near_me"),
+        Label = PlayX.Translation.get("panel_only_play_videos_near_me"),
 
         Command = "playx_video_range_enabled",
-    }):SetTooltip(PlayX.translate("panel_only_play_videos_near_me_tooltip"))
+    }):SetTooltip(PlayX.Translation.get("panel_only_play_videos_near_me_tooltip"))
 	
 	
 	panel:AddControl("CheckBox", {
-        Label = PlayX.translate("panel_show_video_range_hints"),
+        Label = PlayX.Translation.get("panel_show_video_range_hints"),
         Command = "playx_video_range_hints_enabled",
-    }):SetTooltip(PlayX.translate("panel_show_video_range_hints_tooltip"))
+    }):SetTooltip(PlayX.Translation.get("panel_show_video_range_hints_tooltip"))
     
     panel:AddControl("Slider", {
-        Label = PlayX.translate("panel_volume"),
+        Label = PlayX.Translation.get("panel_volume"),
         Command = "playx_volume",
         Type = "Integer",
         Min = "0",
         Max = "100",
-    }):SetTooltip(PlayX.translate("panel_volume_tooltip"))
+    }):SetTooltip(PlayX.Translation.get("panel_volume_tooltip"))
 	
 	panel:AddControl("Slider", {
-        Label = PlayX.translate("panel_video_radius"),
+        Label = PlayX.Translation.get("panel_video_radius"),
         Command = "playx_video_radius",
         Type = "Integer",
         Min = "500",
         Max = "5000",
-    }):SetTooltip(PlayX.translate("panel_video_radius_tooltip"))
+    }):SetTooltip(PlayX.Translation.get("panel_video_radius_tooltip"))
     
     if PlayX.CurrentMedia then
         if PlayX.CurrentMedia.ResumeSupported then
             local button = panel:AddControl("Button", {
-                Label = PlayX.translate("panel_hide_player"),
+                Label = PlayX.Translation.get("panel_hide_player"),
                 Command = "playx_hide",
             })
             
@@ -84,28 +84,28 @@ local function SettingsPanel(panel)
             
             if PlayX.Playing then
                 panel:AddControl("Button", {
-                    Label = PlayX.translate("panel_reinitialize_player"),
+                    Label = PlayX.Translation.get("panel_reinitialize_player"),
                     Command = "playx_resume",
                 })
             else
                 panel:AddControl("Button", {
-                    Label = PlayX.translate("panel_resume_play"),
+                    Label = PlayX.Translation.get("panel_resume_play"),
                     Command = "playx_resume",
                 })
             end
             
             panel:AddControl("Label", {
-                Text = PlayX.translate("panel_media_resume_supported"),
+                Text = PlayX.Translation.get("panel_media_resume_supported"),
             })
         else
             if PlayX.Playing then
                 panel:AddControl("Button", {
-                    Label = PlayX.translate("panel_stop_play"),
+                    Label = PlayX.Translation.get("panel_stop_play"),
                     Command = "playx_hide",
-                }):SetTooltip(PlayX.translate("panel_stop_play_tooltip"))
+                }):SetTooltip(PlayX.Translation.get("panel_stop_play_tooltip"))
             
                 local resumeBt = panel:AddControl("Button", {
-                    Label = PlayX.translate("panel_reinitialize_player"),
+                    Label = PlayX.Translation.get("panel_reinitialize_player"),
                     Command = "playx_resume",
                 })
             	
@@ -114,16 +114,16 @@ local function SettingsPanel(panel)
                 end
             else
                 local stopBt = panel:AddControl("Button", {
-                    Label = PlayX.translate("panel_stop_play"),
+                    Label = PlayX.Translation.get("panel_stop_play"),
                     Command = "playx_hide",
-                }):SetTooltip(PlayX.translate("panel_stop_play_tooltip"))
+                }):SetTooltip(PlayX.Translation.get("panel_stop_play_tooltip"))
                 
                 if not PlayX.Playing and stopBt ~= nil then
                     stopBt:SetDisabled(true)
                 end
                 
                 local resumeBt = panel:AddControl("Button", {
-                    Label = PlayX.translate("panel_resume_play"),
+                    Label = PlayX.Translation.get("panel_resume_play"),
                     Command = "playx_resume",
                 })
             	
@@ -133,12 +133,12 @@ local function SettingsPanel(panel)
             end
             
             panel:AddControl("Label", {
-                Text = PlayX.translate("panel_media_resume_not_supported"),
+                Text = PlayX.Translation.get("panel_media_resume_not_supported"),
             })
         end
     else
         panel:AddControl("Label", {
-            Text = PlayX.translate("panel_no_media_playing"),
+            Text = PlayX.Translation.get("panel_no_media_playing"),
         })
     end
     
@@ -149,7 +149,7 @@ local function ControlPanel(panel)
     panel:ClearControls()
     
     local options = {
-        [PlayX.translate("panel_provider_auto_detect")] = {["playx_provider"] = ""}
+        [PlayX.Translation.get("panel_provider_auto_detect")] = {["playx_provider"] = ""}
     }
     
     for id, name in pairs(PlayX.Providers) do
@@ -159,52 +159,52 @@ local function ControlPanel(panel)
     -- TODO: Put the following two controls on the same line
     
     panel:AddControl("ListBox", {
-        Label = PlayX.translate("panel_provider"),
+        Label = PlayX.Translation.get("panel_provider"),
         Options = options,
     })
 
     local textbox = panel:AddControl("TextBox", {
-        Label = PlayX.translate("panel_uri"),
+        Label = PlayX.Translation.get("panel_uri"),
         Command = "playx_uri",
         WaitForEnter = false,
     })
-    textbox:SetTooltip(PlayX.translate("panel_uri_tooltip"))
+    textbox:SetTooltip(PlayX.Translation.get("panel_uri_tooltip"))
 
     panel:AddControl("TextBox", {
-        Label = PlayX.translate("panel_start_at"),
+        Label = PlayX.Translation.get("panel_start_at"),
         Command = "playx_start_time",
         WaitForEnter = false,
     })
 
     if PlayX.JWPlayerURL then
         panel:AddControl("CheckBox", {
-            Label = PlayX.translate("panel_use_jw"),
+            Label = PlayX.Translation.get("panel_use_jw"),
             Command = "playx_use_jw",
         })
     end
 
     panel:AddControl("CheckBox", {
-        Label = PlayX.translate("panel_force_low_framerate"),
+        Label = PlayX.Translation.get("panel_force_low_framerate"),
         Command = "playx_force_low_framerate",
-    }):SetTooltip(PlayX.translate("panel_force_low_framerate_tooltip"))
+    }):SetTooltip(PlayX.Translation.get("panel_force_low_framerate_tooltip"))
     
     panel:AddControl("CheckBox", {
-        Label = PlayX.translate("panel_ignore_length"),
+        Label = PlayX.Translation.get("panel_ignore_length"),
         Command = "playx_ignore_length",
     })
     
     panel:AddControl("Button", {
-        Label = PlayX.translate("panel_open_media"),
+        Label = PlayX.Translation.get("panel_open_media"),
         Command = "playx_gui_open",
     })
     
     local button = panel:AddControl("Button", {
-        Label = PlayX.translate("panel_close_media"),
+        Label = PlayX.Translation.get("panel_close_media"),
         Command = "playx_gui_close",
     })
     
     panel:AddControl("Button", {
-        Label = PlayX.translate("panel_add_as_bookmark"),
+        Label = PlayX.Translation.get("panel_add_as_bookmark"),
         Command = "playx_gui_bookmark",
     })
     
@@ -223,35 +223,35 @@ local function BookmarksPanel(panel)
     local bookmarks = panel:AddControl("DListView", {})
     PlayX._BookmarksPanelList = bookmarks
     bookmarks:SetMultiSelect(false)
-    bookmarks:AddColumn(PlayX.translate("bookmark_column_title"))
-    bookmarks:AddColumn(PlayX.translate("bookmark_column_uri"))
+    bookmarks:AddColumn(PlayX.Translation.get("bookmark_column_title"))
+    bookmarks:AddColumn(PlayX.Translation.get("bookmark_column_uri"))
     bookmarks:SetTall(ScrH() * 7.5/10)
     
     for k, bookmark in pairs(PlayX.Bookmarks) do
         local line = bookmarks:AddLine(bookmark.Title, bookmark.URI)
         if bookmark.Keyword ~= "" then
-            line:SetTooltip(PlayX.translate("bookmark_keyword_tooltip", bookmark.Keyword))
+            line:SetTooltip(PlayX.Translation.get("bookmark_keyword_tooltip", bookmark.Keyword))
         end
     end
     
     bookmarks.OnRowRightClick = function(lst, index, line)
         local menu = DermaMenu()
-        menu:AddOption(PlayX.translate("bookmark_open_button"), function()
+        menu:AddOption(PlayX.Translation.get("bookmark_open_button"), function()
             PlayX.GetBookmark(line:GetValue(1):Trim()):Play()
         end)
-        menu:AddOption(PlayX.translate("bookmark_edit_button"), function()
+        menu:AddOption(PlayX.Translation.get("bookmark_edit_button"), function()
             PlayX.OpenBookmarksWindow(line:GetValue(1))
         end)
 		
-		menu:AddOption(PlayX.translate("bookmark_delete_button"), function()
+		menu:AddOption(PlayX.Translation.get("bookmark_delete_button"), function()
            	PlayX.BookmarkDelete(line)
         end)
 
-        menu:AddOption(PlayX.translate("bookmark_copy_uri"), function()
+        menu:AddOption(PlayX.Translation.get("bookmark_copy_uri"), function()
             SetClipboardText(line:GetValue(2))
 
         end)
-        menu:AddOption(PlayX.translate("bookmark_copy_to_administrate"), function()
+        menu:AddOption(PlayX.Translation.get("bookmark_copy_to_administrate"), function()
             PlayX.GetBookmark(line:GetValue(1):Trim()):CopyToPanel()
         end)
         menu:Open()
@@ -262,17 +262,17 @@ local function BookmarksPanel(panel)
         PlayX.GetBookmark(line:GetValue(1):Trim()):Play()
     end
     
-    local button = panel:AddControl("Button", {Text=PlayX.translate("bookmark_open_selected_button")})
+    local button = panel:AddControl("Button", {Text=PlayX.Translation.get("bookmark_open_selected_button")})
     button.DoClick = function()
         if bookmarks:GetSelectedLine() then
             local line = bookmarks:GetLine(bookmarks:GetSelectedLine())
             PlayX.GetBookmark(line:GetValue(1):Trim()):Play()
 	    else
-            Derma_Message(PlayX.translate("error_bookmark_not_selected"), PlayX.translate("error"), PlayX.translate("ok"))
+            Derma_Message(PlayX.Translation.get("error_bookmark_not_selected"), PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
 	    end
     end
     
-    local button = panel:AddControl("Button", {Text=PlayX.translate("bookmark_manage_button")})
+    local button = panel:AddControl("Button", {Text=PlayX.Translation.get("bookmark_manage_button")})
     button.DoClick = function()
         PlayX.OpenBookmarksWindow()
     end
@@ -286,17 +286,17 @@ local function NavigatorPanel(panel)
     
     if PlayX.NavigatorCapturedURL ~= "" and PlayX.CurrentMedia then
 	    panel:AddControl("Label", {
-	        Text = PlayX.translate("navigator_captured_uri", PlayX.NavigatorCapturedURL)
+	        Text = PlayX.Translation.get("navigator_captured_uri", PlayX.NavigatorCapturedURL)
 	     })
 	     
 	     local button = panel:AddControl("Button", {
-	        Label = PlayX.translate("bookmark_add_as_bookmark_button"),
+	        Label = PlayX.Translation.get("bookmark_add_as_bookmark_button"),
 	        Command = "playx_navigator_addbookmark",
 	    })    
     end
     
     local button = panel:AddControl("Button", {
-        Label = PlayX.translate("navigator_open_button"),
+        Label = PlayX.Translation.get("navigator_open_button"),
         Command = "playx_navigator_window",
     })  
 end
@@ -311,13 +311,13 @@ local function fullscreenPanel(panel)
   -- Clear Controls
   panel:ClearControls()
   -- Add Panel Elements
-  panel:AddControl("Header", {Text = PlayX.translate("fullscreen_panel_header")})  
-  panel:AddControl("Numpad", {Label = PlayX.translate("fullscreen_key_label"), Command = "playx_fullscreen_bindkey", ButtonSize = "18"})  
+  panel:AddControl("Header", {Text = PlayX.Translation.get("fullscreen_panel_header")})  
+  panel:AddControl("Numpad", {Label = PlayX.Translation.get("fullscreen_key_label"), Command = "playx_fullscreen_bindkey", ButtonSize = "18"})  
   
   -- Add Buton to Apply                  
   local Button = vgui.Create("DButton") 
   Button:SetSize(50, 20)
-  Button:SetText(PlayX.translate("panel_apply"))
+  Button:SetText(PlayX.Translation.get("panel_apply"))
   Button.DoClick = function( button )
     -- Run Apply on Click
     applyFullscreenKey()
@@ -330,11 +330,11 @@ end
 --- PopulateToolMenu hook.
 local function PopulateToolMenu()
     hasLoaded = true
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", PlayX.translate("spawnmenu_settings"), "", "", SettingsPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", PlayX.translate("spawnmenu_administrate"), "", "", ControlPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", PlayX.translate("spawnmenu_bookmarks"), "", "", BookmarksPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", PlayX.translate("spawnmenu_navigator"), "", "", NavigatorPanel)
-    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXFullscreen", PlayX.translate("spawnmenu_fullscreen"), "", "", fullscreenPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXSettings", PlayX.Translation.get("spawnmenu_settings"), "", "", SettingsPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXControl", PlayX.Translation.get("spawnmenu_administrate"), "", "", ControlPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXBookmarks", PlayX.Translation.get("spawnmenu_bookmarks"), "", "", BookmarksPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXNavigator", PlayX.Translation.get("spawnmenu_navigator"), "", "", NavigatorPanel)
+    spawnmenu.AddToolMenuOption("Options", "PlayX", "PlayXFullscreen", PlayX.Translation.get("spawnmenu_fullscreen"), "", "", fullscreenPanel)
 end
 
 hook.Add("PopulateToolMenu", "PlayXPopulateToolMenu", PopulateToolMenu)

@@ -14,5 +14,5 @@ hook.Add( "PopulateMenuBar", "", function( menubar )
   -- Get / Add Context Menu Bar: PlayX
   local mbar = menubar:AddOrGetMenu( "PlayX" )
 
-  mbar:AddCVar( PlayX.translate("fullscreen_contextmenu"), "playx_fullscreen", "1", "0" )    
+  mbar:AddCVar( PlayX.Translation.get("fullscreen_contextmenu"), "playx_fullscreen", "1", "0" )    
 end )

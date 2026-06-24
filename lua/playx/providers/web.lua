@@ -35,4 +35,4 @@ function StaticWeb.QueryMetadata(uri, callback, failCallback)
 end
 
 list.Set("PlayXProviders", "StaticWeb", StaticWeb)
-list.Set("PlayXProvidersList", "StaticWeb", {PlayX.translate("providers_staticweb")})
+list.Set("PlayXProvidersList", "StaticWeb", {PlayX.Translation.get("providers_staticweb")})

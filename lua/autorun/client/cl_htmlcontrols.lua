@@ -14,7 +14,7 @@
 local PANEL = {}
 
 function PANEL:Open(provider, uri)
-  MsgN(PlayX.translate("open_bookmark", provider, uri))
+  MsgN(PlayX.Translation.get("open_bookmark", provider, uri))
   PlayX.RequestOpenMedia(provider, uri, 0, false, GetConVar("playx_use_jw"):GetBool(),
     GetConVar("playx_ignore_length"):GetBool())
 end
@@ -109,8 +109,8 @@ function PANEL:Init()
 
   self.RequestButton = vgui.Create( "DButton", self )
   self.RequestButton:SetSize( ButtonSize * 8, ButtonSize )
-  self.RequestButton:SetText( PlayX.translate("request_url") )
-  self.RequestButton:SetTooltip( PlayX.translate("click_to_play") )
+  self.RequestButton:SetText( PlayX.Translation.get("request_url") )
+  self.RequestButton:SetTooltip( PlayX.Translation.get("click_to_play") )
   -- self.RequestButton:SetDisabled( true )
   self.RequestButton:Dock( RIGHT )
   self.RequestButton:DockMargin( 8, 4, 8, 4 )

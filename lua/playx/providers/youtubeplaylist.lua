@@ -50,7 +50,7 @@ function YouTubePlaylist.QueryMetadata(uri, callback, failCallback)
   local function successF (resultsTable)        
         -- Do a check to avoid error
         if resultsTable.pageInfo.resultsPerPage == 0 or resultsTable.items[1] == nil then
-          PrintMessage(HUD_PRINTTALK, PlayX.translate("error_video_not_found", uri))
+          PrintMessage(HUD_PRINTTALK, PlayX.Translation.get("error_video_not_found", uri))
           return false
         end
                 

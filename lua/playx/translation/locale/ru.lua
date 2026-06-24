@@ -8,7 +8,7 @@
 -- $Id$
 -- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
 
-PlayX.importTranslation("ru", {
+PlayX.Translation.import("ru", {
     ["version"] = "Версия %s",
     ["updated"] = "Обновлено %s",
     ["open_bookmark"] = "PlayXBrowser: Запрос на открытие <%s> / <%s>",

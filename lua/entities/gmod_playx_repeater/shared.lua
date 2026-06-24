@@ -10,17 +10,17 @@
 
 if PlayX.translation == nil then
     include("playx/translation/translation.lua")
-    PlayX.initTranslation()
+    PlayX.Translation.init()
 end
 
 ENT.Type = "anim"
 ENT.Base = "gmod_playx"
  
-ENT.PrintName = PlayX.translate("playx_repeater")
+ENT.PrintName = PlayX.Translation.get("playx_repeater")
 ENT.Author = "DathusBR"
 ENT.Contact = "https://www.juliocesar.me"
-ENT.Purpose = PlayX.translate("repeater_purpose")
-ENT.Instructions = PlayX.translate("repeater_instructions")
+ENT.Purpose = PlayX.Translation.get("repeater_purpose")
+ENT.Instructions = PlayX.Translation.get("repeater_instructions")
 ENT.Category = "PlayX"
 ENT.Spawnable = true
 ENT.AdminSpawnable = true

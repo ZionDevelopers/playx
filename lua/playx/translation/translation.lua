@@ -6,17 +6,17 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.4 by DathusBR on 2026-06-24 05:31 PM (-03:00 GMT)
 
 PlayX = PlayX or {}
 PlayX.Translation = {}
-PlayX.Translation.translations = {}
+PlayX.Translation.data = {}
 PlayX.Translation.language = ""
 PlayX.Translation.fallback = "en"
 
 -- Gets the current language code.
 -- @return string The current language code.
-PlayX.getLanguage = function ()
+PlayX.Translation.getLanguage = function ()
     local gmod_language = GetConVar("gmod_language")
 
     if CLIENT then
@@ -29,15 +29,15 @@ end
 -- Imports a translation table for a specific language.
 -- @param language string The language code (e.g., "en", "fr").
 -- @param data table A table containing key-value pairs of translation strings.
-PlayX.importTranslation = function (language, data)
-    PlayX.Translation.translations[language] = data
+PlayX.Translation.import = function (language, data)
+    PlayX.Translation.data[language] = data
 end
 
 -- Start translation
-PlayX.initTranslation = function ()
-    PlayX.Translation.language = PlayX.getLanguage()
+PlayX.Translation.init = function ()
+    PlayX.Translation.language = PlayX.Translation.getLanguage()
     cvars.AddChangeCallback("gmod_language", function (cvar, old, new)
-        PlayX.Translation.language = PlayX.getLanguage()
+        PlayX.Translation.language = PlayX.Translation.getLanguage()
     end)
     -- Load translations
     local p = file.Find("playx/translation/locale/*.lua","LUA")
@@ -60,8 +60,8 @@ end
 -- @param key string The translation key to look up.
 -- @param ... Additional arguments to format the translation string.
 -- @return string The translated and formatted string.
-PlayX.translate = function (key, ...)
-    local translationTable = PlayX.Translation.translations[PlayX.Translation.language] or PlayX.Translation.translations[PlayX.Translation.fallback]
+PlayX.Translation.get = function (key, ...)
+    local translationTable = PlayX.Translation.data[PlayX.Translation.language] or PlayX.Translation.data[PlayX.Translation.fallback]
     local translation = translationTable[key] or key
     local args = {...}
     if #args > 0 then

@@ -6,11 +6,12 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.4 by DathusBR on 2026-06-24 05:31 PM (-03:00 GMT)
 
 PlayX = {}
-PlayX.Version = "2.12.3"
-PlayX.VersionUpdated = "2026-05-11 07:30 PM"
+PlayX.Version = "2.12.4"
+PlayX.VersionUpdated = "2026-06-24 05:31 PM"
+
 --Setup Loading Log Formatation
 function loadingLog (text)
 	--Set Max Size
@@ -64,11 +65,11 @@ end
 include("playx/translation/translation.lua")
 AddCSLuaFile("playx/translation/translation.lua")
 -- Start translation
-PlayX.initTranslation()
+PlayX.Translation.init()
 
 Msg( "\n/====================================\\\n")
 Msg( "||               PlayX              ||\n" )
 Msg( "||----------------------------------||\n" )
-loadingLog(PlayX.translate("version", PlayX.Version))
-loadingLog(PlayX.translate("updated", PlayX.VersionUpdated))
+loadingLog(PlayX.Translation.get("version", PlayX.Version))
+loadingLog(PlayX.Translation.get("updated", PlayX.VersionUpdated))
 Msg( "\\====================================/\n\n" )

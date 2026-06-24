@@ -10,17 +10,17 @@
 
 if PlayX.translation == nil then
     include("playx/translation/translation.lua")
-    PlayX.initTranslation()
+    PlayX.Translation.init()
 end
 
 ENT.Type = "anim"
 ENT.Base = "base_anim"
  
-ENT.PrintName = PlayX.translate("playx_player")
+ENT.PrintName = PlayX.Translation.get("playx_player")
 ENT.Author = "DathusBR"
 ENT.Contact = "https://www.juliocesar.me"
-ENT.Purpose = PlayX.translate("player_purpose")
-ENT.Instructions = PlayX.translate("player_instructions")
+ENT.Purpose = PlayX.Translation.get("player_purpose")
+ENT.Instructions = PlayX.Translation.get("player_instructions")
 ENT.Category = "PlayX"
 
 ENT.WireDebugName = "PlayX Player"

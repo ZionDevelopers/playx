@@ -48,7 +48,7 @@ function SoundCloud.QueryMetadata(uri, callback, failCallback)
   http.Fetch(url,function(content,size)
     local dec = util.JSONToTable(content)
     if content == NULL or not dec then
-      if failCallback then failCallback(PlayX.translate("error_metadata_fetch")) end
+      if failCallback then failCallback(PlayX.Translation.get("error_metadata_fetch")) end
       return
     end
     if(dec and dec["title"] ~= nil) then
