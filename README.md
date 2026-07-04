@@ -8,10 +8,9 @@ Just download this addon by clicking on Download ZIP and extract the addon in ``
 
 
 ### Requirement
-![Requirement](https://playx.juliocesar.me/img/branch.png?v1)
-
 YouTube, SoundCloud, Images, MP3 and WebM work by default on Windows. <br />
 Everything else needs the x86-64 BETA branch and [Gmod Patch Tool][GmodPatchTool].
+![Requirement](https://playx.juliocesar.me/img/branch.png?v1)
 
 For Twitch Streams/VODs, Mature content may not work.
 
@@ -31,7 +30,7 @@ Simply clone this repository into your `addons` folder:
 
 ### Terms of Service and Privacy Policy
 
-PlayX uses Youtube API to play and search videos, by using PlayX to play youtube videos you agree with [Youtube Terms][YouTubeTerms] and [Google Privacy Policy][GooglePrivacyPolicy]
+PlayX uses Youtube API to play and search videos, by using PlayX to play youtube videos you agree with [Youtube Terms][YouTubeTerms] and [Google Privacy Policy][GooglePrivacyPolicy].
 
 ### Personal Information collection
 We don't store, collect or sell any personal information / user information, But we use Google Analytics for anonymous statistics. We don't share user information with any parties at all. We don't use cookies to track user, we don't collect any information from users' devices. We don't serve ads.
