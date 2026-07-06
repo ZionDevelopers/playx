@@ -30,7 +30,7 @@
         <script>
             $(document).ready(function () {
                 $("#player").html("<audio src='"+unescape(get("url"))+"' controls autoplay></audio>");
-                if(get("volume") != null) {
+                if(get("volume") != false) {
                     $("#player audio").prop("volume", get("volume"));
                 }
             });
