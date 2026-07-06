@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
 
 -- FCVAR_GAMEDLL makes cvar change detection work
 CreateConVar("playx_jw_url", "https://playx.juliocesar.me/swf/jwplayer.flash.swf", {FCVAR_GAMEDLL})
@@ -16,6 +16,7 @@ CreateConVar("playx_youtube_playlist_host_url", "https://playx.juliocesar.me/you
 CreateConVar("playx_twitch_host_url", "https://playx.juliocesar.me/twitchhost.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_vimeo_host_url", "https://playx.juliocesar.me/vimeohost.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_soundcloud_host_url", "https://playx.juliocesar.me/soundcloud.html",        {FCVAR_GAMEDLL})
+CreateConVar("playx_shoutcast_host_url", "https://playx.juliocesar.me/shoutcast.host.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_image_host_url", "https://playx.juliocesar.me/image.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_main", "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk", {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_backup", "AIzaSyCcQgWErCaa46xhKnNWd3teAV72otafdRk", {FCVAR_GAMEDLL})

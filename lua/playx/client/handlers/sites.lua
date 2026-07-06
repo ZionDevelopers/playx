@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.29 by Dathus [BR] on 2026-01-22 05:14 PM (-03:00 GMT)
+-- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
 
 list.Set("PlayXHandlers", "Vimeo", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateVimeoEmbed(width, height, start, volume, uri, "vimeo")
@@ -36,4 +36,8 @@ end)
 
 list.Set("PlayXHandlers", "GoogleDrive", function(width, height, start, volume, uri, handlerArgs)
     return playxlib.GenerateGoogleDriveEmbed(width, height, start, volume, uri, "googledrive")
+end)
+
+list.Set("PlayXHandlers", "Shoutcast", function(width, height, start, volume, uri, handlerArgs)
+    return playxlib.GenerateShoutcast(width, height, start, volume, uri)
 end)

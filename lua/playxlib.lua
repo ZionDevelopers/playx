@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.29 by Dathus [BR] on 2026-01-22 05:14 PM (-03:00 GMT)
+-- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
 
 playxlib = {}
 
@@ -769,6 +769,36 @@ function playxlib.GenerateJWPlayer(width, height, start, volume, uri, provider)
 	
     return playxlib.HandlerResult{
         url = PlayX.HostURL .. '?url=' .. playxlib.url(uri) .. "&start=" .. tostring(start) .. "&vol=" .. tostring(volume),
+        center = false,
+        volumeFunc = volumeFunc,
+        playFunc = playFunc,
+        pauseFunc = pauseFunc        
+  }
+end
+--- Generate the HTML page for the Shoutcast
+-- @param width
+-- @param height
+-- @param start In seconds
+-- @param volume 0-100
+-- @param uri
+-- @param provider JW player provider ("image", "audio", etc.)
+-- @return HTML
+function playxlib.GenerateShoutcast(width, height, start, volume, uri)
+    
+    local volumeFunc = function(volume)
+        return [[try { document.querySelector("#player audio").volume = ]] .. playxlib.volumeFloat(volume) .. [[;} catch (e) {}]]
+    end
+    
+    local playFunc = function()
+         return [[try { document.querySelector("#player audio").play();} catch (e) {}]]
+    end
+    
+    local pauseFunc = function()
+        return [[try { document.querySelector("#player audio").pause(); } catch (e) {}]]
+    end
+	
+    return playxlib.HandlerResult{
+        url = uri .. "&vol=" .. playxlib.volumeFloat(volume),
         center = false,
         volumeFunc = volumeFunc,
         playFunc = playFunc,

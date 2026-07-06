@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.5 by DathusBR on 2026-07-06 12:31 PM (-03:00 GMT)
+-- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
 
 local Shoutcast = {}
 
@@ -28,8 +28,8 @@ function Shoutcast.GetPlayer(uri, useJW)
     
     if m then        
         return {
-            ["Handler"] = "IFrame",
-            ["URI"] = uri,
+            ["Handler"] = "Shoutcast",
+            ["URI"] = GetConVar("playx_shoutcast_host_url"):GetString():Trim() .. "?url=" .. playxlib.url(uri),
             ["ResumeSupported"] = true,
             ["LowFramerate"] = true,
             ["MetadataFunc"] = function(callback, failCallback)
