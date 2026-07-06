@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.19 by Dathus [BR] on 2025-12-14 10:50 AM (-03:00 GMT)
+-- Version 2.12.5 by DathusBR on 2026-07-06 12:31 PM (-03:00 GMT)
 
 local Shoutcast = {}
 
@@ -26,17 +26,9 @@ function Shoutcast.GetPlayer(uri, useJW)
         "^https?://.+$",
     })
     
-    if m then
-        if not uri:lower():find("^;stream%.nsv") then
-            if uri:find("/$") then
-                uri = uri .. ";stream%.nsv"
-            else
-                uri = uri .. "/;stream%.nsv"
-            end
-        end
-        
+    if m then        
         return {
-            ["Handler"] = "JWAudio",
+            ["Handler"] = "IFrame",
             ["URI"] = uri,
             ["ResumeSupported"] = true,
             ["LowFramerate"] = true,
