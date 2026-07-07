@@ -69,7 +69,7 @@ end
 local function Play(ply, provider, uri, lowFramerate)
     if PlayX.IsPermitted(ply) then
         PrintMessage(HUD_PRINTCONSOLE, PlayX.Translation.get("started_playing", ply:Nick()))
-        local result, err = PlayX.OpenMedia(provider, uri, 0, lowFramerate, true, false)
+        local result, err = PlayX.OpenMedia(provider, uri, 0, lowFramerate, false)
         if not result then
             ply:ChatPrint(PlayX.Translation.get("playx_error", err))
         end

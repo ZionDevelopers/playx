@@ -134,15 +134,6 @@ e2function number pxIsPlaying()
 	return 0
 end
 
---Checks whether the playX is using JW
---@return number
-e2function number pxUsingJW()
-	if PlayX.IsUsingJW() then
-		return 1
-	end
-	return 0
-end
-
 --Gets the media URI 
 --@return string
 e2function string pxURI()

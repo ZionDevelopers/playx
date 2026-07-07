@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
+-- Version 2.12.8 by DathusBR on 2026-07-07 01:18 PM (-03:00 GMT)
 
 local Shoutcast = {}
 
@@ -48,47 +48,6 @@ end
 list.Set("PlayXProviders", "Shoutcast", Shoutcast)
 list.Set("PlayXProvidersList", "Shoutcast", {"Shoutcast"})
 
--- RTMP
-local RTMP = {}
-
-function RTMP.Detect(uri)
-    local m = playxlib.FindMatch(uri, {
-        "^rtmp://.+$",
-        "^rtmp://.+$",
-    })
-    
-    if m then
-        return uri
-    end
-end
-
-function RTMP.GetPlayer(uri, useJW)
-    local m = playxlib.FindMatch(uri, {
-        "^rtmp://.+$",
-    })
-    
-    if m then       
-        return {
-            ["Handler"] = "JWRTMP",
-            ["URI"] = uri,
-            ["ResumeSupported"] = true,
-            ["LowFramerate"] = false,
-            ["MetadataFunc"] = function(callback, failCallback)
-                RTMP.QueryMetadata(uri, callback, failCallback)
-            end,
-        }
-    end
-end
-
-function RTMP.QueryMetadata(uri, callback, failCallback)
-    callback({
-        ["URL"] = uri,
-    })
-end
-
-list.Set("PlayXProviders", "RTMP", RTMP)
-list.Set("PlayXProvidersList", "RTMP", {"RTMP"})
-
 local MP3 = {}
 
 function MP3.Detect(uri)
@@ -125,12 +84,10 @@ end
 list.Set("PlayXProviders", "MP3", MP3)
 list.Set("PlayXProvidersList", "MP3", {"MP3"})
 
-local FlashVideo = {}
+local Video = {}
 
-function FlashVideo.Detect(uri)
+function Video.Detect(uri)
     local m = playxlib.FindMatch(uri:gsub("%?.*$", ""), {
-        "^https?://.+%.flv$",
-        "^https?://.+%.FLV$",
         "^https?://.+%.mp4$",
         "^https?://.+%.MP4$",
         "^https?://.+%.webm$",
@@ -144,7 +101,7 @@ function FlashVideo.Detect(uri)
     end
 end
 
-function FlashVideo.GetPlayer(uri, useJW)
+function Video.GetPlayer(uri, useJW)
     if uri:lower():find("^https?://") then
         return {
             ["Handler"] = "JWVideo",
@@ -152,20 +109,20 @@ function FlashVideo.GetPlayer(uri, useJW)
             ["ResumeSupported"] = true,
             ["LowFramerate"] = false,
             ["MetadataFunc"] = function(callback, failCallback)
-                FlashVideo.QueryMetadata(uri, callback, failCallback)
+                Video.QueryMetadata(uri, callback, failCallback)
             end,
         }
     end
 end
 
-function FlashVideo.QueryMetadata(uri, callback, failCallback)
+function Video.QueryMetadata(uri, callback, failCallback)
     callback({
         ["URL"] = uri,
     })
 end
 
-list.Set("PlayXProviders", "FlashVideo", FlashVideo)
-list.Set("PlayXProvidersList", "FlashVideo", {"FLV/MP4/AAC/WEBM"})
+list.Set("PlayXProviders", "Video", Video)
+list.Set("PlayXProvidersList", "Video", {"MP4/AAC/WEBM"})
 
 local Image = {}
 
