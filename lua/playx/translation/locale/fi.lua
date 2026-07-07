@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
 
 PlayX.Translation.import("fi", {
     ["version"] = "Versio %s",
@@ -200,5 +200,6 @@ PlayX.Translation.import("fi", {
     ["admin_timeout_set"] = "PlayX: Ei adminia palvelimella; timeout asettaminen %fs",
     ["admin_timeout_ended"] = "PlayX: Administraattoreita ei ole ollut läsnä laajennetun ajan; media timeout",
     ["media_expired"] = "PlayX: Media on jo vanhentunut",
-    ["panel_enabled"] = "Käytössä"
+    ["panel_enabled"] = "Käytössä",
+    ["bookmark_edit_button"] = "Muokkaa kirjanmerkkiä"
 })

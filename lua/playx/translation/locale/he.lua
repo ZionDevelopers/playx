@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
 
 PlayX.Translation.import("he", {
     ["version"] = "גרסה %s",
@@ -200,5 +200,6 @@ PlayX.Translation.import("he", {
     ["admin_timeout_set"] = "PlayX: אין אדמין בשרת; הגדרת timeout ל-%fs",
     ["admin_timeout_ended"] = "PlayX: לא היה אדמינים נוכחים לתקופה מורחבת; timeout של מדיה",
     ["media_expired"] = "PlayX: המדיה כבר פגה",
-    ["panel_enabled"] = "מופעל"
+    ["panel_enabled"] = "מופעל",
+    ["bookmark_edit_button"] = "ערוך סימניה"
 })

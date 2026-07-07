@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
 
 PlayX.Translation.import("uk", {
     ["version"] = "Версія %s",
@@ -200,5 +200,6 @@ PlayX.Translation.import("uk", {
     ["admin_timeout_set"] = "PlayX: Немає адміна на сервері; встановлює таймаут на %fs",
     ["admin_timeout_ended"] = "PlayX: Жодні адміністратори не були присутні протягом подовженого періоду; таймаут медіа",
     ["media_expired"] = "PlayX: Медіа вже закінчилися",
-    ["panel_enabled"] = "Увімкнено"
+    ["panel_enabled"] = "Увімкнено",
+    ["bookmark_edit_button"] = "Редагувати закладку"
 })

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
 
 PlayX.Translation.import("zh-CN", {
     ["version"] = "版本 %s",
@@ -200,5 +200,6 @@ PlayX.Translation.import("zh-CN", {
     ["admin_timeout_set"] = "PlayX: 服务器上没有管理员; 设置超时为 %fs",
     ["admin_timeout_ended"] = "PlayX: 在延长期间没有管理员存在; 媒体超时",
     ["media_expired"] = "PlayX: 媒体已过期",
-    ["panel_enabled"] = "已启用"
+    ["panel_enabled"] = "已启用",
+    ["bookmark_edit_button"] = "编辑书签"
 })

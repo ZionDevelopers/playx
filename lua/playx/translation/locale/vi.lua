@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
 
 PlayX.Translation.import("vi", {
     ["version"] = "Phiên bản %s",
@@ -200,5 +200,6 @@ PlayX.Translation.import("vi", {
     ["admin_timeout_set"] = "PlayX: Không có admin trên máy chủ; đang đặt timeout thành %fs",
     ["admin_timeout_ended"] = "PlayX: Không có quản trị viên nào hiện diện trong thời gian kéo dài; timeout phương tiện",
     ["media_expired"] = "PlayX: Phương tiện đã hết hạn",
-    ["panel_enabled"] = "Đã bật"
+    ["panel_enabled"] = "Đã bật",
+    ["bookmark_edit_button"] = "Chỉnh sửa dấu trang"
 })

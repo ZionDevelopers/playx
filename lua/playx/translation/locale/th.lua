@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
 
 PlayX.Translation.import("th", {
     ["version"] = "เวอร์ชัน %s",
@@ -200,5 +200,6 @@ PlayX.Translation.import("th", {
     ["admin_timeout_set"] = "PlayX: ไม่มีแอดมินบนเซิร์ฟเวอร์; กำลังตั้งตัวหมดเวลาเป็น %fs",
     ["admin_timeout_ended"] = "PlayX: ไม่มีผู้ดูแลระบบอยู่ช่วงเวลาที่ขยาย; หมดเวลาสื่อ",
     ["media_expired"] = "PlayX: สื่อหมดอายุแล้ว",
-    ["panel_enabled"] = "เปิดใช้งาน"
+    ["panel_enabled"] = "เปิดใช้งาน",
+    ["bookmark_edit_button"] = "แก้ไขที่คั่นหน้า"
 })
