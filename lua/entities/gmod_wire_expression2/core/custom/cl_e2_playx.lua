@@ -5,12 +5,14 @@
 -- This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
+
 E2Helper.Descriptions["pxOpenMedia(s)"] = 		"Opens the URL on the current PlayX player if you're permitted\nUrl"
 E2Helper.Descriptions["pxOpenMedia(ss)"] =		"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect)"
 E2Helper.Descriptions["pxOpenMedia(ssn)"] = 	"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect),Start-time in seconds"
 E2Helper.Descriptions["pxOpenMedia(ssnn)"] = 	"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect),Start-time in seconds,forceLowFramerate (0 default)"
-E2Helper.Descriptions["pxOpenMedia(ssnnn)"] = 	"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect),Start-time in seconds,forceLowFramerate (0 default),useJW (1 default)"
-E2Helper.Descriptions["pxOpenMedia(ssnnnn)"] = 	"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect),Start-time in seconds,forceLowFramerate (0 default),useJW (1 default),ignoreLength (no use atm?!)"
+E2Helper.Descriptions["pxOpenMedia(ssnnn)"] = 	"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect),Start-time in seconds,forceLowFramerate (0 default)"
+E2Helper.Descriptions["pxOpenMedia(ssnnnn)"] = 	"Opens the URL on the current PlayX player if you're permitted\nUrl,Provider (empty string for autodetect),Start-time in seconds,forceLowFramerate (0 default),ignoreLength (no use atm?!)"
 E2Helper.Descriptions["pxStopMedia()"] =	"Stops the media completly"
 E2Helper.Descriptions["pxSpawn()"] = 		"Spawns a playX player at the owner's aimpos"
 E2Helper.Descriptions["pxSpawn(n)"] = 		"Spawns a playX player or playX repeater at the owner's aimpos."

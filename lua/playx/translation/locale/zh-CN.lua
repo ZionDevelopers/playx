@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("zh-CN", {
     ["version"] = "版本 %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("zh-CN", {
     ["panel_open_media"] = "打开媒体",
     ["panel_force_low_framerate"] = "强制低帧率",
     ["panel_ignore_length"] = "当适用时不在结束时自动停止",
-    ["panel_use_jw"] = "当适用时使用增强播放器",
     ["panel_start_at"] = "开始于:",
     ["panel_provider"] = "提供商:",
     ["panel_provider_auto_detect"] = "自动检测",
@@ -164,7 +163,6 @@ PlayX.Translation.import("zh-CN", {
     ["error_no_handler"] = "PlayX: 没有名为 %s 的处理程序，无法播放 %s\n",
     ["crash_detected_warning"] = "PlayX 在检测到之前会话中的崩溃后自行禁用。通过您的工具菜单下的 \"选项\" 选项卡重新启用 PlayX。",
     ["playx_error"] = "PlayX 错误: %s",
-    ["jw_url_received"] = "PlayX: JW URL 已设置\n",
     ["host_url_received"] = "PlayX: 主机 URL 已设置\n",
     ["metadata_received"] = "PlayX: 已接收元数据\n",
     ["out_of_range_hint"] = "PlayX: 您现在超出视频播放器范围！",
@@ -172,8 +170,8 @@ PlayX.Translation.import("zh-CN", {
     ["error_no_uri"] = "URI 未输入。",
     ["bookmark_added"] = "书签已添加。",
     ["bookmark_added_title"] = "书签已添加",
-    ["bookmark_add_title_for_navigator"] = "添加书签",
-    ["bookmark_add_input_for_navigator"] = "为书签输入名称",
+    ["bookmark_add_title"] = "添加书签",
+    ["bookmark_add_input"] = "为书签输入名称",
     ["html_source_code_title"] = "PlayX HTML 代码查看器",
     ["error_metadata_fetch"] = "元数据获取失败",
     ["error_video_not_found"] = "您尝试播放的 YouTube 视频 \"%s\" 不可用！",

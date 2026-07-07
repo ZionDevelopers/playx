@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("vi", {
     ["version"] = "Phiên bản %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("vi", {
     ["panel_open_media"] = "Mở phương tiện",
     ["panel_force_low_framerate"] = "Buộc tốc độ khung hình thấp",
     ["panel_ignore_length"] = "Không dừng tự động ở cuối khi áp dụng",
-    ["panel_use_jw"] = "Sử dụng trình phát nâng cao khi áp dụng",
     ["panel_start_at"] = "Bắt đầu tại:",
     ["panel_provider"] = "Nhà cung cấp:",
     ["panel_provider_auto_detect"] = "Phát hiện tự động",
@@ -164,7 +163,6 @@ PlayX.Translation.import("vi", {
     ["error_no_handler"] = "PlayX: Không có handler tên %s, không thể phát %s\n",
     ["crash_detected_warning"] = "PlayX đã tự tắt sau khi phát hiện sự cố trong phiên trước. Bật lại PlayX qua menu công cụ của bạn dưới tab \"Tùy chọn\".",
     ["playx_error"] = "Lỗi PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW đã đặt\n",
     ["host_url_received"] = "PlayX: URL máy chủ đã đặt\n",
     ["metadata_received"] = "PlayX: Đã nhận siêu dữ liệu\n",
     ["out_of_range_hint"] = "PlayX: Bạn bây giờ nằm ngoài phạm vi trình phát video!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("vi", {
     ["error_no_uri"] = "URI chưa nhập.",
     ["bookmark_added"] = "Đã thêm dấu trang.",
     ["bookmark_added_title"] = "Đã thêm dấu trang",
-    ["bookmark_add_title_for_navigator"] = "Thêm dấu trang",
-    ["bookmark_add_input_for_navigator"] = "Nhập tên cho dấu trang",
+    ["bookmark_add_title"] = "Thêm dấu trang",
+    ["bookmark_add_input"] = "Nhập tên cho dấu trang",
     ["html_source_code_title"] = "Trình xem mã HTML PlayX",
     ["error_metadata_fetch"] = "Lấy siêu dữ liệu thất bại",
     ["error_video_not_found"] = "Video YouTube \"%s\" bạn cố phát không khả dụng!",

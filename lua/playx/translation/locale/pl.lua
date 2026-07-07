@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("pl", {
     ["version"] = "Wersja %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("pl", {
     ["panel_open_media"] = "Otwórz media",
     ["panel_force_low_framerate"] = "Wymuś niską liczbę klatek na sekundę",
     ["panel_ignore_length"] = "Nie zatrzymuj automatycznie na końcu, gdy dotyczy",
-    ["panel_use_jw"] = "Użyj ulepszonego odtwarzacza, gdy dotyczy",
     ["panel_start_at"] = "Rozpocznij od:",
     ["panel_provider"] = "Dostawca:",
     ["panel_provider_auto_detect"] = "Wykrywanie automatyczne",
@@ -164,7 +163,6 @@ PlayX.Translation.import("pl", {
     ["error_no_handler"] = "PlayX: Brak handlera o nazwie %s, nie można odtworzyć %s\n",
     ["crash_detected_warning"] = "PlayX wyłączył się po wykryciu awarii w poprzedniej sesji. Ponownie włącz PlayX poprzez swoje menu narzędzi pod zakładką \"Opcje\".",
     ["playx_error"] = "Błąd PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW ustawiony\n",
     ["host_url_received"] = "PlayX: URL hosta ustawiony\n",
     ["metadata_received"] = "PlayX: Metadane odebrane\n",
     ["out_of_range_hint"] = "PlayX: Jesteś teraz poza zasięgiem odtwarzacza filmu!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("pl", {
     ["error_no_uri"] = "URI nie wprowadzono.",
     ["bookmark_added"] = "Zakładka dodana.",
     ["bookmark_added_title"] = "Zakładka dodana",
-    ["bookmark_add_title_for_navigator"] = "Dodaj zakładkę",
-    ["bookmark_add_input_for_navigator"] = "Wprowadź nazwę dla zakładki",
+    ["bookmark_add_title"] = "Dodaj zakładkę",
+    ["bookmark_add_input"] = "Wprowadź nazwę dla zakładki",
     ["html_source_code_title"] = "Przeglądarka kodu HTML PlayX",
     ["error_metadata_fetch"] = "Pobieranie metadanych nie powiodło się",
     ["error_video_not_found"] = "Film YouTube \"%s\", który próbowałeś odtworzyć, jest niedostępny!",

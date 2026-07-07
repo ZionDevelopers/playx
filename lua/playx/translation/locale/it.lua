@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("it", {
     ["version"] = "Versione %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("it", {
     ["panel_open_media"] = "Apri media",
     ["panel_force_low_framerate"] = "Forza framerate basso",
     ["panel_ignore_length"] = "Non fermare automaticamente alla fine quando applicabile",
-    ["panel_use_jw"] = "Usa player migliorato quando applicabile",
     ["panel_start_at"] = "Inizia a:",
     ["panel_provider"] = "Fornitore:",
     ["panel_provider_auto_detect"] = "Rilevamento automatico",
@@ -164,7 +163,6 @@ PlayX.Translation.import("it", {
     ["error_no_handler"] = "PlayX: Nessun handler chiamato %s, non può riprodurre %s\n",
     ["crash_detected_warning"] = "PlayX si è disabilitato dopo aver rilevato un crash nella sessione precedente. Riabilita PlayX tramite il tuo menu strumenti sotto la scheda \"Opzioni\".",
     ["playx_error"] = "Errore PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW impostato\n",
     ["host_url_received"] = "PlayX: URL host impostato\n",
     ["metadata_received"] = "PlayX: Metadati ricevuti\n",
     ["out_of_range_hint"] = "PlayX: Ora sei fuori dalla portata del player video!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("it", {
     ["error_no_uri"] = "URI non inserito.",
     ["bookmark_added"] = "Segnalibro aggiunto.",
     ["bookmark_added_title"] = "Segnalibro aggiunto",
-    ["bookmark_add_title_for_navigator"] = "Aggiungi segnalibro",
-    ["bookmark_add_input_for_navigator"] = "Inserisci un nome per il segnalibro",
+    ["bookmark_add_title"] = "Aggiungi segnalibro",
+    ["bookmark_add_input"] = "Inserisci un nome per il segnalibro",
     ["html_source_code_title"] = "Visualizzatore codice HTML PlayX",
     ["error_metadata_fetch"] = "Recupero metadati fallito",
     ["error_video_not_found"] = "Il video YouTube \"%s\" che hai provato a riprodurre non è disponibile!",

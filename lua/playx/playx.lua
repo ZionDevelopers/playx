@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 -- FCVAR_GAMEDLL makes cvar change detection work
 CreateConVar("playx_host_url", "https://playx.juliocesar.me/host.html",        {FCVAR_GAMEDLL})
@@ -19,7 +19,6 @@ CreateConVar("playx_shoutcast_host_url", "https://playx.juliocesar.me/shoutcast.
 CreateConVar("playx_image_host_url", "https://playx.juliocesar.me/image.html",        {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_main", "AIzaSyCLKZU-TS5J98Q-w97PLO7oqZytJnxVUHk", {FCVAR_GAMEDLL})
 CreateConVar("playx_google_api_v3_youtube_key_backup", "AIzaSyCcQgWErCaa46xhKnNWd3teAV72otafdRk", {FCVAR_GAMEDLL})
-CreateConVar("playx_jw_youtube", "1", {FCVAR_ARCHIVE})
 CreateConVar("playx_admin_timeout", "120", {FCVAR_ARCHIVE})
 CreateConVar("playx_expire", "-1", {FCVAR_ARCHIVE})
 CreateConVar("playx_race_protection", "1", {FCVAR_ARCHIVE})
@@ -98,18 +97,6 @@ function PlayX.GetInstance()
     else
     	return nil
     end
-end
-
---- Gets the URL of the JW player.
--- @return
-function PlayX.GetJWURL()
-    return GetConVar("playx_jw_url"):GetString():Trim()
-end
-
---- Returns whether the JW player supports YouTube.
--- @return
-function PlayX.JWPlayerSupportsYouTube()
-    return GetConVar("playx_jw_youtube"):GetBool()
 end
 
 --- Gets the URL of the host file.
@@ -225,10 +212,9 @@ end
 --- Resolves a provider.
 -- @param provider Name of provider, leave blank to auto-detect
 -- @param uri URI to play
--- @param useJW True to allow the use of the JW player, false for otherwise, nil to default true
 -- @return Provider name (detected) or nil
 -- @return Result or error message
-function PlayX.ResolveProvider(provider, uri, useJW)
+function PlayX.ResolveProvider(provider, uri)
     local result = nil
     
     if provider ~= "" then -- Provider detected
@@ -237,7 +223,7 @@ function PlayX.ResolveProvider(provider, uri, useJW)
         end
         
         local newURI = list.Get("PlayXProviders")[provider].Detect(uri)
-        result = list.Get("PlayXProviders")[provider].GetPlayer(newURI and newURI or uri, useJW)
+        result = list.Get("PlayXProviders")[provider].GetPlayer(newURI and newURI or uri)
         
         if not result then
             return nil, PlayX.Translation.get("error_provider_not_recognize", uri)
@@ -248,7 +234,7 @@ function PlayX.ResolveProvider(provider, uri, useJW)
             
             if newURI then
                 provider = id
-                result = p.GetPlayer(newURI, useJW)
+                result = p.GetPlayer(newURI)
                 break
             end
         end
@@ -283,7 +269,7 @@ function PlayX.OpenMedia(provider, uri, start, forceLowFramerate, ignoreLength)
         return false, PlayX.Translation.get("error_no_uri")
     end
     
-    local provider, result = PlayX.ResolveProvider(provider, uri, useJW)
+    local provider, result = PlayX.ResolveProvider(provider, uri)
     
     if provider == nil then
         return false, result    
@@ -532,17 +518,11 @@ function PlayX.Use(ply)
     umsg.End()
 end
 
-local function JWURLCallback(cvar, old, new)
-    -- Do our own cvar replication
-    SendUserMessage("PlayXJWURL", nil, GetConVar("playx_jw_url"):GetString())
-end
-
 local function HostURLCallback(cvar, old, new)
     -- Do our own cvar replication
     SendUserMessage("PlayXHostURL", nil, GetConVar("playx_host_url"):GetString())
 end
 
-cvars.AddChangeCallback("playx_jw_url", JWURLCallback)
 cvars.AddChangeCallback("playx_host_url", HostURLCallback)
 
 --- Called for concmd playx_open.
@@ -562,9 +542,8 @@ local function ConCmdOpen(ply, cmd, args)
         local uri = args[1]:Trim()
         local provider = playxlib.CastToString(args[2], ""):Trim()
         local start = playxlib.ParseTimeString(args[3])
-        local forceLowFramerate = playxlib.CastToBool(args[4], false)
-        local useJW = playxlib.CastToBool(args[5], true)
-        local ignoreLength = playxlib.CastToBool(args[6], false)
+        local forceLowFramerate = playxlib.CastToBool(args[4], false)        
+        local ignoreLength = playxlib.CastToBool(args[5], false)
         
         if start == nil then
             PlayX.SendError(ply, PlayX.Translation.get("error_invalid_start_time"))

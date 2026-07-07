@@ -6,11 +6,11 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 --
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local Vimeo = {}
 
-function Vimeo.Detect(uri, useJW)
+function Vimeo.Detect(uri)
   local m = playxlib.FindMatch(uri:gsub("%?.*$", ""), {
     "^https?://[A-Za-z0-9%.%-]*%.vimeo%.com/([0-9]+)",
     "^https?://vimeo%.com/([0-9]+)",
@@ -22,7 +22,7 @@ function Vimeo.Detect(uri, useJW)
   end
 end
 
-function Vimeo.GetPlayer(uri, useJW)
+function Vimeo.GetPlayer(uri)
   if uri:lower():find("^[0-9]+$") then
     return {
       ["Handler"] = "Vimeo",

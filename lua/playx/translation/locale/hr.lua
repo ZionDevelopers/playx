@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("hr", {
     ["version"] = "Verzija %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("hr", {
     ["panel_open_media"] = "Otvori medij",
     ["panel_force_low_framerate"] = "Forsiraj niski framerate",
     ["panel_ignore_length"] = "Ne zaustavljaj automatski na kraju kada je primjenjivo",
-    ["panel_use_jw"] = "Koristi poboljšani player kada je primjenjivo",
     ["panel_start_at"] = "Počni na:",
     ["panel_provider"] = "Pružatelj:",
     ["panel_provider_auto_detect"] = "Automatsko otkrivanje",
@@ -164,7 +163,6 @@ PlayX.Translation.import("hr", {
     ["error_no_handler"] = "PlayX: Nema handlera nazvanog %s, ne može reproducirati %s\n",
     ["crash_detected_warning"] = "PlayX se onemogućio nakon otkrivanja greške u prethodnoj sesiji. Ponovno omogući PlayX putem svog izbornika alata pod karticom \"Opcije\".",
     ["playx_error"] = "PlayX greška: %s",
-    ["jw_url_received"] = "PlayX: JW URL postavljen\n",
     ["host_url_received"] = "PlayX: Host URL postavljen\n",
     ["metadata_received"] = "PlayX: Metapodaci primljeni\n",
     ["out_of_range_hint"] = "PlayX: Sada si izvan dometa video playera!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("hr", {
     ["error_no_uri"] = "URI nije unesen.",
     ["bookmark_added"] = "Bookmark dodan.",
     ["bookmark_added_title"] = "Bookmark dodan",
-    ["bookmark_add_title_for_navigator"] = "Dodaj bookmark",
-    ["bookmark_add_input_for_navigator"] = "Unesi ime za bookmark",
+    ["bookmark_add_title"] = "Dodaj bookmark",
+    ["bookmark_add_input"] = "Unesi ime za bookmark",
     ["html_source_code_title"] = "PlayX HTML preglednik koda",
     ["error_metadata_fetch"] = "Neuspjeh dohvaćanja metapodataka",
     ["error_video_not_found"] = "YouTube video \"%s\" koji si pokušao reproducirati nije dostupan!",

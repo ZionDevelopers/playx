@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("th", {
     ["version"] = "เวอร์ชัน %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("th", {
     ["panel_open_media"] = "เปิดสื่อ",
     ["panel_force_low_framerate"] = "บังคับเฟรมเรตต่ำ",
     ["panel_ignore_length"] = "ไม่หยุดอัตโนมัติเมื่อสิ้นสุดเมื่อเกี่ยวข้อง",
-    ["panel_use_jw"] = "ใช้ผู้เล่นที่ปรับปรุงเมื่อเกี่ยวข้อง",
     ["panel_start_at"] = "เริ่มที่:",
     ["panel_provider"] = "ผู้ให้บริการ:",
     ["panel_provider_auto_detect"] = "ตรวจจับอัตโนมัติ",
@@ -164,7 +163,6 @@ PlayX.Translation.import("th", {
     ["error_no_handler"] = "PlayX: ไม่มี handler ชื่อ %s ไม่สามารถเล่น %s\n",
     ["crash_detected_warning"] = "PlayX ปิดใช้งานตัวเองหลังจากตรวจพบการขัดข้องในเซสชันก่อนหน้า. เปิดใช้งาน PlayX อีกครั้งผ่านเมนูเครื่องมือของคุณภายใต้แท็บ \"ตัวเลือก\".",
     ["playx_error"] = "ข้อผิดพลาด PlayX: %s",
-    ["jw_url_received"] = "PlayX: ตั้ง URL JW แล้ว\n",
     ["host_url_received"] = "PlayX: ตั้ง URL โฮสต์แล้ว\n",
     ["metadata_received"] = "PlayX: รับเมทาดาต้าแล้ว\n",
     ["out_of_range_hint"] = "PlayX: คุณอยู่นอกช่วงของผู้เล่นวิดีโอตอนนี้!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("th", {
     ["error_no_uri"] = "ไม่ได้ป้อน URI.",
     ["bookmark_added"] = "เพิ่มบุ๊กมาร์กแล้ว.",
     ["bookmark_added_title"] = "เพิ่มบุ๊กมาร์กแล้ว",
-    ["bookmark_add_title_for_navigator"] = "เพิ่มบุ๊กมาร์ก",
-    ["bookmark_add_input_for_navigator"] = "ป้อนชื่อสำหรับบุ๊กมาร์ก",
+    ["bookmark_add_title"] = "เพิ่มบุ๊กมาร์ก",
+    ["bookmark_add_input"] = "ป้อนชื่อสำหรับบุ๊กมาร์ก",
     ["html_source_code_title"] = "ตัวแสดงโค้ด HTML PlayX",
     ["error_metadata_fetch"] = "การดึงเมทาดาต้าล้มเหลว",
     ["error_video_not_found"] = "วิดีโอ YouTube \"%s\" ที่คุณพยายามเล่นไม่พร้อมใช้งาน!",

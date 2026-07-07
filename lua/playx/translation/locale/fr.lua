@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("fr", {
     ["version"] = "Version %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("fr", {
     ["panel_open_media"] = "Ouvrir le média",
     ["panel_force_low_framerate"] = "Forcer faible fréquence d'images",
     ["panel_ignore_length"] = "Ne pas arrêter automatiquement à la fin quand applicable",
-    ["panel_use_jw"] = "Utiliser un lecteur amélioré quand applicable",
     ["panel_start_at"] = "Commencer à :",
     ["panel_provider"] = "Fournisseur :",
     ["panel_provider_auto_detect"] = "Détection automatique",
@@ -164,7 +163,6 @@ PlayX.Translation.import("fr", {
     ["error_no_handler"] = "PlayX : Aucun gestionnaire nommé %s, ne peut pas jouer %s\n",
     ["crash_detected_warning"] = "PlayX s'est désactivé suite à la détection d'un crash dans une session précédente. Réactivez PlayX via votre menu d'outils sous l'onglet \"Options\".",
     ["playx_error"] = "Erreur PlayX : %s",
-    ["jw_url_received"] = "PlayX : URL JW définie\n",
     ["host_url_received"] = "PlayX : URL hôte définie\n",
     ["metadata_received"] = "PlayX : Métadonnées reçues\n",
     ["out_of_range_hint"] = "PlayX : Vous êtes maintenant hors de portée du lecteur vidéo !",
@@ -172,8 +170,8 @@ PlayX.Translation.import("fr", {
     ["error_no_uri"] = "Aucune URI n'est entrée.",
     ["bookmark_added"] = "Signet ajouté.",
     ["bookmark_added_title"] = "Signet ajouté",
-    ["bookmark_add_title_for_navigator"] = "Ajouter un signet",
-    ["bookmark_add_input_for_navigator"] = "Entrer un nom pour le signet",
+    ["bookmark_add_title"] = "Ajouter un signet",
+    ["bookmark_add_input"] = "Entrer un nom pour le signet",
     ["html_source_code_title"] = "Visionneuse de code HTML PlayX",
     ["error_metadata_fetch"] = "Échec de récupération des métadonnées",
     ["error_video_not_found"] = "La vidéo YouTube \"%s\" que vous avez essayé de jouer n'est pas disponible !",

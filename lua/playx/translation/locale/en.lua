@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("en", {
     ["version"] = "Version %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("en", {
     ["panel_open_media"] = "Open Media",
     ["panel_force_low_framerate"] = "Force low frame rate",
     ["panel_ignore_length"] = "Don't auto stop on finish when applicable",
-    ["panel_use_jw"] = "Use an improved player when applicable",
     ["panel_start_at"] = "Start At:",
     ["panel_provider"] = "Provider:",
     ["panel_provider_auto_detect"] = "Auto-detect",
@@ -164,7 +163,6 @@ PlayX.Translation.import("en", {
     ["error_no_handler"] = "PlayX: No such handler named %s, can't play %s\n",
     ["crash_detected_warning"] = "PlayX has disabled itself following a detection of a crash in a previous session. Re-enable PlayX via your tool menu under the \"Options\" tab.",
     ["playx_error"] = "PlayX error: %s",
-    ["jw_url_received"] = "PlayX: JW URL set\n",
     ["host_url_received"] = "PlayX: Host URL set\n",
     ["metadata_received"] = "PlayX: Metadata received\n",
     ["out_of_range_hint"] = "PlayX: You are now out of Range from Video Player!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("en", {
     ["error_no_uri"] = "No URI is entered.",
     ["bookmark_added"] = "Bookmark added.",
     ["bookmark_added_title"] = "Bookmark Added",
-    ["bookmark_add_title_for_navigator"] = "Add Bookmark",
-    ["bookmark_add_input_for_navigator"] = "Enter a name for the bookmark",
+    ["bookmark_add_title"] = "Add Bookmark",
+    ["bookmark_add_input"] = "Enter a name for the bookmark",
     ["html_source_code_title"] = "PlayX HTML Code Viewer",
     ["error_metadata_fetch"] = "Failed to get Metadata",
     ["error_video_not_found"] = "The Youtube video \"%s\" that you tried to play is unavailable!",

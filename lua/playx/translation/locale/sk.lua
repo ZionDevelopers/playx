@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("sk", {
     ["version"] = "Verzia %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("sk", {
     ["panel_open_media"] = "Otvoriť médiá",
     ["panel_force_low_framerate"] = "Vynútiť nízku frekvenciu snímok",
     ["panel_ignore_length"] = "Automaticky nezastaviť na konci, keď je to možné",
-    ["panel_use_jw"] = "Použiť vylepšený prehrávač, keď je to možné",
     ["panel_start_at"] = "Začať o:",
     ["panel_provider"] = "Poskytovateľ:",
     ["panel_provider_auto_detect"] = "Automatické zisťovanie",
@@ -164,7 +163,6 @@ PlayX.Translation.import("sk", {
     ["error_no_handler"] = "PlayX: Žiadny handler s názvom %s, nemôže prehrať %s\n",
     ["crash_detected_warning"] = "PlayX sa vypol po zistení pádu v predchádzajúcej relácii. Znova povoliť PlayX prostredníctvom vášho menu nástrojov pod záložkou \"Možnosti\".",
     ["playx_error"] = "Chyba PlayX: %s",
-    ["jw_url_received"] = "PlayX: JW URL nastavený\n",
     ["host_url_received"] = "PlayX: Host URL nastavený\n",
     ["metadata_received"] = "PlayX: Metadáta prijaté\n",
     ["out_of_range_hint"] = "PlayX: Ste teraz mimo rozsahu prehrávača videa!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("sk", {
     ["error_no_uri"] = "URI nezadaný.",
     ["bookmark_added"] = "Záložka pridaná.",
     ["bookmark_added_title"] = "Záložka pridaná",
-    ["bookmark_add_title_for_navigator"] = "Pridať záložku",
-    ["bookmark_add_input_for_navigator"] = "Zadať názov pre záložku",
+    ["bookmark_add_title"] = "Pridať záložku",
+    ["bookmark_add_input"] = "Zadať názov pre záložku",
     ["html_source_code_title"] = "Prehliadač kódu HTML PlayX",
     ["error_metadata_fetch"] = "Načítanie metadát zlyhalo",
     ["error_video_not_found"] = "YouTube video \"%s\", ktoré ste sa pokúšali prehrať, nie je dostupné!",

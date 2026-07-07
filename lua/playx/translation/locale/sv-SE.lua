@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("sv-SE", {
     ["version"] = "Version %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("sv-SE", {
     ["panel_open_media"] = "Öppna media",
     ["panel_force_low_framerate"] = "Tving låg bildfrekvens",
     ["panel_ignore_length"] = "Stoppa inte automatiskt vid slutet när tillämpligt",
-    ["panel_use_jw"] = "Använd förbättrad spelare när tillämpligt",
     ["panel_start_at"] = "Börja vid:",
     ["panel_provider"] = "Leverantör:",
     ["panel_provider_auto_detect"] = "Automatisk upptäckt",
@@ -164,7 +163,6 @@ PlayX.Translation.import("sv-SE", {
     ["error_no_handler"] = "PlayX: Ingen hanterare kallad %s, kan inte spela %s\n",
     ["crash_detected_warning"] = "PlayX inaktiverade sig efter upptäckt av en krasch i en tidigare session. Återaktivera PlayX genom ditt verktygsmeny under fliken \"Alternativ\".",
     ["playx_error"] = "PlayX-fel: %s",
-    ["jw_url_received"] = "PlayX: JW-URL satt\n",
     ["host_url_received"] = "PlayX: Värd-URL satt\n",
     ["metadata_received"] = "PlayX: Metadata mottagna\n",
     ["out_of_range_hint"] = "PlayX: Du är nu utanför videospelarens räckvidd!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("sv-SE", {
     ["error_no_uri"] = "URI inte angiven.",
     ["bookmark_added"] = "Bokmärke tillagt.",
     ["bookmark_added_title"] = "Bokmärke tillagt",
-    ["bookmark_add_title_for_navigator"] = "Lägg till bokmärke",
-    ["bookmark_add_input_for_navigator"] = "Ange ett namn för bokmärket",
+    ["bookmark_add_title"] = "Lägg till bokmärke",
+    ["bookmark_add_input"] = "Ange ett namn för bokmärket",
     ["html_source_code_title"] = "PlayX HTML-kodvisare",
     ["error_metadata_fetch"] = "Metadatahämtning misslyckades",
     ["error_video_not_found"] = "YouTube-videon \"%s\" som du försökte spela är inte tillgänglig!",

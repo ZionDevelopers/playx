@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("et", {
     ["version"] = "Versioon %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("et", {
     ["panel_open_media"] = "Ava meedia",
     ["panel_force_low_framerate"] = "Sunni madal kaadrisagedus",
     ["panel_ignore_length"] = "Ära peata automaatselt lõpetamisel, kui kohaldatav",
-    ["panel_use_jw"] = "Kasuta täiustatud mängijat, kui kohaldatav",
     ["panel_start_at"] = "Alusta:",
     ["panel_provider"] = "Pakkuja:",
     ["panel_provider_auto_detect"] = "Automaattuvastus",
@@ -164,7 +163,6 @@ PlayX.Translation.import("et", {
     ["error_no_handler"] = "PlayX: Sellist käitlejat nimega %s pole, ei saa esitada %s\n",
     ["crash_detected_warning"] = "PlayX on end keelustanud pärast krahhi tuvastamist eelmises sessioonis. Luba PlayX uuesti oma tööriistade menüüs \"Valikud\" vahekaardi all.",
     ["playx_error"] = "PlayX viga: %s",
-    ["jw_url_received"] = "PlayX: JW URL määratud\n",
     ["host_url_received"] = "PlayX: Host URL määratud\n",
     ["metadata_received"] = "PlayX: Metaandmed saadud\n",
     ["out_of_range_hint"] = "PlayX: Sa oled nüüd video mängijast väljas ulatusest!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("et", {
     ["error_no_uri"] = "URI pole sisestatud.",
     ["bookmark_added"] = "Järjehoidja lisatud.",
     ["bookmark_added_title"] = "Järjehoidja lisatud",
-    ["bookmark_add_title_for_navigator"] = "Lisa järjehoidja",
-    ["bookmark_add_input_for_navigator"] = "Sisesta järjehoidja nimi",
+    ["bookmark_add_title"] = "Lisa järjehoidja",
+    ["bookmark_add_input"] = "Sisesta järjehoidja nimi",
     ["html_source_code_title"] = "PlayX HTML koodi vaataja",
     ["error_metadata_fetch"] = "Metaandmete hankimine ebaõnnestus",
     ["error_video_not_found"] = "YouTube video \"%s\", mida sa proovisid esitada, pole saadaval!",

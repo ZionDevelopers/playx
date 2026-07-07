@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("ja", {
     ["version"] = "バージョン %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("ja", {
     ["panel_open_media"] = "メディアを開く",
     ["panel_force_low_framerate"] = "低フレームレートを強制",
     ["panel_ignore_length"] = "適用可能な場合、終了時に自動的に停止しない",
-    ["panel_use_jw"] = "適用可能な場合、改良されたプレイヤーを使用",
     ["panel_start_at"] = "開始:",
     ["panel_provider"] = "プロバイダー:",
     ["panel_provider_auto_detect"] = "自動検出",
@@ -164,7 +163,6 @@ PlayX.Translation.import("ja", {
     ["error_no_handler"] = "PlayX: %s という名前のハンドラーがありません、%s を再生できません\n",
     ["crash_detected_warning"] = "PlayX は前のセッションでクラッシュを検出した後に自分自身を無効化しました。ツールメニューの \"オプション\" タブの下で PlayX を再有効化してください。",
     ["playx_error"] = "PlayX エラー: %s",
-    ["jw_url_received"] = "PlayX: JW URL 設定\n",
     ["host_url_received"] = "PlayX: ホスト URL 設定\n",
     ["metadata_received"] = "PlayX: メタデータ受信\n",
     ["out_of_range_hint"] = "PlayX: 今ビデオプレイヤーの範囲外です！",
@@ -172,8 +170,8 @@ PlayX.Translation.import("ja", {
     ["error_no_uri"] = "URI が入力されていません。",
     ["bookmark_added"] = "ブックマークが追加されました。",
     ["bookmark_added_title"] = "ブックマークが追加されました",
-    ["bookmark_add_title_for_navigator"] = "ブックマークを追加",
-    ["bookmark_add_input_for_navigator"] = "ブックマークの名前を入力",
+    ["bookmark_add_title"] = "ブックマークを追加",
+    ["bookmark_add_input"] = "ブックマークの名前を入力",
     ["html_source_code_title"] = "PlayX HTML コードビューアー",
     ["error_metadata_fetch"] = "メタデータの取得に失敗",
     ["error_video_not_found"] = "再生しようとした YouTube ビデオ \"%s\" は利用できません！",

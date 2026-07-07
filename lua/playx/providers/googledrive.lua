@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.24 by Dathus [BR] on 2026-01-17 12:47 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local GoogleDrive = {}
 
@@ -21,7 +21,7 @@ function GoogleDrive.Detect(uri)
     end
 end
 
-function GoogleDrive.GetPlayer(uri, useJW)
+function GoogleDrive.GetPlayer(uri)
     if uri:find("^[A-Za-z0-9_%-]+$") then
         local url = "https://drive.google.com/file/d/" .. uri .."/preview?autoplay=true"
 

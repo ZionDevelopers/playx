@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local YouTubePlaylist = {}
 
@@ -23,7 +23,7 @@ function YouTubePlaylist.Detect(uri)
     end
 end
 
-function YouTubePlaylist.GetPlayer(uri, useJW)
+function YouTubePlaylist.GetPlayer(uri)
     if uri[1]:find("^[A-Za-z0-9_%-]+$") and uri[2]:find("^[A-Za-z0-9_%-]+$") then
         local url = GetConVar("playx_youtube_playlist_host_url"):GetString() .. "?v=" .. uri[1] .. "&list=".. uri [2] .. "&index=" .. (uri[3] or 1)
 

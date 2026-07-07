@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("nl", {
     ["version"] = "Versie %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("nl", {
     ["panel_open_media"] = "Media openen",
     ["panel_force_low_framerate"] = "Forceer lage framerate",
     ["panel_ignore_length"] = "Niet automatisch stoppen aan het einde wanneer van toepassing",
-    ["panel_use_jw"] = "Gebruik verbeterde speler wanneer van toepassing",
     ["panel_start_at"] = "Begin bij:",
     ["panel_provider"] = "Provider:",
     ["panel_provider_auto_detect"] = "Automatisch detecteren",
@@ -164,7 +163,6 @@ PlayX.Translation.import("nl", {
     ["error_no_handler"] = "PlayX: Geen handler genaamd %s, kan %s niet afspelen\n",
     ["crash_detected_warning"] = "PlayX heeft zichzelf uitgeschakeld na detectie van een crash in een vorige sessie. Herschik PlayX via uw gereedschapsmenu onder het \"Opties\" tabblad.",
     ["playx_error"] = "PlayX fout: %s",
-    ["jw_url_received"] = "PlayX: JW URL ingesteld\n",
     ["host_url_received"] = "PlayX: Host URL ingesteld\n",
     ["metadata_received"] = "PlayX: Metadata ontvangen\n",
     ["out_of_range_hint"] = "PlayX: U bent nu buiten het bereik van de video speler!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("nl", {
     ["error_no_uri"] = "URI niet ingevoerd.",
     ["bookmark_added"] = "Bladwijzer toegevoegd.",
     ["bookmark_added_title"] = "Bladwijzer toegevoegd",
-    ["bookmark_add_title_for_navigator"] = "Bladwijzer toevoegen",
-    ["bookmark_add_input_for_navigator"] = "Voer een naam in voor de bladwijzer",
+    ["bookmark_add_title"] = "Bladwijzer toevoegen",
+    ["bookmark_add_input"] = "Voer een naam in voor de bladwijzer",
     ["html_source_code_title"] = "PlayX HTML code viewer",
     ["error_metadata_fetch"] = "Metadata ophalen mislukt",
     ["error_video_not_found"] = "De YouTube video \"%s\" die u probeerde af te spelen is niet beschikbaar!",

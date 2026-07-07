@@ -6,7 +6,8 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.8.32 by Dathus [BR] on 2023-06-09 5:00 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
+
 local TwitchVod = {}
 
 function TwitchVod.Detect(uri)
@@ -20,7 +21,7 @@ function TwitchVod.Detect(uri)
     end
 end
 
-function TwitchVod.GetPlayer(uri, useJW)
+function TwitchVod.GetPlayer(uri)
     if uri:find("^[0-9]+$") then
         local url = GetConVar("playx_twitch_host_url"):GetString():Trim() .. "?videoId=" .. uri
         

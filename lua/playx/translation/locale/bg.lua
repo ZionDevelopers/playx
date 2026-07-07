@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("bg", {
     ["version"] = "Версия %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("bg", {
     ["panel_open_media"] = "Отвори медия",
     ["panel_force_low_framerate"] = "Принуди ниска честота на кадрите",
     ["panel_ignore_length"] = "Не спирай автоматично при завършване, когато е приложимо",
-    ["panel_use_jw"] = "Използвай подобрен плейър, когато е приложимо",
     ["panel_start_at"] = "Започни от:",
     ["panel_provider"] = "Доставчик:",
     ["panel_provider_auto_detect"] = "Автоматично откриване",
@@ -164,7 +163,6 @@ PlayX.Translation.import("bg", {
     ["error_no_handler"] = "PlayX: Няма манипулатор с име %s, не може да възпроизведе %s\n",
     ["crash_detected_warning"] = "PlayX се деактивира след откриване на срив в предишна сесия. Реактивирайте PlayX чрез менюто си с инструменти под раздела \"Опции\".",
     ["playx_error"] = "PlayX грешка: %s",
-    ["jw_url_received"] = "PlayX: JW URL зададен\n",
     ["host_url_received"] = "PlayX: URL на хост зададен\n",
     ["metadata_received"] = "PlayX: Метаданни получени\n",
     ["out_of_range_hint"] = "PlayX: Сега сте извън обхвата на видео плейъра!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("bg", {
     ["error_no_uri"] = "Няма въведена URI.",
     ["bookmark_added"] = "Отметка добавена.",
     ["bookmark_added_title"] = "Отметка добавена",
-    ["bookmark_add_title_for_navigator"] = "Добави отметка",
-    ["bookmark_add_input_for_navigator"] = "Въведете име за отметката",
+    ["bookmark_add_title"] = "Добави отметка",
+    ["bookmark_add_input"] = "Въведете име за отметката",
     ["html_source_code_title"] = "PlayX HTML код зрител",
     ["error_metadata_fetch"] = "Неуспех при получаване на метаданни",
     ["error_video_not_found"] = "YouTube видеото \"%s\", което се опитахте да възпроизведете, е недостъпно!",

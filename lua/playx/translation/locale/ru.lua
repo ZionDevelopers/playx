@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("ru", {
     ["version"] = "Версия %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("ru", {
     ["panel_open_media"] = "Открыть медиа",
     ["panel_force_low_framerate"] = "Принудительно низкая частота кадров",
     ["panel_ignore_length"] = "Не останавливать автоматически в конце, когда применимо",
-    ["panel_use_jw"] = "Использовать улучшенный плеер, когда применимо",
     ["panel_start_at"] = "Начать с:",
     ["panel_provider"] = "Провайдер:",
     ["panel_provider_auto_detect"] = "Автоопределение",
@@ -164,7 +163,6 @@ PlayX.Translation.import("ru", {
     ["error_no_handler"] = "PlayX: Нет обработчика с именем %s, не может воспроизвести %s\n",
     ["crash_detected_warning"] = "PlayX отключил себя после обнаружения сбоя в предыдущей сессии. Повторно включить PlayX через ваше меню инструментов под вкладкой \"Опции\".",
     ["playx_error"] = "Ошибка PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW установлен\n",
     ["host_url_received"] = "PlayX: URL хоста установлен\n",
     ["metadata_received"] = "PlayX: Метаданные получены\n",
     ["out_of_range_hint"] = "PlayX: Вы теперь вне диапазона плеера видео!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("ru", {
     ["error_no_uri"] = "URI не введен.",
     ["bookmark_added"] = "Закладка добавлена.",
     ["bookmark_added_title"] = "Закладка добавлена",
-    ["bookmark_add_title_for_navigator"] = "Добавить закладку",
-    ["bookmark_add_input_for_navigator"] = "Ввести имя для закладки",
+    ["bookmark_add_title"] = "Добавить закладку",
+    ["bookmark_add_input"] = "Ввести имя для закладки",
     ["html_source_code_title"] = "Просмотр кода HTML PlayX",
     ["error_metadata_fetch"] = "Получение метаданных не удалось",
     ["error_video_not_found"] = "Видео YouTube \"%s\", которое вы пытались воспроизвести, недоступно!",

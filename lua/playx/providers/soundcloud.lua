@@ -7,11 +7,11 @@
 --
 -- Soundcloud provider coded initially by Xerasin
 
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local SoundCloud = {}
 
-function SoundCloud.Detect(uri, useJW)
+function SoundCloud.Detect(uri)
   local m = playxlib.FindMatch(uri:gsub("%?.*$", ""), {
     "^http[s]?://soundcloud.com/(.+)/(.+)$",
     "^http[s]?://www.soundcloud.com/(.+)/(.+)$",
@@ -26,7 +26,7 @@ function SoundCloud.Detect(uri, useJW)
   end
 end
 
-function SoundCloud.GetPlayer(uri, useJW)
+function SoundCloud.GetPlayer(uri)
   local url = uri
   return {
     ["Handler"] = "SoundCloud",

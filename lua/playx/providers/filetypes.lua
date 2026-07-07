@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.8 by DathusBR on 2026-07-07 01:18 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local Shoutcast = {}
 
@@ -21,7 +21,7 @@ function Shoutcast.Detect(uri)
     end
 end
 
-function Shoutcast.GetPlayer(uri, useJW)
+function Shoutcast.GetPlayer(uri)
     local m = playxlib.FindMatch(uri, {
         "^https?://.+$",
     })
@@ -61,7 +61,7 @@ function MP3.Detect(uri)
     end
 end
 
-function MP3.GetPlayer(uri, useJW)
+function MP3.GetPlayer(uri)
     if uri:lower():find("^https?://") then
         return {
             ["Handler"] = "JWAudio",
@@ -101,7 +101,7 @@ function Video.Detect(uri)
     end
 end
 
-function Video.GetPlayer(uri, useJW)
+function Video.GetPlayer(uri)
     if uri:lower():find("^https?://") then
         return {
             ["Handler"] = "JWVideo",
@@ -141,7 +141,7 @@ function Image.Detect(uri)
     end
 end
 
-function Image.GetPlayer(uri, useJW)
+function Image.GetPlayer(uri)
     if uri:lower():find("^https?://") then
         return {
             ["Handler"] = "IFrame",

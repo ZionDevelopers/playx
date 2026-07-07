@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("no", {
     ["version"] = "Versjon %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("no", {
     ["panel_open_media"] = "Åpne media",
     ["panel_force_low_framerate"] = "Tving lav framerate",
     ["panel_ignore_length"] = "Ikke stopp automatisk ved slutt når aktuelt",
-    ["panel_use_jw"] = "Bruk forbedret spiller når aktuelt",
     ["panel_start_at"] = "Start ved:",
     ["panel_provider"] = "Leverandør:",
     ["panel_provider_auto_detect"] = "Automatisk oppdagelse",
@@ -164,7 +163,6 @@ PlayX.Translation.import("no", {
     ["error_no_handler"] = "PlayX: Ingen handler kalt %s, kan ikke spille %s\n",
     ["crash_detected_warning"] = "PlayX deaktiverte seg selv etter oppdagelse av en krasj i en tidligere økt. Reaktiver PlayX via ditt verktøy meny under \"Alternativer\" fanen.",
     ["playx_error"] = "PlayX feil: %s",
-    ["jw_url_received"] = "PlayX: JW URL satt\n",
     ["host_url_received"] = "PlayX: Vert URL satt\n",
     ["metadata_received"] = "PlayX: Metadata mottatt\n",
     ["out_of_range_hint"] = "PlayX: Du er nå utenfor video spillerens rekkevidde!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("no", {
     ["error_no_uri"] = "URI ikke skrevet inn.",
     ["bookmark_added"] = "Bokmerke lagt til.",
     ["bookmark_added_title"] = "Bokmerke lagt til",
-    ["bookmark_add_title_for_navigator"] = "Legg til bokmerke",
-    ["bookmark_add_input_for_navigator"] = "Skriv inn et navn for bokmerket",
+    ["bookmark_add_title"] = "Legg til bokmerke",
+    ["bookmark_add_input"] = "Skriv inn et navn for bokmerket",
     ["html_source_code_title"] = "PlayX HTML kode visning",
     ["error_metadata_fetch"] = "Metadata henting mislyktes",
     ["error_video_not_found"] = "YouTube videoen \"%s\" du prøvde å spille er ikke tilgjengelig!",

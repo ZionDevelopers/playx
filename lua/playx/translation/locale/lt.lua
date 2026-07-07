@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("lt", {
     ["version"] = "Versija %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("lt", {
     ["panel_open_media"] = "Atidaryti mediją",
     ["panel_force_low_framerate"] = "Priversti žemo kadrų dažnio",
     ["panel_ignore_length"] = "Ne sustabdyti automatiškai pabaigoje, kai taikoma",
-    ["panel_use_jw"] = "Naudoti patobulintą grotuvą, kai taikoma",
     ["panel_start_at"] = "Pradėti nuo:",
     ["panel_provider"] = "Teikėjas:",
     ["panel_provider_auto_detect"] = "Automatinis aptikimas",
@@ -164,7 +163,6 @@ PlayX.Translation.import("lt", {
     ["error_no_handler"] = "PlayX: Nėra tvarkyklės pavadinimu %s, negalima groti %s\n",
     ["crash_detected_warning"] = "PlayX išjungė save po aptikto gedimo ankstesnėje sesijoje. Iš naujo įjunkite PlayX per savo įrankių meniu po \"Parinktys\" skirtuku.",
     ["playx_error"] = "PlayX klaida: %s",
-    ["jw_url_received"] = "PlayX: JW URL nustatytas\n",
     ["host_url_received"] = "PlayX: Šeimininko URL nustatytas\n",
     ["metadata_received"] = "PlayX: Metaduomenys gauti\n",
     ["out_of_range_hint"] = "PlayX: Dabar esate už vaizdo įrašo grotuvo diapazono!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("lt", {
     ["error_no_uri"] = "URI neįvestas.",
     ["bookmark_added"] = "Žymė pridėta.",
     ["bookmark_added_title"] = "Žymė pridėta",
-    ["bookmark_add_title_for_navigator"] = "Pridėti žymę",
-    ["bookmark_add_input_for_navigator"] = "Įvesti pavadinimą žymei",
+    ["bookmark_add_title"] = "Pridėti žymę",
+    ["bookmark_add_input"] = "Įvesti pavadinimą žymei",
     ["html_source_code_title"] = "PlayX HTML kodo žiūryklė",
     ["error_metadata_fetch"] = "Metaduomenų gavimas nepavyko",
     ["error_video_not_found"] = "YouTube vaizdo įrašas \"%s\", kurį bandėte groti, neprieinamas!",

@@ -6,7 +6,8 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.9.14 by Dathus [BR] on 2024-01-05 7:40 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
+
 local Twitch = {}
 
 function Twitch.Detect(uri)
@@ -20,7 +21,7 @@ function Twitch.Detect(uri)
     end
 end
 
-function Twitch.GetPlayer(uri, useJW)
+function Twitch.GetPlayer(uri)
     if uri:find("^[A-Za-z0-9_%-]+$") then
         local url = GetConVar("playx_twitch_host_url"):GetString():Trim() .. "?channel=" .. uri
         

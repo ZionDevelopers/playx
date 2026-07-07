@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("da", {
     ["version"] = "Version %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("da", {
     ["panel_open_media"] = "Åbn medier",
     ["panel_force_low_framerate"] = "Tving lav billedfrekvens",
     ["panel_ignore_length"] = "Stop ikke automatisk ved afslutning når det er muligt",
-    ["panel_use_jw"] = "Brug en forbedret afspiller når det er muligt",
     ["panel_start_at"] = "Start ved:",
     ["panel_provider"] = "Udbyder:",
     ["panel_provider_auto_detect"] = "Automatisk registrering",
@@ -164,7 +163,6 @@ PlayX.Translation.import("da", {
     ["error_no_handler"] = "PlayX: Ingen handler med navn %s, kan ikke afspille %s\n",
     ["crash_detected_warning"] = "PlayX deaktiverede sig selv efter detektion af et nedbrud i en tidligere session. Genaktiver PlayX via din værktøjsmenu under \"Indstillinger\" fanen.",
     ["playx_error"] = "PlayX fejl: %s",
-    ["jw_url_received"] = "PlayX: JW URL sat\n",
     ["host_url_received"] = "PlayX: Vært URL sat\n",
     ["metadata_received"] = "PlayX: Metadata modtaget\n",
     ["out_of_range_hint"] = "PlayX: Du er nu uden for rækkevidde af video afspilleren!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("da", {
     ["error_no_uri"] = "Ingen URI er indtastet.",
     ["bookmark_added"] = "Bogmærke tilføjet.",
     ["bookmark_added_title"] = "Bogmærke tilføjet",
-    ["bookmark_add_title_for_navigator"] = "Tilføj bogmærke",
-    ["bookmark_add_input_for_navigator"] = "Indtast et navn for bogmærket",
+    ["bookmark_add_title"] = "Tilføj bogmærke",
+    ["bookmark_add_input"] = "Indtast et navn for bogmærket",
     ["html_source_code_title"] = "PlayX HTML kode seer",
     ["error_metadata_fetch"] = "Kunne ikke hente metadata",
     ["error_video_not_found"] = "YouTube videoen \"%s\" som du prøvede at afspille er utilgængelig!",

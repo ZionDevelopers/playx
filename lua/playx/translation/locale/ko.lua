@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("ko", {
     ["version"] = "버전 %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("ko", {
     ["panel_open_media"] = "미디어 열기",
     ["panel_force_low_framerate"] = "낮은 프레임률 강제",
     ["panel_ignore_length"] = "적용 가능한 경우 끝에서 자동으로 중지하지 않음",
-    ["panel_use_jw"] = "적용 가능한 경우 향상된 플레이어 사용",
     ["panel_start_at"] = "시작:",
     ["panel_provider"] = "제공자:",
     ["panel_provider_auto_detect"] = "자동 감지",
@@ -164,7 +163,6 @@ PlayX.Translation.import("ko", {
     ["error_no_handler"] = "PlayX: %s라는 이름의 핸들러가 없습니다, %s를 재생할 수 없습니다\n",
     ["crash_detected_warning"] = "PlayX는 이전 세션에서 충돌을 감지한 후 자신을 비활성화했습니다. 도구 메뉴의 \"옵션\" 탭 아래에서 PlayX를 다시 활성화하세요.",
     ["playx_error"] = "PlayX 오류: %s",
-    ["jw_url_received"] = "PlayX: JW URL 설정\n",
     ["host_url_received"] = "PlayX: 호스트 URL 설정\n",
     ["metadata_received"] = "PlayX: 메타데이터 수신\n",
     ["out_of_range_hint"] = "PlayX: 지금 비디오 플레이어 범위 밖에 있습니다!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("ko", {
     ["error_no_uri"] = "URI가 입력되지 않았습니다.",
     ["bookmark_added"] = "북마크가 추가되었습니다.",
     ["bookmark_added_title"] = "북마크가 추가되었습니다",
-    ["bookmark_add_title_for_navigator"] = "북마크 추가",
-    ["bookmark_add_input_for_navigator"] = "북마크 이름을 입력",
+    ["bookmark_add_title"] = "북마크 추가",
+    ["bookmark_add_input"] = "북마크 이름을 입력",
     ["html_source_code_title"] = "PlayX HTML 코드 뷰어",
     ["error_metadata_fetch"] = "메타데이터 가져오기 실패",
     ["error_video_not_found"] = "재생하려고 한 YouTube 비디오 \"%s\"는 사용할 수 없습니다!",

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("tr", {
     ["version"] = "Sürüm %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("tr", {
     ["panel_open_media"] = "Medyayı aç",
     ["panel_force_low_framerate"] = "Düşük kare hızını zorla",
     ["panel_ignore_length"] = "Uygulanabilir olduğunda sonunda otomatik olarak durdurma",
-    ["panel_use_jw"] = "Uygulanabilir olduğunda geliştirilmiş oynatıcıyı kullan",
     ["panel_start_at"] = "Şuradan başla:",
     ["panel_provider"] = "Sağlayıcı:",
     ["panel_provider_auto_detect"] = "Otomatik algılama",
@@ -164,7 +163,6 @@ PlayX.Translation.import("tr", {
     ["error_no_handler"] = "PlayX: %s adlı işleyici yok, %s oynatılamıyor\n",
     ["crash_detected_warning"] = "PlayX önceki oturumda bir çökme algılandıktan sonra kendini devre dışı bıraktı. PlayX'i araçlar menünüzdeki \"Seçenekler\" sekmesi altında yeniden etkinleştirin.",
     ["playx_error"] = "PlayX hatası: %s",
-    ["jw_url_received"] = "PlayX: JW URL ayarlandı\n",
     ["host_url_received"] = "PlayX: Ana URL ayarlandı\n",
     ["metadata_received"] = "PlayX: Meta veri alındı\n",
     ["out_of_range_hint"] = "PlayX: Şimdi video oynatıcısının menzilinin dışında!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("tr", {
     ["error_no_uri"] = "URI girilmedi.",
     ["bookmark_added"] = "Yer işareti eklendi.",
     ["bookmark_added_title"] = "Yer işareti eklendi",
-    ["bookmark_add_title_for_navigator"] = "Yer işareti ekle",
-    ["bookmark_add_input_for_navigator"] = "Yer işareti için bir ad girin",
+    ["bookmark_add_title"] = "Yer işareti ekle",
+    ["bookmark_add_input"] = "Yer işareti için bir ad girin",
     ["html_source_code_title"] = "PlayX HTML kod görüntüleyici",
     ["error_metadata_fetch"] = "Meta veri alma başarısız",
     ["error_video_not_found"] = "Oynamaya çalıştığınız YouTube videosu \"%s\" mevcut değil!",

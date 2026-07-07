@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("cs", {
     ["version"] = "Verze %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("cs", {
     ["panel_open_media"] = "Otevřít média",
     ["panel_force_low_framerate"] = "Vynutit nízkou frekvenci snímků",
     ["panel_ignore_length"] = "Automaticky nezastavovat po dokončení, pokud je to možné",
-    ["panel_use_jw"] = "Použít vylepšený přehrávač, pokud je to možné",
     ["panel_start_at"] = "Začít od:",
     ["panel_provider"] = "Poskytovatel:",
     ["panel_provider_auto_detect"] = "Automatické zjišťování",
@@ -164,7 +163,6 @@ PlayX.Translation.import("cs", {
     ["error_no_handler"] = "PlayX: Žádný handler s názvem %s, nelze přehrát %s\n",
     ["crash_detected_warning"] = "PlayX se zakázal po detekci pádu v předchozí relaci. Znovu povolte PlayX prostřednictvím vaší nabídky nástrojů pod záložkou \"Možnosti\".",
     ["playx_error"] = "PlayX chyba: %s",
-    ["jw_url_received"] = "PlayX: JW URL nastavena\n",
     ["host_url_received"] = "PlayX: URL hostitele nastavena\n",
     ["metadata_received"] = "PlayX: Metadata přijata\n",
     ["out_of_range_hint"] = "PlayX: Nyní jste mimo rozsah video přehrávače!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("cs", {
     ["error_no_uri"] = "Žádná URI není zadána.",
     ["bookmark_added"] = "Záložka přidána.",
     ["bookmark_added_title"] = "Záložka přidána",
-    ["bookmark_add_title_for_navigator"] = "Přidat záložku",
-    ["bookmark_add_input_for_navigator"] = "Zadejte název pro záložku",
+    ["bookmark_add_title"] = "Přidat záložku",
+    ["bookmark_add_input"] = "Zadejte název pro záložku",
     ["html_source_code_title"] = "PlayX HTML kód prohlížeč",
     ["error_metadata_fetch"] = "Nepodařilo se získat metadata",
     ["error_video_not_found"] = "YouTube video \"%s\", které jste se pokusili přehrát, je nedostupné!",

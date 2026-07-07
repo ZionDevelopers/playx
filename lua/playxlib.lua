@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.6 by DathusBR on 2026-07-06 01:27 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 playxlib = {}
 
@@ -537,71 +537,6 @@ setInterval(function() {
 ]]
     
     return playxlib.HandlerResult(css, js, body)
-end
-
---- Generates the HTML for a Flash player viewer.
--- @param width
--- @param height
--- @param url
--- @param flashVars Table
--- @param js Extra JavaScript to add
--- @param forcePlay Forces the movie to be 'played' every 1 second, if not playing
--- @return HTML
-function playxlib.GenerateFlashPlayer(width, height, url, flashVars, js, forcePlay)
-    local extraParams = ""
-    local url = playxlib.HTMLEscape(url)
-    local flashVars = flashVars and playxlib.URLEscapeTable(flashVars) or ""
-    
-    local css = [[
-body {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: #000000;
-  overflow: hidden;
-}]]
-    
-    if forcePlay then        
-        js = (js and js or "") .. [[
-setInterval(function() {
-  try {
-    var player = document.getElementById('player');
-    if (player && !player.IsPlaying()) {
-      player.play();
-    }
-  } catch (e) {}
-}, 1000);
-]]
-        extraParams = [[
-<param name="loop" value="false">
-]]
-    end
-    
-    local body = [[
-<div style="width: ]] .. width .. [[px; height: ]] .. height .. [[px; overflow: hidden">
-<object
-  type="application/x-shockwave-flash"
-  src="]] .. url .. [["
-  width="100%" height="100%" id="player">
-  <param name="movie" value="]] .. url .. [[">
-  <param name="quality" value="high">
-  <param name="allowscriptaccess" value="always">
-  <param name="allownetworking" value="all">
-  <param name="allowfullscreen" value="false">
-  <param name="FlashVars" value="]] .. flashVars .. [[">
-]] .. extraParams .. [[
-<div style="background: red; color: white; font: 20pt Arial, sans-serif; padding: 10px">
-    Adobe Flash Player <strong style="text-decoration: underline">for other browsers</strong>
-    is not installed. Please visit http://get.adobe.com/flashplayer/otherversions/
-    and select "Other Browsers." Garry's Mod must be restarted after installing.
-</div>
-</object> 
-</div>
-]]
-    
-    local result = playxlib.HandlerResult(css, js, body)
-    if forcePlay then result.ForceIE = true end
-    return result
 end
 
 function playxlib.url(str)

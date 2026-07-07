@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX._BookmarksPanelList = nil
 
@@ -175,13 +175,6 @@ local function ControlPanel(panel)
         Command = "playx_start_time",
         WaitForEnter = false,
     })
-
-    if PlayX.JWPlayerURL then
-        panel:AddControl("CheckBox", {
-            Label = PlayX.Translation.get("panel_use_jw"),
-            Command = "playx_use_jw",
-        })
-    end
 
     panel:AddControl("CheckBox", {
         Label = PlayX.Translation.get("panel_force_low_framerate"),

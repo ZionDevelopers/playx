@@ -5,6 +5,8 @@
 -- This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
+
 E2Lib.RegisterExtension("playx", true, "Allows E2 chips to connect with the PlayX camera","Everyone can play songs")
 --// check if the player has permission to use PlayX and if there is a valid player on the map
 local function canUsePlayX(ply)
@@ -23,14 +25,13 @@ end
 --@param string provider e.g. "YouTube"
 --@param number starttime -in seconds
 --@param number forceLowFramerate
---@param number useJW
 --@param number ignoreLength -does this even work? PlayX.OpenMedia(...) never uses the variable
 e2function void pxOpenMedia(string url)
 	if !canUsePlayX(self.player) then return end
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
-	PlayX.OpenMedia("", url,0,nil,nil,nil)
+	PlayX.OpenMedia("", url,0,nil,nil)
 end
 
 e2function void pxOpenMedia(string url,string provider)
@@ -38,7 +39,7 @@ e2function void pxOpenMedia(string url,string provider)
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
-	PlayX.OpenMedia( provider, url,0,nil,nil,nil)
+	PlayX.OpenMedia( provider, url,0,nil,nil)
 end
 
 e2function void pxOpenMedia(string url,string provider,number starttime)
@@ -46,7 +47,7 @@ e2function void pxOpenMedia(string url,string provider,number starttime)
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
-	PlayX.OpenMedia( provider, url,starttime,nil,nil,nil)
+	PlayX.OpenMedia( provider, url,starttime,nil,nil)
 end
 
 e2function void pxOpenMedia(string url,string provider,number starttime,number forceLowFramerate)
@@ -54,23 +55,23 @@ e2function void pxOpenMedia(string url,string provider,number starttime,number f
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
-	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),nil,nil)
+	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),nil)
 end
 
-e2function void pxOpenMedia(string url,string provider,number starttime,number forceLowFramerate,number useJW)
+e2function void pxOpenMedia(string url,string provider,number starttime,number forceLowFramerate)
 	if !canUsePlayX(self.player) then return end
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
-	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),(useJW!=0),nil)
+	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),nil)
 end
 
-e2function void pxOpenMedia(string url,string provider,number starttime,number forceLowFramerate,number useJW,number ignoreLength)
+e2function void pxOpenMedia(string url,string provider,number starttime,number forceLowFramerate,number ignoreLength)
 	if !canUsePlayX(self.player) then return end
 	if GetConVar("playx_race_protection"):GetFloat() > 0 and (CurTime() - PlayX.LastOpenTime) < GetConVar("playx_race_protection"):GetFloat() then
 	    return
 	end
-	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),(useJW!=0),(ignoreLength!=0))
+	PlayX.OpenMedia( provider, url,starttime,(forceLowFramerate!=0),(ignoreLength!=0))
 end
 
 
@@ -148,12 +149,6 @@ e2function string pxURL()
 	return PlayX.CurrentMedia.URL
 end
 
-
---Gets the JWURL
---@return string
-e2function string pxJWURL()
-	return PlayX.GetJWURL()
-end
 
 --Gets the HostURL
 --@return string

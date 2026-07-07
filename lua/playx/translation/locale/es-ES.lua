@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("es-ES", {
     ["version"] = "Versión %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("es-ES", {
     ["panel_open_media"] = "Abrir medios",
     ["panel_force_low_framerate"] = "Forzar baja frecuencia de fotogramas",
     ["panel_ignore_length"] = "No detener automáticamente al finalizar cuando sea aplicable",
-    ["panel_use_jw"] = "Usar un reproductor mejorado cuando sea aplicable",
     ["panel_start_at"] = "Empezar en:",
     ["panel_provider"] = "Proveedor:",
     ["panel_provider_auto_detect"] = "Detección automática",
@@ -164,7 +163,6 @@ PlayX.Translation.import("es-ES", {
     ["error_no_handler"] = "PlayX: No hay manejador llamado %s, no puede reproducir %s\n",
     ["crash_detected_warning"] = "PlayX se ha deshabilitado tras la detección de un fallo en una sesión anterior. Re-habilita PlayX a través de tu menú de herramientas bajo la pestaña \"Opciones\".",
     ["playx_error"] = "Error PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW establecida\n",
     ["host_url_received"] = "PlayX: URL de host establecida\n",
     ["metadata_received"] = "PlayX: Metadatos recibidos\n",
     ["out_of_range_hint"] = "PlayX: ¡Ahora estás fuera de rango del reproductor de vídeo!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("es-ES", {
     ["error_no_uri"] = "No se ha introducido URI.",
     ["bookmark_added"] = "Marcador añadido.",
     ["bookmark_added_title"] = "Marcador añadido",
-    ["bookmark_add_title_for_navigator"] = "Añadir marcador",
-    ["bookmark_add_input_for_navigator"] = "Introduce un nombre para el marcador",
+    ["bookmark_add_title"] = "Añadir marcador",
+    ["bookmark_add_input"] = "Introduce un nombre para el marcador",
     ["html_source_code_title"] = "Visor de código HTML PlayX",
     ["error_metadata_fetch"] = "Falló al obtener metadatos",
     ["error_video_not_found"] = "¡El vídeo de YouTube \"%s\" que intentaste reproducir no está disponible!",

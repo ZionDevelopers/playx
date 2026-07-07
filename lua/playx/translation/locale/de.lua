@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("de", {
     ["version"] = "Version %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("de", {
     ["panel_open_media"] = "Medien öffnen",
     ["panel_force_low_framerate"] = "Niedrige Framerate erzwingen",
     ["panel_ignore_length"] = "Bei Fertigstellung nicht automatisch stoppen, wenn möglich",
-    ["panel_use_jw"] = "Verbesserten Player verwenden, wenn möglich",
     ["panel_start_at"] = "Start bei:",
     ["panel_provider"] = "Anbieter:",
     ["panel_provider_auto_detect"] = "Automatische Erkennung",
@@ -164,7 +163,6 @@ PlayX.Translation.import("de", {
     ["error_no_handler"] = "PlayX: Kein Handler mit Namen %s, kann %s nicht abspielen\n",
     ["crash_detected_warning"] = "PlayX hat sich nach Erkennung eines Absturzes in einer früheren Sitzung selbst deaktiviert. Reaktivieren Sie PlayX über Ihr Werkzeugmenü unter der Registerkarte \"Optionen\".",
     ["playx_error"] = "PlayX-Fehler: %s",
-    ["jw_url_received"] = "PlayX: JW-URL gesetzt\n",
     ["host_url_received"] = "PlayX: Host-URL gesetzt\n",
     ["metadata_received"] = "PlayX: Metadaten empfangen\n",
     ["out_of_range_hint"] = "PlayX: Sie sind jetzt außerhalb der Reichweite des Video-Players!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("de", {
     ["error_no_uri"] = "Keine URI eingegeben.",
     ["bookmark_added"] = "Lesezeichen hinzugefügt.",
     ["bookmark_added_title"] = "Lesezeichen hinzugefügt",
-    ["bookmark_add_title_for_navigator"] = "Lesezeichen hinzufügen",
-    ["bookmark_add_input_for_navigator"] = "Geben Sie einen Namen für das Lesezeichen ein",
+    ["bookmark_add_title"] = "Lesezeichen hinzufügen",
+    ["bookmark_add_input"] = "Geben Sie einen Namen für das Lesezeichen ein",
     ["html_source_code_title"] = "PlayX HTML-Code-Betrachter",
     ["error_metadata_fetch"] = "Metadaten konnten nicht abgerufen werden",
     ["error_video_not_found"] = "Das YouTube-Video \"%s\", das Sie abzuspielen versucht haben, ist nicht verfügbar!",

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("fi", {
     ["version"] = "Versio %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("fi", {
     ["panel_open_media"] = "Avaa media",
     ["panel_force_low_framerate"] = "Pakota matala kuvataajuus",
     ["panel_ignore_length"] = "Älä pysäytä automaattisesti lopussa, kun sovellettavissa",
-    ["panel_use_jw"] = "Käytä parannettua soitinta, kun sovellettavissa",
     ["panel_start_at"] = "Aloita:",
     ["panel_provider"] = "Tarjoaja:",
     ["panel_provider_auto_detect"] = "Automaattinen tunnistus",
@@ -164,7 +163,6 @@ PlayX.Translation.import("fi", {
     ["error_no_handler"] = "PlayX: Ei käsittelijää nimeltä %s, ei voida toistaa %s\n",
     ["crash_detected_warning"] = "PlayX on poistanut itsensä käytöstä kaatumisen havaitsemisen jälkeen edellisessä istunnossa. Ota PlayX uudelleen käyttöön työkalut-valikossasi \"Asetukset\"-välilehden alla.",
     ["playx_error"] = "PlayX-virhe: %s",
-    ["jw_url_received"] = "PlayX: JW-URL asetettu\n",
     ["host_url_received"] = "PlayX: Isäntä-URL asetettu\n",
     ["metadata_received"] = "PlayX: Metatiedot vastaanotettu\n",
     ["out_of_range_hint"] = "PlayX: Olet nyt video-soittimen ulottumattomissa!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("fi", {
     ["error_no_uri"] = "URI:tä ei ole syötetty.",
     ["bookmark_added"] = "Kirjanmerkki lisätty.",
     ["bookmark_added_title"] = "Kirjanmerkki lisätty",
-    ["bookmark_add_title_for_navigator"] = "Lisää kirjanmerkki",
-    ["bookmark_add_input_for_navigator"] = "Syötä nimi kirjanmerkille",
+    ["bookmark_add_title"] = "Lisää kirjanmerkki",
+    ["bookmark_add_input"] = "Syötä nimi kirjanmerkille",
     ["html_source_code_title"] = "PlayX HTML-koodin katselija",
     ["error_metadata_fetch"] = "Metatietojen hakeminen epäonnistui",
     ["error_video_not_found"] = "YouTube-video \"%s\", jota yritit toistaa, ei ole saatavilla!",

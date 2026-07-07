@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("uk", {
     ["version"] = "Версія %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("uk", {
     ["panel_open_media"] = "Відкрити медіа",
     ["panel_force_low_framerate"] = "Примусово низька частота кадрів",
     ["panel_ignore_length"] = "Не зупиняти автоматично в кінці, коли застосовується",
-    ["panel_use_jw"] = "Використовувати покращений програвач, коли застосовується",
     ["panel_start_at"] = "Почати з:",
     ["panel_provider"] = "Постачальник:",
     ["panel_provider_auto_detect"] = "Автоматичне визначення",
@@ -164,7 +163,6 @@ PlayX.Translation.import("uk", {
     ["error_no_handler"] = "PlayX: Немає обробника з назвою %s, не може відтворити %s\n",
     ["crash_detected_warning"] = "PlayX вимкнув себе після виявлення збою в попередній сесії. Повторно увімкніть PlayX через ваше меню інструментів під вкладкою \"Параметри\".",
     ["playx_error"] = "Помилка PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW встановлено\n",
     ["host_url_received"] = "PlayX: URL хоста встановлено\n",
     ["metadata_received"] = "PlayX: Метадані отримано\n",
     ["out_of_range_hint"] = "PlayX: Ви тепер поза діапазоном програвача відео!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("uk", {
     ["error_no_uri"] = "URI не введено.",
     ["bookmark_added"] = "Закладку додано.",
     ["bookmark_added_title"] = "Закладку додано",
-    ["bookmark_add_title_for_navigator"] = "Додати закладку",
-    ["bookmark_add_input_for_navigator"] = "Ввести ім'я для закладки",
+    ["bookmark_add_title"] = "Додати закладку",
+    ["bookmark_add_input"] = "Ввести ім'я для закладки",
     ["html_source_code_title"] = "Переглядач коду HTML PlayX",
     ["error_metadata_fetch"] = "Отримання метаданих не вдалося",
     ["error_video_not_found"] = "Відео YouTube \"%s\", яке ви намагалися відтворити, недоступне!",

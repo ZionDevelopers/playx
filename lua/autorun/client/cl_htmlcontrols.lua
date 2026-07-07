@@ -9,13 +9,13 @@
 -- Credit: Based on Cinema Fixed Edition: <https://raw.githubusercontent.com/FarukGamer/cinema/master/workshop/gamemodes/cinema_modded/gamemode/modules/scoreboard/controls/cl_htmlcontrols.lua>
 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local PANEL = {}
 
 function PANEL:Open(provider, uri)
   MsgN(PlayX.Translation.get("open_bookmark", provider, uri))
-  PlayX.RequestOpenMedia(provider, uri, 0, false, GetConVar("playx_use_jw"):GetBool(),
+  PlayX.RequestOpenMedia(provider, uri, 0, false,
     GetConVar("playx_ignore_length"):GetBool())
 end
 

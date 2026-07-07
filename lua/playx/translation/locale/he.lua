@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("he", {
     ["version"] = "גרסה %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("he", {
     ["panel_open_media"] = "פתח מדיה",
     ["panel_force_low_framerate"] = "אלץ קצב פריימים נמוך",
     ["panel_ignore_length"] = "אל תעצור אוטומטית בסוף כשניתן",
-    ["panel_use_jw"] = "השתמש בנגן משופר כשניתן",
     ["panel_start_at"] = "התחל ב:",
     ["panel_provider"] = "ספק:",
     ["panel_provider_auto_detect"] = "זיהוי אוטומטי",
@@ -164,7 +163,6 @@ PlayX.Translation.import("he", {
     ["error_no_handler"] = "PlayX: אין מטפל בשם %s, לא יכול לנגן %s\n",
     ["crash_detected_warning"] = "PlayX השבית את עצמו בעקבות זיהוי קריסה בסשן קודם. הפעל מחדש את PlayX דרך תפריט הכלים שלך תחת הכרטיסייה \"אפשרויות\".",
     ["playx_error"] = "שגיאת PlayX: %s",
-    ["jw_url_received"] = "PlayX: URL JW הוגדר\n",
     ["host_url_received"] = "PlayX: URL מארח הוגדר\n",
     ["metadata_received"] = "PlayX: מטא-נתונים התקבלו\n",
     ["out_of_range_hint"] = "PlayX: אתה עכשיו מחוץ לטווח נגן הוידאו!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("he", {
     ["error_no_uri"] = "לא הוזן URI.",
     ["bookmark_added"] = "סימניה נוספה.",
     ["bookmark_added_title"] = "סימניה נוספה",
-    ["bookmark_add_title_for_navigator"] = "הוסף סימניה",
-    ["bookmark_add_input_for_navigator"] = "הזן שם לסימניה",
+    ["bookmark_add_title"] = "הוסף סימניה",
+    ["bookmark_add_input"] = "הזן שם לסימניה",
     ["html_source_code_title"] = "צופה קוד HTML של PlayX",
     ["error_metadata_fetch"] = "כשל באחזור מטא-נתונים",
     ["error_video_not_found"] = "הוידאו YouTube \"%s\" שניסית לנגן אינו זמין!",

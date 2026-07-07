@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local YouTube = {}
 
@@ -26,7 +26,7 @@ function YouTube.Detect(uri)
     end
 end
 
-function YouTube.GetPlayer(uri, useJW)
+function YouTube.GetPlayer(uri)
     if uri:find("^[A-Za-z0-9_%-]+$") then
         local url = GetConVar("playx_youtube_host_url"):GetString() .. "?v=" .. uri
 

@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("el", {
     ["version"] = "Έκδοση %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("el", {
     ["panel_open_media"] = "Άνοιγμα μέσων",
     ["panel_force_low_framerate"] = "Επιβολή χαμηλού ρυθμού καρέ",
     ["panel_ignore_length"] = "Μην σταματάτε αυτόματα κατά την ολοκλήρωση όταν είναι δυνατό",
-    ["panel_use_jw"] = "Χρήση βελτιωμένου αναπαραγωγέα όταν είναι δυνατό",
     ["panel_start_at"] = "Έναρξη από:",
     ["panel_provider"] = "Πάροχος:",
     ["panel_provider_auto_detect"] = "Αυτόματη ανίχνευση",
@@ -164,7 +163,6 @@ PlayX.Translation.import("el", {
     ["error_no_handler"] = "PlayX: Δεν υπάρχει χειριστής με όνομα %s, δεν μπορεί να παίξει %s\n",
     ["crash_detected_warning"] = "Το PlayX απενεργοποιήθηκε μετά από ανίχνευση σφάλματος σε προηγούμενη συνεδρία. Επανενεργοποιήστε το PlayX μέσω του μενού εργαλείων σας κάτω από την καρτέλα \"Επιλογές\".",
     ["playx_error"] = "Σφάλμα PlayX: %s",
-    ["jw_url_received"] = "PlayX: JW URL ορίστηκε\n",
     ["host_url_received"] = "PlayX: URL κεντρικού υπολογιστή ορίστηκε\n",
     ["metadata_received"] = "PlayX: Μεταδεδομένα λήφθηκαν\n",
     ["out_of_range_hint"] = "PlayX: Είστε τώρα εκτός εμβέλειας του αναπαραγωγέα βίντεο!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("el", {
     ["error_no_uri"] = "Δεν έχει εισαχθεί URI.",
     ["bookmark_added"] = "Σελιδοδείκτης προστέθηκε.",
     ["bookmark_added_title"] = "Σελιδοδείκτης προστέθηκε",
-    ["bookmark_add_title_for_navigator"] = "Προσθήκη σελιδοδείκτη",
-    ["bookmark_add_input_for_navigator"] = "Εισάγετε ένα όνομα για τον σελιδοδείκτη",
+    ["bookmark_add_title"] = "Προσθήκη σελιδοδείκτη",
+    ["bookmark_add_input"] = "Εισάγετε ένα όνομα για τον σελιδοδείκτη",
     ["html_source_code_title"] = "Προβολέας κώδικα HTML PlayX",
     ["error_metadata_fetch"] = "Αποτυχία λήψης μεταδεδομένων",
     ["error_video_not_found"] = "Το βίντεο YouTube \"%s\" που προσπαθήσατε να παίξετε δεν είναι διαθέσιμο!",

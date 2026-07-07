@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.7 by DathusBR on 2026-07-07 09:46 AM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 PlayX.Translation.import("hu", {
     ["version"] = "Verzió %s",
@@ -118,7 +118,6 @@ PlayX.Translation.import("hu", {
     ["panel_open_media"] = "Média megnyitása",
     ["panel_force_low_framerate"] = "Alacsony képkockasebesség kényszerítése",
     ["panel_ignore_length"] = "Ne álljon le automatikusan a végén, ha alkalmazható",
-    ["panel_use_jw"] = "Használj javított lejátszót, ha alkalmazható",
     ["panel_start_at"] = "Kezdés:",
     ["panel_provider"] = "Szolgáltató:",
     ["panel_provider_auto_detect"] = "Automatikus észlelés",
@@ -164,7 +163,6 @@ PlayX.Translation.import("hu", {
     ["error_no_handler"] = "PlayX: Nincs %s nevű kezelő, nem lehet lejátszani %s\n",
     ["crash_detected_warning"] = "A PlayX letiltotta magát az előző munkamenetben észlelt összeomlás után. Engedélyezd újra a PlayX-et az eszközök menüdben az \"Beállítások\" fül alatt.",
     ["playx_error"] = "PlayX hiba: %s",
-    ["jw_url_received"] = "PlayX: JW URL beállítva\n",
     ["host_url_received"] = "PlayX: Host URL beállítva\n",
     ["metadata_received"] = "PlayX: Metaadatok fogadva\n",
     ["out_of_range_hint"] = "PlayX: Most kívül vagy a videó lejátszó hatótávolságán!",
@@ -172,8 +170,8 @@ PlayX.Translation.import("hu", {
     ["error_no_uri"] = "URI nincs megadva.",
     ["bookmark_added"] = "Könyvjelző hozzáadva.",
     ["bookmark_added_title"] = "Könyvjelző hozzáadva",
-    ["bookmark_add_title_for_navigator"] = "Könyvjelző hozzáadása",
-    ["bookmark_add_input_for_navigator"] = "Add meg a könyvjelző nevét",
+    ["bookmark_add_title"] = "Könyvjelző hozzáadása",
+    ["bookmark_add_input"] = "Add meg a könyvjelző nevét",
     ["html_source_code_title"] = "PlayX HTML kód nézegető",
     ["error_metadata_fetch"] = "Metaadatok lekérése sikertelen",
     ["error_video_not_found"] = "A YouTube videó \"%s\", amit próbáltál lejátszani, nem elérhető!",

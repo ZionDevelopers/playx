@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.3 by DathusBR on 2026-05-11 07:30 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 local StaticWeb = {}
 
@@ -14,7 +14,7 @@ function StaticWeb.Detect(uri)
     return nil
 end
 
-function StaticWeb.GetPlayer(uri, useJW)
+function StaticWeb.GetPlayer(uri)
     if uri:find("^https?://") then
         return {
             ["Handler"] = "IFrame",

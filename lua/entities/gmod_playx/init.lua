@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.0 by DathusBR on 2026-05-11 02:12 PM (-03:00 GMT)
+-- Version 2.12.9 by DathusBR on 2026-07-07 04:02 PM (-03:00 GMT)
 
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("cl_init.lua")
@@ -18,7 +18,6 @@ include("shared.lua")
 ENT.InputProvider = ""
 ENT.InputURI = ""
 ENT.InputStartAt = 0
-ENT.InputDisableJW = false
 ENT.InputForceLowFramerate = false
 
 function ENT:Initialize()
@@ -33,7 +32,6 @@ function ENT:Initialize()
             "Provider [STRING]",
             "URI [STRING]",
             "StartAt",
-            "DisableJW",
             "ForceLowFramerate",
             "Open",
             "Close",
@@ -178,8 +176,7 @@ function ENT:TriggerInput(iname, value)
                 local provider = self.InputProvider:Trim()
                 local start = self.InputStartAt
                 local forceLowFramerate = self.InputForceLowFramerate
-                local useJW = not self.InputDisableJW
-                
+                                
                 if uri == "" then
                     Wire_TriggerOutput(self.Entity, "InputError", "Empty URI inputted")
                 elseif start == nil then
@@ -188,10 +185,10 @@ function ENT:TriggerInput(iname, value)
                     Wire_TriggerOutput(self.Entity, "InputError", "Non-negative start time is required")
                 else
                     MsgN(PlayX.Translation.get("video_played_via_wire_input", uri))
-                    print(provider, uri, start, forceLowFramerate, useJW)
+                    print(provider, uri, start, forceLowFramerate)
                     
                     local result, err = PlayX.OpenMedia(provider, uri, start,
-                                                        forceLowFramerate, useJW,
+                                                        forceLowFramerate,
                                                         false)
                     
                     if not result then
@@ -208,8 +205,6 @@ function ENT:TriggerInput(iname, value)
         self.InputURI = tostring(value)
     elseif iname == "StartAt" then
         self.InputStartAt = playxlib.ParseTimeString(tostring(value))
-    elseif iname == "DisableJW" then
-        self.InputDisableJW = value > 0
     elseif iname == "ForceLowFramerate" then
         self.InputForceLowFramerate = value > 0
     end
