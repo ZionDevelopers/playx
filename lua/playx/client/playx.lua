@@ -774,7 +774,7 @@ local function ConCmdGUIBookmark()
     if uri == "" then
         Derma_Message(PlayX.Translation.get("error_no_uri"), PlayX.Translation.get("error"), PlayX.Translation.get("ok"))
     else
-        Derma_StringRequest("Add Bookmark", "Enter a name for the bookmark", "",
+        Derma_StringRequest(PlayX.Translation.get("bookmark_add_title_for_navigator"), PlayX.Translation.get("bookmark_add_input_for_navigator"), "",
             function(title)
                 local title = title:Trim()
                 if title ~= "" then
