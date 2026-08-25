@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.4 by DathusBR on 2026-06-24 05:31 PM (-03:00 GMT)
+-- Version 2.12.11 by DathusBR on 2026-08-25 08:22 PM (-03:00 GMT)
 
 PlayX = PlayX or {}
 PlayX.Translation = {}
@@ -17,10 +17,11 @@ PlayX.Translation.fallback = "en"
 -- Gets the current language code.
 -- @return string The current language code.
 PlayX.Translation.getLanguage = function ()
-    local gmod_language = GetConVar("gmod_language")
+    local gmod_language = GetConVar("gmod_language")   
 
     if CLIENT then
-		return gmod_language and gmod_language:GetString() or PlayX.Translation.fallback
+        gmod_language = string.lower(gmod_language:GetString())
+		return gmod_language or PlayX.Translation.fallback
 	else
         return PlayX.Translation.fallback
     end
