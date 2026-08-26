@@ -6,7 +6,7 @@
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
 -- $Id$
--- Version 2.12.10 by DathusBR on 2026-08-25 08:00 PM (-03:00 GMT)
+-- Version 2.12.12 by DathusBR on 2026-08-26 09:34 AM (-03:00 GMT)
 
 CreateClientConVar("playx_enabled", 1, true, false)
 CreateClientConVar("playx_fps", 14, true, false)
@@ -349,8 +349,8 @@ function PlayX.OpenSpawnDialog(forRepeater)
     end
     
     local oldPerform = frame.PerformLayout
-    frame.PerformLayout = function(self, w, h)
-        oldPerform(self, w, h)
+    frame.PerformLayout = function(w, h)
+        oldPerform(w, h)
         modelList:StretchToParent(5, 25, 5, 35)
 	    cancelButton:SetPos(frame:GetWide() - cancelButton:GetWide() - 5,
 	                        frame:GetTall() - cancelButton:GetTall() - 5)
@@ -389,8 +389,8 @@ function PlayX.OpenNavigatorWindow()
 
     -- Layout
     local oldPerform = frame.PerformLayout
-    frame.PerformLayout = function(self, w, h)
-        oldPerform(self, w, h)
+    frame.PerformLayout = function(w, h)
+        oldPerform(w, h)
         browser:StretchToParent(5, 26, 5, 5)
     end
     
@@ -822,8 +822,8 @@ local function ConCmdDumpHTML()
 
     -- Layout
     local oldPerform = frame.PerformLayout
-    frame.PerformLayout = function(self, w, h)
-        oldPerform(self, w, h)
+    frame.PerformLayout = function(w, h)
+        oldPerform(w, h)
         text:StretchToParent(5, 26, 5, 5)
     end
     

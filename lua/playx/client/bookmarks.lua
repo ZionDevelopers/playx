@@ -5,7 +5,7 @@
 -- This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 -- To view a copy of this license, visit Common Creative's Website. <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 -- 
--- Version 2.12.10 by DathusBR on 2026-08-25 08:00 PM (-03:00 GMT)
+-- Version 2.12.12 by DathusBR on 2026-08-26 09:34 AM (-03:00 GMT)
 
 PlayX.BookmarksWindow = nil
 PlayX.Bookmarks = {}
@@ -595,8 +595,8 @@ function PlayX.OpenBookmarksWindow(selectTitle)
     
     -- Layout
     local oldPerform = frame.PerformLayout
-    frame.PerformLayout = function(self, w, h)
-        oldPerform(self, w, h)
+    frame.PerformLayout = function(w, h)
+        oldPerform(w, h)
         bookmarks:StretchToParent(10, 28, 10, advancedView and 160 or 110)
         
         titleLabel:SetPos(10, bookmarks:GetTall() + 35)
