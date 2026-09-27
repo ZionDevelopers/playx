@@ -9,8 +9,7 @@ Just download this addon by clicking on Download ZIP and extract the addon in ``
 
 ### Requirement
 YouTube, SoundCloud, Images, MP3 and WebM work by default on Windows. <br />
-Everything else needs the x86-64 BETA branch and [Gmod Patch Tool][GmodPatchTool].
-![Requirement](https://playx.juliocesar.me/img/branch.png?v1)
+Everything else needs [Gmod Patch Tool][GmodPatchTool].
 
 For Twitch Streams/VODs, Mature content may not work.
 
