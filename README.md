@@ -42,7 +42,7 @@ ziondevelopers@juliocesar.me
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 To view a copy of this license, visit [Common Creative's Website][License].
 
-If this mod helped you please consider donating: <br />
+If this add-on helped you please consider donating: <br />
 [![Donate](https://playx.juliocesar.me/img/donate.png)][Donate]
 
 [Donate]: <https://www.paypal.com/donate/?hosted_button_id=VTNGLBF6ZV8FC>
