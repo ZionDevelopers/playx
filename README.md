@@ -42,6 +42,10 @@ ziondevelopers@juliocesar.me
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 To view a copy of this license, visit [Common Creative's Website][License].
 
+If this mod helped you please consider donating: <br />
+[![Donate](https://playx.juliocesar.me/img/donate.png)][Donate]
+
+[Donate]: <https://www.paypal.com/donate/?hosted_button_id=VTNGLBF6ZV8FC>
 [Garry's Mod]: <http://garrysmod.com/>
 [workshop]: <http://steamcommunity.com/sharedfiles/filedetails/?id=106516163>
 [Exsto]: <https://github.com/prefanatic/exsto>
